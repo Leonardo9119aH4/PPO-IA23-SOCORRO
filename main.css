@@ -1,5 +1,13 @@
 body {
     margin: 0;
+    background-color: rgb(40, 40, 40);
+}
+:root {
+    --navwi: 25%;
+    --sizemnbt:3rem;
+}
+* {
+    scrollbar-color: rgb(80, 80, 80) rgb(40, 40, 40);
 }
 main {
     display: grid;
@@ -8,11 +16,82 @@ main {
     margin: 0;
     box-sizing: border-box;
 }
+p, h1, a {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
 section {
     border: 1px solid black;
 }
 section#inf>h1 {
     text-align: center;
+}
+/*MENU HAMBURGER*/
+button#mnhamburg{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: calc(var(--sizemnbt)/6);
+    position: absolute;
+    height: var(--sizemnbt);
+    width: var(--sizemnbt);
+    top: 1rem;
+    left: 1rem;
+    transition: left .5s;
+    z-index: 1;
+}
+button#mnhamburg.open-nav{
+    left: calc(var(--navwi) - var(--sizemnbt) / 2);
+}
+button#mnhamburg>span{
+    --_rotate:44deg;
+    --_scale:1.35;
+    display: block;
+    height: calc(var(--sizemnbt)/25);
+    width: 100%;
+    background-color: black;
+    transition: transform .75s;
+}
+button#mnhamburg>span:first-of-type,
+button#mnhamburg>span:last-of-type {
+    transform-origin: left;
+}
+button#mnhamburg.open-nav>span:first-of-type {
+    transform: rotate(var(--_rotate)) scaleX(var(--_scale));
+}
+button#mnhamburg.open-nav>span:last-of-type {
+    transform: rotate(calc(var(--_rotate)*-1)) scaleX(var(--_scale));
+}
+button#mnhamburg.open-nav>span:nth-child(2) {
+    transform: rotate(360deg) scale(0%);
+}
+/*NAV*/
+nav#menu {
+    position: absolute;
+    height: 100%;
+    width: var(--navwi);
+    left: calc(var(--navwi)*-1);
+    transition: left .65s;
+    background-color: rgba(128, 128, 128, 0.295);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2%;
+    box-sizing: border-box;
+    padding: calc(var(--sizemnbt)/2);
+}
+nav#menu>a {
+    background-color: black;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+nav#menu>a:hover {
+    background-color: rgb(180, 180, 180);
+}
+nav#menu.open-nav {
+    left: 0;
 }
 /*CSS RANK*/
 div#rank {
@@ -20,7 +99,6 @@ div#rank {
     height: 30vh;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    padding: 1%;
 }
 div#rank>div:nth-child(1) {
     border: 0;
