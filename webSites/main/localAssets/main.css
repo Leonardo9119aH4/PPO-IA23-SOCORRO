@@ -37,12 +37,14 @@ div.lors {
     --_margin : 10%;
     background-color: gray;
     width: calc(var(--_size)/4);
+    transition: transform .5s;
     >div {
         display: grid;
         background-color: rgb(160, 160, 160);
         margin: var(--_margin);
         align-content: space-around;
         height: calc(var(--_size) - var(--_margin) * 2);
+        cursor: pointer;
         >h2 {
             height: fit-content;
             margin: 0;
@@ -52,6 +54,9 @@ div.lors {
             width: 100%;
         }
     }
+}
+div.lors:hover{
+    transform: scale(120%);
 }
 footer {
     background-color: gray;
