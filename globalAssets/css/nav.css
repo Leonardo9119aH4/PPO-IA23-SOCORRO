@@ -13,7 +13,7 @@ button#mnhamburg{
     justify-content: space-between;
     flex-direction: column;
     padding: calc(var(--sizemnbt)/6);
-    position: absolute;
+    position: fixed;
     height: var(--sizemnbt);
     width: var(--sizemnbt);
     top: 1rem;
@@ -48,13 +48,14 @@ button#mnhamburg.open-nav>span:nth-child(2) {
 }
 /*LINKS*/
 nav#menu {
-    position: absolute;
+    position: fixed;
     height: 100%;
     top: 0;
     width: var(--navwi);
     left: calc(var(--navwi)*-1);
     transition: left .65s;
-    background-color: rgba(128, 128, 128, 0.295);
+    background-color: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(1.5px);
     display: flex;
     flex-direction: column;
     align-items: center;
