@@ -1,6 +1,9 @@
+
 :root {
-    --navwi: 25%;
-    --sizemnbt:3rem;
+    --navwi: 25%; /*widht do nav*/
+    --sizemnbt: 3rem; /*tamanho do botão hamburguer*/
+    --color-button: black; /*cor padrão de todos os botões*/
+    --color-button-hover: rgb(180, 180, 180); /*cor padrão do botão com propriedade hover*/
 }
 body {
     margin: 0;
@@ -46,6 +49,15 @@ button#mnhamburg.open-nav>span:last-of-type {
 button#mnhamburg.open-nav>span:nth-child(2) {
     transform: rotate(360deg) scale(0%);
 }
+/*ACCOUNT*/
+div#account {
+    display: flex;
+    background-color: var(--color-button);
+    transition: background-color .2s;
+    width: 100%;
+    justify-content: space-around;
+    color: white;
+}
 /*LINKS*/
 nav#menu {
     position: fixed;
@@ -66,18 +78,20 @@ nav#menu {
     padding: calc(var(--sizemnbt)/2);
 }
 nav#menu>a {
-    background-color: black;
+    background-color: var(--color-button);
     width: 100%;
     cursor: pointer;
     color: white;
     transition: background-color .2s;
 }
-nav#menu>a:hover {
-    background-color: rgb(180, 180, 180);
+nav#menu>a:hover, div#account:hover {
+    background-color: var(--color-button-hover);
 }
 nav#menu.open-nav {
     left: 0;
 }
-
-/* footer */
-
+/*FOOTER*/
+footer {
+    background-color: gray;
+    height: 100px;
+}   
