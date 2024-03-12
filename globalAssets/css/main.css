@@ -53,6 +53,9 @@ div#account {
     display: flex;
     background-color: var(--color-button);
     transition: background-color .2s;
+    width: 100%;
+    justify-content: space-around;
+    color: white;
 }
 /*LINKS*/
 nav#menu {
