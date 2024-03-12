@@ -1,0 +1,80 @@
+:root {
+    --navwi: 25%;
+    --sizemnbt:3rem;
+}
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+/*BUTTON*/
+button#mnhamburg{
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: calc(var(--sizemnbt)/6);
+    position: fixed;
+    height: var(--sizemnbt);
+    width: var(--sizemnbt);
+    top: 1rem;
+    left: 1rem;
+    transition: left .5s;
+    z-index: 1;
+}
+button#mnhamburg.open-nav{
+    left: calc(var(--navwi) - var(--sizemnbt) / 2);
+}
+button#mnhamburg>span{
+    --_rotate:44deg;
+    --_scale:1.35;
+    display: block;
+    height: calc(var(--sizemnbt)/25);
+    width: 100%;
+    background-color: black;
+    transition: transform .75s;
+}
+button#mnhamburg>span:first-of-type,
+button#mnhamburg>span:last-of-type {
+    transform-origin: left;
+}
+button#mnhamburg.open-nav>span:first-of-type {
+    transform: rotate(var(--_rotate)) scaleX(var(--_scale));
+}
+button#mnhamburg.open-nav>span:last-of-type {
+    transform: rotate(calc(var(--_rotate)*-1)) scaleX(var(--_scale));
+}
+button#mnhamburg.open-nav>span:nth-child(2) {
+    transform: rotate(360deg) scale(0%);
+}
+/*LINKS*/
+nav#menu {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    width: var(--navwi);
+    left: calc(var(--navwi)*-1);
+    transition: left .65s;
+    background-color: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(1.5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: calc(var(--sizemnbt)/2);
+}
+nav#menu>a {
+    background-color: black;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    transition: background-color .2s;
+}
+nav#menu>a:hover {
+    background-color: rgb(180, 180, 180);
+}
+nav#menu.open-nav {
+    left: 0;
+}
