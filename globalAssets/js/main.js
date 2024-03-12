@@ -1,3 +1,4 @@
+
 const body = document.querySelector('body');
 body.innerHTML += `
     <span id="nav">
@@ -24,3 +25,4 @@ btmn.addEventListener('click', () => {
     btmn.classList.toggle('open-nav');
     nav.classList.toggle('open-nav');
 })
+
