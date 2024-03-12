@@ -58,7 +58,3 @@ div.lors {
 div.lors:hover{
     transform: scale(120%);
 }
-footer {
-    background-color: gray;
-    height: 100px;
-}
