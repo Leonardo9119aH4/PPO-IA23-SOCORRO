@@ -4,9 +4,6 @@ h1, h2,  p {
 }
 body {
     --bsize: 100%;
-    background-image: url("./Images/laptop-coding.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
     main {
         display: grid;
         >img {  
@@ -33,11 +30,12 @@ span#separator {
     margin-top: 12%;
     margin-bottom: 12%;
 }
-div.lors {
+a.lors {
     --_margin : 10%;
     background-color: gray;
     width: calc(var(--_size)/4);
     transition: transform .5s;
+    text-decoration: none;
     >div {
         display: grid;
         background-color: rgb(160, 160, 160);
@@ -55,6 +53,6 @@ div.lors {
         }
     }
 }
-div.lors:hover{
+a.lors:hover{
     transform: scale(120%);
 }
