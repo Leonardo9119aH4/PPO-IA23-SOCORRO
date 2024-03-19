@@ -5,6 +5,7 @@
     --color-button: black; /*cor padrão de todos os botões*/
     --color-button-hover: rgb(180, 180, 180); /*cor padrão do botão com propriedade hover*/
     font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 body {
     margin: 0;

@@ -18,6 +18,10 @@ body {
                 --_font-size: 3rem;
                 text-align: center; 
                 font-size: var(--_font-size);
+                >a {
+                    text-decoration: none;
+                    color: white;
+                }
             }
         }
     }
