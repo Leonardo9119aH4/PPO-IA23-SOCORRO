@@ -3,6 +3,7 @@
     --sizemnbt: 3rem; /*tamanho do botão hamburguer*/
     --color-button: black; /*cor padrão de todos os botões*/
     --color-button-hover: rgb(180, 180, 180); /*cor padrão do botão com propriedade hover*/
+    font-family: Arial, Helvetica, sans-serif;
 }
 body {
     margin: 0;
