@@ -1,0 +1,36 @@
+@import url(../../globalAssets/css/main.css);
+
+:root{
+    --menuWD: 20%; /* largura do menu lateral do ranking */
+}
+html, body{
+    height: 100%;
+    bottom: 0;
+    overflow: hidden;
+}
+menu{ /* menu lateral do ranking */
+    display: flex;
+    position: fixed;
+    justify-items: center;
+    right: 0;
+    background-color: rgba(128, 128, 128, 0.5);
+    top: 0;
+    margin-top: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: var(--menuWD);
+    & div.texto{
+        margin: 0 auto auto auto;
+    }
+}
+main{ /* níveis do CodeGamix */
+    display: grid;
+    grid-template-columns: repeat(1fr, 7);
+    grid-template-rows: repeat(1fr, 7);
+    margin: auto var(--menuWD) auto auto;
+    & div{
+        border: solid 1px red;
+        
+    }
+}
