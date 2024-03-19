@@ -32,12 +32,18 @@ main>div {
     display: grid;
     align-content: space-around;
     padding: 2rem;
-    width: var(--_size);
+    min-width: var(--_size);
+    min-height: var(--_size);
     gap: 2rem;
     div#ip {
-        display: grid;
+        display: flex;
+        >span {
+            width: calc(var(--_size) / 2);
+        }
     }
-    div#ip>input {
+    div#ip>span>input {
+        display: grid;
+        width: 100%;
         height: calc(var(--_size)/15);
     }
     >div#bt {
