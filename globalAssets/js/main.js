@@ -7,10 +7,10 @@ body.innerHTML += `
             <span></span>
         </button>
         <nav id="menu" class="closed-menu">
-            <div id="account">
+            <a href="/webSites/account/index.html" id="account">
                 <img src="/images/account-img" alt="Foto do seu perfil">
                 <p>Seu nome</p>
-            </div>
+            </a>
             <a>sla</a>
             <a>sla</a>
             <a>sla</a>
