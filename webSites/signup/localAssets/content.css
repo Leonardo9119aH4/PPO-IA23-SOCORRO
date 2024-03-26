@@ -30,14 +30,25 @@ main {
 main>div {
     --_size: 30rem;
     display: grid;
-    align-content: space-around;
     padding: 2rem;
-    width: var(--_size);
+    min-width: var(--_size);
+    width: fit-content;
     gap: 2rem;
     div#ip {
-        display: grid;
+        display: flex;
+        gap: 2rem;
+        span {
+            display: grid;
+            align-items: center;
+            width: calc(var(--_size) / 2);
+            margin: 0;
+        }
     }
-    div#ip>input {
+    div#ip>span>input {
+        display: grid;
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
         height: calc(var(--_size)/15);
     }
     >div#bt {
