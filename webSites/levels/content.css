@@ -1,36 +1,57 @@
 @import url(../../globalAssets/css/main.css);
 
 :root{
-    --menuWD: 20%; /* largura do menu lateral do ranking */
+    --menuWD: 20vw; /* largura do menu lateral do ranking */
+    --ImgGG: 1vw; /* Gap da div nível */
+    --VRepRN: 7; /* Quantidade de repetições verticais dos retângulos-níveis */
+    --ImgLB: calc(calc(100vw - 2*var(--MLL) - var(--ImgGG) - var(--menuWD)) / var(--VRepRN)); /* largura do retângulo de nível, proporção 1:3; o cálculo pegar a tela horizontal inteira, e retira o valor do ranking lateral, gap e margens, o que sobra é dividido pela quantidade de vezes que acontecerá a repetição horizontal */
+    --MHL: 2vh; /* Margem superior do #levels */
+    --MLL: 1vw; /* Margem lateral do #levels */
+    --HRepRN: 7; /* Quantidade de repetições horizontais dos retângulos-níveis, alterado pelo JS e pelo banco de dados */
 }
 html, body{
-    height: 100%;
+    height: 100vh;
     bottom: 0;
     overflow: hidden;
 }
-menu{ /* menu lateral do ranking */
+main{
     display: flex;
-    position: fixed;
-    justify-items: center;
-    right: 0;
+}
+#exp{ /* menu lateral do ranking */
+    display: flex;
+    position: block;
+    justify-content: center;
+    float: right;
+    height: 100vh;
     background-color: rgba(128, 128, 128, 0.5);
-    top: 0;
     margin-top: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
-    width: var(--menuWD);
-    & div.texto{
+    width: var(--menuWD) !important; /* tamanho fixo */
+    & .texto{
         margin: 0 auto auto auto;
     }
 }
-main{ /* níveis do CodeGamix */
+#levels{ /* níveis do CodeGamix */
     display: grid;
-    grid-template-columns: repeat(1fr, 7);
-    grid-template-rows: repeat(1fr, 7);
-    margin: auto var(--menuWD) auto auto;
+    flex-grow: 1;
+    float: left;
+    margin: var(--MHL) var(--MLL) auto var(--MLL);
+    height: calc(10vh * var(--HRepRN)); /* Cálculo para definição da altura do #levels, f(x)=10x */
+    grid-template-columns: repeat(var(--VRepRN), 1fr); 
+    grid-template-rows: repeat(var(--HRepRN), 1fr); /* Repetições dependendo da quantidade de níveis */
+    grid-gap: calc(var(--ImgGG)/2); /* O valor deve ser dividido por 2 */
     & div{
+        display: flex;
         border: solid 1px red;
-        
+        height: calc(var(--ImgLB)/3);
+        width: var(--ImgLB);
+        background-image: url(localAssets/level.png);
+        background-size: cover;
+        background-position: center;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
     }
 }
