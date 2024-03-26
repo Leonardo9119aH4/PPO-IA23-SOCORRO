@@ -1,7 +1,7 @@
 :root {
     --navwi: 25%; /*widht do nav*/
     --sizemnbt: 3rem; /*tamanho do botão hamburguer*/
-    --marginbtham: 1rem; /*margem esquera do botão hamburguer*/
+    --marginbtham: 1rem; /*margem esquerda do botão hamburguer*/
     --color-button: black; /*cor padrão de todos os botões*/
     --color-button-hover: rgb(180, 180, 180); /*cor padrão do botão com propriedade hover*/
     font-family: Arial, Helvetica, sans-serif;
@@ -52,12 +52,13 @@ button#mnhamburg.open-nav>span:nth-child(2) {
     transform: rotate(360deg) scale(0%);
 }
 /*ACCOUNT*/
-div#account {
+a#account {
     display: flex;
     background-color: var(--color-button);
     transition: background-color .2s;
     width: 100%;
     justify-content: space-around;
+    text-decoration: none;
     color: white;
 }
 /*LINKS*/
