@@ -1,7 +1,7 @@
 body {
     height: 100vh;
     >img {
-        position: fixed ;
+        position: fixed;
         width: 100%;
         height: 100vh;
         z-index: -2;
@@ -22,13 +22,17 @@ body {
     }
 }
 main {
+    --_size: 30rem;
     display: grid;
-    justify-content: center;
+    justify-items: center;
     background-color: rgb(100, 100, 100);
     border-radius: 1%;
+    >img{
+        max-width: var(--_size);
+        height: calc(var(--_size)*0.2);
+    }
 }
 main>div {
-    --_size: 30rem;
     display: grid;
     align-content: space-around;
     padding: 2rem;
