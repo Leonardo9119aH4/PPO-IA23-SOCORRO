@@ -27,9 +27,12 @@ main {
     justify-items: center;
     background-color: rgb(100, 100, 100);
     border-radius: 1%;
-    >img{
+    >a{
         max-width: var(--_size);
         height: calc(var(--_size)*0.2);
+        >img {
+            height: 100%;
+        }
     }
 }
 main>div {
