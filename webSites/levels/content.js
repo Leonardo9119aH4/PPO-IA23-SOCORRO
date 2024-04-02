@@ -1,4 +1,7 @@
 const Niveis = document.querySelector("#levels")
+let QN = 49 //Alterado pelo banco de dados, enquanto não tem, valor arbitrário
 
-Niveis.innerHTML = "<div class='nivel'>1</div>"
+for(let i=0; i<49; i++){ //injeta os níveis
+    Niveis.innerHTML += `<div class='nivel' id=N${i}'>${i}</div>` 
+}
 
