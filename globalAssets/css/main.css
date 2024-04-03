@@ -1,9 +1,11 @@
 :root {
     --navwi: 25%; /*widht do nav*/
     --sizemnbt: 3rem; /*tamanho do botão hamburguer*/
+    --marginbtham: 1rem; /*margem esquerda do botão hamburguer*/
     --color-button: black; /*cor padrão de todos os botões*/
     --color-button-hover: rgb(180, 180, 180); /*cor padrão do botão com propriedade hover*/
     font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 body {
     margin: 0;
@@ -20,7 +22,7 @@ button#mnhamburg{
     height: var(--sizemnbt);
     width: var(--sizemnbt);
     top: 1rem;
-    left: 1rem;
+    left: var(--marginbtham);
     transition: left .5s;
     z-index: 1;
 }
@@ -50,12 +52,13 @@ button#mnhamburg.open-nav>span:nth-child(2) {
     transform: rotate(360deg) scale(0%);
 }
 /*ACCOUNT*/
-div#account {
+a#account {
     display: flex;
     background-color: var(--color-button);
     transition: background-color .2s;
     width: 100%;
     justify-content: space-around;
+    text-decoration: none;
     color: white;
 }
 /*LINKS*/
@@ -94,4 +97,8 @@ nav#menu.open-nav {
 footer {
     background-color: gray;
     height: 100px;
-}   
+}
+/*CSS GLOBAL GERAL*/
+button {
+    cursor: pointer;
+}
