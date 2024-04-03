@@ -1,0 +1,29 @@
+@import url(../../globalAssets/css/main.css);
+
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+header{
+    width: 100vw;
+    height: 25vh;
+    & h1{
+        width: 75%;
+        display: block;
+    }
+    & #life{
+        width: 25%;
+        display: block;
+    }
+}
+
+main{
+    width: 100vw;
+    height: 75vh;
+}
+
+#response{
+    width: 100vw;
+    height: 25vh;
+}
