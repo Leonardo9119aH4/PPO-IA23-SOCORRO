@@ -2,29 +2,52 @@ body {
     --menusize: 100%; /*Tamanho do main (sem contar o padding)*/
     background-color: rgb(90, 90, 90);
     padding: 5vw;
-    main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    & div {
         background-color: rgb(145, 145, 145);
-        padding: 1rem;
-        gap: 1rem;
+        border-radius: 1%;
+        & section {
+            display: grid;
+            padding: 1rem;
+            gap: 1rem;
+        }
     }
 }
+
+section#settings {
+    grid-template-columns: 1fr 1fr;
+}
+
+section#image {
+    justify-content: center;
+    & img {
+        max-height: 10rem;
+    }
+}
+
 div#options {
     display: grid;
     gap: 1rem;
-    >a {
+    & >a {
         background-color: rgb(225, 225, 225);
+        text-align: center;
+        font-size: xx-large;
+    }
+    & >a:hover {
+        background-color: rgb(200, 200, 200);
+        transition: .2s background-color;
     }
 }
+
 div#graphic-space {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    >h1 {
+    & >h1 {
         text-align: center;
+        margin: 0;
+        font-size: xx-large;
     }
-    >div#graphic {
+    & >div#graphic {
         border: 1px solid black;
         position: relative;
         display: grid;
@@ -32,6 +55,7 @@ div#graphic-space {
         & *{
             display: block;
             border: 1px solid rgb(90, 90, 90);
+            background-color: rgb(200, 200, 200)
         }
         & div{
             position: absolute;
