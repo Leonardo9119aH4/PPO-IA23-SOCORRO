@@ -11,7 +11,7 @@ body.innerHTML += `
                 <img src="/images/account-img" alt="Foto do seu perfil">
                 <p>Seu nome</p>
             </a>
-            <a>sla</a>
+            <a href="/webSites/main/index.html">Main page</a>
             <a>sla</a>
             <a>sla</a>
             <a>sla</a>
