@@ -17,13 +17,11 @@ html, body{
 }
 main{
     display: flex;
-    padding: 0;
     margin: 0;
 }
 #exp{ /* menu lateral do ranking */
     display: flex;
     justify-content: center;
-    right: 0;
     height: 100vh;
     width: var(--menuWD) !important; /* tamanho fixo */
     background-color: rgba(128, 128, 128, 0.5);
@@ -36,47 +34,66 @@ main{
     }
 }
 #levels{ /* níveis do CodeGamix */
-    display: grid;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
     float: left;
-    margin: var(--MHL) var(--MLL) auto var(--MLL);
-    height: 100vh; /* Cálculo para definição da altura do #levels, f(x)=10x */
-    width: calc(100vw - var(--menuWD)) !important;
-    grid-template-columns: repeat(var(--HRepRN), 1fr); 
-    grid-template-rows: repeat(var(--VRepRN), 1fr); /* Repetições dependendo da quantidade de níveis */
-    grid-gap: calc(var(--ImgGG)/2); /* O valor deve ser dividido por 2 */
-    overflow: scroll;
-    & div{
-        display: flex;
-        border: solid 1px red;
-        height: calc(var(--ImgLB)/3);
-        width: var(--ImgLB);
-        background-image: url(localAssets/level.png);
-        background-size: cover;
-        background-position: center;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        cursor: pointer;
-    }
-    & div:nth-child(7n-6){
-        grid-column: 1 / 8;
-    }
-    & div:nth-child(7n-5){
-        grid-column: 2 / 8;
-    }
-    & div:nth-child(7n-4){
-        grid-column: 3 / 8;
-    }
-    & div:nth-child(7n-3){
-        grid-column: 4 / 8;
-    }
-    & div:nth-child(7n-2){
-        grid-column: 5 / 8;
-    }
-    & div:nth-child(7n-1){
-        grid-column: 6 / 8;
-    }
-    & div:nth-child(7n){
-        grid-column: 7 / 8;
+    width: calc(100vw - var(--menuWD)) !important; /* Tamanho do #levels ocupa toda área não ocupada pelo #exp */
+    height: 100vh; 
+    & .content{
+        display: grid;
+        margin: var(--MHL) var(--MLL) auto var(--MLL);
+        width: 98%; /* Tamanho para evitar sobreposição da barra de rolagem */
+        grid-template-columns: repeat(var(--HRepRN), 1fr); 
+        grid-template-rows: repeat(var(--VRepRN), 1fr); /* Repetições dependendo da quantidade de níveis */
+        grid-gap: calc(var(--ImgGG)/2); /* O valor deve ser dividido por 2 */
+        & div{
+            display: flex;
+            height: calc(var(--ImgLB)/3);
+            width: var(--ImgLB);
+            background-image: url(localAssets/level.png);
+            background-size: cover;
+            background-position: center;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+        }
+        & div:nth-child(12n-11){
+            grid-column: 1 / 8;
+        }
+        & div:nth-child(12n-10){
+            grid-column: 2 / 8;
+        }
+        & div:nth-child(12n-9){
+            grid-column: 3 / 8;
+        }
+        & div:nth-child(12n-8){
+            grid-column: 4 / 8;
+        }
+        & div:nth-child(12n-7){
+            grid-column: 5 / 8;
+        }
+        & div:nth-child(12n-6){
+            grid-column: 6 / 8;
+        }
+        & div:nth-child(12n-5){
+            grid-column: 7 / 8;
+        }
+        & div:nth-child(12n-4){
+            grid-column: 6 / 8;
+        }
+        & div:nth-child(12n-3){
+            grid-column: 5 / 8;
+        }
+        & div:nth-child(12n-2){
+            grid-column: 4 / 8;
+        }
+        & div:nth-child(12n-1){
+            grid-column: 3 / 8;
+        }
+        & div:nth-child(12n){
+            grid-column: 2 / 8;
+        }
     }
 }
