@@ -55,7 +55,7 @@ main{
     height: 25vh;
     background-color: #4c8ed4;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--RepN), 1fr);
     place-items: center;
     &>button{
         width: 5rem;
