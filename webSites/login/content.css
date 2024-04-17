@@ -1,3 +1,11 @@
+@font-face{
+    font-family: sugar-classic;
+    src: url("/globalAssets/fonts/sugo-pro-classic/Sugo-Pro-Classic-Light-trial.ttf");
+}
+@font-face {
+    font-family: clear-sans;
+    src: url("/globalAssets/fonts/clear-sans/ClearSans-Regular.ttf");
+}
 body {
     height: 100vh;
     >img {
@@ -10,8 +18,7 @@ body {
         position: fixed;
         height: 100%;
         width: 100%;
-        background-color: rgba(50, 50, 50, 0.65);
-        backdrop-filter: blur(2px);
+        background-color: rgba(0, 0, 0, 0.55);
         z-index: -1;
     }
     >span#logmn {
@@ -23,29 +30,32 @@ body {
 }
 main {
     --_size: 30rem;
-    display: grid;
     justify-items: center;
-    background-color: rgb(100, 100, 100);
     border-radius: 1%;
-    >a{
-        max-width: var(--_size);
-        height: calc(var(--_size)*0.2);
-        >img {
-            height: 100%;
-        }
+    >h1{
+        color: white;
+        font-family: sugar-classic;
+        font-size: 6rem;
     }
 }
 main>div {
     display: grid;
     align-content: space-around;
     padding: 2rem;
-    width: var(--_size);
     gap: 2rem;
     div#ip {
         display: grid;
     }
     div#ip>input {
-        height: calc(var(--_size)/15);
+        height: calc(var(--_size)/10);
+        background: transparent;
+        border: 0;
+    }
+    div#ip>input::placeholder {
+        color: #ffffff82;
+        font-size: xx-large;
+        font-family: clear-sans;
+        text-align: center;
     }
     >div#bt {
         --_sizebt:calc(var(--_size)/3);
@@ -54,6 +64,10 @@ main>div {
         height: fit-content;
         & button {
             width: var(--_sizebt);
+            background: transparent;
+            border: 8px solid white;
+            border-radius: 15%;
+            color: white;
         }
         p {
             font-size: larger;
