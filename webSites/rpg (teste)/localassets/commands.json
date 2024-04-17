@@ -1,0 +1,18 @@
+[
+    {
+        "command":"MoverCima()",
+        "effect":"hero.style.bottom = (parseInt(hero.style.bottom) + 10) + 'px'"
+    },
+    {
+        "command":"MoverBaixo()",
+        "effect":"hero.style.top = (parseInt(hero.style.top) + 10) + 'px'"
+    },
+    {
+        "command":"MoverDireita()",
+        "effect":"hero.style.left = (parseInt(hero.style.left) + 10) + 'px'"
+    },
+    {
+        "command":"MoverEsquerda()",
+        "effect":"hero.style.right = (parseInt(hero.style.right) + 10) + 'px'"
+    }
+]

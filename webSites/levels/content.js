@@ -1,4 +1,4 @@
-const Niveis = document.querySelector("#levels")
+const Niveis = document.querySelector("#levels .content")
 let QN = 49 //Alterado pelo banco de dados, enquanto não tem, valor arbitrário
 
 for(let i=0; i<49; i++){ //injeta os níveis

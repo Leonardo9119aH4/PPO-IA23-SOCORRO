@@ -1,0 +1,31 @@
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: 100vh;
+}
+
+section{
+    padding: 5%;
+    position: relative;
+}
+
+section#code {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    border-left: 1px solid black;
+    :first-child {
+        display: flex;
+    }
+}
+
+div#code_input {
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+div#hero {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-color: black;
+}
