@@ -86,6 +86,7 @@ nav#menu>a {
     cursor: pointer;
     color: white;
     transition: background-color .2s;
+    text-decoration: none;
 }
 nav#menu>a:hover, div#account:hover {
     background-color: var(--color-button-hover);
@@ -102,3 +103,7 @@ footer {
 button {
     cursor: pointer;
 }
+
+a {
+    cursor: pointer;
+}   
