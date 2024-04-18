@@ -1,6 +1,9 @@
-const Ask = document.querySelector("#ask>h1")
-const AltAns = document.querySelector("#response")
-const Life = document.querySelector("#life>h1")
+import {main} from "../../globalAssets/js/main.js"
+main()
+
+const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
+const AltAns = document.querySelector("#response") //referencia a div que mostram as alternativas
+const Life = document.querySelector("#life>h1") //referencia
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 
 var life = 5 //alterado pelo banco de dados
