@@ -1,5 +1,6 @@
 const Ask = document.querySelector("#ask>h1")
 const AltAns = document.querySelector("#response")
+const Life = document.querySelector("#life>h1")
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 
 var life = 5 //alterado pelo banco de dados
@@ -25,7 +26,6 @@ function Asking(){
     }
     else{
         Win()
-        console.log("GANHOU")
     }
 }
 function Correct(){
@@ -37,6 +37,7 @@ function Wrong(){
         if(firstWrong==false){ //cada questão só pode tirar 1 vida
             firstWrong = true
             life--
+            Life.innerHTML = life
             score -= 100/quiz.length //pontuação inicial dividido pela quantidade de questões
         }
         Asking()
@@ -46,18 +47,20 @@ function Wrong(){
     }
 }
 function GameOver(){
-
+    console.log("Game Over!")
 }
 function Win(){
-    
+    console.log("Ganhou!")
 }
 AltAns.addEventListener("click", ev =>{ //implementação para comparar alternativas (erro/acerto)
-    console.log("AE")
     const AltC = ev.target 
     const aAlt = [...AltAns.children]
     const nAltC = aAlt.indexOf(AltC)
     if(nAltC==quiz[NAsk].ans){
         Correct()
+    }
+    else {
+        Wrong()
     }
 })
 Asking()
