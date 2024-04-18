@@ -1,4 +1,4 @@
-export function main() {
+export function main(){
     const body = document.querySelector('body');
     body.innerHTML += `
         <span id="nav">
@@ -26,3 +26,4 @@ export function main() {
         nav.classList.toggle('open-nav');
     })
 }
+
