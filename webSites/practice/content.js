@@ -1,3 +1,6 @@
+import {main} from "../../globalAssets/js/main.js"
+main()
+
 const Ask = document.querySelector("#ask>h1")
 const AltAns = document.querySelector("#response")
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
