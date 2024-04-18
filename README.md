@@ -1,4 +1,4 @@
-!! Observação do servidor NOde.js
+!! Observação do servidor Node.js
 
 O package.json e index.json se referem ao servidor node.js, o uso do node.js é incerto, então por enquanto estamos usando o live server para testar o nosso site.
 Se usarmos o node.js, todos os caminhos dos HTMLs, CSSs, JSs e JSONs deverão usar o diretório raiz como caminho inicial.
