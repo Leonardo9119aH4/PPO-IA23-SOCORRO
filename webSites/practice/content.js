@@ -1,9 +1,7 @@
 const Ask = document.querySelector("#ask>h1")
 const AltAns = document.querySelector("#response")
-const Life = document.querySelector("#life>h1")
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 
-var life = 5 //alterado pelo banco de dados
 var score = 100 //pontuação sempre começa com 100
 var firstWrong = false //analisa se é o primeiro erro de resposta da questão
 var NAsk = 0 //número atual da questão
@@ -36,8 +34,6 @@ function Wrong(){
     if(life>0){
         if(firstWrong==false){ //cada questão só pode tirar 1 vida
             firstWrong = true
-            life--
-            Life.innerHTML = life
             score -= 100/quiz.length //pontuação inicial dividido pela quantidade de questões
         }
         Asking()
@@ -45,9 +41,6 @@ function Wrong(){
     else{
         GameOver()
     }
-}
-function GameOver(){
-    console.log("Game Over!")
 }
 function Win(){
     console.log("Ganhou!")
