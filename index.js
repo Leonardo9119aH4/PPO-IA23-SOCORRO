@@ -1,58 +1,33 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
-const server = http.createServer((req, res) => {
-    let filePath = '.' + req.url;
-    if (filePath === './') {
-        // Se a URL for "/", redireciona para o arquivo index.html dentro de "webSites/main"
-        filePath = './webSites/main/index.html';
-    } else {
-        // Caso contrário, anexa o diretório raiz ao caminho do arquivo
-        filePath = './' + req.url;
-    }
+const app = express();
 
-    // Obtém a extensão do arquivo
-    const extname = path.extname(filePath);
-    // Define o tipo de conteúdo com base na extensão do arquivo
-    let contentType = 'text/html';
-    switch (extname) {
-        case '.js':
-            contentType = 'text/javascript';
-            break;
-        case '.css':
-            contentType = 'text/css';
-            break;
-        case '.jpg':
-        case '.jpeg':
-            contentType = 'image/jpeg';
-            break;
-        case '.png':
-            contentType = 'image/png';
-            break;
-    }
+// Servir arquivos estáticos
+app.use(express.static(path.join(__dirname)));
 
-    // Lê o arquivo correspondente ao caminho especificado
-    fs.readFile(filePath, (err, content) => {
+// Redirecionamento da raiz para "http://localhost:3000/webSites/main/index.html"
+app.get('/', (req, res) => {
+    res.redirect('/webSites/main/index.html');
+});
+
+// Rota para todas as outras rotas
+app.get('*', (req, res) => {
+    // Combine o caminho da requisição com o diretório raiz do servidor
+    const filePath = path.join(__dirname, req.url);
+    
+    // Verifica se o arquivo existe
+    res.sendFile(filePath, err => {
+        // Se ocorrer um erro ao enviar o arquivo, responda com 404
         if (err) {
-            if (err.code === 'ENOENT') {
-                // Se o arquivo não for encontrado, retorna 404 Not Found
-                res.writeHead(404);
-                res.end('404 Not Found');
-            } else {
-                // Se ocorrer outro erro, retorna 500 Internal Server Error
-                res.writeHead(500);
-                res.end('500 Internal Server Error');
-            }
-        } else {
-            // Se o arquivo for encontrado, envia-o como resposta
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
+            res.status(404).send('Arquivo não encontrado');
         }
     });
 });
 
+// Inicia o servidor na porta 3000
 const port = 3000;
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`Servidor está rodando em http://localhost:${port}/`);
 });
