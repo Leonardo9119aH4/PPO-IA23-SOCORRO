@@ -1,4 +1,4 @@
-@import url(../../globalAssets/css/main.css);
+@import url("http://localhost:3000/globalAssets/css/main.css");
 
 :root{
     --menuWD: 20vw; /* largura do menu lateral do ranking */
@@ -51,7 +51,7 @@ main{
             display: flex;
             height: calc(var(--ImgLB)/3);
             width: var(--ImgLB);
-            background-image: url(localAssets/level.png);
+            background-image: url("http://localhost:3000/webSites/levels/localAssets/level.png");
             background-size: cover;
             background-position: center;
             align-items: center;

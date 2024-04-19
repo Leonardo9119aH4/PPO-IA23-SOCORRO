@@ -1,4 +1,4 @@
-import {main} from "../../globalAssets/js/main.js"
+import {main} from "http://localhost:3000/globalAssets/js/main.js"
 main()
 
 const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
