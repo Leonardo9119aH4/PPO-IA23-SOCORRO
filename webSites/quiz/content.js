@@ -10,6 +10,8 @@ var life = 5 //alterado pelo banco de dados
 var score = 100 //pontuação sempre começa com 100
 var firstWrong = false //analisa se é o primeiro erro de resposta da questão
 var NAsk = 0 //número atual da questão
+var sec = 0 //variável para o cronômetro, segundos
+var min = 0 //variável para o cronômetro, minutos
 
 const request = new XMLHttpRequest()
 request.open('GET', '../../globalAssets/json/quiz/lv1.json', false) 
@@ -55,6 +57,14 @@ function GameOver(){
 function Win(){
     console.log("Ganhou!")
 }
+function UpdTime(){
+    sec++
+    if(sec>=60){
+        sec=0
+        min++
+    }
+}
+
 AltAns.addEventListener("click", ev =>{ //implementação para comparar alternativas (erro/acerto)
     const AltC = ev.target 
     const aAlt = [...AltAns.children]
@@ -67,4 +77,4 @@ AltAns.addEventListener("click", ev =>{ //implementação para comparar alternat
     }
 })
 Asking()
-
+interval = setInterval(UpdTime, 1000)
