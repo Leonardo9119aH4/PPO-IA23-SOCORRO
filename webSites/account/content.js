@@ -1,4 +1,4 @@
-import {main} from '../../globalAssets/js/main.js'
+import {main} from 'http://localhost:3000/globalAssets/js/main.js'
 main()
 const graphic = document.querySelector("div#graphic")
 var previousvacon = 0, cont = 0, xlayerunits = 7, ylayerunits = 10 , scale = 1000;
