@@ -1,8 +1,8 @@
 import {main} from '../../globalAssets/js/main.js'
 main()
-const hero = body.querySelector('div#hero')
-const button = body.querySelector('button#exec')
-const input = body.querySelector('div#code_input>input')
+const hero = document.querySelector('div#hero')
+const button = document.querySelector('button#exec')
+const input = document.querySelector('div#code_input>input')
 
 button.onclick = async function() {
     const requestcommand = await fetch('./localassets/commands.json ')
