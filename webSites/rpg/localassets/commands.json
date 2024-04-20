@@ -1,21 +1,18 @@
 [
     {
         "command":"MoverCima()",
-        "effect":"hero.style.bottom = (parseInt(hero.style.bottom) + 10) + 'px'",
         "var":"top"
     },
     {
         "command":"MoverBaixo()",
-        "effect":"hero.style.top = (parseInt(hero.style.top) + 10) + 'px'",
-        "var":"top"
+        "var":"bottom"
     },
     {
         "command":"MoverDireita()",
-        "effect":"hero.style.left = (parseInt(hero.style.left) + 10) + 'px'",
-        "var":""
+        "var":"right"
     },
     {
         "command":"MoverEsquerda()",
-        "effect":"hero.style.right = (parseInt(hero.style.right) + 10) + 'px'"
+        "var":"left"
     }
 ]
