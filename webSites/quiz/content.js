@@ -5,6 +5,7 @@ const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const AltAns = document.querySelector("#response") //referencia a div que mostram as alternativas
 const Life = document.querySelector("#life>h1") //referencia
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
+const mainImg = document.querySelector("main#div") //constante para colocar as imagens dos níveis, que deverão 
 
 var life = 5 //alterado pelo banco de dados
 var score = 100 //pontuação sempre começa com 100
@@ -13,16 +14,23 @@ var NAsk = 0 //número atual da questão
 var sec = 0 //variável para o cronômetro, segundos
 var min = 0 //variável para o cronômetro, minutos
 
-const request = new XMLHttpRequest()
-request.open('GET', '../../globalAssets/json/quiz/lv1.json', false) 
-request.send()
-const quiz = JSON.parse(request.responseText)
+var quiz = null
+const request = new XMLHttpRequest();
+request.open('GET', 'http://localhost:3000/globalAssets/json/quiz/lv1.json', false);
+request.send();
+if (request.status === 200) {
+    quiz = JSON.parse(request.responseText);
+    console.log(quiz); // Exemplo de manipulação da resposta
+} else {
+    console.error('Erro ao carregar o arquivo JSON:', request.status);
+}
+
 
 function Asking(){
     if(NAsk < quiz.length){
         firstWrong = false
         Ask.innerHTML = quiz[NAsk].ask
-
+        
         AltAns.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
         for (let i=0; i<quiz[NAsk].alt.length; i++){
