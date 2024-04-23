@@ -3,11 +3,12 @@ main()
 
 const hero = document.querySelector('div#hero') //personagem
 const button = document.querySelector('button#exec')
-const input = document.querySelector('div#code_input>input')
+const input = document.querySelector('div#code_input>textarea')
 const pxadd = 100 //quantidade de pixels a serem adicionadas a cada execução
 var left = hero.getBoundingClientRect().left //distancia em pixel da esquerda da página
 var top = hero.getBoundingClientRect().top //distancia em pixel de cima da página
 const walls = document.querySelectorAll('div.wall') //constante com todos os obstáculos do mapa
+const enemies = document.querySelectorAll('div.enemy')
 
 function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
     var pos1 = div1.getBoundingClientRect()
@@ -44,6 +45,13 @@ function movecalc(command) {
                 brk = true
             }
         })
+        enemies.forEach(el => {
+            if(collision(hero, el)[0] == command.var || collision(hero, el)[1] == command.var) {
+                button.removeEventListener()
+                
+                brk = true
+            }
+        });
         if(brk) { //se tiver colisão para a execução do loop
             break
         }
@@ -71,20 +79,18 @@ function movecalc(command) {
 
 async function move() {
     const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
-    const commands = await requestcommand.json()
-    commands.forEach(commandelement => {
-        if(input.value == commandelement.command) { //se o input for igual a algum comando do json executa o código
-            movecalc(commandelement)
-        }
-    })
+    const commandsjson = await requestcommand.json()
+    const inputcommands = input.value.split('\n')
+    inputcommands.forEach(command => {
+        console.log(command)
+        commandsjson.forEach(commandelement => {
+            if(command == commandelement.command) { //se o input for igual a algum comando do json executa o código
+                movecalc(commandelement)
+            }
+        })
+    });
 }
 
-button.onclick = async function() {
+button.addEventListener('click', () => {
     move()
-}
-
-input.addEventListener('keypress', ev => {
-    if(ev.key == 'Enter') {
-        move()
-    }
 })
