@@ -3,31 +3,18 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Servir arquivos estáticos
-app.use(express.static(path.join(__dirname)));
+// Mapeia as pastas '/webSites' e '/globalAssets' para que sejam acessíveis
+app.use('/webSites', express.static(path.join(__dirname, 'webSites')));
+app.use('/globalAssets', express.static(path.join(__dirname, 'globalAssets')));
 
-// Redirecionamento da raiz para "http://localhost:3000/webSites/main/index.html"
+// Define uma rota para redirecionar para '/webSites/main/index.html' ao acessar '/'
 app.get('/', (req, res) => {
-    res.redirect('/webSites/main/index.html');
+  res.redirect('/webSites/main/index.html');
 });
 
-// Rota para todas as outras rotas
-app.get('*', (req, res) => {
-    // Combine o caminho da requisição com o diretório raiz do servidor
-    const filePath = path.join(__dirname, req.url);
-    
-    // Verifica se o arquivo existe
-    res.sendFile(filePath, err => {
-        // Se ocorrer um erro ao enviar o arquivo, responda com 404
-        if (err) {
-            res.status(404).send('Arquivo não encontrado');
-        }
-    });
-});
-
-// Inicia o servidor na porta 3000
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Servidor está rodando em http://localhost:${port}/`);
+// Inicia o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor iniciado na porta ${PORT}`);
 });
