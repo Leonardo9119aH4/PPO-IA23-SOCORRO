@@ -1,0 +1,1 @@
+Vamos salvar as imagens dos códigos de exercício e de exemplo nesta pasta, elas serão puxadas usando a mesma lógica de níveis do JSON.
