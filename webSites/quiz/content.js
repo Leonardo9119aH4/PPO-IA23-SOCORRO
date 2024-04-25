@@ -16,15 +16,13 @@ var min = 0 //variável para o cronômetro, minutos
 
 var quiz = null
 const request = new XMLHttpRequest();
-request.open('GET', 'http://localhost:3000/globalAssets/json/quiz/lv1.json', false);
-request.send();
+request.open('GET', 'http://localhost:3000/globalAssets/json/quiz/lv1.json', false)
+request.send()
 if (request.status === 200) {
-    quiz = JSON.parse(request.responseText);
-    console.log(quiz); // Exemplo de manipulação da resposta
+    quiz = JSON.parse(request.responseText)
 } else {
-    console.error('Erro ao carregar o arquivo JSON:', request.status);
+    console.error('Erro ao carregar o arquivo JSON:', request.status)
 }
-
 
 function Asking(){
     if(NAsk < quiz.length){
