@@ -21,6 +21,7 @@ section#code {
 section#game {
     padding: calc(1rem + var(--sizemnbt));
     >div {
+        z-index: -1;
         position: relative;
         width: 100%;
         height: 100%;
@@ -42,41 +43,4 @@ div#hero {
     height: 100px;
     width: 100px;
     background-color: black;
-}
-
-div.wall {
-    background-color: blue;
-}
-
-div.enemy {
-    background-color: red;
-    height: 100px;
-    width: 100px;
-    left: 10%;
-    right: 10%;
-    top: 10%;
-}
-
-div#up {
-    width: 100%;
-    height: 5%;
-    top: 0;
-}
-
-div#down {
-    width: 100%;
-    height: 5%;
-    bottom: 0;
-}
-
-div#right {
-    width: 5%;
-    height: 100%;
-    right: 0;
-}
-
-div#left {
-    width: 5%;
-    height: 100%;
-    left: 0;
 }
