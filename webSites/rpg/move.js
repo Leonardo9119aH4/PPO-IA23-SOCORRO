@@ -1,3 +1,7 @@
+const pxadd = 100 //quantidade de pixels a serem adicionadas a cada execução
+var left = hero.getBoundingClientRect().left //distancia em pixel da esquerda da página
+var top = hero.getBoundingClientRect().top //distancia em pixel de cima da página
+const walls = document.querySelectorAll('div.wall') //constante com todos os obstáculos do mapa
 export function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
     var pos1 = div1.getBoundingClientRect()
     var pos2 = div2.getBoundingClientRect()
