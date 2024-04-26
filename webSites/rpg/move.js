@@ -4,8 +4,7 @@ var left = hero.getBoundingClientRect().left //distancia em pixel da esquerda da
 var top = hero.getBoundingClientRect().top //distancia em pixel de cima da página
 const walls = document.querySelectorAll('div.wall') //constante com todos os obstáculos do mapa
 const enemies = document.querySelectorAll('div.enemy')
-
-function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
+export function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
     var pos1 = div1.getBoundingClientRect()
     var pos2 = div2.getBoundingClientRect()
     var differenceX = (pos1.left + pos1.width / 2) - (pos2.left + pos2.width / 2)
