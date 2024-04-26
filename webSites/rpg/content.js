@@ -1,5 +1,6 @@
 import {main} from 'http://localhost:3000/globalAssets/js/main.js'
 main()
+
 import { movecalc } from 'http://localhost:3000/webSites/rpg/move.js'
 import { conditional } from 'http://localhost:3000/webSites/rpg/conditional.js'
 
