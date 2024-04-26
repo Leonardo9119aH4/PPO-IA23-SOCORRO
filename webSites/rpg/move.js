@@ -1,4 +1,11 @@
-export function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
+const hero = document.querySelector('div#hero') //personagem
+const pxadd = 100 //quantidade de pixels a serem adicionadas a cada execução
+var left = hero.getBoundingClientRect().left //distancia em pixel da esquerda da página
+var top = hero.getBoundingClientRect().top //distancia em pixel de cima da página
+const walls = document.querySelectorAll('div.wall') //constante com todos os obstáculos do mapa
+const enemies = document.querySelectorAll('div.enemy')
+
+function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
     var pos1 = div1.getBoundingClientRect()
     var pos2 = div2.getBoundingClientRect()
     var differenceX = (pos1.left + pos1.width / 2) - (pos2.left + pos2.width / 2)
@@ -28,11 +35,15 @@ export function movecalc(command) {
     for(let i = 0; i<=pxadd; i++) {
         walls.forEach(el => { //verifica colisãao com cada parede
             if(collision(hero, el)[0] == command.var || collision(hero, el)[1] == command.var) {
-                console.log(collision(hero, el))
-                console.log(el)
                 brk = true
             }
         })
+        enemies.forEach(el => {
+            if(collision(hero, el)[0] == command.var || collision(hero, el)[1] == command.var) {
+                button.removeEventListener()
+                brk = true
+            }
+        });
         if(brk) { //se tiver colisão para a execução do loop
             break
         }
@@ -58,12 +69,3 @@ export function movecalc(command) {
     }
 }
 
-export async function move() {
-    const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
-    const commands = await requestcommand.json()
-    commands.forEach(commandelement => {
-        if(input.value == commandelement.command) { //se o input for igual a algum comando do json executa o código
-            movecalc(commandelement)
-        }
-    })
-}
