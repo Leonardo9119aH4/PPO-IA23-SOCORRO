@@ -40,7 +40,7 @@ export function movecalc(command) {
         })
         enemies.forEach(el => {
             if(collision(hero, el)[0] == command.var || collision(hero, el)[1] == command.var) {
-                button.removeEventListener()
+                //gameover()
                 brk = true
             }
         });
