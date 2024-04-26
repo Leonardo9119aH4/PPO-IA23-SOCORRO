@@ -48,6 +48,17 @@ header{
 main{
     width: 100vw;
     height: 60vh;
+    display: flex;
+    & div#theory{
+        float: left
+    }
+    & div#img{
+        height: 100%;
+        float: right;
+        & img{
+            height: 100%;
+        }
+    }
 }
 
 #response{
