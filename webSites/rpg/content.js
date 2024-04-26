@@ -1,21 +1,34 @@
 import {main} from 'http://localhost:3000/globalAssets/js/main.js'
 main()
-import { move } from 'http://localhost:3000/webSites/rpg/move.js'
+import { movecalc } from 'http://localhost:3000/webSites/rpg/move.js'
+import { conditional } from 'http://localhost:3000/webSites/rpg/conditional.js'
 
-const hero = document.querySelector('div#hero') //personagem
 const button = document.querySelector('button#exec')
-const input = document.querySelector('div#code_input>input')
-const pxadd = 100 //quantidade de pixels a serem adicionadas a cada execução
-var left = hero.getBoundingClientRect().left //distancia em pixel da esquerda da página
-var top = hero.getBoundingClientRect().top //distancia em pixel de cima da página
-const walls = document.querySelectorAll('div.wall') //constante com todos os obstáculos do mapa
+const input = document.querySelector('div#code_input>textarea')
 
-button.onclick = async function() {
-    move()
+async function move() {
+    const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
+    const commandsjson = await requestcommand.json()
+    const inputcommands = input.value.split('\n')
+    for(let i = 0; i < inputcommands.length; i++) {
+        let condition = false
+        let inputsplit = inputcommands[i].split('')
+        inputsplit.forEach(el => {
+            if(el == '{') {
+                i = conditional(inputsplit, inputcommands, i)
+                condition = true
+            }
+        });
+        if(condition){
+            commandsjson.forEach(commandelement => {
+                if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
+                    movecalc(commandelement)
+                }
+            })
+        }
+    }
 }
 
-input.addEventListener('keypress', ev => {
-    if(ev.key == 'Enter') {
-        move()
-    }
+button.addEventListener('click', () => {
+    move()
 })
