@@ -29,6 +29,9 @@ section#game {
         & div {
             position: absolute;
         }
+        & div {
+            position: absolute;
+        }
     }
 }
 
@@ -38,6 +41,8 @@ div#code_input {
 }
 
 div#hero {
+    top: 50%;
+    left: 50%;
     top: 50%;
     left: 50%;
     height: 100px;
