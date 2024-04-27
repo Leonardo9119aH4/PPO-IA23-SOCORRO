@@ -1,5 +1,5 @@
 import { movecalc } from "http://localhost:3000/webSites/rpg/move.js";
-export function conditional(input, inputcommands, actualline) {
+export function conditional(input, inputcommands, actualline, commandlist) {
     let condition = false
     let expression = []
     input.forEach(el => {
@@ -24,9 +24,12 @@ export function conditional(input, inputcommands, actualline) {
         });
         commands.shift()
         commands.forEach(el => {
-            console.log(el)
-            movecalc(el)
-        });
+            commandlist.forEach(commandelement => {
+                if(el == commandelement.command) { //se o input for igual a algum comando do json executa o código
+                    movecalc(commandelement)
+                }
+            });
+        })
         return lines
     } else {
         return actualline
