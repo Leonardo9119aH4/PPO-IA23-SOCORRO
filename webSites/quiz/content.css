@@ -12,7 +12,7 @@ html, body{
 
 header{
     width: 100vw;
-    height: 25vh;
+    height: 20vh;
     background-color: #bdbcb9;
     margin-top: 0;
     & #ask, #life{
@@ -47,12 +47,23 @@ header{
 
 main{
     width: 100vw;
-    height: 50vh;
+    height: 60vh;
+    display: flex;
+    & div#theory{
+        float: left
+    }
+    & div#img{
+        height: 100%;
+        float: right;
+        & img{
+            height: 100%;
+        }
+    }
 }
 
 #response{
     width: 100vw;
-    height: 25vh;
+    height: 20vh;
     background-color: #4c8ed4;
     display: grid;
     grid-template-columns: repeat(var(--RepN), 1fr);

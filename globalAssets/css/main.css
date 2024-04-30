@@ -62,7 +62,7 @@ a#account {
     color: white;
 }
 /*LINKS*/
-nav#menu {
+div#subNav {
     position: fixed;
     height: 100%;
     top: 0;
@@ -80,7 +80,7 @@ nav#menu {
     font-family: Arial, Helvetica, sans-serif;
     padding: calc(var(--sizemnbt)/2);
 }
-nav#menu>a {
+div#subNav>a {
     background-color: var(--color-button);
     width: 100%;
     cursor: pointer;
@@ -88,10 +88,10 @@ nav#menu>a {
     transition: background-color .2s;
     text-decoration: none;
 }
-nav#menu>a:hover, div#account:hover {
+div#subNav>a:hover, div#account:hover {
     background-color: var(--color-button-hover);
 }
-nav#menu.open-nav {
+div#subNav.open-nav {
     left: 0;
 }
 /*FOOTER*/
