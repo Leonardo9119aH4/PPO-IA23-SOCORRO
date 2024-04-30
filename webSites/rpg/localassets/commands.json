@@ -1,0 +1,22 @@
+[
+    {
+        "command":"MoverCima()",
+        "var":"top",
+        "effect":"movecalc(commandelement)"
+    },
+    {
+        "command":"MoverBaixo()",
+        "var":"bottom",
+        "effect":"movecalc(commandelement)"
+    },
+    {
+        "command":"MoverDireita()",
+        "var":"right",
+        "effect":"movecalc(commandelement)"
+    },
+    {
+        "command":"MoverEsquerda()",
+        "var":"left",
+        "effect":"movecalc(commandelement)"
+    }
+]

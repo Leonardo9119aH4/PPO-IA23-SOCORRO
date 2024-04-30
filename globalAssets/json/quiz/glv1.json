@@ -1,0 +1,12 @@
+[
+    {
+        "ask": "Qual operador lógico é usado para atribuir valor a uma variável?",
+        "alt": ["=", "==", "===", "atrib", "is", "recive"],
+        "ans": 1
+    },
+    {
+        "ask": "FOIIIIII",
+        "alt": ["=", "==", "===", "atrib", "is", "recive"],
+        "ans": 1
+    }
+] 
