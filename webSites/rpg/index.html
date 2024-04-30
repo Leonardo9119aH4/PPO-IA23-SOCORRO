@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://localhost:3000/globalAssets/css/main.css" rel="Stylesheet">
     <link href="http://localhost:3000/webSites/rpg/content.css" rel="Stylesheet">
+    <link id="cssinjection" rel="Stylesheet">
     <script type="module" async defer src="http://localhost:3000/webSites/rpg/content.js"></script>
     <title>Codegamix</title>
 </head>
 <body>
+    <nav></nav> <!-- Injetado pelo main.js -->
     <main>
         <section id="game">
             <div>
-                <div id="hero"></div>
-                <div class="wall" id="b"></div>
-                <div class="wall" id="a"></div>
-                <div class="wall" id="c"></div>
+                
             </div>
         </section>
         <section id="code">
@@ -27,7 +26,7 @@
                 <img alt="Imagem de um coração em pixel art">
             </div>
             <div id="code_input">
-                <input>
+                <textarea></textarea>
                 <button id="exec"><p>EXECUTAR</p></button>
             </div>
         </section>

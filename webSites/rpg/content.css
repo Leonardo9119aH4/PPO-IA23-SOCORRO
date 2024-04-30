@@ -21,10 +21,17 @@ section#code {
 section#game {
     padding: calc(1rem + var(--sizemnbt));
     >div {
+        z-index: -1;
         position: relative;
         width: 100%;
         height: 100%;
         border: 1px solid black;
+        & div {
+            position: absolute;
+        }
+        & div {
+            position: absolute;
+        }
     }
 }
 
@@ -34,34 +41,11 @@ div#code_input {
 }
 
 div#hero {
-    position: absolute;
+    top: 50%;
+    left: 50%;
+    top: 50%;
+    left: 50%;
     height: 100px;
     width: 100px;
     background-color: black;
-}
-
-div#a {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    top: calc(100% - 100px);
-}
-
-div#b {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    left: calc(100% - 100px);
-    top: 0%;
-}
-
-div#c {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    left: 50%;
-    top: 50%;
 }

@@ -1,0 +1,12 @@
+[
+    {
+        "ask": "Pergunta média",
+        "alt": ["=", "==", "===", "atrib", "is", "recive"],
+        "ans": 1
+    },
+    {
+        "ask": "Médio foi",
+        "alt": ["=", "==", "===", "atrib", "is", "recive"],
+        "ans": 1
+    }
+] 
