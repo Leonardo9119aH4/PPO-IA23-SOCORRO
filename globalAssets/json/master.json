@@ -10,6 +10,7 @@
         "type": "quiz",
         "level_group": 1,
         "theory": true,
+        "theory_title": "duplo",
         "get_theory": "first"
     }
 ]
