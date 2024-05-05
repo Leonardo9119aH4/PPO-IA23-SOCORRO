@@ -1,0 +1,11 @@
+div#theory{
+    & h1{
+        color: red;
+    }
+    & div {
+        color: green;
+        & h1{
+            color: yellow;
+        }
+    }
+}

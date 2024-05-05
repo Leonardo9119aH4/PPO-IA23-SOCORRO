@@ -15,6 +15,7 @@ async function ejsload() {
     gamediv.innerHTML = await ejsrequest.text()
 }
 ejsload().then(() => {
+    csslink.setAttribute('href', `http://localhost:3000/webSites/rpg/localassets/levels/lv${lv}/content.css`)
     var GameDOM = {
         hero: document.querySelector('div#hero'), //personagem
         pxadd: 100, //quantidade de pixels a serem adicionadas a cada execução
@@ -24,25 +25,43 @@ ejsload().then(() => {
         enemies: document.querySelectorAll('div.enemy'), //constante com todos os inimigos
         end: document.querySelector('div#end') //contante com o final do level
     }
-    csslink.setAttribute('href', `http://localhost:3000/webSites/rpg/localassets/levels/lv${lv}/content.css`)
     async function load() {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
         const commandsjson = await requestcommand.json()
-        const inputcommands = input.value.split('\n')
-        let condition = false 
-        for(let i = 0; i < inputcommands.length; i++) {
+        var inputcommands = input.value.split('\n')
+        var gamevars = new Object()
+        for(let i = 0; i <= inputcommands.length; i++) {
+            let condition = false
             let inputsplit = inputcommands[i].split('')
+            console.log(inputsplit)
+            console.log(condition)
+            let posint = inputcommands.indexOf('int '), posreal = inputcommands.indexOf('real '), posstring = inputcommands.indexOf('string ')
+            if(posint != -1){
+                let varname = []
+                for(var aux = posint + 4; aux <= 10; ++aux){
+                    if(inputcommands[aux] == ' ' || '='){
+                        break
+                    } else {
+                        varname.push(inputcommands[aux])
+                    }
+                }
+                varname.join('')
+                var varvalue = []
+                while(aux <= inputsplit.length) {
+                    varvalue.push(inputcommands[aux])
+                    ++aux
+                }
+                gamevars[varname] = varvalue
+            }
             inputsplit.forEach(el => {
                 if(el == '{') {
-                    i = conditional(inputsplit, inputcommands, i, commandsjson)
+                    i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
                     condition = true
                 }
-                if(el == '}') {
-                    condition = false
-                }
-            });
-    
+            })  
+            var inputcommands = input.value.split('\n')
             if(!condition){
+                console.log(inputcommands[i])
                 commandsjson.forEach(commandelement => {
                     if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
                         movecalc(commandelement, GameDOM)

@@ -1,0 +1,12 @@
+.blocks{
+    display: block;
+    position: absolute;
+    cursor: grab;
+    border: 1px solid red;
+}
+#bl1{
+    top: 0;
+}
+#bl2{
+    top: 10vh;
+}
