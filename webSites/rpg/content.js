@@ -29,9 +29,11 @@ ejsload().then(() => {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
         const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
-        for(let i = 0; i < inputcommands.length; i++) {
+        for(let i = 0; i <= inputcommands.length; i++) {
             let condition = false
             let inputsplit = inputcommands[i].split('')
+            console.log(inputsplit)
+            console.log(condition)
             inputsplit.forEach(el => {
                 if(el == '{') {
                     i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
@@ -40,6 +42,7 @@ ejsload().then(() => {
             })
             var inputcommands = input.value.split('\n')
             if(!condition){
+                console.log(inputcommands[i])
                 commandsjson.forEach(commandelement => {
                     if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
                         movecalc(commandelement, GameDOM)
