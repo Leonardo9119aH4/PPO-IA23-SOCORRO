@@ -29,17 +29,36 @@ ejsload().then(() => {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
         const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
+        var gamevars = new Object()
         for(let i = 0; i <= inputcommands.length; i++) {
             let condition = false
             let inputsplit = inputcommands[i].split('')
             console.log(inputsplit)
             console.log(condition)
+            let posint = inputcommands.indexOf('int '), posreal = inputcommands.indexOf('real '), posstring = inputcommands.indexOf('string ')
+            if(posint != -1){
+                let varname = []
+                for(var aux = posint + 4; aux <= 10; ++aux){
+                    if(inputcommands[aux] == ' ' || '='){
+                        break
+                    } else {
+                        varname.push(inputcommands[aux])
+                    }
+                }
+                varname.join('')
+                var varvalue = []
+                while(aux <= inputsplit.length) {
+                    varvalue.push(inputcommands[aux])
+                    ++aux
+                }
+                gamevars[varname] = varvalue
+            }
             inputsplit.forEach(el => {
                 if(el == '{') {
                     i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
                     condition = true
                 }
-            })
+            })  
             var inputcommands = input.value.split('\n')
             if(!condition){
                 console.log(inputcommands[i])
