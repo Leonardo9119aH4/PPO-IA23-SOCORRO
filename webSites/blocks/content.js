@@ -1,6 +1,8 @@
 import {main} from "http://localhost:3000/globalAssets/js/main.js"
-import "http://localhost:3000/globalAssets/js/jquery.js"
-import "http://localhost:3000/globalAssets/js/jquery-ui.js"
+import "http://localhost:3000/frameworks/jquery.js"
+import "http://localhost:3000/frameworks/jquery-ui.js"
+import "http://localhost:3000/frameworks/jquery-collision.js"
+
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const header = document.querySelector("header") //cabeçario
 const codeBlocks = document.querySelector("main") //onde o scratch fica
@@ -17,7 +19,7 @@ async function loadDOM(){
 }
 
 async function content(){
-    main()
+    await main()
     await loadDOM()
     const masterRqst = await fetch("http://localhost:3000/globalAssets/json/master.json")
     const master = await masterRqst.json() //json mestre
@@ -33,16 +35,12 @@ async function content(){
             }
         })
     })
-    blocksRef.forEach(blockRef => {
-        blockRef.addEventListener("dragend", ev => {
-            const blockId = ev.target.id
-            const gapId = `gap${blockId.slice(2)}`
-            console.log("foi")
-            if(blockId === gapId){
-                console.log(`O bloco ${blockId} está encaixado corretamente na lacuna ${gapId}.`)
-            }
-        })
-    })
-    
+    async function checkCollisions(){
+        $(".draggable").collision(".blocks").each(function() {
+            // Ação a ser tomada quando houver colisão
+        console.log("foi")
+        });
+    }
+    setInterval(checkCollisions, 100)
 }
 content()
