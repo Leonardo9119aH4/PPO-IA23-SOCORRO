@@ -2,11 +2,15 @@
     display: block;
     position: absolute;
     cursor: grab;
-    border: 1px solid red;
+    border-radius: 10%;
+    text-align: center;
+    width: fit-content;
 }
 #bl1{
     top: 0;
+    background-color: red;
 }
 #bl2{
     top: 10vh;
+    background-color: green;
 }
