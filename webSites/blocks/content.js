@@ -36,7 +36,7 @@ async function content(){
         })
     })
     async function checkCollisions(){
-        $(".draggable").collision(".blocks").each(function() {
+        $("#bl1").collision("#gap1").each(function() {
             // Ação a ser tomada quando houver colisão
         console.log("foi")
         });
