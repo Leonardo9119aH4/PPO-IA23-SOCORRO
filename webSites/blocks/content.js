@@ -1,7 +1,5 @@
 import {main} from "http://localhost:3000/globalAssets/js/main.js"
-import "http://localhost:3000/frameworks/jquery.js"
-import "http://localhost:3000/frameworks/jquery-ui.js"
-import "http://localhost:3000/frameworks/jquery-collision.js"
+import {DragAndDrop} from "http://localhost:3000/webSites/blocks/localAssets/dragAndDrop.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const header = document.querySelector("header") //cabeçario
@@ -12,9 +10,9 @@ var level = 1 //TEMPORÁRIO! Futura ligação com banco de dados (não estou cop
 async function loadDOM(){
     const asideRqst = await fetch(`http://localhost:3000/webSites/blocks/localAssets/levels/lv${level}/aside.ejs`)
     const asideEJS = await asideRqst.text() //blocos laterais
-    const blocksRqst =  await fetch(`http://localhost:3000/webSites/blocks/localAssets/levels/lv${level}/code.ejs`)
-    const blocksEJS = await blocksRqst.text()
-    codeBlocks.innerHTML = blocksEJS
+    const dragBlockRqst =  await fetch(`http://localhost:3000/webSites/blocks/localAssets/levels/lv${level}/code.ejs`)
+    const dragBlockEJS = await dragBlockRqst.text()
+    codeBlocks.innerHTML = dragBlockEJS
     aside.innerHTML = asideEJS
 }
 
@@ -25,22 +23,8 @@ async function content(){
     const master = await masterRqst.json() //json mestre
     title.innerHTML = master[level].level_title
     header.innerHTML = master[level].level_header
-    const blocksRef = document.querySelectorAll(".blocks")
+    const dragBlocksRef = document.querySelectorAll(".dragBlock")
     const reBlRef = document.querySelectorAll(".reBl")
-    $(document).ready(function() {
-        $(".blocks").draggable()
-        $(".reBl").droppable({
-            drop: function(event, ui){
-                
-            }
-        })
-    })
-    async function checkCollisions(){
-        $("#bl1").collision("#gap1").each(function() {
-            // Ação a ser tomada quando houver colisão
-        console.log("foi")
-        });
-    }
-    setInterval(checkCollisions, 100)
+    DragAndDrop()
 }
 content()
