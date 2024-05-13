@@ -1,11 +1,10 @@
 @import url("http://localhost:3000/globalAssets/css/main.css");
-@import url("http://localhost:3000/globalAssets/css/jquery-ui.css");
 
 html, body{
     height: 100vh;
     overflow-y: hidden;
 }
-aside, header, main{
+aside, header, main, section{
     box-sizing: border-box;
     display: block;
     border: 1px solid black;
@@ -15,13 +14,28 @@ aside{
     width: 20%;
     height: 100%;
 }
-header{
+header, main, section{
     float: right;
+}
+header{
     width: 80%;
-    height: 20%;
+    height: 15%;
 }
 main{
-    float: right;
     width: 80%;
-    height: 80%;
+    height: 70%;
+}
+section{
+    width: 80%;
+    height: 15%;
+    display: grid; /* sobrescreve "display: block" */
+    place-items: center;
+    & button{
+        
+    }
+    & #output{
+        border: 1px solid black;
+        height: 1rem;
+        width: 80%
+    }
 }
