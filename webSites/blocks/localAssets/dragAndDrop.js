@@ -33,10 +33,10 @@ export class receiveBlock{
     constructor(element, id) {
         this.element = element
         this.id = id
-        this.reBlElements = []
+        this.dragBlockElements = []
     }
-    addReBlElement(element) {
-        this.reBlElements.push(element);
+    addDragBlockElement(element) {
+        this.dragBlockElements.push(element);
     }
     checkCollision(dragBlock) {
         const rect1 = this.element.getBoundingClientRect()
@@ -46,7 +46,7 @@ export class receiveBlock{
             // Sobreposição detectada
             console.log(`Sobreposição com gap${this.id} detectada`)
         }
-        this.reBlElements.forEach(reBlElement => {
+        this.dragBlockElements.forEach(reBlElement => {
             const reBlRect = reBlElement.getBoundingClientRect();
             if (reBlRect.left < rect2.right && reBlRect.right > rect2.left &&
                 reBlRect.top < rect2.bottom && reBlRect.bottom > rect2.top) {
