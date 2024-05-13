@@ -32,8 +32,7 @@ async function content(){
     const receiveBlocks = [];
     reBlRef.forEach((element, index) => {
         const id = index + 1;
-        const receiveBlockObj = new receiveBlock(element, id);
-        // Adicione todos os elementos reBl à instância de receiveBlock
+        const receiveBlockObj = new receiveBlock(element, id); // Adicione todos os elementos reBl à instância de receiveBlock
         receiveBlockObj.addDragBlockElement(element);
         receiveBlocks.push(receiveBlockObj);
         console.log(element)     
