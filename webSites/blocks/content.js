@@ -1,5 +1,5 @@
 import {main} from "http://localhost:3000/globalAssets/js/main.js"
-import {DragAndDrop} from "http://localhost:3000/webSites/blocks/localAssets/dragAndDrop.js"
+import {dragBlock} from "http://localhost:3000/webSites/blocks/localAssets/dragAndDrop.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const header = document.querySelector("header") //cabeçario
@@ -23,8 +23,10 @@ async function content(){
     const master = await masterRqst.json() //json mestre
     title.innerHTML = master[level].level_title
     header.innerHTML = master[level].level_header
-    const dragBlocksRef = document.querySelectorAll(".dragBlock")
     const reBlRef = document.querySelectorAll(".reBl")
-    DragAndDrop()
+    const dragBlockRef = document.querySelectorAll(".dragBlock")
+    dragBlockRef.forEach((element) => {
+        new dragBlock(element);
+    });
 }
 content()
