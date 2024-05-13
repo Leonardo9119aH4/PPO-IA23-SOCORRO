@@ -30,20 +30,16 @@ async function content(){
     })
 
     const receiveBlocks = [];
-    document.querySelectorAll('.reBl').forEach((element, index) => {
+    reBlRef.forEach((element, index) => {
         const id = index + 1;
         const receiveBlockObj = new receiveBlock(element, id);
         // Adicione todos os elementos reBl à instância de receiveBlock
-        const reBlElements = document.querySelectorAll(`#reBl${id}`);
-        reBlElements.forEach(reBlElement => {
-            receiveBlockObj.addReBlElement(reBlElement);
-        });
-    
+        receiveBlockObj.addDragBlockElement(element);
         receiveBlocks.push(receiveBlockObj);
+        console.log(element)     
     });
-    
     document.addEventListener('mousemove', function() {
-        document.querySelectorAll('.dragBlock').forEach(dragBlock => {
+        dragBlockRef.forEach(dragBlock => {
             receiveBlocks.forEach(reBl => {
                 reBl.checkCollision(dragBlock);
             });
