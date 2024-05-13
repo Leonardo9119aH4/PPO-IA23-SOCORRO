@@ -1,10 +1,11 @@
 import {main} from "http://localhost:3000/globalAssets/js/main.js"
-import {dragBlock, receiveBlock} from "http://localhost:3000/webSites/blocks/localAssets/dragAndDrop.js"
+import {DragBlock, ReceiveBlock} from "http://localhost:3000/webSites/blocks/localAssets/dragAndDrop.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const header = document.querySelector("header") //cabeçario
 const codeBlocks = document.querySelector("main") //onde o scratch fica
 const title =  document.querySelector("title") //título
+const exeButton = document.querySelector("section>button") //botão para verificar se o scratch está correto
 var level = 1 //TEMPORÁRIO! Futura ligação com banco de dados (não estou copiando o comentário do William)
 
 async function loadDOM(){
@@ -23,26 +24,17 @@ async function content(){
     const master = await masterRqst.json() //json mestre
     title.innerHTML = master[level].level_title
     header.innerHTML = master[level].level_header
+
     const reBlRef = document.querySelectorAll(".reBl") //referencia as divs .reBl (receive Blocks) após o carregamento do DOM
     const dragBlockRef = document.querySelectorAll(".dragBlock") //referencia as divs .dragBlock após o carregamento do DOM
-    dragBlockRef.forEach((element) => { //atribui a classe dragBlock as divs .dragBlock
-        new dragBlock(element)
-    })
-
-    const receiveBlocks = [];
-    reBlRef.forEach((element, index) => {
-        const id = index + 1;
-        const receiveBlockObj = new receiveBlock(element, id); // Adicione todos os elementos reBl à instância de receiveBlock
-        receiveBlockObj.addDragBlockElement(element);
-        receiveBlocks.push(receiveBlockObj);
-        console.log(element)     
+    const receiveBlocks = []; //array para passar as divs para checar colisão para classe receiveBlocks
+    dragBlockRef.forEach(dragBlock => new DragBlock(dragBlock)); //referencia cada div .dragBlock da nodelist
+    reBlRef.forEach(reBl => {
+        const receiveBlock = new ReceiveBlock(reBl);
+        receiveBlocks.push(receiveBlock);
     });
-    document.addEventListener('mousemove', function() {
-        dragBlockRef.forEach(dragBlock => {
-            receiveBlocks.forEach(reBl => {
-                reBl.checkCollision(dragBlock);
-            });
-        });
+    exeButton.addEventListener("click", () => { //chama detecção ao clicar em "EXECUTAR"
+        receiveBlocks.forEach(reBl => reBl.checkCollision(dragBlockRef));
     });
 }
 content()

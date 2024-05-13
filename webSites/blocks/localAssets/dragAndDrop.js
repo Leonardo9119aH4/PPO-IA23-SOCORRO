@@ -1,57 +1,52 @@
-export class dragBlock {
-    constructor(Element) {
-        this.Element = Element;
+export class DragBlock {
+    constructor(element) {
+        this.element = element;
         this.offsetX = 0;
         this.offsetY = 0;
         this.isDragging = false;
 
-        this.Element.addEventListener("mousedown", (e) => {
-            this.isDragging = true;
-            this.offsetX = e.clientX - this.Element.getBoundingClientRect().left;
-            this.offsetY = e.clientY - this.Element.getBoundingClientRect().top;
-            this.Element.style.cursor = "grabbing";
-        });
-
-        this.Element.addEventListener("mouseup", () => {
-            this.isDragging = false;
-            this.Element.style.cursor = "grab";
-        });
-
-        document.addEventListener("mousemove", (e) => {
-            if (this.isDragging) {
-                this.Element.style.left = e.clientX - this.offsetX + "px";
-                this.Element.style.top = e.clientY - this.offsetY + "px";
-            }
-        });
+        this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
+        document.addEventListener("mouseup", this.onMouseUp.bind(this));
+        document.addEventListener("mousemove", this.onMouseMove.bind(this));
+    }
+    onMouseDown(e) {
+        this.isDragging = true;
+        this.offsetX = e.clientX - this.element.getBoundingClientRect().left;
+        this.offsetY = e.clientY - this.element.getBoundingClientRect().top;
+        this.element.style.cursor = "grabbing";
     }
 
-    destroy(){
+    onMouseUp() {
+        this.isDragging = false;
+        this.element.style.cursor = "grab";
+    }
+
+    onMouseMove(e) {
+        if (this.isDragging) {
+            this.element.style.left = e.clientX - this.offsetX + "px";
+            this.element.style.top = e.clientY - this.offsetY + "px";
+        }
+    }
+
+    getBoundingClientRect() {
+        return this.element.getBoundingClientRect();
+    }
+    destroy() {
         // Adicione a lógica de destruição aqui
     }
 }
-export class receiveBlock{
-    constructor(element, id) {
-        this.element = element
-        this.id = id
-        this.dragBlockElements = []
+export class ReceiveBlock{
+    constructor(element) {
+        this.element = element;
     }
-    addDragBlockElement(element) {
-        this.dragBlockElements.push(element);
-    }
-    checkCollision(dragBlock) {
-        const rect1 = this.element.getBoundingClientRect()
-        const rect2 = dragBlock.getBoundingClientRect()
-        if (rect1.left < rect2.right && rect1.right > rect2.left &&
-            rect1.top < rect2.bottom && rect1.bottom > rect2.top) {
-            // Sobreposição detectada
-            console.log(`Sobreposição com gap${this.id} detectada`)
-        }
-        this.dragBlockElements.forEach(reBlElement => {
-            const reBlRect = reBlElement.getBoundingClientRect();
-            if (reBlRect.left < rect2.right && reBlRect.right > rect2.left &&
-                reBlRect.top < rect2.bottom && reBlRect.bottom > rect2.top) {
-                // Sobreposição com reBl detectada
-                console.log(`Sobreposição com reBl${this.id} detectada`);
+
+    checkCollision(dragBlocks) {
+        const rect1 = this.element.getBoundingClientRect();
+        dragBlocks.forEach(dragBlock => {
+            const rect2 = dragBlock.getBoundingClientRect();
+            if (rect1.left < rect2.right && rect1.right > rect2.left &&
+                rect1.top < rect2.bottom && rect1.bottom > rect2.top) {
+                console.log(`Sobreposição detectada: ${dragBlock.id} sobre ${this.element.id}`);
             }
         });
     }
