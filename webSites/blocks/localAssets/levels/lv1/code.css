@@ -1,0 +1,9 @@
+pre{
+    margin: 0;
+    & .reBl{
+        margin-left: 2em;
+        display: block;
+        color: red;
+        border: 1px solid gray;
+    }
+}
