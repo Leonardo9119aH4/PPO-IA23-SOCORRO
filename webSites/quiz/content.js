@@ -3,8 +3,12 @@ const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const AltAns = document.querySelector("#response") //referencia a div que mostram as alternativas
 const Life = document.querySelector("#life>h1") //referencia o contador de vidas gráfico
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
-const mainImg = document.querySelector("main>div#img") //constante para colocar as imagens dos níveis
-const mainTheory = document.querySelector("main>div#theory") //local de injeção do ejs da teoria
+const mainTag = document.querySelector("main")
+const mainImg = mainTag.querySelector("#img") //constante para colocar as imagens dos níveis
+const mainTheory = mainTag.querySelector("#theory") //local de injeção do ejs da teoria
+const gameOverPopup = mainTag.querySelector("#gameOver") //popup de game over
+const winnerPopup = mainTag.querySelector("#winner") //popup de quando vence o quiz
+const winnerTime = winnerPopup.querySelector("#time") //exibe o tempo ao vencer o quiz
 
 async function content(){
     main()
@@ -17,6 +21,7 @@ async function content(){
     var sec = 0 //variável para o cronômetro, segundos
     var min = 0 //variável para o cronômetro, minutos
     var isTheory = false //booleano para saber se uma teoria é exibida
+    var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
     const MasterRqst = await fetch("http://localhost:3000/globalAssets/json/master.json")
     const Master = await MasterRqst.json()
     const quizRqst = await fetch(`http://localhost:3000/globalAssets/json/quiz/glv${GLevel}.json`)
@@ -61,24 +66,32 @@ async function content(){
         Asking()
     }
     function Wrong(){
-        if(life>0){
+        if(--life>0){
             if(firstWrong==false){ //cada questão só pode tirar 1 vida
                 firstWrong = true
-                life--
                 Life.innerHTML = life
                 score -= 100/quiz.length //pontuação inicial dividido pela quantidade de questões
             }
             Asking()
         }
         else{
+            Life.innerHTML = life
             GameOver()
         }
     }
     function GameOver(){
-        console.log("Game Over!")
+        endGame = true
+        gameOverPopup.classList.add("opened")
     }
     function Win(){
-        console.log("Ganhou!")
+        endGame = true
+        winnerPopup.classList.add("opened")
+        if(sec>=0 && sec<=9){
+            winnerTime.innerHTML = `Com tempo de ${min}:0${sec}`
+        }
+        else{
+            winnerTime.innerHTML = `Com tempo de ${min}:${sec}`
+        }
     }
     function UpdTime(){
         sec++
@@ -87,17 +100,18 @@ async function content(){
             min++
         }
     }
-
     AltAns.addEventListener("click", ev =>{ //implementação para comparar alternativas (erro/acerto)
         if(!isTheory){
-            const AltC = ev.target 
-            const aAlt = [...AltAns.children]
-            const nAltC = aAlt.indexOf(AltC)
-            if(nAltC==quiz[NAsk].ans){
-                Correct()
-            }
-            else {
-                Wrong()
+            if(!endGame){
+                const AltC = ev.target 
+                const aAlt = [...AltAns.children]
+                const nAltC = aAlt.indexOf(AltC)
+                if(nAltC==quiz[NAsk].ans){
+                    Correct()
+                }
+                else {
+                    Wrong()
+                }
             }
         }
         else{
@@ -106,7 +120,7 @@ async function content(){
         }
     })
     VerifyInit() //inicia quiz e, se tiver, exibe a teoria antes do quiz
-
+    setInterval(UpdTime, 1000)
 
 }
 content()
