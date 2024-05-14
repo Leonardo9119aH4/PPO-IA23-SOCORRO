@@ -34,27 +34,27 @@ ejsload().then(() => {
             let inputsplit = String(inputcommands[i]).split('')
             let posint = inputcommands[i].indexOf('int ')
             if(posint != -1){
-                inputsplit.forEach((element, index) => {
-                    if(element == ""){
-                        inputsplit[index].shift()
-                    }
-                });
+                console.log(inputsplit)
                 let varname = []
-                for(var aux = posint + 4; aux < 10; ++aux){
-                    if(inputsplit[aux] == (' ' || '=')){
-                        break
+                let letcount
+                for(let i = posint + 4; i < inputsplit.length; i++){
+                    console.log(i)
+                    if((inputsplit[letcount] == " ") || (inputsplit[letcount] == "=")){
+                        console.log('break')
+                        letcount = i
                     } else {
-                        varname.push(inputsplit[aux])
+                        varname.push(inputsplit[i])
                     }
                 }
                 varname.join('')
                 var varvalue = []
-                console.log(inputsplit, aux)
-                while(aux < inputsplit.length) {
-                    if(inputsplit[aux] != (' ' || '=')){
-                        varvalue.push(inputsplit[aux])
+                console.log(inputsplit, letcount)
+                console.log(inputsplit[letcount])
+                while(letcount < inputsplit.length) {
+                    if((inputsplit[letcount] != " ") && (inputsplit[letcount] != "=")){
+                        varvalue.push(inputsplit[letcount])
                     }
-                    ++aux
+                    letcount++
                 }
                 gamevars[0].push(varvalue)
                 gamevars[1].push(varname)
