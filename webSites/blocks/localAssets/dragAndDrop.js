@@ -46,7 +46,7 @@ export class ReceiveBlock{
             const rect2 = dragBlock.getBoundingClientRect();
             if (rect1.left < rect2.right && rect1.right > rect2.left &&
                 rect1.top < rect2.bottom && rect1.bottom > rect2.top) {
-                console.log(`Sobreposição detectada: ${dragBlock.id} sobre ${this.element.id}`);
+                    SaveBlGap(dragBlock.id, this.element.id)
             }
         });
     }
@@ -54,3 +54,27 @@ export class ReceiveBlock{
 
     }
 }
+var saveBlockId = [] //array que guarda a sequência
+var saveGapId = [] //array para debug que mostra a quem os blocos se referenciam
+function SaveBlGap(dragBlockId, gapId){//uso interno do módulo para salvar os valores na array
+    saveBlockId.push(dragBlockId)
+    saveGapId.push(gapId) //debug
+}
+export async function Execute(){
+    const correctSeqRqst = await fetch("http://localhost:3000/webSites/blocks/localAssets/levels/correctSeq.json")
+    const correctSeq = await correctSeqRqst.json()
+    var isCorrect = null
+    console.log(saveBlockId)
+    console.log(correctSeq[0])
+    if(saveBlockId.length === correctSeq[0].length && saveBlockId.every((value, index)=>value===correctSeq[0][index])){
+        console.log("Acertou!")
+        isCorrect = true
+    }
+    else{
+        console.log("Errou!")
+        isCorrect = false
+    }
+    saveBlockId=[] //zera a array após a verificação
+    return isCorrect;
+}
+
