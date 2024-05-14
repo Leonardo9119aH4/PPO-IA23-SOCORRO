@@ -49,15 +49,35 @@ main{
     width: 100vw;
     height: 60vh;
     display: flex;
-    & div#theory{
+    & #theory{
         float: left
     }
-    & div#img{
+    & #img{
         height: 100%;
         float: right;
         & img{
             height: 100%;
         }
+    }
+    & #gameOver, #winner{
+        --widthGameOver: 40vw;
+        position: fixed;
+        height: 40vh;
+        width: var(--widthGameOver);
+        background-color: rgba(0, 102, 255, 0.5);
+        align-self: center;
+        margin-left: calc((100vw - var(--widthGameOver))/2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+    }
+    & #gameOver.opened, #winner.opened{
+        visibility: visible;
+        opacity: 1;
     }
 }
 

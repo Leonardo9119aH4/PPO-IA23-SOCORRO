@@ -35,14 +35,19 @@ async function content(){
         const receiveBlock = new ReceiveBlock(reBl);
         receiveBlocks.push(receiveBlock);
     });
-    exeButton.addEventListener("click", () => { //chama detecção ao clicar em "EXECUTAR"
+    exeButton.addEventListener("click", async () => { //chama detecção ao clicar em "EXECUTAR"
         receiveBlocks.forEach(reBl => reBl.checkCollision(dragBlockRef)); //precisa ficar fora do Execute() por causa das referências
-        correctAnswer = Execute()
-        if(correctAnswer){
-            output.innerHTML = "Acertou"
+        correctAnswer = await Execute()
+        if(correctAnswer[0]){
+            output.innerHTML = "Acertou!"
         }
         else{
-            output.innerHTML = "Errou!"
+            if(correctAnswer[1]===-1){
+                output.innerHTML = "Você não completou todas as lacunas!"
+            }
+            else{
+                output.innerHTML = `Errou com ${correctAnswer[1]} erros!`
+            }
         }
     });
 }

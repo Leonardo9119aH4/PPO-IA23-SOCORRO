@@ -56,6 +56,7 @@ export class ReceiveBlock{
 }
 var saveBlockId = [] //array que guarda a sequência
 var saveGapId = [] //array para debug que mostra a quem os blocos se referenciam
+var level = 1 //temporário
 function SaveBlGap(dragBlockId, gapId){//uso interno do módulo para salvar os valores na array
     saveBlockId.push(dragBlockId)
     saveGapId.push(gapId) //debug
@@ -64,17 +65,24 @@ export async function Execute(){
     const correctSeqRqst = await fetch("http://localhost:3000/webSites/blocks/localAssets/levels/correctSeq.json")
     const correctSeq = await correctSeqRqst.json()
     var isCorrect = null
-    console.log(saveBlockId)
-    console.log(correctSeq[0])
-    if(saveBlockId.length === correctSeq[0].length && saveBlockId.every((value, index)=>value===correctSeq[0][index])){
-        console.log("Acertou!")
+    var wrongCount = 0
+    if(saveBlockId.length === correctSeq[level-1].length && saveBlockId.every((value, index)=>value===correctSeq[level-1][index])){
         isCorrect = true
     }
     else{
-        console.log("Errou!")
         isCorrect = false
+        if(saveBlockId.length === correctSeq[level-1].length){
+            saveBlockId.forEach((value, index)=>{
+                if(saveBlockId[index] != correctSeq[level-1][index]){
+                    wrongCount++
+                }
+            })
+        }
+        else{
+            wrongCount = -1
+        }
     }
     saveBlockId=[] //zera a array após a verificação
-    return isCorrect;
+    return [isCorrect, wrongCount];
 }
 
