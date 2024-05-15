@@ -8,5 +8,10 @@
         "ask": "FOIIIIII",
         "alt": ["=", "==", "===", "atrib", "is", "recive"],
         "ans": 1
+    },
+    {
+        "ask": "Hmm",
+        "alt": ["ai", "ul", "alpha"],
+        "ans": 2
     }
 ] 
