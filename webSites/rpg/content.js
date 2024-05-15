@@ -2,6 +2,7 @@ import { main } from 'http://localhost:3000/globalAssets/js/main.js'
 import { movecalc } from 'http://localhost:3000/webSites/rpg/move.js'
 import { conditional } from 'http://localhost:3000/webSites/rpg/conditional.js'
 import { setVars } from 'http://localhost:3000/webSites/rpg/vars.js'
+import { getVars } from 'http://localhost:3000/webSites/rpg/vars.js'
 
 const button = document.querySelector('button#exec')
 const input = document.querySelector('div#code_input>textarea')
@@ -34,6 +35,8 @@ ejsload().then(() => {
             let condition = false
             let inputsplit = inputcommands[i].split('')
             setVars(inputcommands[i], inputsplit, gamevars)
+            inputcommands[i] = getVars(inputcommands[i], inputsplit, gamevars)
+            inputsplit = inputcommands[i].split('')
             inputsplit.forEach(el => {
                 if(el == '{') {
                     i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
