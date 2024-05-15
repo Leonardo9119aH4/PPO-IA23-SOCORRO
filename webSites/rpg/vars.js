@@ -1,26 +1,26 @@
-var count
 var type
+var count = 0
+var varcontrol = false
 
 function setVarName(input) {
     let name = new Array(0)
-    console.log(count)
     while((input[count] != "=") && (input[count] != " ")){
         name.push(input[count])
         count++
-        console.log(count)
-        console.log(input[count])
     }
     return name
 }
 
 export function setVars(input, inputsplit, vars) {
+    varcontrol = false
     let posint = input.indexOf('int ')
     let posreal = input.indexOf('real ')
     let posstring = input.indexOf('string ')
-    if(posint != -1 || posreal != 1 || posstring != 1){
+    if(posint != -1 || posreal != -1 || posstring != -1){
+        varcontrol = true
         if(posint != -1){
             count = posint + 4
-            type = 'i'
+            type = 'i' 
         } else if (posreal != -1){
             count = posreal + 5
             type = 'r'
@@ -28,10 +28,8 @@ export function setVars(input, inputsplit, vars) {
             count = posstring + 7
             type = 's'
         }
-        let varname = setVarName(inputsplit)
+        let varname = setVarName(inputsplit, count)
         let varvalue = []
-        console.log(inputsplit, count)
-        console.log(inputsplit[count])
         while(count < inputsplit.length) {
             if((inputsplit[count] != " ") && (inputsplit[count] != "=")){
                 varvalue.push(inputsplit[count])
@@ -40,11 +38,55 @@ export function setVars(input, inputsplit, vars) {
         }
         varname = varname.join('')
         varvalue = varvalue.join('')
-        vars[0].push(varvalue)
-        vars[1].push(varname)
-        vars[2].push(type)
-        console.log(vars[0])
-        console.log(vars[1])
-        console.log(vars[2])
+        if(verifyType(varvalue)){
+            vars[0].push(varvalue)
+            vars[1].push(varname)
+            vars[2].push(type)
+        }
     }
+}
+
+function verifyType(value) {
+    switch(type){
+        case 's':
+            if(parseInt(value) == NaN){
+                return true
+            }
+            break
+        case 'i':
+            if(Number.isInteger(parseInt(value))){
+                return true
+            }
+            break
+        case 'r':
+            if(parseFloat(value) % 1 != 0){
+                return true
+            }
+            break
+    }
+    return false
+}
+
+export function getVars(input, inputsplit, vars) {
+    let newinput = input
+    console.log(varcontrol)
+    if(!varcontrol){
+        vars[1].forEach((varname, index) => {
+            if(input.indexOf(varname) != -1){
+                let x = input.indexOf(varname)
+                console.log(vars)
+                console.log(varname)
+                console.log(inputsplit, x)
+                console.log(inputsplit[x + varname.length])
+                console.log(inputsplit[x - 1])
+                if(inputsplit[x + varname.length] == " " || inputsplit[x + varname.length] == "<" || inputsplit[x + varname.length] == ">" || inputsplit[x + varname.length] == "=" || inputsplit[x + varname.length] == ")" && inputsplit[x - 1] == " " || inputsplit[x - 1] == "<" || inputsplit[x - 1] == ">" || inputsplit[x - 1] == "=" || inputsplit[x - 1] == "("){
+                    console.log(input.replace(new RegExp('\\b' + varname + '\\b', 'gi'), vars[0][index]))
+                    newinput = input.replace(new RegExp('\\b' + varname + '\\b', 'gi'), vars[0][index])
+                    console.log(newinput)
+                    return newinput
+                }
+            }
+        })
+    }
+    return newinput
 }
