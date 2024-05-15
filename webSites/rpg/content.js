@@ -1,6 +1,7 @@
-import {main} from 'http://localhost:3000/globalAssets/js/main.js'
+import { main } from 'http://localhost:3000/globalAssets/js/main.js'
 import { movecalc } from 'http://localhost:3000/webSites/rpg/move.js'
 import { conditional } from 'http://localhost:3000/webSites/rpg/conditional.js'
+import { setVars } from 'http://localhost:3000/webSites/rpg/vars.js'
 
 const button = document.querySelector('button#exec')
 const input = document.querySelector('div#code_input>textarea')
@@ -28,39 +29,11 @@ ejsload().then(() => {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
         const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
-        var gamevars = [new Array(1), new Array(1)]
+        var gamevars = [new Array(0), new Array(0), new Array(0)]
         for(let i = 0; i < inputcommands.length; i++) {
             let condition = false
-            let inputsplit = String(inputcommands[i]).split('')
-            let posint = inputcommands[i].indexOf('int ')
-            if(posint != -1){
-                console.log(inputsplit)
-                let varname = []
-                let letcount
-                for(let i = posint + 4; i < inputsplit.length; i++){
-                    console.log(i)
-                    if((inputsplit[letcount] == " ") || (inputsplit[letcount] == "=")){
-                        console.log('break')
-                        letcount = i
-                    } else {
-                        varname.push(inputsplit[i])
-                    }
-                }
-                varname.join('')
-                var varvalue = []
-                console.log(inputsplit, letcount)
-                console.log(inputsplit[letcount])
-                while(letcount < inputsplit.length) {
-                    if((inputsplit[letcount] != " ") && (inputsplit[letcount] != "=")){
-                        varvalue.push(inputsplit[letcount])
-                    }
-                    letcount++
-                }
-                gamevars[0].push(varvalue)
-                gamevars[1].push(varname)
-                console.log(gamevars[0])
-                console.log(gamevars[1])
-            }
+            let inputsplit = inputcommands[i].split('')
+            setVars(inputcommands[i], inputsplit, gamevars)
             inputsplit.forEach(el => {
                 if(el == '{') {
                     i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
