@@ -3,12 +3,16 @@ import { movecalc } from 'http://localhost:3000/webSites/rpg/move.js'
 import { conditional } from 'http://localhost:3000/webSites/rpg/conditional.js'
 import { setVars } from 'http://localhost:3000/webSites/rpg/vars.js'
 import { getVars } from 'http://localhost:3000/webSites/rpg/vars.js'
+import { detectLoop } from 'http://localhost:3000/webSites/rpg/loop.js'
+import { loadLoop } from 'http://localhost:3000/webSites/rpg/loop.js'
 
 const button = document.querySelector('button#exec')
 const input = document.querySelector('div#code_input>textarea')
 const csslink = document.querySelector('link#cssinjection')
 var gamediv = document.querySelector('section#game>div')
 var lv = 1 //TEMPORÁRIO! futura ligação com banco de dados
+var commandsjson
+var gameVars
 
 async function ejsload() {
     await main()
@@ -26,17 +30,23 @@ ejsload().then(() => {
         enemies: document.querySelectorAll('div.enemy'), //constante com todos os inimigos
         end: document.querySelector('div#end') //contante com o final do level
     }
-    async function load() {
+    async function main() {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
-        const commandsjson = await requestcommand.json()
+        commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
-        var gamevars = [new Array(0), new Array(0), new Array(0)]
+        gameVars = [new Array(0), new Array(0), new Array(0)]
+        load(inputcommands)
+    }
+    function load(inputcommands) {
         for(let i = 0; i < inputcommands.length; i++) {
             let condition = false
             let inputsplit = inputcommands[i].split('')
-            setVars(inputcommands[i], inputsplit, gamevars)
-            inputcommands[i] = getVars(inputcommands[i], inputsplit, gamevars)
+            setVars(inputcommands[i], inputsplit, gameVars)
+            inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
             inputsplit = inputcommands[i].split('')
+            if(detectLoop(inputcommands[i])){
+                i = loadLoop(inputcommands[i], inputcommands, i)
+            }
             inputsplit.forEach(el => {
                 if(el == '{') {
                     i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
@@ -54,6 +64,6 @@ ejsload().then(() => {
         }
     }
     button.addEventListener('click', () => {
-        load()
+        main()
     })
 })
