@@ -69,20 +69,12 @@ function verifyType(value) {
 
 export function getVars(input, inputsplit, vars) {
     let newinput = input
-    console.log(varcontrol)
     if(!varcontrol){
         vars[1].forEach((varname, index) => {
             if(input.indexOf(varname) != -1){
                 let x = input.indexOf(varname)
-                console.log(vars)
-                console.log(varname)
-                console.log(inputsplit, x)
-                console.log(inputsplit[x + varname.length])
-                console.log(inputsplit[x - 1])
                 if(inputsplit[x + varname.length] == " " || inputsplit[x + varname.length] == "<" || inputsplit[x + varname.length] == ">" || inputsplit[x + varname.length] == "=" || inputsplit[x + varname.length] == ")" && inputsplit[x - 1] == " " || inputsplit[x - 1] == "<" || inputsplit[x - 1] == ">" || inputsplit[x - 1] == "=" || inputsplit[x - 1] == "("){
-                    console.log(input.replace(new RegExp('\\b' + varname + '\\b', 'gi'), vars[0][index]))
                     newinput = input.replace(new RegExp('\\b' + varname + '\\b', 'gi'), vars[0][index])
-                    console.log(newinput)
                     return newinput
                 }
             }
