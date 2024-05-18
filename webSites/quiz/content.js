@@ -22,9 +22,9 @@ async function content(){
     var min = 0 //variável para o cronômetro, minutos
     var isTheory = false //booleano para saber se uma teoria é exibida
     var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
-    const MasterRqst = await fetch("http://localhost:3000/globalAssets/json/master.json")
+    const MasterRqst = await fetch("http://localhost:3000/globalAssets/json/master.json") //requisição do json mestre
     const Master = await MasterRqst.json()
-    const quizRqst = await fetch(`http://localhost:3000/globalAssets/json/quiz/glv${GLevel}.json`)
+    const quizRqst = await fetch(`http://localhost:3000/globalAssets/json/quiz/glv${GLevel}.json`) //requisição das perguntas conforme grupo de nível
     const quiz = await quizRqst.json()
     var theoryEJS
     if(Master[level].theory === true){
@@ -32,7 +32,7 @@ async function content(){
         const theoryRqst = await fetch(`http://localhost:3000/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
         theoryEJS = await theoryRqst.text()
     }
-    function VerifyInit(){ //função para verificação de nível e oferecimento 
+    function VerifyInit(){ //verificação de nível e mostrar a teoria conforme nível do usuário
         if(Master[level].theory === true){
             mainTheory.innerHTML = theoryEJS
             Ask.innerHTML = Master[level].theory_title
@@ -45,7 +45,7 @@ async function content(){
         }
     }
 
-    function Asking(){
+    function Asking(){ //injeção da pergunta e das alternativas
         if(NAsk < quiz.length){
             firstWrong = false
             Ask.innerHTML = quiz[NAsk].ask
@@ -70,7 +70,7 @@ async function content(){
             if(firstWrong==false){ //cada questão só pode tirar 1 vida
                 firstWrong = true
                 Life.innerHTML = life
-                score -= 100/quiz.length //pontuação inicial dividido pela quantidade de questões
+                score -= 100/quiz.length //cálculo do percentual de acerto
             }
             Asking()
         }
@@ -93,7 +93,7 @@ async function content(){
             winnerTime.innerHTML = `Com tempo de ${min}:${sec}`
         }
     }
-    function UpdTime(){
+    function UpdTime(){ //cronômetro
         sec++
         if(sec>=60){
             sec=0
@@ -120,7 +120,7 @@ async function content(){
         }
     })
     VerifyInit() //inicia quiz e, se tiver, exibe a teoria antes do quiz
-    setInterval(UpdTime, 1000)
+    setInterval(UpdTime, 1000) //cronômetro
 
 }
 content()
