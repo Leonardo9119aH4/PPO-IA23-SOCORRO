@@ -20,7 +20,8 @@ export function conditional(input, inputcommands, actualline, commandlist, vars)
             commands.splice(index, lines - index)
             lines = index
         }
-    });
+    })
+    console.log(expression)
     if(eval(expression)) {
         commands.shift()
         commands.forEach(el => {
