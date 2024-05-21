@@ -35,14 +35,16 @@ export function setVars(input, inputsplit, vars) {
                 varvalue.push(inputsplit[count])
             }
             count++
+            varname = varname.join('')
+            varvalue = varvalue.join('')
+            if(verifyType(varvalue)){
+                vars[0].push(varvalue)
+                vars[1].push(varname)
+                vars[2].push(type)
+            }
         }
-        varname = varname.join('')
-        varvalue = varvalue.join('')
-        if(verifyType(varvalue)){
-            vars[0].push(varvalue)
-            vars[1].push(varname)
-            vars[2].push(type)
-        }
+    } else {
+        return
     }
 }
 
