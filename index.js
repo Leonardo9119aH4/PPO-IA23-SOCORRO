@@ -5,12 +5,12 @@ const fs = require('fs')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// Mapeia as pastas '/webSites' e '/globalAssets' para que sejam acessíveis
+// Mapeia as pastas "/webSites", "/globalAssets" e "/frameworks" para que sejam acessíveis
 app.use('/webSites', express.static(path.join(__dirname, 'webSites')))
 app.use('/globalAssets', express.static(path.join(__dirname, 'globalAssets')))
 app.use('/frameworks', express.static(path.join(__dirname, 'frameworks')))
 
-// Define uma rota para redirecionar para '/webSites/main/index.html' ao acessar '/'
+// Define uma rota para redirecionar para "/webSites/main/index.html" ao acessar "/""
 app.get('/', (req, res) => {
   res.redirect('/webSites/main/index.html')
 });
