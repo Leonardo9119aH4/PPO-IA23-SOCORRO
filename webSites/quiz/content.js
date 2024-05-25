@@ -32,7 +32,6 @@ async function content(){
     main()
     var life = 5 //quanto de vida o usuário tem, valor lido pelo banco de dados
     var score = 100 //percentual de acertos
-    var exp = 0 //quantidade de xp obtida conforme percentual de acerto/erro e tempo
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
     var NAsk = 0 //número atual da questão
     var dSec = 0 //variável para o cronômetro, décimos de segundos, usado para cálculo do XP diário
@@ -111,8 +110,10 @@ async function content(){
             winnerTime.innerHTML = `Com tempo de ${min}:${sec}`
         }
         winnerScore.innerHTML = `Acertou ${score}% das perguntas`
-        winnerEXP.innerHTML = `Obteve N XP`
-        console.log(dSec) //debug
+        let exp = 0 //quantidade de xp obtida conforme percentual de acerto/erro, tempo e quantidade de questões
+        const K = quiz.length/5 //constante multiplicador conforme a quantidade de questões
+        exp = (100-K*((Math.log(0.1*dSec))/Math.log(1.7)))*(score/100) //cáculo do XP obtido
+        winnerEXP.innerHTML = `Obteve ${exp} XP`
     }
     function Feedback(isCorrect){
         feedbackPopup.classList.add("opened")
@@ -127,7 +128,7 @@ async function content(){
     }
     function UpdTime(){ //cronômetro
         dSec++
-        if(dSec>=10){
+        if(dSec%10==0 && dSec!=0){
             sec++ //não precisa zeras os décimos, pois eles não serão mostrados
         }
         if(sec>=60){
