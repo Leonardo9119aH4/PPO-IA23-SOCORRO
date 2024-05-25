@@ -2,7 +2,7 @@ import {main} from "http://localhost:3000/globalAssets/js/main.js"
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const response = document.querySelector("#response") //referencia a div que mostram as alternativas
-const responseButton = response.querySelectorAll("button") //referencia todas as alternativas
+var responseButton = response.querySelectorAll("button") //referencia todas as alternativas
 const Life = document.querySelector("#life>h1") //referencia o contador de vidas gráfico
 const mainTag = document.querySelector("main")
 const mainImg = mainTag.querySelector("#img") //constante para colocar as imagens dos níveis
@@ -35,6 +35,7 @@ async function content(){
     var exp = 0 //quantidade de xp obtida conforme percentual de acerto/erro e tempo
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
     var NAsk = 0 //número atual da questão
+    var dSec = 0 //variável para o cronômetro, décimos de segundos, usado para cálculo do XP diário
     var sec = 0 //variável para o cronômetro, segundos
     var min = 0 //variável para o cronômetro, minutos
     var isTheory = false //booleano para saber se uma teoria é exibida
@@ -111,6 +112,7 @@ async function content(){
         }
         winnerScore.innerHTML = `Acertou ${score}% das perguntas`
         winnerEXP.innerHTML = `Obteve N XP`
+        console.log(dSec) //debug
     }
     function Feedback(isCorrect){
         feedbackPopup.classList.add("opened")
@@ -124,7 +126,10 @@ async function content(){
         }
     }
     function UpdTime(){ //cronômetro
-        sec++
+        dSec++
+        if(dSec>=10){
+            sec++ //não precisa zeras os décimos, pois eles não serão mostrados
+        }
         if(sec>=60){
             sec=0
             min++
@@ -133,29 +138,35 @@ async function content(){
     feedbackButton.addEventListener("click", ev =>{
         feedbackPopup.classList.remove("opened")
     })
-    responseButton.forEach((el, i)=>{
-        
-    })
-    response.addEventListener("click", ev =>{ //implementação para comparar alternativas (erro/acerto)
-        if(!isTheory){
-            if(!endGame){
-                const AltC = ev.target 
-                const aAlt = [...response.children]
-                const nAltC = aAlt.indexOf(AltC)
-                if(nAltC==quiz[NAsk].ans){
-                    Correct()
+    function updateRespBtList(){ //atualiza a nodeList contendo as alternativas
+        responseButton = response.querySelectorAll("button")
+    }
+    const observer = new MutationObserver(()=>{ //detecta alterações no DOM para poder chamar o forEach
+        updateRespBtList()
+        responseButton.forEach((el, i)=>{
+            el.addEventListener("click", ev =>{ //implementação para comparar alternativas (erro/acerto)
+                if(!isTheory){
+                    if(!endGame){
+                        const AltC = ev.target 
+                        const aAlt = [...response.children]
+                        const nAltC = aAlt.indexOf(AltC)
+                        if(nAltC==quiz[NAsk].ans){
+                            Correct()
+                        }
+                        else {
+                            Wrong()
+                        }
+                    }
                 }
-                else {
-                    Wrong()
+                else{
+                    isTheory=false
+                    Asking()
                 }
-            }
-        }
-        else{
-            isTheory=false
-            Asking()
-        }
+            })
+        })
     })
+    observer.observe(response, { childList: true, subtree: true })
     VerifyInit() //inicia quiz e, se tiver, exibe a teoria antes do quiz
-    setInterval(UpdTime, 1000) //cronômetro
+    setInterval(UpdTime, 100) //cronômetro
 }
 content()
