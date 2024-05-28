@@ -1,0 +1,41 @@
+@import url("http://localhost:3000/globalAssets/css/main.css");
+
+html, body{
+    height: 100vh;
+    overflow-y: hidden;
+}
+aside, header, main, section{
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid black;
+}
+aside{
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+header, main, section{
+    float: right;
+}
+header{
+    width: 80%;
+    height: 15%;
+}
+main{
+    width: 80%;
+    height: 70%;
+}
+section{
+    width: 80%;
+    height: 15%;
+    display: grid; /* sobrescreve "display: block" */
+    place-items: center;
+    & button{
+        
+    }
+    & #output{
+        border: 1px solid black;
+        height: 1rem;
+        width: 80%
+    }
+}
