@@ -5,8 +5,9 @@ const input = document.querySelector('div#code_input>textarea')
 const csslink = document.querySelector('link#cssinjection')
 var gamediv = document.querySelector('section#game>div')
 var lv = 1 //TEMPORÁRIO! futura ligação com banco de dados
-var commandsjson
 export var gameVars
+export var GameDOM
+export var commandsjson
 
 async function ejsload() {
     var ejsrequest = await fetch(`http://localhost:3000/webSites/rpg/localassets/levels/lv${lv}/content.ejs`)
