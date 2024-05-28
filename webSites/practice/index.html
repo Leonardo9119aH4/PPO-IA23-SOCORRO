@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Quiz</title>
-        <link rel="Stylesheet" href="http://localhost:3000/webSites/practice/content.css">
-        <script async defer type="module"  src="http://localhost:3000/webSites/practice/content.js"></script>
+        <link rel="Stylesheet" href="http://localhost:3000/webSites/quiz/content.css">
+        <script async defer type="module" src="http://localhost:3000/webSites/quiz/content.js"></script>
     </head>
     <body>
         <nav> <!-- Injetado pelo main.js -->
@@ -19,8 +19,27 @@
             </div>
         </header>
         <main>
-            <div>
-                X
+            <div id="theory"> <!-- injetado pelo js via ejs -->
+                
+            </div>
+            <div id="img"> <!-- injetado pelo js -->
+                
+            </div>
+            <div id="gameOver">
+                <p>VOCÊ PERDEU!</p>
+                <p>Pratique para ganhar vidas!</p>
+                <a href="http://localhost:3000/webSites/levels/index.html"><button>Sair</button></a>
+            </div>
+            <div id="winner">
+                <p>VOCÊ GANHOU!</p>
+                <p id="time">Com tempo de 00:00</p>
+                <p id="score">Acertou ?%</p>
+                <p id="exp">Obteve ? XP</p>
+                <a href="http://localhost:3000/webSites/levels/index.html"><button>Continuar</button></a>
+            </div>
+            <div id="feedback">
+                <p id="feedContent">FEEDBACK!</p>
+                <button>CONTINUAR</button>
             </div>
         </main>
         <section id="response">
