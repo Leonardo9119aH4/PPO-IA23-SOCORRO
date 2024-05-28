@@ -1,5 +1,6 @@
 import { listCommands } from 'http://localhost:3000/webSites/rpg/commandlist.js'
 import { load } from 'http://localhost:3000/webSites/rpg/main.js'
+import { gameVars, GameDOM, commandsjson } from 'http://localhost:3000/webSites/rpg/content.js'
 var expression = []
 
 export function detectLoop(inputcommand) {
@@ -17,10 +18,11 @@ export function detectLoop(inputcommand) {
 }
 
 export function loadLoop(inputcommands, inputlist, line) {
-    let loopcommands = listCommands(inputcommands, line)
-    console.log(loopcommands)
+    console.log(inputlist)
+    let loopcommands = listCommands(inputlist, line)
+    console.log(loopcommands, GameDOM)
     while(eval(expression)){
-        load(loopcommands)
+        load(loopcommands, commandsjson, gameVars, GameDOM)
     }
     return line
 }
