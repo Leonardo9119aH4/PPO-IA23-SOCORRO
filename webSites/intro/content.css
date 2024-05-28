@@ -1,0 +1,13 @@
+@import url("http://localhost:3000/globalAssets/css/main.css");
+
+html, body{
+    height: 100%;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* temporário */
+    & #error{
+        color: red;
+    }
+}
