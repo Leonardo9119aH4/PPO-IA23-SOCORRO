@@ -1,23 +1,29 @@
 import { win } from 'http://localhost:3000/webSites/rpg/win.js'
 import { gameover } from 'http://localhost:3000/webSites/rpg/gameover.js'
-function collision(div1, div2) { //determina se há colisão e se tiver retoran o lado de colisão da div
+
+function collision(div1, div2) { //determina se há colisão e se tiver retorna o lado de colisão da div
     var pos1 = div1.getBoundingClientRect()
     var pos2 = div2.getBoundingClientRect()
-    var differenceX = (pos1.left + pos1.width / 2) - (pos2.left + pos2.width / 2)
-    var differenceY = (pos1.top + pos1.height / 2) - (pos2.top + pos2.height / 2)
-    var sumwidht = (pos1.width + pos2.width) / 2
-    var sumheight = (pos1.height + pos2.height) / 2
-    if (Math.abs(differenceX) < sumwidht && Math.abs(differenceY) < sumheight) {
+    var dx = (pos1.left + pos1.width / 2) - (pos2.left + pos2.width / 2)
+    var dy = (pos1.top + pos1.height / 2) - (pos2.top + pos2.height / 2)
+    var combinedHalfWidths = (pos1.width + pos2.width) / 2
+    var combinedHalfHeights = (pos1.height + pos2.height) / 2
+    if (Math.abs(dx) < combinedHalfWidths && Math.abs(dy) < combinedHalfHeights) {
         var colside = []
-        if (differenceX > 0) {
-            colside.push("left")
+        var overlapX = combinedHalfWidths - Math.abs(dx)
+        var overlapY = combinedHalfHeights - Math.abs(dy)
+        if (overlapX >= overlapY) {
+            if (dy > 0) {
+                colside.push("top")
+            } else {
+                colside.push("bottom")
+            }
         } else {
-            colside.push("right")
-        }
-        if (differenceY > 0) {
-            colside.push("top")
-        } else {
-            colside.push("bottom")
+            if (dx > 0) {
+                colside.push("left")
+            } else {
+                colside.push("right")
+            }
         }
         return colside
     }
@@ -26,10 +32,13 @@ function collision(div1, div2) { //determina se há colisão e se tiver retoran 
 
 export function movecalc(command, vars) {
     let brk = false
-    for(let i = 0; i<=vars.pxadd; i++) { //verifica a colisão para cada pixel adicionado
+    for(let i = 0; i<vars.pxadd; i++) { //verifica a colisão para cada pixel adicionado
+        console.log(vars.pxadd)
         vars.walls.forEach(el => { //verifica colisão com cada parede
             if(collision(vars.hero, el)[0] == command.var || collision(vars.hero, el)[1] == command.var) {
                 brk = true
+                console.log(collision(vars.hero, el)[0])
+                console.log(collision(vars.hero, el)[1])
             }
         })
         vars.enemies.forEach(el => { //verifica colisão com inimigos
