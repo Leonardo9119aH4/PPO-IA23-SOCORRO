@@ -1,4 +1,4 @@
-export class DragBlock {
+export class DragBlock { //classe que torna os blocos arrastáveis
     constructor(element) {
         this.element = element;
         this.offsetX = 0;
@@ -32,10 +32,10 @@ export class DragBlock {
         return this.element.getBoundingClientRect();
     }
     destroy() {
-        // Adicione a lógica de destruição aqui
+        
     }
 }
-export class ReceiveBlock{
+export class ReceiveBlock{ //classe que permite as lacunas (.reBl) detectar se um .dragBlock está encaixado corretamente
     constructor(element) {
         this.element = element;
     }
@@ -61,11 +61,11 @@ function SaveBlGap(dragBlockId, gapId){//uso interno do módulo para salvar os v
     saveBlockId.push(dragBlockId)
     saveGapId.push(gapId) //debug
 }
-export async function Execute(){
-    const correctSeqRqst = await fetch("http://localhost:3000/webSites/blocks/localAssets/levels/correctSeq.json")
+export async function Execute(){ //verifica se os blocos estão na sequência correta
+    const correctSeqRqst = await fetch("http://localhost:3000/webSites/blocks/localAssets/levels/correctSeq.json") //sequência correta
     const correctSeq = await correctSeqRqst.json()
-    var isCorrect = null
-    var wrongCount = 0
+    var isCorrect = null //booleano para verificar se a sequência está correta
+    var wrongCount = 0 //contador de erros, valor -1 para quando há lacunas não preenchidas
     if(saveBlockId.length === correctSeq[level-1].length && saveBlockId.every((value, index)=>value===correctSeq[level-1][index])){
         isCorrect = true
     }
