@@ -7,9 +7,10 @@
         "get_theory": "first"
     },
     {
-        "type": "quiz",
+        "type": "blocks",
         "level_group": 1,
-        "theory": true,
-        "get_theory": "first"
+        "theory": false,
+        "level_title": "bloquinhu",
+        "level_header": "resolva o algoritimo a seguir: "
     }
 ]
