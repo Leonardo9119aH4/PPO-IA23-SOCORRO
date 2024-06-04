@@ -1,17 +1,39 @@
+
 [
+     
     {
-        "ask": "Qual operador lógico é usado para atribuir valor a uma variável?",
-        "alt": ["=", "==", "===", "atrib", "is", "recive"],
+        "ask": "1.Qual a maneira correta de declarar uma variável em C?",
+        "alt": ["inteiro a = 6", "a = 6", "a := 6", "variavel a = 6"],
+        "ans": 0 
+    },
+    {
+        "ask": "2.é possivel atribuir um valor enquanto declaro uma variável: inteiro a = 1?",
+        "alt": [" sim", " não"],
+        "ans": 0
+    },
+    {
+        "ask": "3.Qual é o resultado da expressão 3 + 2 * 2?",
+        "alt": [" 10", " 7", " 8", " 9"],
         "ans": 1
     },
     {
-        "ask": "FOIIIIII",
-        "alt": ["=", "==", "===", "atrib", "is", "recive"],
-        "ans": 1
+        "ask": "4.Qual função é usada para imprimir algo na tela em C?",
+        "alt": [" escreva()", "leia()"],
+        "ans": 0
     },
     {
-        "ask": "Hmm",
-        "alt": ["ai", "ul", "alpha"],
+        "ask": "5.Qual a saída de escreva('olá' + 'mundo')?",
+        "alt": ["olá mundo", "olá mundo", "olá mundo", "olá+mundo"],
+        "ans": 2
+    },
+    {
+        "ask": "6.O que faz a função leia() em C?",
+        "alt": ["Lê dados do teclado", "imprime dados na tela", "converte um valor", "calcula uma expressão"],
+        "ans": 0
+    },
+    {
+        "ask": "7.Qual a saída de escreva((1 + 2) * 3)+ 1 ?",
+        "alt": ["9", "11", "10", "12"],
         "ans": 2
     }
 ] 

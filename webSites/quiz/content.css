@@ -2,6 +2,7 @@
 
 :root{
     --RepN: 4; /* Quantidade de alternativas, alterado pelo JS */
+    --feedColor: rgba(127, 127, 127, 0.7); /* Cor do feedback, alterado pelo JS */
 }
 html, body{
     height: 100%;
@@ -75,9 +76,26 @@ main{
         visibility: hidden;
         transition: 0.3s;
     }
-    & #gameOver.opened, #winner.opened{
+    & #gameOver.opened, #winner.opened, #feedback.opened{
         visibility: visible;
         opacity: 1;
+    }
+    & #feedback{
+        --widthFeedback: 50vw;
+        position: fixed;
+        height: 20vh;
+        width: var(--widthFeedback);
+        background-color: var(--feedColor);
+        align-self: center;
+        margin-left: calc((100vw - var(--widthFeedback))/2);
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
     }
 }
 
