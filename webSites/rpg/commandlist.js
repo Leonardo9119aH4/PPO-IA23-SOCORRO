@@ -13,5 +13,5 @@ export function listCommands(inputcommands, i) {
     console.log(inputcommands.slice(1, i+1))
     console.log(i)
     console.log(0)
-    return inputcommands.slice(1, i+1)
+    return [inputcommands.slice(1, i+1), i]
 }
