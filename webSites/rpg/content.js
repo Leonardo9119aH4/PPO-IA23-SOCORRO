@@ -5,8 +5,6 @@ const input = document.querySelector('div#code_input>textarea')
 const csslink = document.querySelector('link#cssinjection')
 var gamediv = document.querySelector('section#game>div')
 var lv = 1 //TEMPORÁRIO! futura ligação com banco de dados
-var commandsjson
-export var gameVars
 
 async function ejsload() {
     var ejsrequest = await fetch(`http://localhost:3000/webSites/rpg/localassets/levels/lv${lv}/content.ejs`)
@@ -25,9 +23,9 @@ ejsload().then(() => {
     }
     async function main() {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
-        commandsjson = await requestcommand.json()
+        const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
-        gameVars = [new Array(0), new Array(0), new Array(0)]
+        var gameVars = [new Array(0), new Array(0), new Array(0)]
         load(inputcommands, commandsjson, gameVars, GameDOM)
     }
     button.addEventListener('click', () => {
