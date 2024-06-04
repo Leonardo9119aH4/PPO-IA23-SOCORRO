@@ -71,6 +71,7 @@ function verifyType(value) {
 
 export function getVars(input, inputsplit, vars) {
     let newinput = input
+    console.log(vars)
     if(!varcontrol){
         vars[1].forEach((varname, index) => {
             if(input.indexOf(varname) != -1){
