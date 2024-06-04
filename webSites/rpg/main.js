@@ -7,29 +7,28 @@ import { loadLoop } from 'http://localhost:3000/webSites/rpg/loop.js'
 
 export function load(inputcommands, commandsjson, gameVars, GameDOM) {
     for(let i = 0; i < inputcommands.length; i++) {
-       console.log(inputcommands)
-        let condition = false
+        console.log(inputcommands)
         let inputsplit = inputcommands[i].split('')
         setVars(inputcommands[i], inputsplit, gameVars)
         console.log(inputcommands)
         console.log(gameVars, i)
+        console.log(GameDOM)
+        console.log(i)
         inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
         inputsplit = inputcommands[i].split('')
         if(detectLoop(inputcommands[i])){
              console.log('temloop')
-             i = loadLoop(inputcommands[i], inputcommands, i)
+             i = loadLoop(inputcommands[i], inputcommands, i, commandsjson, gameVars, GameDOM)
+             
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
             console.log('tem condicional')
-            i = conditional(inputsplit, inputcommands, i, commandsjson, GameDOM)
-            condition = true
+            i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars, GameDOM)
         }
-        if(!condition){
-            commandsjson.forEach(commandelement => {
-                if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                    movecalc(commandelement, GameDOM)
-                }
-            })
-        }
+        commandsjson.forEach(commandelement => {
+            if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
+                movecalc(commandelement, GameDOM)
+            }
+        })
     }
 }
