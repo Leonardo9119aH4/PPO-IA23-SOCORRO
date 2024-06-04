@@ -16,11 +16,12 @@ export function detectLoop(inputcommand) {
     return false
 }
 
-export function loadLoop(inputcommands, inputlist, line) {
-    let loopcommands = listCommands(inputcommands, line)
-    console.log(loopcommands)
+export function loadLoop(inputcommands, inputlist, line, commandsjson, gameVars, GameDOM) {
+    console.log(inputlist)
+    let loopcommands = listCommands(inputlist, line)[0]
+    console.log(loopcommands, GameDOM)
     while(eval(expression)){
-        load(loopcommands)
+        load(loopcommands, commandsjson, gameVars, GameDOM)
     }
     return line
 }

@@ -1,5 +1,7 @@
-import { movecalc } from "http://localhost:3000/webSites/rpg/move.js";
-export function conditional(input, inputcommands, actualline, commandlist, vars) {
+import { listCommands } from "http://localhost:3000/webSites/rpg/commandlist.js"
+import { load } from "http://localhost:3000/webSites/rpg/main.js"
+export function conditional(input, inputcommands, actualline, commandsjson, gameVars, GameDOM) {
+    console.log(gameVars)
     let condition = false
     let expression = []
     input.forEach(el => {
@@ -12,28 +14,11 @@ export function conditional(input, inputcommands, actualline, commandlist, vars)
     });
     expression.splice(0, 1)
     expression = expression.join('')
-    let commands = inputcommands
-    let lines = inputcommands.length
-    commands.splice(0, actualline)
-    commands.forEach((el, index) => {
-        if(el == '}') {
-            commands.splice(index, lines - index)
-            lines = index
-        }
-    })
     console.log(expression)
     if(eval(expression)) {
-        commands.shift()
-        commands.forEach(el => {
-            commandlist.forEach(commandelement => {
-                if(el == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                    movecalc(commandelement, vars)
-                }
-            })
-        })
-        return lines
-    } else {
-        console.log('Não é uma condicional')
-        return lines
+        let ifcommands = listCommands(inputcommands, actualline)[0]
+        console.log(ifcommands)
+        load(ifcommands, commandsjson, gameVars, GameDOM)
     }
+    return listCommands(inputcommands, actualline)[1] + 1
 }
