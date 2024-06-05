@@ -1,4 +1,3 @@
-create database codegamix;
 use codegamix;
 create table users
 (
