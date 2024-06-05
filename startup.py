@@ -1,15 +1,38 @@
+import mysql.connector
 import subprocess
-import os
-import time
-SystemExit()
-# Não executar o script, ele ainda não funciona direito
-db_user = "root"
-db_pass = "12345"
-sql_file = "./database/main.sql"
-mysql_port = 3001
-mysql_cmd = f"mysqld --user={db_user} --password={db_pass} --port={mysql_port} &" # Comando para iniciar o servidor MySQL
-mysql_db_cmd = f"mysql -u {db_user} -p{db_pass} -P {mysql_port} < {sql_file}" # Comando para criar o banco de dados a partir do arquivo SQL
-subprocess.Popen(mysql_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) # Iniciar o servidor MySQL em segundo plano
-time.sleep(5)
-subprocess.run(mysql_db_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) # Criar o banco de dados
-print("Servidor MySQL iniciado na porta 3001 e banco de dados criado com sucesso!")
+
+def conectar_banco():
+    try:
+        conexao = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="ia23"
+        )
+        print("Conectado ao servidor MySQL com sucesso!")
+        return conexao
+    except mysql.connector.Error as e:
+        print(f"Erro ao conectar ao servidor MySQL: {e}")
+    return None
+
+def verificar_e_criar_banco_dados(conexao):
+    cursor = conexao.cursor()
+    cursor.execute("SHOW DATABASES LIKE 'codegamix'")
+    resultado = cursor.fetchone()
+    if not resultado:
+        cursor.execute("CREATE DATABASE codegamix")
+        conexao.commit()
+        
+def startDB(conexao):
+    with open("./database/start_db.sql", 'r') as f:
+      sql = f.read()
+    cursor = conexao.cursor()
+    cursor.execute(sql, multi=True)
+
+# Conecta ao servidor MySQL
+conexao = conectar_banco()
+if conexao:
+    verificar_e_criar_banco_dados(conexao)
+    startDB(conexao)
+    conexao.close()
+    subprocess.run(["node", "./index.js"])
+
