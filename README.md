@@ -1,12 +1,12 @@
 !! Servidor
 
-O uso de Node.js para implementação do servidor junto à framework express é temporário.
+Será usado Node.Js com a framework express e servidor MySQL Server.
 
-Provavelmente o servidor será refeito em C++.
+Será usado a porta 3000 para host do servidor e a porta 3001 para host do MySQL Server.
 
-Será usado a porta 3000 para host do servidor.
+Estão mapeados os diretórios "globalAssets" e "webSites".
 
-Estão mapeados os diretórios "globalAssets" e "webSites"
+Usar o startup.py para iniciar os servidores.
 
 =============================================================================
 !! Organização de pastas
