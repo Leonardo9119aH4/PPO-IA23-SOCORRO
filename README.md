@@ -1,12 +1,21 @@
+!! Requerimentos
+
+Precisa ter o python instalado, com as bibliotecas "mysql" e "mysql-connection-python", nodejs e o mysql server.
+
+De preferência o servidor mysql server deverá ter a senha "ia23".
+
+=============================================================================
 !! Servidor
 
-O uso de Node.js para implementação do servidor junto à framework express é temporário.
+Será usado Node.Js com a framework express e servidor MySQL Server.
 
-Provavelmente o servidor será refeito em C++.
+Será usado a porta 3000 para host do servidor e a porta 3306 (padrão) para host do MySQL Server.
 
-Será usado a porta 3000 para host do servidor.
+Estão mapeados os diretórios "globalAssets" e "webSites".
 
-Estão mapeados os diretórios "globalAssets" e "webSites"
+Use o script startup em python para iniciar o servidor, ele automaticamente criará o banco de dados codegamix e executará o index.js.
+
+Em "/database/connection.js" e "startup.py" altere o argumento password para a sua senha do MySQL Server.
 
 =============================================================================
 !! Organização de pastas
