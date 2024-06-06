@@ -19,7 +19,6 @@ export function load(inputcommands, commandsjson, gameVars, GameDOM) {
         if(detectLoop(inputcommands[i])){
              console.log('temloop')
              i = loadLoop(inputcommands[i], inputcommands, i, commandsjson, gameVars, GameDOM)
-             
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
             console.log('tem condicional')
