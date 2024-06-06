@@ -19,6 +19,14 @@ export function conditional(input, inputcommands, actualline, commandsjson, game
         let ifcommands = listCommands(inputcommands, actualline)[0]
         console.log(ifcommands)
         load(ifcommands, commandsjson, gameVars, GameDOM)
+        let elseline = listCommands(inputcommands, actualline)[1] + 1
+        console.log(elseline)
+        console.log(inputcommands[elseline])
+        if(inputcommands[elseline].indexOf("se nao") != -1 || inputcommands[elseline].indexOf("}se nao") != -1 || inputcommands[elseline].indexOf("se nao{") != -1 || inputcommands[elseline].indexOf("}se nao{") != -1){
+            let elsecommands = listCommands(inputcommands, listCommands(inputcommands, actualline)[1] + 1)[0] + 1
+            console.log(elsecommands)
+            load(elsecommands, commandsjson, gameVars, GameDOM)
+        }
     }
     return listCommands(inputcommands, actualline)[1] + 1
 }
