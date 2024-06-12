@@ -1,5 +1,8 @@
 [
     {
+        "type": "intro"
+    },
+    {
         "type": "quiz",
         "level_group": 1,
         "theory": true,
