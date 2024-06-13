@@ -1,0 +1,24 @@
+[
+    {
+        "type": "intro"
+    },
+    {
+        "type": "quiz",
+        "level_group": 1,
+        "theory": true,
+        "theory_title": "teste",
+        "get_theory": "first"
+    },
+    {
+        "type": "blocks",
+        "level_group": 1,
+        "theory": false,
+        "level_title": "bloquinhu",
+        "level_header": "resolva o algoritimo a seguir: "
+    },
+    {
+        "type": "rpg",
+        "level_group": 1,
+        "theory": false
+    }
+]
