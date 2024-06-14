@@ -2,12 +2,17 @@ var type
 var count = 0
 var varcontrol = false
 
-function setVarName(input) {
+function setVarName(input, vars) {
     let name = new Array(0)
     while((input[count] != "=") && (input[count] != " ")){
         name.push(input[count])
         count++
     }
+    vars[1].forEach(element => {
+        if(element == name) {
+            return
+        }
+    });
     return name
 }
 
@@ -28,20 +33,22 @@ export function setVars(input, inputsplit, vars) {
             count = posstring + 7
             type = 's'
         }
-        let varname = setVarName(inputsplit, count)
+        let varname = setVarName(inputsplit, vars)
         let varvalue = []
         while(count < inputsplit.length) {
             if((inputsplit[count] != " ") && (inputsplit[count] != "=")){
                 varvalue.push(inputsplit[count])
+
+                console.log(varname)
+                varname = varname.join('')
+                varvalue = varvalue.join('')
+                if(verifyType(varvalue)){
+                    vars[0].push(varvalue)
+                    vars[1].push(varname)
+                    vars[2].push(type)
+                }
             }
             count++
-            varname = varname.join('')
-            varvalue = varvalue.join('')
-            if(verifyType(varvalue)){
-                vars[0].push(varvalue)
-                vars[1].push(varname)
-                vars[2].push(type)
-            }
         }
     } else {
         return
@@ -75,8 +82,12 @@ export function getVars(input, inputsplit, vars) {
     if(!varcontrol){
         vars[1].forEach((varname, index) => {
             if(input.indexOf(varname) != -1){
-                let x = input.indexOf(varname)
+                let x = inputsplit.indexOf(varname)
                 if(inputsplit[x + varname.length] == " " || inputsplit[x + varname.length] == "<" || inputsplit[x + varname.length] == ">" || inputsplit[x + varname.length] == "=" || inputsplit[x + varname.length] == ")" && inputsplit[x - 1] == " " || inputsplit[x - 1] == "<" || inputsplit[x - 1] == ">" || inputsplit[x - 1] == "=" || inputsplit[x - 1] == "("){
+                    if(inputsplit[x + varname.length] == "+" && inputsplit[x+varname.length+1] == "+" && vars[3][index] != 's'){
+                        newinput = input.replace(new RegExp('\\b' + varname + '\\b', 'gi'), vars[0][index] + 1)
+                        return newinput
+                    }
                     newinput = input.replace(new RegExp('\\b' + varname + '\\b', 'gi'), vars[0][index])
                     return newinput
                 }
