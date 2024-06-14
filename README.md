@@ -1,24 +1,20 @@
 !! Requerimentos
 
-Precisa ter o python instalado, com as bibliotecas "mysql" e "mysql-connection-python", nodejs e o mysql server.
-
-De preferência o servidor mysql server deverá ter a senha "ia23".
+Precisa ter o Node.js instalado.
 
 =============================================================================
 !! Servidor
 
-Será usado Node.Js com a framework express e servidor MySQL Server.
+Será usado Node.js com as frameworks express.s e prisma.js
 
-Será usado a porta 3000 para host do servidor e a porta 3306 (padrão) para host do MySQL Server.
+Será usado a porta 3000 para host do servidor.
 
 Estão mapeados os diretórios "globalAssets" e "webSites".
 
-Use o script startup em python para iniciar o servidor, ele automaticamente criará o banco de dados codegamix e executará o index.js.
-
-Em "/database/connection.js" e "startup.py" altere o argumento password para a sua senha do MySQL Server.
-
 =============================================================================
 !! Organização de pastas
+
+Os arquivos e pastas do projeto ficarão na pasta "src", as outras pastas ao lado de "src" são coisas do Node,js e das frameworks, NÃO MEXER NESSAS PASTAS!
 
 A pasta "globalAssets" é onde os assets globais (mídia, códigos) são armazenados, eles servem para que qualquer páginas possam puxar esses conteúdos e usá-los.
 
@@ -34,8 +30,6 @@ As pastas "theory" no globalAssets salvarão os códigos e outros assets para ex
 
 A pasta "webSites" é onde as páginas (arquivos HTMLs e complementares) são armazenados.
 
-A pasta "database" é onde o Banco de Dados e sua implementação serão armazenados.
-
 Se for fazer qualquer alteração, dê commit e salve em sua branch, para depois vermos as alterações e dar merge.
 
 Organização das perguntas do quiz pelo JSON:
@@ -50,13 +44,13 @@ Cada pessoa terá seu nível global, e deverá ter referência para os níveis l
 
 Comentar todas as variáveis, constantes e funções, especificando o seu uso e a sua função.
 
-Usar if...else, e não early return, para padronização de código.
+Não usar early return quando não precisa.
 
-Referência de diretório (pasta raíz), é via protocolo HTTP. Modelo: http://localhost:<porta>/<diretótios>
+Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: http://localhost:<porta>/<diretótios>
 
 =============================================================================
 !! Banco de dados
 
-Será usado MySQL para fazer o banco de dados.
+Será usado SQLite junto ao Prisma.js para fazer o banco de dados.
 
 O banco de dados salvará as informações de cada usuário, seu nível e seu XP diário.
