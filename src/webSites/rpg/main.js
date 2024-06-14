@@ -14,11 +14,12 @@ export function load(inputcommands, commandsjson, gameVars, GameDOM) {
         console.log(gameVars, i)
         console.log(GameDOM)
         console.log(i)
+        let varinputcommand = inputcommands[i]
         inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
         inputsplit = inputcommands[i].split('')
         if(detectLoop(inputcommands[i])){
              console.log('temloop')
-             i = loadLoop(inputcommands[i], inputcommands, i, commandsjson, gameVars, GameDOM)
+             i = loadLoop(varinputcommand, inputcommands, i, commandsjson, gameVars, GameDOM)
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
             console.log('tem condicional')
