@@ -1,17 +1,20 @@
-export function listCommands(inputcommands, i) {
+export function listCommands(inputcommands, i, x) {
     let counter = 0
-    do{
-        if(inputcommands[i].indexOf('{') != 1){
+    while(true) {
+        if(inputcommands[i].indexOf('{') != -1){
             counter++
         }
-        if(inputcommands[i].indexOf('}') != 1){
+        if(inputcommands[i].indexOf('}') != -1){
             counter--
         }
+        if(counter==0){
+            break
+        }
         i++
-    } while(counter>0)
+    }
     console.log(inputcommands)
     console.log(inputcommands.slice(1, i+1))
     console.log(i)
     console.log(0)
-    return [inputcommands.slice(1, i+1), i]
+    return [inputcommands.slice(x+1, i), i]
 }
