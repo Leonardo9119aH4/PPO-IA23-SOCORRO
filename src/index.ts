@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import path from 'path'
 import { PrismaClient } from '@prisma/client'
+import * as map from "./api/map"
 
 const app = express()
 const PORT: number = parseInt(process.env.PORT || '3000')

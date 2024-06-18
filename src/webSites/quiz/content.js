@@ -18,6 +18,9 @@ const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedb
 var level = 0 //em qual nível o usuário está, valor lido do banco de dados
 var GLevel = 1 //em qual grupo de nível o usuário está, valor lido do banco de dados
 
+async function getData(){
+    
+}
 async function randomQuiz(){
     const quizRqst = await fetch(`http://localhost:3000/globalAssets/json/quiz/glv${GLevel}.json`) //requisição das perguntas conforme grupo de nível
     var quiz = await quizRqst.json()
