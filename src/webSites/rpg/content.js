@@ -25,7 +25,13 @@ ejsload().then(() => {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
         const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
-        var gameVars = [new Array(0), new Array(0), new Array(0)]
+        let response = await fetch('http://localhost:3000/move', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({inputcommands})
+        })
         load(inputcommands, commandsjson, gameVars, GameDOM)
     }
     button.addEventListener('click', () => {
