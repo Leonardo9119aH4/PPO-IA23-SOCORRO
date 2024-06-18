@@ -22,9 +22,9 @@ confirmBt.onclick = async function() {
     let data = await response.json()
     if(data == 0){
         alert("foi")
-    } else {
         switch(data){
-            case 
+            case 1:
+                
         }
     }
 }
