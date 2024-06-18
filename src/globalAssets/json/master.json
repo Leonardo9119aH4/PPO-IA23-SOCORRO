@@ -1,5 +1,8 @@
 [
     {
+        "type": "intro"
+    },
+    {
         "type": "quiz",
         "level_group": 1,
         "theory": true,
@@ -12,5 +15,10 @@
         "theory": false,
         "level_title": "bloquinhu",
         "level_header": "resolva o algoritimo a seguir: "
+    },
+    {
+        "type": "rpg",
+        "level_group": 1,
+        "theory": false
     }
 ]

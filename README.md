@@ -1,15 +1,20 @@
+!! Requerimentos
+
+Precisa ter o Node.js instalado.
+
+=============================================================================
 !! Servidor
 
-O uso de Node.js para implementação do servidor junto à framework express é temporário.
-
-Provavelmente o servidor será refeito em C++.
+Será usado Node.js com as frameworks express.s e prisma.js
 
 Será usado a porta 3000 para host do servidor.
 
-Estão mapeados os diretórios "globalAssets" e "webSites"
+Estão mapeados os diretórios "globalAssets" e "webSites".
 
 =============================================================================
 !! Organização de pastas
+
+Os arquivos e pastas do projeto ficarão na pasta "src", as outras pastas ao lado de "src" são coisas do Node,js e das frameworks, NÃO MEXER NESSAS PASTAS!
 
 A pasta "globalAssets" é onde os assets globais (mídia, códigos) são armazenados, eles servem para que qualquer páginas possam puxar esses conteúdos e usá-los.
 
@@ -25,8 +30,6 @@ As pastas "theory" no globalAssets salvarão os códigos e outros assets para ex
 
 A pasta "webSites" é onde as páginas (arquivos HTMLs e complementares) são armazenados.
 
-A pasta "database" é onde o Banco de Dados e sua implementação serão armazenados.
-
 Se for fazer qualquer alteração, dê commit e salve em sua branch, para depois vermos as alterações e dar merge.
 
 Organização das perguntas do quiz pelo JSON:
@@ -41,13 +44,13 @@ Cada pessoa terá seu nível global, e deverá ter referência para os níveis l
 
 Comentar todas as variáveis, constantes e funções, especificando o seu uso e a sua função.
 
-Usar if...else, e não early return, para padronização de código.
+Não usar early return quando não precisa.
 
-Referência de diretório (pasta raíz), é via protocolo HTTP. Modelo: http://localhost:<porta>/<diretótios>
+Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: http://localhost:<porta>/<diretótios>
 
 =============================================================================
 !! Banco de dados
 
-Será usado MySQL para fazer o banco de dados.
+Será usado SQLite junto ao Prisma.js para fazer o banco de dados.
 
 O banco de dados salvará as informações de cada usuário, seu nível e seu XP diário.
