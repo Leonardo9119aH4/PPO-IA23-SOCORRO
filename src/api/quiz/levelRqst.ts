@@ -1,3 +1,3 @@
-export async function sendData(){
+export async function howLevel(){
 
 }

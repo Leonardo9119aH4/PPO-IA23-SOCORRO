@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express'
+import express, {Application, Request, Response } from 'express'
 import path from 'path'
 import { PrismaClient } from '@prisma/client'
-import * as map from "./api/map"
+import { executeAll } from "./api/map"
 
 const app = express()
 const PORT: number = parseInt(process.env.PORT || '3000')
@@ -16,6 +16,7 @@ async function main(){
   app.listen(PORT, () => { // Inicia o servidor
     console.log(`Servidor iniciado na porta ${PORT}`);
   })
+  executeAll(app, prisma)
 }
 main().then(async () => {
   await prisma.$disconnect()
@@ -24,3 +25,4 @@ main().then(async () => {
   await prisma.$disconnect()
   process.exit(1)
 })
+
