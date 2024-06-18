@@ -4,7 +4,7 @@
 generator client {
   provider = "prisma-client-js"
 }
-datasource codegamix {
+datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
@@ -12,6 +12,9 @@ model User {
   id Int @id @default(autoincrement())
   username String 
   password String
+  realname String
+  email String
+  phone String
   level Int
   exp Int
   posts Admin[]
