@@ -1,5 +1,5 @@
-import {main} from "http://localhost:3000/globalAssets/js/main.js"
-import {DragBlock, ReceiveBlock, Execute} from "http://localhost:3000/webSites/blocks/localAssets/dragAndDrop.js"
+import {main} from "/globalAssets/js/main.js"
+import {DragBlock, ReceiveBlock, Execute} from "/webSites/blocks/localAssets/dragAndDrop.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const header = document.querySelector("header") //cabeçario
@@ -10,9 +10,9 @@ const output = document.querySelector("section>#output") //saída para saber se 
 var level = 1 //TEMPORÁRIO! Futura ligação com banco de dados (não estou copiando o comentário do William)
 
 async function loadDOM(){
-    const asideRqst = await fetch(`http://localhost:3000/webSites/blocks/localAssets/levels/lv${level}/aside.ejs`) //blocos laterais
+    const asideRqst = await fetch(`/webSites/blocks/localAssets/levels/lv${level}/aside.ejs`) //blocos laterais
     const asideEJS = await asideRqst.text() 
-    const dragBlockRqst =  await fetch(`http://localhost:3000/webSites/blocks/localAssets/levels/lv${level}/code.ejs`) //código a ser preenchido
+    const dragBlockRqst =  await fetch(`/webSites/blocks/localAssets/levels/lv${level}/code.ejs`) //código a ser preenchido
     const dragBlockEJS = await dragBlockRqst.text()
     codeBlocks.innerHTML = dragBlockEJS
     aside.innerHTML = asideEJS
@@ -21,7 +21,7 @@ async function loadDOM(){
 async function content(){
     await main()
     await loadDOM() //carrega o código e os blocos arrastáveis
-    const masterRqst = await fetch("http://localhost:3000/globalAssets/json/master.json") //json mestre
+    const masterRqst = await fetch("/globalAssets/json/master.json") //json mestre
     const master = await masterRqst.json() 
     title.innerHTML = master[level].level_title
     header.innerHTML = master[level].level_header

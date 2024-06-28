@@ -1,4 +1,4 @@
-import {main} from 'http://localhost:3000/globalAssets/js/main.js'
+import {main} from '/globalAssets/js/main.js'
 main()
 let email = document.querySelector("#email").value
 let confirmEmail = document.querySelector("#confirmEmail").value
@@ -12,7 +12,7 @@ exitbt.addEventListener('click', ev => {
     window.location.href = "/webSites/main/index.html"
 })
 confirmBt.onclick = async function() {
-    let response = await fetch('http://localhost:3000/api/signup', {
+    let response = await fetch('/api/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

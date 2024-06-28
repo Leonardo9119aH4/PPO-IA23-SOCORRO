@@ -1,6 +1,6 @@
 export async function main(){
     const nav = document.querySelector('nav') //referenciar o nav para injeção de html
-    const mainRqst = await fetch("http://localhost:3000/globalAssets/ejs/nav.ejs")
+    const mainRqst = await fetch("/globalAssets/ejs/nav.ejs")
     const mainEJS = await mainRqst.text()
     nav.innerHTML = mainEJS
     const btmn = nav.querySelector('button#mnhamburg')
