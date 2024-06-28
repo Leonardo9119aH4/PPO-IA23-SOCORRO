@@ -3,7 +3,7 @@ main()
 let email = document.querySelector("#email").value
 let confirmEmail = document.querySelector("#confirmEmail").value
 let passwd = document.querySelector("#senha").value
-let confirmPasswd = document.querySelector("#confirmPasswd").value
+let confirmPasswd = document.querySelector("#confirmSenha").value
 let name = document.querySelector("#nome").value
 let realName = document.querySelector("#realName").value
 const confirmBt = document.querySelector("#entrar")
@@ -20,11 +20,5 @@ confirmBt.onclick = async function() {
         body: JSON.stringify({email: email, confirmEmail: confirmEmail, passwd: passwd, confirmPasswd: confirmPasswd, name: name, realName: realName})
     })
     let data = await response.json()
-    if(data == 0){
-        alert("foi")
-        switch(data){
-            case 1:
-                
-        }
-    }
+    console.log(data)
 }
