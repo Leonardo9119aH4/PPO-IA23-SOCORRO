@@ -3,37 +3,44 @@ import { PrismaClient } from '@prisma/client'
 import { config } from 'process'
 export async function signUp(app: Application, prisma: PrismaClient){
     app.post("/api/signup", async (req: Request, res: Response)=>{
-        let statuscode: number = 0 //statuscode = 0 -> tudo certo, caso contrario é porque teve algum erro
-        let info: any = req.body.json()
-        if(! info.email == info.confirmEmail){ 
-            statuscode += 1
-        }
-        if(! info.password == info.confirmPassword){
-            statuscode += 2
-        }
-
-        const users = await prisma.user.findMany({
-            select: {
-                username: true,
-                email: true,
-                phone: true,
-            },
-        });
-        users.forEach(el =>{
-            if(el.username === info.username){
-                statuscode+=4
+        console.log(req)
+        try{
+            let statuscode: number = 0 //statuscode = 0 -> tudo certo, caso contrario é porque teve algum erro
+            let info: any = req.body
+            if(! info.email == info.confirmEmail){ 
+                statuscode += 1
             }
-            if(el.email === info.email){
-                statuscode+=8
+            if(! info.password == info.confirmPassword){
+                statuscode += 2
             }
-            if(el.phone === info.phone){
-                statuscode+=16
+    
+            const users = await prisma.user.findMany({
+                select: {
+                    username: true,
+                    email: true,
+                    phone: true,
+                },
+            });
+            users.forEach(el =>{
+                if(el.username === info.username){
+                    statuscode+=4
+                }
+                if(el.email === info.email){
+                    statuscode+=8
+                }
+                if(el.phone === info.phone){
+                    statuscode+=16
+                }
+            })
+            
+            if(statuscode===0){
+                res.status(201).json(statuscode)
             }
-        })
-        
-        res.status(200).json(statuscode)
-        if(statuscode===0){
-
+            else{
+                res.status(406).json(statuscode)
+            }
+        } catch(error) {
+            res.status(500)
         }
     })
 }
