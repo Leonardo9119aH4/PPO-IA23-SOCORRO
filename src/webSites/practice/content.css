@@ -1,4 +1,4 @@
-@import url("http://localhost:3000/globalAssets/css/main.css");
+@import url("/globalAssets/css/main.css");
 
 :root{
     --RepN: 4; /* Quantidade de alternativas, alterado pelo JS */

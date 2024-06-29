@@ -1,4 +1,4 @@
-import {main} from "http://localhost/globalAssets/js/main/js"
+import {main} from "/globalAssets/js/main/js"
 const mainTag = document.querySelector("main")
 const contBt = mainTag.querySelector("button")
 

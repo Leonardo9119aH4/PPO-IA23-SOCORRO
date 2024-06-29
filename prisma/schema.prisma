@@ -15,8 +15,8 @@ model User {
   realname String
   email String
   phone String
-  level Int
-  exp Int
+  level Int @default(1)
+  exp Int @default(0)
   posts Admin[]
 }
 model Admin {
