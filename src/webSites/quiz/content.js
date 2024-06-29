@@ -1,4 +1,4 @@
-import {main} from "http://localhost:3000/globalAssets/js/main.js"
+import {main} from "/globalAssets/js/main.js"
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const response = document.querySelector("#response") //referencia a div que mostram as alternativas
@@ -22,7 +22,7 @@ async function getData(){
     
 }
 async function randomQuiz(){
-    const quizRqst = await fetch(`http://localhost:3000/globalAssets/json/quiz/glv${GLevel}.json`) //requisição das perguntas conforme grupo de nível
+    const quizRqst = await fetch(`/globalAssets/json/quiz/glv${GLevel}.json`) //requisição das perguntas conforme grupo de nível
     var quiz = await quizRqst.json()
     for (let i = quiz.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -42,13 +42,13 @@ async function content(){
     var min = 0 //variável para o cronômetro, minutos
     var isTheory = false //booleano para saber se uma teoria é exibida
     var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
-    const MasterRqst = await fetch("http://localhost:3000/globalAssets/json/master.json") //requisição do json mestre
+    const MasterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
     const Master = await MasterRqst.json()
     const quiz = await randomQuiz()
     var theoryEJS
     if(Master[level].theory === true){
         const getTheory = Master[level].get_theory
-        const theoryRqst = await fetch(`http://localhost:3000/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
+        const theoryRqst = await fetch(`/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
         theoryEJS = await theoryRqst.text()
     }
     function VerifyInit(){ //verificação de nível e mostrar a teoria conforme nível do usuário
@@ -68,7 +68,7 @@ async function content(){
         firstWrong = true
         Ask.innerHTML = quiz[NAsk].ask
         mainTheory.innerHTML = null
-        mainImg.innerHTML = "<img src='http://localhost:3000/globalAssets/images/codeImg/test.png'>"
+        mainImg.innerHTML = "<img src='/globalAssets/images/codeImg/test.png'>"
         response.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
         for (let i=0; i<quiz[NAsk].alt.length; i++){
