@@ -32,8 +32,28 @@
         "ans": 0
     },
     {
-        "ask": "7.Qual a saída de escreva((1 + 2) * 3)+ 1 ?",
+        "ask": "7.Qual a saída de escreva(((1 + 2) * 3) + 1)) ?",
         "alt": ["9", "11", "10", "12"],
         "ans": 2
+    },
+    {
+        "ask": "8.Qual a saída de escreva(2*(2+(2+1))) ?",
+        "alt": ["8", "10", "12", "13"],
+        "ans": 1
+    },
+    {
+        "ask": "9.Qual a saída de escreva(“u”  “a”  “u”) ?",
+        "alt": ["u au", "uau", " u a u", "“u”  “a”  “u”"],
+        "ans": 1
+    },
+    {
+        "ask": "10.Observe a seguinte declaração de variável: real a = 1.5, b = 2.5. Qual será a soma das variáveis “a” e ”b”?",
+        "alt": ["5", "4.5", "4", "3.5"],
+        "ans": 2
+    },
+    {
+        "ask": "11.Qual a saída de escreva(“a ”  “b ”  “c”) ?",
+        "alt": ["ab c", "a b c", "a bc", "12"],
+        "ans": 1
     }
 ] 
