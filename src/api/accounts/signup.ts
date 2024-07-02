@@ -10,10 +10,10 @@ export async function signUp(app: Application, prisma: PrismaClient){
                 statuscode=-1
             }
             else{
-                if(! req.body.email == req.body.confirmEmail){ 
+                if(! (req.body.email == req.body.confirmEmail)){ 
                     statuscode += 1
                 }
-                if(! req.body.password == req.body.confirmPassword){
+                if(! (req.body.password == req.body.confirmPassword)){
                     statuscode += 2
                 }
                 const users = await prisma.user.findMany({
@@ -71,8 +71,3 @@ export async function signUp(app: Application, prisma: PrismaClient){
 8: email já cadastrado
 16: telefone já cadastrado
 */
-export async function signIn(app: Application, prisma: PrismaClient){
-    app.post("/api/signin", async (req: Request, res: Response)=>{
-
-    })
-}
