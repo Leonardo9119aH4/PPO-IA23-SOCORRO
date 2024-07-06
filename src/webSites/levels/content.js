@@ -25,7 +25,14 @@ async function content(){
     const rpg = mainTag.querySelectorAll(".rpg")
     const blocks = mainTag.querySelectorAll(".blocks")
     intro.forEach(el=>{
-        el.addEventListener("click", ev=>{
+        el.addEventListener("click", async ev=>{
+            let level = await fetch("/api/private/levelrqst", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify({level: el.id})
+            })
             window.location.href = "/webSites/intro/index.html"
         })
     })
