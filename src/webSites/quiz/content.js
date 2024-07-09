@@ -15,11 +15,12 @@ const winnerEXP = winnerPopup.querySelector("#exp") //xp obtido
 const feedbackPopup = mainTag.querySelector("#feedback") //feedback de erro
 const feedbackButton = feedbackPopup.querySelector("button") //botão para fechar o popup
 const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedback
-var level = 0 //em qual nível o usuário está, valor lido do banco de dados
 var GLevel = 1 //em qual grupo de nível o usuário está, valor lido do banco de dados
 
 async function getData(){
-    
+    let params = new URLSearchParams(window.location.search)
+    let level = params.get("level")
+    return level
 }
 async function randomQuiz(){
     const quizRqst = await fetch(`/globalAssets/json/quiz/glv${GLevel}.json`) //requisição das perguntas conforme grupo de nível
@@ -33,6 +34,7 @@ async function randomQuiz(){
 }
 async function content(){
     main()
+    var level = getData()
     var life = 5 //quanto de vida o usuário tem, valor lido pelo banco de dados
     var score = 100 //percentual de acertos
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
