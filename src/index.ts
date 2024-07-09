@@ -1,5 +1,6 @@
 import express, {Application, Request, Response } from 'express'
 import path from 'path'
+import bodyParser from 'body-parser'
 import { PrismaClient } from '@prisma/client'
 import { executeAll } from "./api/map"
 
@@ -8,6 +9,7 @@ const PORT: number = parseInt(process.env.PORT || '3000')
 const prisma = new PrismaClient()
 
 async function main(){
+  app.use(bodyParser.json())
   app.use('/webSites', express.static(path.join(__dirname, 'webSites'))) // Mapeia as respectivas pastas para o FrontEnd acessar
   app.use('/globalAssets', express.static(path.join(__dirname, 'globalAssets')))
   app.get('/', (req: Request, res: Response) => { // Redireciona o "/" para "/webSites/main/index.html"
@@ -25,4 +27,3 @@ main().then(async () => {
   await prisma.$disconnect()
   process.exit(1)
 })
-
