@@ -1,6 +1,5 @@
 import {Application, Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
-import { config } from 'process'
 export async function signUp(app: Application, prisma: PrismaClient){
     app.post("/api/signup", async (req: Request, res: Response)=>{
         try{
@@ -8,6 +7,7 @@ export async function signUp(app: Application, prisma: PrismaClient){
             console.log(req.body)
             if(req.body.username == null || req.body.email == null || req.body.phone == null || req.body.realName == null || req.body.password == null){
                 statuscode=-1
+                console.log("A")
             }
             else{
                 if(! (req.body.email == req.body.confirmEmail)){ 
@@ -35,10 +35,9 @@ export async function signUp(app: Application, prisma: PrismaClient){
                     }
                 })
             }
-            
             if(statuscode===0){
                 try{
-                    prisma.user.create({
+                    await prisma.user.create({
                         data: {
                             username: req.body.username,
                             password: req.body.password,
