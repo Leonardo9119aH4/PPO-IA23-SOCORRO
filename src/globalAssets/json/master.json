@@ -10,6 +10,11 @@
         "get_theory": "first"
     },
     {
+        "type": "quiz",
+        "level_group": 1,
+        "theory": false
+    },
+    {
         "type": "blocks",
         "level_group": 1,
         "theory": false,

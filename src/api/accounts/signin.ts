@@ -5,7 +5,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
         try{
             let userHasFound: Boolean = false
             if(req.body.username == null || req.body.password == null){
-                res.status(200).json(-1)
+                res.status(403).json(-1)
             }
             else{
                 const users = await prisma.user.findMany({
@@ -18,15 +18,16 @@ export async function signIn(app: Application, prisma: PrismaClient){
                     if(el.username === req.body.username){
                         userHasFound=true
                         if(el.password === req.body.password){
+                            res.setHeader
                             res.status(201).json(1)
                         }
                         else{
-                            res.status(200).json(-2)
+                            res.status(403).json(-2)
                         }
                     }
                 })
                 if(!userHasFound){
-                    res.status(200).json(-2)
+                    res.status(403).json(-2)
                 }
             }
         }
