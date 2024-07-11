@@ -1,10 +1,10 @@
 @font-face{
     font-family: sugar-classic;
-    src: url("http://localhost:3000/globalAssets/fonts/sugo-pro-classic/Sugo-Pro-Classic-Light-trial.ttf");
+    src: url("/globalAssets/fonts/sugo-pro-classic/Sugo-Pro-Classic-Light-trial.ttf");
 }
 @font-face {
     font-family: clear-sans;
-    src: url("http://localhost:3000/globalAssets/fonts/clear-sans/ClearSans-Regular.ttf");
+    src: url("/globalAssets/fonts/clear-sans/ClearSans-Regular.ttf");
 }
 body {
     height: 100vh;
