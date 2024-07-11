@@ -20,11 +20,21 @@
             <h1>Bem vindo ao CodeGamix!!!</h1>
             <div>
                 <div id="ip">
-                    <input type="email" placeholder="Insira seu e-mail" id="email">
-                    <input type="password" placeholder="Insira sua senha" id="password">                
+                    <div id="passdiv">
+                        <input type="email" placeholder="Insira seu e-mail" id="email">
+                        <input type="password" placeholder="Insira sua senha" id="password">
+                    </div>
+                    <div id="metododiv">
+                        <input type="radio" name="metodo" id="metodouser">
+                        <label>Logar com o nome de usuário</label> 
+                        <input type="radio" name="metodo" id="metodotelefone">
+                        <label>Logar com o número de telefone</label>
+                        <input type="radio" name="metodo" id="metodoemail">
+                        <label>Logar com o email</label>
+                    </div>
                 </div>
                 <div id="bt">
-                    <button>
+                    <button id="comfirm">
                         <p>Entrar</p>
                     </button>
                 </div>
