@@ -47,18 +47,19 @@ export async function signUp(app: Application, prisma: PrismaClient){
                             phone: req.body.phone,
                         },
                     });
-                    res.status(201).json(statuscode)
+                    console.log("foi")
+                    res.status(201).json(statuscode) //êxito ao criar a conta
                 }
                 catch(error){
                     res.status(500).json(statuscode)
                 }
             }
             else{
-                res.status(200).json(statuscode)
+                res.status(403).json(statuscode)
             }
         } 
         catch(error) {
-            res.status(500).json(NaN)
+            res.status(500)
         }
     })
 }

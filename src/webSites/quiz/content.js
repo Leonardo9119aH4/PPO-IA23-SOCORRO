@@ -15,26 +15,32 @@ const winnerEXP = winnerPopup.querySelector("#exp") //xp obtido
 const feedbackPopup = mainTag.querySelector("#feedback") //feedback de erro
 const feedbackButton = feedbackPopup.querySelector("button") //botão para fechar o popup
 const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedback
-var GLevel = 1 //em qual grupo de nível o usuário está, valor lido do banco de dados
 
 async function getData(){
     let params = new URLSearchParams(window.location.search)
-    let level = params.get("level")
-    return level
-}
-async function randomQuiz(){
-    const quizRqst = await fetch(`/globalAssets/json/quiz/glv${GLevel}.json`) //requisição das perguntas conforme grupo de nível
+    let level = parseInt(params.get("level"))
+    const quizRqst = await fetch(`/globalAssets/json/quiz/glv${level}.json`) //requisição das perguntas conforme grupo de nível
     var quiz = await quizRqst.json()
     for (let i = quiz.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [quiz[i], quiz[j]] = [quiz[j], quiz[i]];
     }
     quiz = quiz.slice(0, 5)
-    return quiz
+    const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
+    const master = await masterRqst.json()
+    return [level, master, quiz] //retorna uma array com o nível, json mestre e quiz
 }
-async function content(){
-    main()
-    var level = getData()
+async function StartQuiz(){
+    let data = await getData()
+    let level = data[0]
+    let master = data[1]
+    let quiz = data[2]
+    if(master[level].type != "quiz"){
+        window.location.href = "/webSites/levels/index.html"
+    }
+    content(level, master, quiz)
+}
+async function content(level, master, quiz){
     var life = 5 //quanto de vida o usuário tem, valor lido pelo banco de dados
     var score = 100 //percentual de acertos
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
@@ -44,19 +50,16 @@ async function content(){
     var min = 0 //variável para o cronômetro, minutos
     var isTheory = false //booleano para saber se uma teoria é exibida
     var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
-    const MasterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
-    const Master = await MasterRqst.json()
-    const quiz = await randomQuiz()
     var theoryEJS
-    if(Master[level].theory === true){
-        const getTheory = Master[level].get_theory
+    if(master[level].theory === true){
+        const getTheory = master[level].get_theory
         const theoryRqst = await fetch(`/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
         theoryEJS = await theoryRqst.text()
     }
     function VerifyInit(){ //verificação de nível e mostrar a teoria conforme nível do usuário
-        if(Master[level].theory === true){
+        if(master[level].theory === true){
             mainTheory.innerHTML = theoryEJS
-            Ask.innerHTML = Master[level].theory_title
+            Ask.innerHTML = master[level].theory_title
             response.innerHTML = "<button>CONTINUAR</button>"
             DocCSS.style.setProperty("--RepN", 1)
             isTheory = true
@@ -175,4 +178,5 @@ async function content(){
     VerifyInit() //inicia quiz e, se tiver, exibe a teoria antes do quiz
     setInterval(UpdTime, 100) //cronômetro
 }
-content()
+main()
+StartQuiz()
