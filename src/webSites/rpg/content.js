@@ -32,7 +32,7 @@ ejsload().then(() => {
             },
             body: JSON.stringify({inputcommands})
         })
-        load(inputcommands, commandsjson, gameVars, GameDOM)
+        
     }
     button.addEventListener('click', () => {
         main()
