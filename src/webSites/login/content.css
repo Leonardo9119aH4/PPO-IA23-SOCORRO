@@ -44,17 +44,25 @@ main>div {
     padding: 2rem;
     gap: 2rem;
     div#ip {
+        font-family: clear-sans;
+    }
+    div#ip>div#passdiv {
         display: grid;
     }
-    div#ip>input {
+    div#ip label {
+        color:white;
+    }
+    div#ip input {
+        color: white;
+    }
+    div#ip>div#passdiv>input {
         height: calc(var(--_size)/10);
         background: transparent;
         border: 0;
     }
-    div#ip>input::placeholder {
+    div#ip>div#passdiv>input::placeholder {
         color: #ffffff82;
         font-size: xx-large;
-        font-family: clear-sans;
         text-align: center;
     }
     >div#bt {
