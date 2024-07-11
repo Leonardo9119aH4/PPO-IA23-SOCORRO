@@ -30,6 +30,7 @@ confirmBt.onclick = async function() {
     if(data == -1) {
         alert("Algum campo está vazio")
     }
+    let cad = false
     for(let i = 0, aux = data; i<data; i+=2){
         if(aux>=16){
             phoneAlert.innerHTML = "Este teleofne já consta no sistema!"
@@ -47,5 +48,8 @@ confirmBt.onclick = async function() {
             comfirmEmailAlert.innerHTML = "A confirmação de email e o email são diferentes!"
             aux/=2
         }
+    }
+    if(data === 0){
+        window.location.href = "/src/webSites/main/index.html"
     }
 }
