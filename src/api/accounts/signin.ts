@@ -18,7 +18,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                     if(el.username === req.body.username){
                         userHasFound=true
                         if(el.password === req.body.password){
-                            res.setHeader
+                            res.setHeader("chave-teste", "teste")
                             res.status(201).json(1)
                         }
                         else{
