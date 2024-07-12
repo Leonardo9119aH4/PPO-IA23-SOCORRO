@@ -18,8 +18,15 @@ model User {
   level Int @default(1)
   exp Int @default(0)
   posts Admin[]
+  keys AuthKey[]
 }
 model Admin {
   id Int @id 
   user User @relation(fields: [id], references: [id])
+}
+model AuthKey {
+  id Int @id @default(autoincrement())
+  key String @unique
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }
