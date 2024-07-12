@@ -1,14 +1,14 @@
-var type: String
+var type: string
 var count = 0
 var varcontrol = false
 
-function setVarName(input: Array<String>, vars: Array<any>) {
-    let name: Array<String> = new Array(0)
+function setVarName(input: Array<string>, vars: Array<any>) {
+    let name: Array<string> = new Array(0)
     while((input[count] != "=") && (input[count] != " ")){
         name.push(input[count])
         count++
     }
-    vars[1].forEach((element: String, index: number) => {
+    vars[1].forEach((element: string, index: number) => {
         if(element == name[index]) {
             return
         }
@@ -16,7 +16,7 @@ function setVarName(input: Array<String>, vars: Array<any>) {
     return name
 }
 //parei aqui
-export function setVars(input: String, inputsplit: Array<String>, vars: Array<Array<String>>) {
+export function setVars(input: string, inputsplit: Array<string>, vars: Array<Array<string>>) {
     varcontrol = false
     let posint = input.indexOf('int ')
     let posreal = input.indexOf('real ')
@@ -33,14 +33,14 @@ export function setVars(input: String, inputsplit: Array<String>, vars: Array<Ar
             count = posstring + 7
             type = 's'
         }
-        let varname: Array<String> = setVarName(inputsplit, vars)
+        let varname: Array<string> = setVarName(inputsplit, vars)
         let varvalue = []
         while(count < inputsplit.length) {
             if((inputsplit[count] != " ") && (inputsplit[count] != "=")){
                 varvalue.push(inputsplit[count])
                 console.log(varname)
-                let varnamejoin: String = varname.join('')
-                let varvaluejoin: String = varvalue.join('')
+                let varnamejoin: string = varname.join('')
+                let varvaluejoin: string = varvalue.join('')
                 if(verifyType(varvaluejoin)){
                     vars[0].push(varvaluejoin)
                     vars[1].push(varnamejoin)
@@ -75,12 +75,12 @@ function verifyType(value: any) {
     return false
 }
 
-export function getVars(input: String, inputsplit: Array<String>, vars: Array<Array<String>>) {
+export function getVars(input: string, inputsplit: Array<string>, vars: Array<Array<string>>) {
     let newinput = input
     console.log(vars)
     if(!varcontrol){
         vars[1].forEach((varname, index) => {
-            if(input.indexOf(varnamejoin) != -1){
+            if(input.indexOf(varname) != -1){
                 let x = inputsplit.indexOf(varname)
                 if(inputsplit[x + varname.length] == " " || inputsplit[x + varname.length] == "<" || inputsplit[x + varname.length] == ">" || inputsplit[x + varname.length] == "=" || inputsplit[x + varname.length] == ")" && inputsplit[x - 1] == " " || inputsplit[x - 1] == "<" || inputsplit[x - 1] == ">" || inputsplit[x - 1] == "=" || inputsplit[x - 1] == "("){
                     if(inputsplit[x + varname.length] == "+" && inputsplit[x+varname.length+1] == "+" && vars[3][index] != 's'){
