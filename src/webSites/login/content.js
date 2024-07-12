@@ -7,13 +7,23 @@ let paswword = document.querySelector("#password")
 let btComfirm = document.querySelector("#btComfirm")
 
 let userCheck = document.querySelector("metodouser")
-let telefoneCheck = document.querySelector("#metodotelefone")
 let emailCheck = document.querySelector("#metodoemail")
 
 let status
 
-btComfirm.onclick = function() {
+btComfirm.onclick = async function() {
     if(userCheck.checked){
-        status
+        status = 1
+    } else if (emailCheck.checked){
+        status = 2
+    } else {
+        status = 3
     }
+    let response = await fetch("/api/signin", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: {credential: status}
+    })
 }
