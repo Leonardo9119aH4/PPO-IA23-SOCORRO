@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client"
 export class User{
     protected id: Number
     public username: String
@@ -8,13 +9,13 @@ export class User{
     protected level: Number
     public exp: Number
     constructor(id: Number, username: String, password: String, realname: String, email: String, phone: String, level: Number, exp: Number){
-        this.id = 1
+        this.id = id
         this.username = username
         this.password = password
         this.realname = realname
         this.email = email
         this.phone = phone
-        this.level = 1
+        this.level = level
         this.exp = exp
     }
 

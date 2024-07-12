@@ -5,7 +5,7 @@ Precisa ter o Node.js instalado.
 =============================================================================
 !! Servidor
 
-Será usado Node.js com as frameworks express.s e prisma.js
+Será usado Node.js com as frameworks express.js e prisma.js
 
 Será usado a porta 3000 para host do servidor.
 

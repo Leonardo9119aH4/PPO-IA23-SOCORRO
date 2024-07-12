@@ -1,21 +1,43 @@
-import {main} from "/globalAssets/js/main.js"
+import {main, fatalError} from "/globalAssets/js/main.js"
 const mainTag = document.querySelector("#levels .content")
-
+const lifeDOM = document.querySelector("#life>h1")
 async function getData(){
-    let QN = await fetch("/api/private/levelsunlocked", {
+    let LNRqst = await fetch("/api/private/levelsunlocked", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({})
+        body: JSON.stringify({"action": "get"})
     })
+    if(LNRqst.status===500){
+        fatalError(500)
+        return
+    }
+    let LN = await LNRqst.json()
+    //
+    let lifeRqst = await fetch("/api/private/lifes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"action": "get"})
+    })
+    if(lifeRqst.status===500){
+        fatalError(500)
+        return
+    }
+    let life = await lifeRqst.json()
+    return [LN, life]
 }
 async function content(){
     main()
-    let QN = 49 //Alterado pelo banco de dados, enquanto não tem, valor arbitrário
+    let data = await getData() //obtém os dados do usuário
+    let LN = data[0] //obtém o nível em que o usuário está
+    let life = data[1] //obtém as vidas dele
     const masterRqst = await fetch("/globalAssets/json/master.json");
     const master = await masterRqst.json();
-    for(let i=0; i<master.length; i++){ //injeta os níveis
+    lifeDOM.innerHTML = life
+    for(let i=0; i<LN; i++){ //injeta os níveis
         if(master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`
         }

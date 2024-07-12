@@ -4,10 +4,8 @@ export async function signUp(app: Application, prisma: PrismaClient){
     app.post("/api/signup", async (req: Request, res: Response)=>{
         try{
             let statuscode: number = 0 //statuscode = 0 -> tudo certo, caso contrario é porque teve algum erro
-            console.log(req.body)
             if(req.body.username == null || req.body.email == null || req.body.phone == null || req.body.realName == null || req.body.password == null){
                 statuscode=-1
-                console.log("A")
             }
             else{
                 if(! (req.body.email == req.body.confirmEmail)){ 
