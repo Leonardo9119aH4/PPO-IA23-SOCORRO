@@ -1,9 +1,18 @@
 import {main} from "/globalAssets/js/main.js"
 const mainTag = document.querySelector("#levels .content")
-let QN = 49 //Alterado pelo banco de dados, enquanto não tem, valor arbitrário
 
+async function getData(){
+    let QN = await fetch("/api/private/levelsunlocked", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({})
+    })
+}
 async function content(){
     main()
+    let QN = 49 //Alterado pelo banco de dados, enquanto não tem, valor arbitrário
     const masterRqst = await fetch("/globalAssets/json/master.json");
     const master = await masterRqst.json();
     for(let i=0; i<master.length; i++){ //injeta os níveis
