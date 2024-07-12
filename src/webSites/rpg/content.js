@@ -25,7 +25,7 @@ ejsload().then(() => {
         const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
         const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
-        let response = await fetch('http://localhost:3000/move', {
+        let response = await fetch('/move', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
