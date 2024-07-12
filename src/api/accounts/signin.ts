@@ -16,7 +16,11 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         },
                     })
                     users.forEach(el => {
-                        
+                        if(el.username==req.body.login && el.password==req.body.password){
+                            userHasFound=true
+                            res.setHeader("cookie", "cookie")
+                            res.send(200)
+                        }
                     });
                 }
                 if(req.body.credential===2){ //by email
@@ -27,7 +31,11 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         },
                     })
                     users.forEach(el => {
-                        
+                        if(el.email==req.body.login && el.password==req.body.password){
+                            userHasFound=true
+                            res.setHeader("cookie", "cookie")
+                            res.send(200)
+                        }
                     });
                 }
                 if(req.body.credential===3){ //by phone
@@ -38,7 +46,11 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         },
                     })
                     users.forEach(el => {
-                        
+                        if(el.phone==req.body.login && el.password==req.body.password){
+                            userHasFound=true
+                            res.setHeader("cookie", "cookie")
+                            res.send(200)
+                        }
                     });
                 }
                 if(!userHasFound){

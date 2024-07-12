@@ -19,6 +19,11 @@ const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedb
 async function getData(){
     let params = new URLSearchParams(window.location.search)
     let level = parseInt(params.get("level"))
+    const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
+    const master = await masterRqst.json()
+    return [level, master] //retorna uma array com o nível, json mestre e quiz
+}
+async function getQuiz(level){
     const quizRqst = await fetch(`/globalAssets/json/quiz/glv${level}.json`) //requisição das perguntas conforme grupo de nível
     var quiz = await quizRqst.json()
     for (let i = quiz.length - 1; i > 0; i--) {
@@ -26,19 +31,29 @@ async function getData(){
         [quiz[i], quiz[j]] = [quiz[j], quiz[i]];
     }
     quiz = quiz.slice(0, 5)
-    const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
-    const master = await masterRqst.json()
-    return [level, master, quiz] //retorna uma array com o nível, json mestre e quiz
+    return quiz
 }
 async function StartQuiz(){
     let data = await getData()
     let level = data[0]
     let master = data[1]
-    let quiz = data[2]
-    if(master[level].type != "quiz"){
+    if(level==NaN){
         window.location.href = "/webSites/levels/index.html"
     }
-    content(level, master, quiz)
+    else{
+        try{
+            if(master[level].type != "quiz"){
+                window.location.href = "/webSites/levels/index.html"
+            }
+            else{
+                let quiz = await getQuiz(level)
+                content(level, master, quiz)
+            }
+        }
+        catch{
+            window.location.href = "/webSites/levels/index.html"
+        }
+    }
 }
 async function content(level, master, quiz){
     var life = 5 //quanto de vida o usuário tem, valor lido pelo banco de dados
