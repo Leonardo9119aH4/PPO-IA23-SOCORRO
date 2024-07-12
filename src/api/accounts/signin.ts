@@ -19,7 +19,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         if(el.username==req.body.login && el.password==req.body.password){
                             userHasFound=true
                             res.setHeader("cookie", "cookie")
-                            res.send(200)
+                            res.send(200).json(1)
                         }
                     });
                 }
@@ -34,7 +34,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         if(el.email==req.body.login && el.password==req.body.password){
                             userHasFound=true
                             res.setHeader("cookie", "cookie")
-                            res.send(200)
+                            res.send(200).json(1)
                         }
                     });
                 }
@@ -49,7 +49,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         if(el.phone==req.body.login && el.password==req.body.password){
                             userHasFound=true
                             res.setHeader("cookie", "cookie")
-                            res.send(200)
+                            res.send(200).json(1)
                         }
                     });
                 }
