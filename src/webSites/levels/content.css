@@ -21,16 +21,21 @@ main{
 }
 #exp{ /* menu lateral do ranking */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     height: 100vh;
     width: var(--menuWD) !important; /* tamanho fixo */
     background-color: rgba(128, 128, 128, 0.5);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    & .texto{
-        margin: 0 auto auto auto;
+    & .texto, & #life{
+        margin: 0 auto 0 auto;
         box-sizing: border-box;
+    }
+    & #life{
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 }
 #levels{ /* níveis do CodeGamix */
