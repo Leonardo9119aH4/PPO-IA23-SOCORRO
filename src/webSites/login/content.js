@@ -29,7 +29,8 @@ btConfirm.onclick = async function() {
         },
         body: JSON.stringify({credential: status, login: email.value, password: password.value})
     })
-    switch(response){
+    let data = await response.json()
+    switch(data){
         case -1:
             alert("Há um campo vazio!")
             break
