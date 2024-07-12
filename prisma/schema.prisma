@@ -17,6 +17,7 @@ model User {
   phone String @unique
   level Int @default(1)
   exp Int @default(0)
+  life Int @default(5)
   posts Admin[]
   keys AuthKey[]
 }

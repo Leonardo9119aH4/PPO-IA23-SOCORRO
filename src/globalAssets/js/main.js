@@ -10,4 +10,7 @@ export async function main(){
         subNav.classList.toggle('open-nav')
     })
 }
+export async function fatalError(error){
+    document.body.innerHTML = `<h1>Erro interno ${error} no servidor. Tente novamente mais tarde</h1>`
+}
 //te odeio javascript
