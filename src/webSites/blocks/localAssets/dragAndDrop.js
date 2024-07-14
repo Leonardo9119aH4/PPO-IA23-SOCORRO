@@ -66,7 +66,7 @@ export async function Execute(){ //verifica se os blocos estão na sequência co
     const correctSeq = await correctSeqRqst.json()
     var isCorrect = null //booleano para verificar se a sequência está correta
     var wrongCount = 0 //contador de erros, valor -1 para quando há lacunas não preenchidas
-    if(saveBlockId.length === correctSeq[level-1].length && saveBlockId.every((value, index)=>value===correctSeq[level-1][index])){
+    if(saveBlockId.length === correctSeq[level-1].length && saveBlockId.every((value, index)=>value===correctSeq[level-1][index])){ //a posição na array equivale ao nível
         isCorrect = true
     }
     else{

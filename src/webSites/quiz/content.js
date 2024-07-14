@@ -23,7 +23,7 @@ async function getData(){
     const master = await masterRqst.json()
     return [level, master] //retorna uma array com o nível, json mestre e quiz
 }
-async function getQuiz(level){
+async function getQuiz(level){ //obtém as perguntas
     const quizRqst = await fetch(`/globalAssets/json/quiz/glv${level}.json`) //requisição das perguntas conforme grupo de nível
     var quiz = await quizRqst.json()
     for (let i = quiz.length - 1; i > 0; i--) {
@@ -37,22 +37,17 @@ async function StartQuiz(){
     let data = await getData()
     let level = data[0]
     let master = data[1]
-    if(level==NaN){
-        window.location.href = "/webSites/levels/index.html"
-    }
-    else{
-        try{
-            if(master[level].type != "quiz"){
-                window.location.href = "/webSites/levels/index.html"
-            }
-            else{
-                let quiz = await getQuiz(level)
-                content(level, master, quiz)
-            }
-        }
-        catch{
+    try{
+        if(master[level].type != "quiz"){
             window.location.href = "/webSites/levels/index.html"
         }
+        else{
+            let quiz = await getQuiz(level)
+            content(level, master, quiz)
+        }
+    }
+    catch{
+        window.location.href = "/webSites/levels/index.html"
     }
 }
 async function content(level, master, quiz){
@@ -162,11 +157,11 @@ async function content(level, master, quiz){
     feedbackButton.addEventListener("click", ev =>{
         feedbackPopup.classList.remove("opened")
     })
-    function updateRespBtList(){ //atualiza a nodeList contendo as alternativas
+    function updRespBtList(){ //atualiza a nodeList contendo as alternativas
         responseButton = response.querySelectorAll("button")
     }
     const observer = new MutationObserver(()=>{ //detecta alterações no DOM para poder chamar o forEach
-        updateRespBtList()
+        updRespBtList()
         responseButton.forEach((el, i)=>{
             el.addEventListener("click", ev =>{ //implementação para comparar alternativas (erro/acerto)
                 if(!isTheory){
