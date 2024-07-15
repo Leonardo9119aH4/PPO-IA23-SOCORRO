@@ -18,7 +18,13 @@ export async function signIn(app: Application, prisma: PrismaClient){
                     users.forEach(el => {
                         if(el.username==req.body.login && el.password==req.body.password){
                             userHasFound=true
-                            res.setHeader("cookie", "cookie")
+                            res.cookie('username', 'JohnDoe', { //parei aqui
+                                expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+                                path: '/',
+                                secure: true,
+                                httpOnly: true,
+                                sameSite: 'Strict'
+                              })
                             res.send(200).json(1)
                         }
                     });
