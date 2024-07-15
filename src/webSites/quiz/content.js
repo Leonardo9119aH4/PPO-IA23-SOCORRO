@@ -1,3 +1,4 @@
+import { fatalError } from "/globalAssets/js/main.js"
 import {main} from "/globalAssets/js/main.js"
 const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
@@ -21,7 +22,15 @@ async function getData(){
     let level = parseInt(params.get("level"))
     const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
     const master = await masterRqst.json()
-    return [level, master] //retorna uma array com o nível, json mestre e quiz
+    const lifeRqst = await fetch("/api/private/lifes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"action": "get"})
+    })
+    const life = await lifeRqst.json()
+    return [level, master, life] //retorna uma array com o nível, json mestre e quiz
 }
 async function getQuiz(level){ //obtém as perguntas
     const quizRqst = await fetch(`/globalAssets/json/quiz/glv${level}.json`) //requisição das perguntas conforme grupo de nível
@@ -37,21 +46,22 @@ async function StartQuiz(){
     let data = await getData()
     let level = data[0]
     let master = data[1]
+    let life = data[2]
+    Life.innerHTML = life
     try{
         if(master[level].type != "quiz"){
             window.location.href = "/webSites/levels/index.html"
         }
         else{
             let quiz = await getQuiz(level)
-            content(level, master, quiz)
+            content(level, master, quiz, life)
         }
     }
     catch{
         window.location.href = "/webSites/levels/index.html"
     }
 }
-async function content(level, master, quiz){
-    var life = 5 //quanto de vida o usuário tem, valor lido pelo banco de dados
+async function content(level, master, quiz, life){
     var score = 100 //percentual de acertos
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
     var NAsk = 0 //número atual da questão
@@ -106,6 +116,17 @@ async function content(level, master, quiz){
                 firstWrong = false
                 Life.innerHTML = life
                 score -= 100/quiz.length //cálculo do percentual de acerto
+                fetch("/api/private/lifes", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({"action": "reduce", "life": 1})
+                }).then(resp => {
+                    if(resp.status == 500){
+                        fatalError(500)
+                    }
+                })
             }
             Feedback(false)
         }
@@ -132,6 +153,13 @@ async function content(level, master, quiz){
         const K = quiz.length/5 //constante multiplicador conforme a quantidade de questões
         exp = (100-K*((Math.log(0.1*dSec))/Math.log(1.7)))*(score/100) //cáculo do XP obtido
         winnerEXP.innerHTML = `Obteve ${exp} XP`
+        fetch("/api/private/exp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({"action": "add", "exp": exp})
+        })
     }
     function Feedback(isCorrect){
         feedbackPopup.classList.add("opened")
