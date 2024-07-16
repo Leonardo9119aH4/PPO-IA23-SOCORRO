@@ -10,22 +10,23 @@ export async function signIn(app: Application, prisma: PrismaClient){
         return result
     }
     app.post("/api/signin", async (req: Request, res: Response)=>{ //rota para receber o login
-        async function genCookie(user: any){ //envia o cookie ao cliente e salva-o no banco de dados
-            let key: string = user.id + "#" + randomString(20)
-            await prisma.authKey.create({
-                data: {
-                    key: key,
-                    userId: user.id,
-                },
-            })
-            res.cookie('authKey', key, { 
-                path: '/',
-                secure: false,
-                httpOnly: true,
-                sameSite: true,
-              })
-        }
         try{
+            async function genCookie(user: any){ //envia o cookie ao cliente e salva-o no banco de dados
+                let key: string = user.id + "#" + randomString(20)
+                await prisma.authKey.create({
+                    data: {
+                        key: key,
+                        userId: user.id,
+                    },
+                })
+                res.cookie('authKey', key, { 
+                    path: '/',
+                    secure: false,
+                    httpOnly: true,
+                    sameSite: true,
+                })
+            }
+            //requisições abaixo
             let userHasFound: Boolean = false
             if(req.body.login == null || req.body.password == null || req.body.credential == null){
                 res.send(403).json(-1)
@@ -42,8 +43,9 @@ export async function signIn(app: Application, prisma: PrismaClient){
                     users.forEach(async el => {
                         if(el.username==req.body.login && el.password==req.body.password){
                             userHasFound=true
+                            console.log(el)
                             await genCookie(el)
-                            res.send(200).json(1)
+                            res.status(200).json(1)
                         }
                     });
                 }
@@ -58,7 +60,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         if(el.email==req.body.login && el.password==req.body.password){
                             userHasFound=true
                             await genCookie(el)
-                            res.send(200).json(1)
+                            res.status(200).json(1)
                         }
                     });
                 }
@@ -73,7 +75,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                         if(el.phone==req.body.login && el.password==req.body.password){
                             userHasFound=true
                             await genCookie(el)
-                            res.send(200).json(1)
+                            res.status(200).json(1)
                         }
                     });
                 }
