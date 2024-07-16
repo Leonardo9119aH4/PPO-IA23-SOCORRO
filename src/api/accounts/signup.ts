@@ -55,7 +55,7 @@ export async function signUp(app: Application, prisma: PrismaClient){
                 res.status(403).json(statuscode)
             }
         } 
-        catch(error) {
+        catch {
             res.status(500)
         }
     })
