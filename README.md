@@ -51,7 +51,7 @@ Comentar todas as variáveis, constantes e funções, especificando o seu uso e 
 
 Não usar early return quando não precisa.
 
-Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: /<diretótios>
+Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: /<diretórios>
 
 =============================================================================
 !! Banco de dados
