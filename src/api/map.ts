@@ -10,5 +10,4 @@ export async function executeAll(app: Application, prisma: PrismaClient){
     whichEXP(app, prisma)
     signUp(app, prisma)
     signIn(app, prisma)
-    logAuth(app, prisma)
 }
