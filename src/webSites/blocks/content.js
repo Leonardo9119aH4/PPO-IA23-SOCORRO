@@ -7,9 +7,23 @@ const codeBlocks = document.querySelector("main") //onde o scratch fica
 const title =  document.querySelector("title") //título
 const exeButton = document.querySelector("section>button") //botão para verificar se o scratch está correto
 const output = document.querySelector("section>#output") //saída para saber se houve êxito ou não
-var level = 1 //TEMPORÁRIO! Futura ligação com banco de dados (não estou copiando o comentário do William)
 
-async function loadDOM(){
+async function getData(){
+    let params = new URLSearchParams(window.location.search)
+    let level = parseInt(params.get("level"))
+    const masterRqst = await fetch("/globalAssets/json/master.json") //json mestre
+    const master = await masterRqst.json()
+    try{
+        if(master[level].type != "blocks"){
+            window.location.href = "/webSites/levels/index.html"
+        }
+    } 
+    catch{
+        window.location.href = "/webSites/levels/index.html"
+    }
+    return [level, master]
+}
+async function loadDOM(level){
     const asideRqst = await fetch(`/webSites/blocks/localAssets/levels/lv${level}/aside.ejs`) //blocos laterais
     const asideEJS = await asideRqst.text() 
     const dragBlockRqst =  await fetch(`/webSites/blocks/localAssets/levels/lv${level}/code.ejs`) //código a ser preenchido
@@ -17,12 +31,12 @@ async function loadDOM(){
     codeBlocks.innerHTML = dragBlockEJS
     aside.innerHTML = asideEJS
 }
-
 async function content(){
-    await main()
-    await loadDOM() //carrega o código e os blocos arrastáveis
-    const masterRqst = await fetch("/globalAssets/json/master.json") //json mestre
-    const master = await masterRqst.json() 
+    main()
+    let data = await getData()
+    let level = data[0]
+    let master = data[1]
+    await loadDOM(level) //carrega o código e os blocos arrastáveis
     title.innerHTML = master[level].level_title
     header.innerHTML = master[level].level_header
     var correctAnswer = null

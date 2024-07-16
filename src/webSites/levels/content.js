@@ -9,8 +9,13 @@ async function getData(){
         },
         body: JSON.stringify({"action": "get"})
     })
+    console.log(LNRqst)
     if(LNRqst.status===500){
         fatalError(500)
+        return
+    }
+    if(LNRqst.status===401){
+        window.location.href = "/webSites/main/index.html"
         return
     }
     let LN = await LNRqst.json()
@@ -37,7 +42,7 @@ async function content(){
     const masterRqst = await fetch("/globalAssets/json/master.json");
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life
-    for(let i=0; i<LN; i++){ //injeta os níveis
+    for(let i=0; i<=LN; i++){ //injeta os níveis
         if(master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`
         }
