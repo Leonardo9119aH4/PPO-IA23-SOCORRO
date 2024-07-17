@@ -1,5 +1,6 @@
 import {Application, Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
+import { regInfoConflict } from './regInfo'
 export async function signUp(app: Application, prisma: PrismaClient){
     app.post("/api/signup", async (req: Request, res: Response)=>{
         try{
@@ -21,17 +22,15 @@ export async function signUp(app: Application, prisma: PrismaClient){
                         phone: true,
                     },
                 });
-                users.forEach(el =>{
-                    if(el.username === req.body.username){
-                        statuscode+=4
-                    }
-                    if(el.email === req.body.email){
-                        statuscode+=8
-                    }
-                    if(el.phone === req.body.phone){
-                        statuscode+=16
-                    }
-                })
+                if(regInfoConflict(users, "username", req.body.username)){
+                    statuscode+=4
+                }
+                if(regInfoConflict(users, "email", req.body.email)){
+                    statuscode+=8
+                }
+                if(regInfoConflict(users, "phone", req.body.phone)){
+                    statuscode+=16
+                }
             }
             if(statuscode===0){
                 try{
