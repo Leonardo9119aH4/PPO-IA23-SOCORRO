@@ -17,6 +17,7 @@
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cookies-parser": "^1.2.0",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "prisma": "^5.15.0",
@@ -24,6 +25,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
     "@types/node": "^20.14.2",
     "concurrently": "^8.2.2"
   }
