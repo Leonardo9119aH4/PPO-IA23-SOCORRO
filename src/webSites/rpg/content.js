@@ -1,5 +1,3 @@
-import { load } from 'http://localhost:3000/webSites/rpg/main.js'
-
 const button = document.querySelector('button#exec')
 const input = document.querySelector('div#code_input>textarea')
 const csslink = document.querySelector('link#cssinjection')
@@ -12,19 +10,34 @@ async function ejsload() {
 }
 ejsload().then(() => {
     csslink.setAttribute('href', `http://localhost:3000/webSites/rpg/localassets/levels/lv${lv}/content.css`)
+    class HtmlObject {
+        constructor(height, width, left, top) {
+            this.height = height
+            this.width = width
+            this.left = left
+            this.top = top
+        }
+    }
+    let hero = document.querySelector("div#hero")
+    let walls = document.querySelectorAll("div.wall")
+    let enemies = document.querySelectorAll("div.enemy")
+    let end = document.querySelector("div#end")
+    function list(divArr) {
+        let objArr = []
+        divArr.forEach(el => {
+            objArr.push(new HtmlObject(el.height, el.width, el.left, el.top))
+        })
+        return objArr
+    }
     var GameDOM = {
-        hero: document.querySelector('div#hero'), //personagem
+        hero: new HtmlObject(hero.height, hero.width, hero.left, hero.top), //personagem
         pxadd: 100, //quantidade de pixels a serem adicionadas a cada execução
-        left: hero.getBoundingClientRect().left, //distancia em pixel da esquerda da página
-        top: hero.getBoundingClientRect().top, //distancia em pixel de cima da página
-        walls: document.querySelectorAll('div.wall'), //constante com todos os obstáculos do mapa
-        enemies: document.querySelectorAll('div.enemy'), //constante com todos os inimigos
-        end: document.querySelector('div#end') //contante com o final do level
+        walls: list(walls), //constante com todos os obstáculos do mapa
+        enemies: list(enemies), //constante com todos os inimigos
+        end: new HtmlObject(end.height, end.width, end.left, end.top) //contante com o final do level
     }
     async function main() {
         var inputcommands = input.value.split('\n')
-        //var gameVars = [new Array(0), new Array(0), new Array(0)]
-        //load(inputcommands, commandsjson, gameVars, GameDOM)
         let response = await fetch('/api/move', {
             method: 'POST',
             headers: {
@@ -32,6 +45,8 @@ ejsload().then(() => {
             },
            body: JSON.stringify({inputcommands: inputcommands, GameDOM: GameDOM})
         })
+        const data = await response.json()
+        console.log(data)
     }
     button.addEventListener('click', () => {
         main()

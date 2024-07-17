@@ -13,7 +13,7 @@ export async function main(){
         btmn.classList.toggle('open-nav')
         subNav.classList.toggle('open-nav')
     })
-}
+}  
 export async function fatalError(error){ //função caso de erro fudido no servidor
     document.body.innerHTML = `<h1>Erro interno ${error} no servidor. Tente novamente mais tarde</h1>`
 }

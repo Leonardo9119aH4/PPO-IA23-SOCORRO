@@ -1,14 +1,14 @@
 import { win } from './win'
 import { gameover } from './gameover'
 import { GameDOM } from './gameDOM'
+import { HtmlObject } from './HtmlObject'
+import { Commands } from './commands'
 
-function collision(div1: any, div2: any) { //determina se há colisão e se tiver retorna o lado de colisão da div
-    var pos1 = div1.getBoundingClientRect()
-    var pos2 = div2.getBoundingClientRect()
-    var dx = (pos1.left + pos1.width / 2) - (pos2.left + pos2.width / 2)
-    var dy = (pos1.top + pos1.height / 2) - (pos2.top + pos2.height / 2)
-    var combinedHalfWidths = (pos1.width + pos2.width) / 2
-    var combinedHalfHeights = (pos1.height + pos2.height) / 2
+function collision(div1: HtmlObject, div2: HtmlObject) { //determina se há colisão e se tiver retorna o lado de colisão da div
+    var dx = (div1.left + div1.width / 2) - (div2.left + div2.width / 2)
+    var dy = (div1.top + div1.height / 2) - (div2.top + div2.height / 2)
+    var combinedHalfWidths = (div1.width + div2.width) / 2
+    var combinedHalfHeights = (div1.height + div2.height) / 2
     if (Math.abs(dx) < combinedHalfWidths && Math.abs(dy) < combinedHalfHeights) {
         var colside = []
         var overlapX = combinedHalfWidths - Math.abs(dx)
@@ -31,18 +31,15 @@ function collision(div1: any, div2: any) { //determina se há colisão e se tive
     return [0,0]
 }
 
-export function movecalc(command: any, vars: GameDOM) {
-    let brk = false
+export function movecalc(command: Commands, vars: GameDOM) {
+    let brk: boolean = false
     for(let i = 0; i<vars.pxadd; i++) { //verifica a colisão para cada pixel adicionado
-        console.log(vars.pxadd)
-        vars.walls.forEach((el: any) => { //verifica colisão com cada parede
+        vars.walls.forEach((el: HtmlObject) => { //verifica colisão com cada parede
             if(collision(vars.hero, el)[0] == command.var || collision(vars.hero, el)[1] == command.var) {
                 brk = true
-                console.log(collision(vars.hero, el)[0])
-                console.log(collision(vars.hero, el)[1])
             }
         })
-        vars.enemies.forEach((el: any) => { //verifica colisão com inimigos
+        vars.enemies.forEach((el: HtmlObject) => { //verifica colisão com inimigos
             if(collision(vars.hero, el)[0] == command.var || collision(vars.hero, el)[1] == command.var) {
                 gameover()
                 brk = true
@@ -69,6 +66,6 @@ export function movecalc(command: any, vars: GameDOM) {
                 vars.left ++
                 break
         }
-        return vars
     }
+    return vars
 }
