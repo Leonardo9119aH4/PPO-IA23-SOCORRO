@@ -20,15 +20,15 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "fs": "^0.0.1-security",
     "fs-promise": "^2.0.3",
-    "prisma": "^5.15.0",
+    "prisma": "^5.17.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@types/ejs": "^3.1.5",
     "@types/node": "^20.14.2",
-    "concurrently": "^8.2.2",
-    "fs": "^0.0.1-security"
+    "concurrently": "^8.2.2"
   }
 }
