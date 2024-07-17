@@ -52,13 +52,14 @@ async function getData(){
         return
     }
     const quiz = await quizRqst.json()
-    return [master, quiz, life]
+    return [master, quiz, life, level]
 }
 async function content(){
     let data = await getData()
     let master = data[0]
     let quiz = data[1]
     let life = data[2]
+    let level = data[3]
     var score = 100 //percentual de acertos
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
     var NAsk = 0 //número atual da questão
@@ -109,6 +110,7 @@ async function content(){
     }
     function Wrong(){
         if(--life>0){
+            Feedback(false)
             if(firstWrong==true){ //cada questão só pode tirar 1 vida
                 firstWrong = false
                 Life.innerHTML = life
@@ -125,7 +127,6 @@ async function content(){
                     }
                 })
             }
-            Feedback(false)
         }
         else{
             Life.innerHTML = life
@@ -214,4 +215,4 @@ async function content(){
     setInterval(UpdTime, 100) //cronômetro
 }
 main()
-StartQuiz()
+content()

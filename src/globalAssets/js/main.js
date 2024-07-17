@@ -3,7 +3,6 @@ export async function main(){
     const mainRqst = await fetch("/api/getnav", {
         method: "POST"
     })
-    console.log(mainRqst)
     const mainEJS = await mainRqst.json()
     nav.innerHTML = mainEJS
     const btmn = nav.querySelector('button#mnhamburg')
