@@ -7,20 +7,22 @@ import fs from 'fs-promise'
 import path from 'path'
 
 import { GameDOM } from './gameDOM'
+import { Commands } from './commands'
 
 
 export function runMove(app: Application){
     app.post('/api/move', async (req: Request, res: Response) => {
         let inputcommands = req.body.inputcommands
         let GameDOM: GameDOM = req.body.GameDOM
-        var gameVars = [new Array(0), new Array(0), new Array(0)]
-        const reqCommands = await fs.readJson(path.join(__dirname, 'commands.json'))    
+        console.log(GameDOM)
+        var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
+        const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
         load(inputcommands, reqCommands, gameVars, GameDOM)
-        res.status(200).send(GameDOM)
+        res.status(200).json(GameDOM)
     })
 }
 
-export function load(inputcommands: Array<string>, commandsjson: Array<Array<string>>, gameVars: Array<Array<string>>, GameDOM: Object) {
+export function load(inputcommands: Array<string>, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, GameDOM: GameDOM) {
     for(let i = 0; i < inputcommands.length; i++) {
         console.log(inputcommands)
         let inputsplit = inputcommands[i].split('')
@@ -36,9 +38,9 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Array<str
             console.log('tem condicional')
             i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars, GameDOM)
         }
-        commandsjson.forEach((commandelement: any) => {
+        commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                //GameDOM = movecalc(commandelement, GameDOM)
+                GameDOM = movecalc(commandelement, GameDOM)
             }
         })
     }

@@ -14,7 +14,9 @@ bt.onclick = async function() {
     console.log(logado.status)
     if(logado.status == 200){
         window.location.href = "/webSites/levels/index.html"
-    } else {
+    } else if(logado.status == 401){
         window.location.href = "/webSites/login/index.html"
+    } else {
+        alert("Ocorreu um erro na verificação de login!")
     }
 }
