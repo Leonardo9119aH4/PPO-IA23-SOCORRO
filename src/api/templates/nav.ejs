@@ -1,0 +1,22 @@
+<button id="mnhamburg">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+<div id="subNav" class="closed-menu">
+    <a href="/webSites/account/index.html" id="account">
+        <img src="/globalAssets/images/account-img" alt="Foto do seu perfil">
+        <p id="username"><% username %></p>
+    </a>
+    <% if (logged) { %>
+        <a href="/webSites/main/index.html">Main page</a>
+        <a href="/webSites/levels/index.html">Níveis</a>
+        <a>sla</a>
+        <a>sla</a>
+    <% } else { %>
+        <a href="/webSites/main/index.html">Main page</a>
+        <a>guest</a>
+        <a>sla</a>
+        <a>sla</a>
+    <% } %>
+</div>
