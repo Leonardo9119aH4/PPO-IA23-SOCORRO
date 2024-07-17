@@ -34,19 +34,19 @@ confirmBt.onclick = async function() {
     for(let i = 0, aux = data; i<data; i+=2){
         if(aux>=16){
             phoneAlert.innerHTML = "Este teleofne já consta no sistema!"
-            aux/=2
+            aux-=16
         } else if (aux>=8){
             emailAlert.innerHTML = "Este Email já consta no sistema!"
-            aux/=2
+            aux-=8
         } else if (aux>=4){
             nameAlert.innerHTML = "Este nome de usuário já está cadastrado!"
-            aux/=2
+            aux-=4
         } else if(aux>=2){
             comfirmPasswordAlert.innerHTML = "Há discrepância entre a senha e a confirmação"
-            aux/=2
+            aux-=2
         } else {
             comfirmEmailAlert.innerHTML = "A confirmação de email e o email são diferentes!"
-            aux/=2
+            aux-=1
         }
     }
     if(data === 0){
