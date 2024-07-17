@@ -1,6 +1,7 @@
 import { Application, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { logAuth } from "../accounts/cookies";
+import * as fs from "fs"
 export async function getQuiz(app: Application, prisma: PrismaClient){
     app.post("/api/private/getquiz", async (req: Request, res: Response)=>{
         try{
@@ -20,8 +21,8 @@ export async function getQuiz(app: Application, prisma: PrismaClient){
                 if(req.body.level > user.level){
                     res.sendStatus(403)
                 }
-                const quizRqst = await fetch(`./lv${req.body.level}.json`)
-                let quiz = await quizRqst.json()
+                const quizRqst = fs.readFileSync(`./src/api/quiz/lv${req.body.level}.json`, 'utf-8') //referência da caminho absoluta² (inclui ./src/)
+                let quiz = await JSON.parse(quizRqst)
                 const askNum = 7 + Math.floor(Math.random()*5)
                 for (let i = quiz.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
@@ -31,7 +32,8 @@ export async function getQuiz(app: Application, prisma: PrismaClient){
                 res.status(200).json(quiz)
             }
         }
-        catch{
+        catch(error){
+            console.log(error)
             res.sendStatus(500)
         }
     })
