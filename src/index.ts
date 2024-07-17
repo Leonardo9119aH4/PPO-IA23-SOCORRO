@@ -12,6 +12,7 @@ const prisma = new PrismaClient()
 async function main(){
   app.use(bodyParser.json())
   app.use(cookieParser())
+  app.use(express.urlencoded({ extended: true }))
   app.use('/webSites', express.static(path.join(__dirname, 'webSites'))) // Mapeia as respectivas pastas para o FrontEnd acessar
   app.use('/globalAssets', express.static(path.join(__dirname, 'globalAssets')))
   app.get('/', (req: Request, res: Response) => { // Redireciona o "/" para "/webSites/main/index.html"
