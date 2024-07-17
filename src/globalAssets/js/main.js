@@ -1,7 +1,10 @@
 export async function main(){
     const nav = document.querySelector('nav') //referenciar o nav para injeção de html
-    const mainRqst = await fetch("/api/getnav")
-    const mainEJS = await mainRqst.text()
+    const mainRqst = await fetch("/api/getnav", {
+        method: "POST"
+    })
+    console.log(mainRqst)
+    const mainEJS = await mainRqst.json()
     nav.innerHTML = mainEJS
     const btmn = nav.querySelector('button#mnhamburg')
     const subNav = nav.querySelector('div#subNav')
