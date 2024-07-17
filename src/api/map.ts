@@ -5,7 +5,7 @@ import {signUp} from "./accounts/signup"
 import {signIn} from "./accounts/signin"
 import {logOut} from "./accounts/cookies"
 import { regInfo } from "./accounts/regInfo"
-import { renderer } from "./templates/renderer"
+import { rendererNav } from "./templates/renderer"
 export async function executeAll(app: Application, prisma: PrismaClient){
     whichLevel(app, prisma)
     whichLife(app, prisma)
@@ -14,5 +14,5 @@ export async function executeAll(app: Application, prisma: PrismaClient){
     signIn(app, prisma)
     logOut(app, prisma)
     regInfo(app, prisma)
-    renderer(app, prisma)
+    rendererNav(app, prisma)
 }
