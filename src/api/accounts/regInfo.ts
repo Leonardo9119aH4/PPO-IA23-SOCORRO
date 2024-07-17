@@ -60,13 +60,14 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                         })
                         if(req.body.newInfoType === "username" && user != null){
                             if(regInfoConflict(users, "username", req.body.newInfo)){
-                                res.status(403).json(4)
+                                res.status(403).json(4) //segue a lista de conflito localizada em signup.ts
                             }
                             else{
                                 prisma.user.update({
                                     where: {id: user.id},
                                     data: {username: req.body.newInfo}
                                 })
+                                res.status(201).json(0)
                             }
                         }
                         else if(req.body.newInfoType === "realname" && user != null){
@@ -74,24 +75,31 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                                 where: {id: user.id},
                                 data: {realname: req.body.newInfo}
                             })
-                        }
-                        else if(req.body.newInfoType === "realname" && user != null){
-                            prisma.user.update({
-                                where: {id: user.id},
-                                data: {realname: req.body.newInfo}
-                            })
+                            res.status(201).json(0)
                         }
                         else if(req.body.newInfoType === "email" && user != null){
-                            prisma.user.update({
-                                where: {id: user.id},
-                                data: {email: req.body.newInfo}
-                            })
+                            if(regInfoConflict(users, "email", req.body.newInfo)){
+                                res.status(403).json(8) //segue a lista de conflito localizada em signup.ts
+                            }
+                            else{
+                                prisma.user.update({
+                                    where: {id: user.id},
+                                    data: {email: req.body.newInfo}
+                                })
+                                res.status(201).json(0)
+                            }
                         }
                         else if(req.body.newInfoType === "phone" && user != null){
-                            prisma.user.update({
-                                where: {id: user.id},
-                                data: {phone: req.body.newInfo}
-                            })
+                            if(regInfoConflict(users, "phone", req.body.newInfo)){
+                                res.status(403).json(16) //segue a lista de conflito localizada em signup.ts
+                            }
+                            else{
+                                prisma.user.update({
+                                    where: {id: user.id},
+                                    data: {phone: req.body.newInfo}
+                                })
+                                res.status(201).json(0) //êxito ao alterar
+                            }
                         }
                     }
                 }
@@ -106,7 +114,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
         }
     })
 }
-export function regInfoConflict(users: any[], type: String, info: String): Boolean{
+export function regInfoConflict(users: any[], type: String, info: String): Boolean{ //função para verificar se existe conflito de username, email e/ou phone
     if(type === "username"){
         users.forEach(el =>{
             if(el.username === info){
