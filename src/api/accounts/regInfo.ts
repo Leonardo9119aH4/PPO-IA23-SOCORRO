@@ -59,15 +59,15 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                             }
                         })
                         if(req.body.newInfoType === "username" && user != null){
-                            // if(regInfoConflict(users, "username", req.body.newInfo)){
-                            //     res.status(403).json(4)
-                            // }
-                            // else{
-                            //     prisma.user.update({
-                            //         where: {id: user.id},
-                            //         data: {username: req.body.newInfo}
-                            //     })
-                            // }
+                            if(regInfoConflict(users, "username", req.body.newInfo)){
+                                res.status(403).json(4)
+                            }
+                            else{
+                                prisma.user.update({
+                                    where: {id: user.id},
+                                    data: {username: req.body.newInfo}
+                                })
+                            }
                         }
                         else if(req.body.newInfoType === "realname" && user != null){
                             prisma.user.update({
@@ -106,7 +106,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
         }
     })
 }
-export function regInfoConflict(users: User[], type: String, info: String): Boolean{
+export function regInfoConflict(users: any[], type: String, info: String): Boolean{
     if(type === "username"){
         users.forEach(el =>{
             if(el.username === info){
