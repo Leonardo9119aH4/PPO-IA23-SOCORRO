@@ -4,7 +4,7 @@ main()
 const confirmBt = document.querySelector("#entrar")
 const exitbt = document.querySelector("#exitbt")
 const emailAlert = document.querySelector("#emailAlert")
-const comfirmEmailAlert = document.querySelector("#comfirmEmailAlert")
+const comfirmEmailAlert = document.querySelector("#confirmEmailAlert")
 const comfirmPasswordAlert = document.querySelector("#comfirmPassowrdAlert")
 const phoneAlert = document.querySelector("#phoneAlert")
 
