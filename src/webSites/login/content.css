@@ -48,6 +48,9 @@ main>div {
     }
     div#ip>div#passdiv {
         display: grid;
+        >a{
+            color: yellow;
+        }
     }
     div#ip label {
         color:white;

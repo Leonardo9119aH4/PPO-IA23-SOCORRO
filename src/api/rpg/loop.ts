@@ -1,5 +1,7 @@
 import { listCommands } from './commandlist'
+import { Commands } from './commands'
 import { load } from './content'
+import { GameDOM } from './gameDOM'
 import { getVars } from './vars'
 var expression: Array<string>
 var expressionString: string
@@ -19,7 +21,7 @@ export function detectLoop(inputcommand: string) {
     return false
 }
 
-export function loadLoop(varinputcommand: string, inputlist: Array<string>, line: number, commandsjson: Array<Array<string>>, gameVars: Array<Array<string>>, GameDOM: object) {
+export function loadLoop(varinputcommand: string, inputlist: Array<string>, line: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, GameDOM: GameDOM) {
     console.log(inputlist)
     let loopcommands: Array<string> = listCommands(inputlist, line, line)[0]
     console.log(loopcommands, GameDOM)

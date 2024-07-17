@@ -1,7 +1,9 @@
 import { listCommands } from "./commandlist"
+import { Commands } from "./commands"
 import { load } from "./content"
+import { GameDOM } from "./gameDOM"
 
-export function conditional(input: Array<string>, inputcommands: Array<string>, actualline: number, commandsjson: Array<Array<string>>, gameVars: Array<Array<string>>, GameDOM: object) {
+export function conditional(input: Array<string>, inputcommands: Array<string>, actualline: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, GameDOM: GameDOM) {
     console.log(gameVars)
     let condition = false
     let expression: Array<string> = []
