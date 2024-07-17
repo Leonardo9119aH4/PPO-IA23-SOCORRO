@@ -52,6 +52,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                 if(req.body.credential===2){ //by email
                     const users = await prisma.user.findMany({
                         select: {
+                            id: true,
                             email: true,
                             password: true,
                         },
@@ -67,6 +68,7 @@ export async function signIn(app: Application, prisma: PrismaClient){
                 if(req.body.credential===3){ //by phone
                     const users = await prisma.user.findMany({
                         select: {
+                            id: true,
                             phone: true,
                             password: true,
                         },
