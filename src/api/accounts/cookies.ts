@@ -1,6 +1,6 @@
 import {Application, Request, Response} from 'express'
 import { PrismaClient } from '@prisma/client'
-export async function logAuth(prisma: PrismaClient, req: Request){
+export async function logAuth(prisma: PrismaClient, req: Request): Promise<number>{
     try{
         let userId: number = -1 //retorna -1 se não achou a chave de autenticação
         const authKeys = await prisma.authKey.findMany({
