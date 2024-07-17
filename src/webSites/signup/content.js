@@ -33,7 +33,7 @@ confirmBt.onclick = async function() {
     let cad = false
     for(let i = 0, aux = data; i<data; i+=2){
         if(aux>=16){
-            phoneAlert.innerHTML = "Este teleofne já consta no sistema!"
+            phoneAlert.innerHTML = "Este telefone já consta no sistema!"
             aux-=16
         } else if (aux>=8){
             emailAlert.innerHTML = "Este Email já consta no sistema!"
@@ -50,6 +50,6 @@ confirmBt.onclick = async function() {
         }
     }
     if(data === 0){
-        window.location.href = "/src/webSites/main/index.html"
+        window.location.href = "/webSites/main/index.html"
     }
 }
