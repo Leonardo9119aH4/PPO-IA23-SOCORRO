@@ -1,5 +1,6 @@
 import { win } from './win'
 import { gameover } from './gameover'
+import { GameDOM } from './gameDOM'
 
 function collision(div1: any, div2: any) { //determina se há colisão e se tiver retorna o lado de colisão da div
     var pos1 = div1.getBoundingClientRect()
@@ -30,7 +31,7 @@ function collision(div1: any, div2: any) { //determina se há colisão e se tive
     return [0,0]
 }
 
-export function movecalc(command: any, vars: any) {
+export function movecalc(command: any, vars: GameDOM) {
     let brk = false
     for(let i = 0; i<vars.pxadd; i++) { //verifica a colisão para cada pixel adicionado
         console.log(vars.pxadd)

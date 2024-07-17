@@ -22,12 +22,10 @@ ejsload().then(() => {
         end: document.querySelector('div#end') //contante com o final do level
     }
     async function main() {
-        const requestcommand = await fetch('http://localhost:3000/webSites/rpg/localassets/commands.json')
-        const commandsjson = await requestcommand.json()
         var inputcommands = input.value.split('\n')
         //var gameVars = [new Array(0), new Array(0), new Array(0)]
         //load(inputcommands, commandsjson, gameVars, GameDOM)
-        let response = await fetch('/move', {
+        let response = await fetch('/api/move', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
