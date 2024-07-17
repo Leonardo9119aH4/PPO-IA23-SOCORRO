@@ -36,12 +36,18 @@ span#separator {
     margin-top: 12%;
     margin-bottom: 12%;
 }
-a.lors {
+button.lors {
+    display: grid;
     --_margin : 10%;
     background-color: gray;
     width: calc(var(--_size)/4);
     transition: transform .5s;
     text-decoration: none;
+    >h2 {
+        height: fit-content;
+        margin: 0;
+        text-align: center;
+    }
     >div {
         display: grid;
         background-color: rgb(160, 160, 160);
@@ -49,16 +55,12 @@ a.lors {
         align-content: space-around;
         height: calc(var(--_size) - var(--_margin) * 2);
         cursor: pointer;
-        >h2 {
-            height: fit-content;
-            margin: 0;
-            text-align: center;
-        }
+
         >img {
             width: 100%;
         }
     }
 }
-a.lors:hover{
+button.lors:hover{
     transform: scale(120%);
 }
