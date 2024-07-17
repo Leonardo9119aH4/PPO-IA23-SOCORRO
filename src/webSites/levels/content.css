@@ -28,7 +28,7 @@ main{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    & .texto, & #life{
+    & .text, & #life{
         margin: 0 auto 0 auto;
         box-sizing: border-box;
     }

@@ -18,8 +18,8 @@ const feedbackButton = feedbackPopup.querySelector("button") //botão para fecha
 const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedback
 
 async function getData(){
-    let params = new URLSearchParams(window.location.search)
-    let level = parseInt(params.get("level"))
+    const params = new URLSearchParams(window.location.search)
+    const level = parseInt(params.get("level"))
     const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
     const master = await masterRqst.json()
     const lifeRqst = await fetch("/api/private/lifes", {
@@ -29,39 +29,36 @@ async function getData(){
         },
         body: JSON.stringify({"action": "get"})
     })
+    if(lifeRqst.status === 401){
+        window.location.href = "/webSites/main/index.html"
+    }
+    if(lifeRqst.status === 500){
+        fatalError(500)
+        return
+    }
     const life = await lifeRqst.json()
-    return [level, master, life] //retorna uma array com o nível, json mestre e quiz
-}
-async function getQuiz(level){ //obtém as perguntas
-    const quizRqst = await fetch(`/globalAssets/json/quiz/glv${level}.json`) //requisição das perguntas conforme grupo de nível
-    var quiz = await quizRqst.json()
-    for (let i = quiz.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [quiz[i], quiz[j]] = [quiz[j], quiz[i]];
+    const quizRqst = await fetch("/api/private/getquiz", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"level": level})
+    })
+    if(quizRqst.status === 401 || quizRqst.status === 403){
+        window.location.href = "/webSites/main/index.html"
     }
-    quiz = quiz.slice(0, 5)
-    return quiz
+    if(quizRqst.status === 500){
+        fatalError(500)
+        return
+    }
+    const quiz = await quizRqst.json()
+    return [master, quiz, life]
 }
-async function StartQuiz(){
+async function content(){
     let data = await getData()
-    let level = data[0]
-    let master = data[1]
+    let master = data[0]
+    let quiz = data[1]
     let life = data[2]
-    Life.innerHTML = life
-    try{
-        if(master[level].type != "quiz"){
-            window.location.href = "/webSites/levels/index.html"
-        }
-        else{
-            let quiz = await getQuiz(level)
-            content(level, master, quiz, life)
-        }
-    }
-    catch{
-        window.location.href = "/webSites/levels/index.html"
-    }
-}
-async function content(level, master, quiz, life){
     var score = 100 //percentual de acertos
     var firstWrong = true //analisa se é o primeiro erro de resposta da questão
     var NAsk = 0 //número atual da questão
