@@ -26,7 +26,6 @@ export async function rendererNav(app: Application, prisma: PrismaClient){
             }
         }
         catch(error){
-            console.log(error)
             res.sendStatus(500)
         }
     })
