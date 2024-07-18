@@ -32,7 +32,7 @@ async function getData(){
     }
     let life = await lifeRqst.json()
 
-    let expRqst = await fetch("/api/private/lifes", {
+    let expRqst = await fetch("/api/private/exp", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

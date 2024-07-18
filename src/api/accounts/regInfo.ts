@@ -63,7 +63,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                                 res.status(403).json(4) //segue a lista de conflito localizada em signup.ts
                             }
                             else{
-                                prisma.user.update({
+                                await prisma.user.update({
                                     where: {id: user.id},
                                     data: {username: req.body.newInfo}
                                 })
@@ -71,7 +71,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                             }
                         }
                         else if(req.body.newInfoType === "realname" && user != null){
-                            prisma.user.update({
+                            await prisma.user.update({
                                 where: {id: user.id},
                                 data: {realname: req.body.newInfo}
                             })
@@ -82,7 +82,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                                 res.status(403).json(8) //segue a lista de conflito localizada em signup.ts
                             }
                             else{
-                                prisma.user.update({
+                                await prisma.user.update({
                                     where: {id: user.id},
                                     data: {email: req.body.newInfo}
                                 })
@@ -94,7 +94,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                                 res.status(403).json(16) //segue a lista de conflito localizada em signup.ts
                             }
                             else{
-                                prisma.user.update({
+                                await prisma.user.update({
                                     where: {id: user.id},
                                     data: {phone: req.body.newInfo}
                                 })

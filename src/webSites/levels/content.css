@@ -37,6 +37,9 @@ main{
         display: flex;
         justify-content: center;
     }
+    & #practice{
+        margin: 0 auto 0 auto;
+    }
 }
 #levels{ /* níveis do CodeGamix */
     margin: 0;

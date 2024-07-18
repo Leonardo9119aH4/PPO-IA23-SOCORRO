@@ -29,5 +29,9 @@
     {
         "type": "rpg",
         "theory": false
+    },
+    {
+        "type": "blocks",
+        "theory": false
     }
 ]
