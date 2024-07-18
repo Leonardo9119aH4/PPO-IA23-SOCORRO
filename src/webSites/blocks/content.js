@@ -1,5 +1,5 @@
 import {main} from "/globalAssets/js/main.js"
-import {DragBlock, ReceiveBlock, Execute} from "/webSites/blocks/localAssets/dragAndDrop.js"
+import {DragBlock, ReceiveBlock, Execute} from "/webSites/blocks/dragAndDrop.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const header = document.querySelector("header") //cabeçario
@@ -21,22 +21,43 @@ async function getData(){
     catch{
         window.location.href = "/webSites/levels/index.html"
     }
-    return [level, master]
+    const Request = await fetch("/api/private/getBlocks", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"level": level})
+    })
+    if(Request.status === 400 || Request.status === 401 || Request.status === 403){
+        window.location.href = "/webSites/levels/index.html"
+    }
+    const BlocksJson = await Request.json()
+    const correctSeq = BlocksJson[4]
+    return [level, master, correctSeq, BlocksJson] 
 }
-async function loadDOM(level){
-    const asideRqst = await fetch(`/webSites/blocks/localAssets/levels/lv${level}/aside.ejs`) //blocos laterais
-    const asideEJS = await asideRqst.text() 
-    const dragBlockRqst =  await fetch(`/webSites/blocks/localAssets/levels/lv${level}/code.ejs`) //código a ser preenchido
-    const dragBlockEJS = await dragBlockRqst.text()
-    codeBlocks.innerHTML = dragBlockEJS
-    aside.innerHTML = asideEJS
+async function loadDOM(BlocksJson){
+    const asideHtml = BlocksJson[0]
+    const asideCss = BlocksJson[1]
+    const codeHtml = BlocksJson[2]
+    const codeCss = BlocksJson[3]
+    aside.innerHTML = asideHtml //injeção dos HTMLs e CSSs
+    codeBlocks.innerHTML = codeHtml 
+    const asideCssDOM = document.createElement("style")
+    asideCssDOM.textContent = asideCss
+    const codeCssDOM = document.createElement("style")
+    codeCssDOM.textContent = codeCss
+    document.head.appendChild(asideCssDOM)
+    document.head.append(codeCssDOM)
 }
 async function content(){
     main()
-    let data = await getData()
-    let level = data[0]
-    let master = data[1]
-    await loadDOM(level) //carrega o código e os blocos arrastáveis
+    const data = await getData()
+    const level = data[0]
+    const master = data[1]
+    const correctSeq = data[2]
+    const BlocksDOM = data[3]
+    localStorage.setItem("correctSeq", JSON.stringify(correctSeq)) //salva no localStorage para a função Execute() conseguir acessar
+    await loadDOM(BlocksDOM) //carrega o código e os blocos arrastáveis
     title.innerHTML = master[level].level_title
     header.innerHTML = master[level].level_header
     var correctAnswer = null
