@@ -1,12 +1,15 @@
-import {main} from "/globalAssets/js/main.js"
+import {main, fatalError} from "/globalAssets/js/main.js"
 import {DragBlock, ReceiveBlock, Execute} from "/webSites/blocks/dragAndDrop.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
-const header = document.querySelector("header") //cabeçario
-const codeBlocks = document.querySelector("main") //onde o scratch fica
+const headerTitle = document.querySelector("header>h1") //cabeçario
+const codeBlocks = document.querySelector("section#code") //onde o scratch fica
+const lifeDOM = document.querySelector("#life>div") //número de vidas
 const title =  document.querySelector("title") //título
-const exeButton = document.querySelector("section>button") //botão para verificar se o scratch está correto
-const output = document.querySelector("section>#output") //saída para saber se houve êxito ou não
+const exeButton = document.querySelector("button#run") //botão de execução do pseudocódigo
+const wrongPopup = document.querySelector("#wrongPopup") //popup de erro
+const output = wrongPopup.querySelector("#output") //saída dos erros
+const closePopup = wrongPopup.querySelector("button#close") //botão para fechar o popup
 
 async function getData(){
     let params = new URLSearchParams(window.location.search)
@@ -31,9 +34,25 @@ async function getData(){
     if(Request.status === 400 || Request.status === 401 || Request.status === 403){
         window.location.href = "/webSites/levels/index.html"
     }
+    if(Request.status === 500){
+        fatalError(500)
+    }
     const BlocksJson = await Request.json()
     const correctSeq = BlocksJson[4]
-    return [level, master, correctSeq, BlocksJson] 
+    let lifesRqst = await fetch("/api/private/lifes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "action": "get"
+        })
+    })
+    let lifes = await lifesRqst.json()
+    if(lifes<=0){
+        window.location.href="/webSites/levels/index.html"
+    }
+    return [level, lifes, master, correctSeq, BlocksJson] 
 }
 async function loadDOM(BlocksJson){
     const asideHtml = BlocksJson[0]
@@ -53,15 +72,16 @@ async function content(){
     main()
     const data = await getData()
     const level = data[0]
-    const master = data[1]
-    const correctSeq = data[2]
-    const BlocksDOM = data[3]
+    let lifes = data[1]
+    const master = data[2]
+    const correctSeq = data[3]
+    const BlocksDOM = data[4]
     localStorage.setItem("correctSeq", JSON.stringify(correctSeq)) //salva no localStorage para a função Execute() conseguir acessar
     await loadDOM(BlocksDOM) //carrega o código e os blocos arrastáveis
     title.innerHTML = master[level].level_title
-    header.innerHTML = master[level].level_header
+    headerTitle.innerHTML = master[level].level_header
+    lifeDOM.innerHTML = lifes
     var correctAnswer = null
-
     const reBlRef = document.querySelectorAll(".reBl") //referencia as divs .reBl (receive Blocks) após o carregamento do DOM
     const dragBlockRef = document.querySelectorAll(".dragBlock") //referencia as divs .dragBlock após o carregamento do DOM
     const receiveBlocks = [] //array para passar as divs para checar colisão para classe receiveBlocks
@@ -74,16 +94,92 @@ async function content(){
         receiveBlocks.forEach(reBl => reBl.checkCollision(dragBlockRef)); //precisa ficar fora do Execute() por causa do escopo
         correctAnswer = await Execute()
         if(correctAnswer[0]){
-            output.innerHTML = "Acertou!"
+           win()
         }
         else{
-            if(correctAnswer[1]===-1){
+            wrong(correctAnswer[1])
+            
+        }
+    });
+    closePopup.addEventListener("click", () =>{
+        wrongPopup.classList.remove("open")
+    })
+    async function win(){
+        console.log("ACERTOU!")
+        fetch("/api/private/exp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "action": "add",
+                "exp": 20 //tem que fazer cronômetro
+            })
+        }).then(resp =>{
+            if(resp.status===500){
+                fatalError(500)
+            }
+        })
+        const userLevelRqst = await fetch("/api/private/levelsunlocked", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({"action": "get"})
+        })
+        if(userLevelRqst.status === 500){
+            fatalError(500)
+        }
+        const userLevel = await userLevelRqst.json()
+        if(userLevel === level){
+            fetch("/api/private/levelsunlocked", {
+                method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "action": "add",
+                "level": 1
+                })
+            }).then(resp =>{
+                if(resp.status===500){
+                    fatalError(500)
+                }
+            })
+        }
+    }
+    async function wrong(errors){
+        lifes--
+        lifeDOM.innerHTML = lifes
+        fetch("/api/private/lifes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "action": "reduce",
+                "life": 1
+            })
+        }).then(resp =>{
+            if(resp.status === 500){
+                fatalError(500)
+            }
+        })
+        if(lifes>0){
+            wrongPopup.classList.add("open")
+            if(errors===-1){
                 output.innerHTML = "Você não completou todas as lacunas!"
             }
             else{
-                output.innerHTML = `Errou com ${correctAnswer[1]} erros!`
+                output.innerHTML = `Errou com ${errors} erros!`
             }
         }
-    });
+        else{
+            gameOver()
+        }
+    }
+    async function gameOver(){
+        console.log("FIM DE JOGO!")
+    }
 }
 content()
