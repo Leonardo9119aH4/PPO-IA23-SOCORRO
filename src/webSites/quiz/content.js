@@ -37,6 +37,9 @@ async function getData(){
         return
     }
     const life = await lifeRqst.json()
+    if(life<=0){
+        window.location.href="/webSites/levels/index.html"
+    }
     const quizRqst = await fetch("/api/private/getquiz", {
         method: "POST",
         headers: {
