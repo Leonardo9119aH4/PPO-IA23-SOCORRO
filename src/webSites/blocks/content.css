@@ -1,38 +1,102 @@
 @import url("/globalAssets/css/main.css");
-
 html, body{
     height: 100vh;
     overflow-y: hidden;
 }
-aside, header, main, section{
+header, main{
     box-sizing: border-box;
     display: block;
-    border: 1px solid black;
-}
-aside{
-    float: left;
-    width: 20%;
-    height: 100%;
-}
-header, main, section{
-    float: right;
 }
 header{
-    width: 80%;
-    height: 15%;
+    width: 100%;
+    height: 20%;
+    background-color: darkgray;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+    position: relative; /* para o z-index funcionar */
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & h1{
+        margin-left: 5vw;
+        float: left;
+    }
+    & #life{
+        margin-right: 5vw;
+        float: right;
+        font-size: 3rem;
+        display: flex;
+        place-items: center;
+    }
 }
 main{
-    width: 80%;
-    height: 70%;
-}
-section{
-    width: 80%;
-    height: 15%;
-    display: grid; /* sobrescreve "display: block" */
-    place-items: center;
-    & #output{
-        border: 1px solid black;
-        height: 1rem;
-        width: 80%
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+    & aside{
+        float: left;
+        width: 20%;
+        height: 100%;
+        position: relative;
+        background-color: darkgray;
     }
+    & section#code{
+        float: right;
+        width: 80%;
+        height: 100%;
+        background-color: rgb(40, 40, 40);
+        color: white;
+    }
+}
+button#run{
+    position: absolute;
+    background-color: lime;
+    bottom: 10vh;
+    left: 47vw;
+    color: white;
+    border: none;
+    border-radius: 25%;
+    font-size: 2rem;
+    &:hover{
+        background-color: rgb(20, 127, 20);
+    }
+}
+#wrongPopup{
+    --popupWidth: 30vw;
+    --popupHeight: 30vh;
+    --border: 2rem; /* tamanho da borda do popup */
+    position: fixed;
+    top: 0;
+    width: var(--popupWidth);
+    height: var(--popupHeight);
+    z-index: 4;
+    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
+    display: grid;
+    place-items: center;
+    background-color: rgba(29, 144, 207, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1.5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    & .content{
+        background-color: white;
+        width: calc(var(--popupWidth) - var(--border));
+        height: calc(var(--popupHeight) - var(--border));
+        display: grid;
+        place-items: center;
+        & #output{
+            color: red;
+            font-size: 2rem;
+        }
+        & buton#close{
+            font-size: 1.75rem; /* navegador tá ignorando isso */
+        }
+    }
+}
+#wrongPopup.open{
+    visibility: visible;
+    opacity: 1;
 }

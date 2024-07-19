@@ -75,23 +75,43 @@ async function content(){
     const rpg = mainTag.querySelectorAll(".rpg")
     const blocks = mainTag.querySelectorAll(".blocks")
     intro.forEach(el=>{
-        el.addEventListener("click", async ev=>{
-            window.location.href = "/webSites/intro/index.html?level=" + el.id
+        el.addEventListener("click", ev=>{
+            if(life>0){
+                window.location.href = "/webSites/intro/index.html?level=" + el.id
+            }
+            else{
+                
+            }
         })
     })
     quiz.forEach(el=>{
         el.addEventListener("click", ev=>{
-            window.location.href = "/webSites/quiz/index.html?level=" + el.id
+            if(life>0){
+                window.location.href = "/webSites/quiz/index.html?level=" + el.id
+            }
+            else{
+
+            }
         })
     })
     rpg.forEach(el=>{
         el.addEventListener("click", ev=>{
-            window.location.href = "/webSites/rpg/index.html?level=" + el.id
+            if(level>0){
+                window.location.href = "/webSites/rpg/index.html?level=" + el.id
+            }
+            else{
+
+            }
         })
     })
     blocks.forEach(el=>{
         el.addEventListener("click", ev=>{
-            window.location.href = "/webSites/blocks/index.html?level=" + el.id
+            if(level>0){
+                window.location.href = "/webSites/blocks/index.html?level=" + el.id
+            }
+            else{
+                
+            }
         })
     })
 }
