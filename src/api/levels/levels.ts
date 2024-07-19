@@ -21,14 +21,14 @@ export async function whichLevel(app: Application, prisma: PrismaClient){
                     res.status(200).json(user?.level)
                 }
                 else if(req.body.action == "set"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {level: req.body.level},
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "add"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
                             level: {increment: req.body.level}
@@ -37,7 +37,7 @@ export async function whichLevel(app: Application, prisma: PrismaClient){
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "reduce"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
                             level: {decrement: req.body.level}
@@ -75,14 +75,14 @@ export async function whichLife(app: Application, prisma: PrismaClient){
                     res.status(200).json(user?.life)
                 }
                 else if(req.body.action == "set"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {life: req.body.life},
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "add"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
                             life: {increment: req.body.life}
@@ -91,14 +91,12 @@ export async function whichLife(app: Application, prisma: PrismaClient){
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "reduce"){
-                    console.log(req.body.life)
-                    let X = await prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
                             life: {decrement: req.body.life}
                         },
                     })
-                    console.log(X)
                     res.sendStatus(200)
                 }
                 else{
@@ -131,23 +129,23 @@ export async function whichEXP(app: Application, prisma: PrismaClient){
                     res.status(200).json(user?.exp)
                 }
                 else if(req.body.action == "set"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {exp: req.body.exp},
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "add"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
-                            exp: {increment: req.body.exp}
+                            exp: {increment: parseFloat(req.body.exp)}
                         },
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "reduce"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
                             exp: {decrement: req.body.exp}

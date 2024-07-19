@@ -62,18 +62,17 @@ function SaveBlGap(dragBlockId, gapId){//uso interno do módulo para salvar os v
     saveGapId.push(gapId) //debug
 }
 export async function Execute(){ //verifica se os blocos estão na sequência correta
-    const correctSeqRqst = await fetch("http://localhost:3000/webSites/blocks/localAssets/levels/correctSeq.json") //sequência correta
-    const correctSeq = await correctSeqRqst.json()
+    const correctSeq = await JSON.parse(localStorage.getItem("correctSeq")) //sequência correta
     var isCorrect = null //booleano para verificar se a sequência está correta
     var wrongCount = 0 //contador de erros, valor -1 para quando há lacunas não preenchidas
-    if(saveBlockId.length === correctSeq[level-1].length && saveBlockId.every((value, index)=>value===correctSeq[level-1][index])){ //a posição na array equivale ao nível
+    if(saveBlockId.length === correctSeq.length && saveBlockId.every((value, index)=>value===correctSeq[index])){ //a posição na array equivale ao nível
         isCorrect = true
     }
     else{
         isCorrect = false
-        if(saveBlockId.length === correctSeq[level-1].length){
+        if(saveBlockId.length === correctSeq.length){
             saveBlockId.forEach((value, index)=>{
-                if(saveBlockId[index] != correctSeq[level-1][index]){
+                if(saveBlockId[index] != correctSeq[index]){
                     wrongCount++
                 }
             })

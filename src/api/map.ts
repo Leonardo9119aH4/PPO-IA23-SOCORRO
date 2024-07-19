@@ -7,7 +7,8 @@ import {logOut} from "./accounts/cookies"
 import { regInfo } from "./accounts/regInfo"
 import { rendererNav } from "./templates/renderer"
 import { runMove } from "./rpg/content"
-import { getQuiz } from "./quiz/getQuiz"
+import { getPractice, getQuiz } from "./quiz/getQuiz"
+import { getBlocks } from "./blocks/getBlocks"
 export async function executeAll(app: Application, prisma: PrismaClient){
     whichLevel(app, prisma)
     whichLife(app, prisma)
@@ -19,4 +20,6 @@ export async function executeAll(app: Application, prisma: PrismaClient){
     rendererNav(app, prisma)
     runMove(app)
     getQuiz(app, prisma)
+    getPractice(app, prisma)
+    getBlocks(app, prisma)
 }
