@@ -54,6 +54,49 @@ async function getData(){
     const quiz = await quizRqst.json()
     return [master, quiz, life, level]
 }
+async function winDBUpd(exp, level){
+    fetch("/api/private/exp", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "add",
+            "exp": exp
+        })
+    }).then(resp =>{
+        if(resp.status===500){
+            fatalError(500)
+        }
+    })
+    const userLevelRqst = await fetch("/api/private/levelsunlocked", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"action": "get"})
+    })
+    if(userLevelRqst.status === 500){
+        fatalError(500)
+    }
+    const userLevel = await userLevelRqst.json()
+    if(userLevel === level){
+        fetch("/api/private/levelsunlocked", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "add",
+            "level": 1
+            })
+        }).then(resp =>{
+            if(resp.status===500){
+                fatalError(500)
+            }
+        })
+    }
+}
 async function content(){
     let data = await getData()
     let master = data[0]
@@ -69,6 +112,7 @@ async function content(){
     var isTheory = false //booleano para saber se uma teoria é exibida
     var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
     var theoryEJS
+    Life.innerHTML = life
     if(master[level].theory === true){
         const getTheory = master[level].get_theory
         const theoryRqst = await fetch(`/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
@@ -109,28 +153,26 @@ async function content(){
         }
     }
     function Wrong(){
-        if(--life>0){
-            Feedback(false)
-            if(firstWrong==true){ //cada questão só pode tirar 1 vida
-                firstWrong = false
-                Life.innerHTML = life
-                score -= 100/quiz.length //cálculo do percentual de acerto
-                fetch("/api/private/lifes", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({"action": "reduce", "life": 1})
-                }).then(resp => {
-                    if(resp.status == 500){
-                        fatalError(500)
-                    }
-                })
-            }
-        }
-        else{
+        Feedback(false)
+        if(firstWrong==true){ //cada questão só pode tirar 1 vida
+            life--
+            firstWrong = false
             Life.innerHTML = life
-            GameOver()
+            score -= 100/quiz.length //cálculo do percentual de acerto
+            fetch("/api/private/lifes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({"action": "reduce", "life": 1})
+            }).then(resp => {
+                if(resp.status == 500){
+                    fatalError(500)
+                }
+            })
+            if(life<=0){
+                GameOver()
+            }
         }
     }
     function GameOver(){
@@ -150,14 +192,8 @@ async function content(){
         let exp = 0 //quantidade de xp obtida conforme percentual de acerto/erro, tempo e quantidade de questões
         const K = quiz.length/5 //constante multiplicador conforme a quantidade de questões
         exp = (100-K*((Math.log(0.1*dSec))/Math.log(1.7)))*(score/100) //cáculo do XP obtido
+        winDBUpd(exp, level) //atualiza o banco de dados
         winnerEXP.innerHTML = `Obteve ${exp} XP`
-        fetch("/api/private/exp", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({"action": "add", "exp": exp})
-        })
     }
     function Feedback(isCorrect){
         feedbackPopup.classList.add("opened")

@@ -30,9 +30,6 @@ section{
     height: 15%;
     display: grid; /* sobrescreve "display: block" */
     place-items: center;
-    & button{
-        
-    }
     & #output{
         border: 1px solid black;
         height: 1rem;
