@@ -15,6 +15,45 @@ html, body{
     margin: 0;
     overflow: hidden;
 }
+#zeroLife{
+    --popupWidth: 40vw;
+    --popupHeight: 40vh;
+    --border: 2rem; /* tamanho da borda do popup */
+    position: fixed;
+    top: 0;
+    width: var(--popupWidth);
+    height: var(--popupHeight);
+    z-index: 4;
+    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
+    display: grid;
+    place-items: center;
+    background-color: rgba(29, 144, 207, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1.5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    & .content{
+        background-color: white;
+        width: calc(var(--popupWidth) - var(--border));
+        height: calc(var(--popupHeight) - var(--border));
+        display: grid;
+        place-items: center;
+        & #output{
+            color: red;
+            font-size: 2rem;
+        }
+        & buton#close{
+            font-size: 1.75rem; /* navegador tá ignorando isso */
+        }
+    }
+}
+#zeroLife.open{
+    visibility: visible;
+    opacity: 1;
+}
 main{
     display: flex;
     margin: 0;

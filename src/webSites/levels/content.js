@@ -2,6 +2,8 @@ import {main, fatalError} from "/globalAssets/js/main.js"
 const mainTag = document.querySelector("#levels .content")
 const lifeDOM = document.querySelector("#life>h1")
 const rankUser = document.querySelector("#RankUser")
+const zeroLifePopup = document.querySelector("#zeroLife") //popup de quando não tem vida
+const closePopup = zeroLifePopup.querySelector("button#close") //botão para fechar popup de quando não tem vida
 async function getData(){
     let LNRqst = await fetch("/api/private/levelsunlocked", {
         method: "POST",
@@ -80,7 +82,7 @@ async function content(){
                 window.location.href = "/webSites/intro/index.html?level=" + el.id
             }
             else{
-                
+                zeroLifePopup.classList.add("open")
             }
         })
     })
@@ -90,29 +92,32 @@ async function content(){
                 window.location.href = "/webSites/quiz/index.html?level=" + el.id
             }
             else{
-
+                zeroLifePopup.classList.add("open")
             }
         })
     })
     rpg.forEach(el=>{
         el.addEventListener("click", ev=>{
-            if(level>0){
+            if(life>0){
                 window.location.href = "/webSites/rpg/index.html?level=" + el.id
             }
             else{
-
+                zeroLifePopup.classList.add("open")
             }
         })
     })
     blocks.forEach(el=>{
         el.addEventListener("click", ev=>{
-            if(level>0){
+            if(life>0){
                 window.location.href = "/webSites/blocks/index.html?level=" + el.id
             }
             else{
-                
+                zeroLifePopup.classList.add("open")
             }
         })
+    })
+    closePopup.addEventListener("click", ()=>{
+        zeroLifePopup.classList.remove("open")
     })
 }
 content()
