@@ -43,18 +43,3 @@ export async function getBlocks(app: Application, prisma: PrismaClient){
         }
     })
 }
-export async function getScript(app: Application, prisma: PrismaClient){
-    app.post("/api/getScript", async (req: Request, res: Response)=>{
-        try{
-            if(Number.isInteger(req.body.level)){ //verifica se o valor é válido
-                res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/script.js`))
-            }
-            else{
-                res.sendStatus(400)
-            }
-        }
-        catch{
-            res.sendStatus(500)
-        }
-    })
-}
