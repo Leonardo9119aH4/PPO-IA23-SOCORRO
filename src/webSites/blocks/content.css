@@ -61,16 +61,9 @@ button#run{
         background-color: rgb(20, 127, 20);
     }
 }
-#wrongPopup{
-    --popupWidth: 30vw;
-    --popupHeight: 30vh;
-    --border: 2rem; /* tamanho da borda do popup */
+.popup{
     position: fixed;
     top: 0;
-    width: var(--popupWidth);
-    height: var(--popupHeight);
-    z-index: 4;
-    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
     display: grid;
     place-items: center;
     background-color: rgba(29, 144, 207, 0.5);
@@ -78,9 +71,27 @@ button#run{
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 1.5%;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    z-index: 4;
     visibility: hidden;
     opacity: 0;
     transition: 0.5s;
+    & .content{
+        & button.close{
+            font-size: 1.75rem; 
+        }
+    }
+}
+.open{
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+#wrong{
+    --popupWidth: 30vw;
+    --popupHeight: 30vh;
+    --border: 2rem; /* tamanho da borda do popup */
+    width: var(--popupWidth);
+    height: var(--popupHeight);
+    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
     & .content{
         background-color: white;
         width: calc(var(--popupWidth) - var(--border));
@@ -91,12 +102,49 @@ button#run{
             color: red;
             font-size: 2rem;
         }
-        & buton#close{
-            font-size: 1.75rem; /* navegador tá ignorando isso */
-        }
     }
 }
-#wrongPopup.open{
-    visibility: visible;
-    opacity: 1;
+#gameOver{
+    --popupWidth: 30vw;
+    --popupHeight: 30vh;
+    --border: 2rem; /* tamanho da borda do popup */
+    width: var(--popupWidth);
+    height: var(--popupHeight);
+    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
+    & .content{
+        background-color: white;
+        width: calc(var(--popupWidth) - var(--border));
+        height: calc(var(--popupHeight) - var(--border));
+        display: grid;
+        place-items: center;
+    }
+}
+#terminal{
+    --popupWidth: 50vw;
+    --popupHeight: 50vh;
+    --border: 2rem; /* tamanho da borda do popup */
+    width: var(--popupWidth);
+    height: var(--popupHeight);
+    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
+    & .content{
+        background-color: black;
+        color: white;
+        width: calc(var(--popupWidth) - var(--border));
+        height: calc(var(--popupHeight) - var(--border));
+        padding: 0;
+        & div, & input{
+            display: inline-block;
+            width: 100%;
+            margin-top: 0;
+        }
+        & input{
+            width: 98%;
+            color: white;
+            background-color: black;
+            border: none;
+        }
+        & input:focus{
+            border: none;
+        }
+    }
 }
