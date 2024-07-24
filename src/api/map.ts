@@ -8,7 +8,7 @@ import { regInfo } from "./accounts/regInfo"
 import { rendererNav } from "./templates/renderer"
 import { runMove } from "./rpg/content"
 import { getPractice, getQuiz } from "./quiz/getQuiz"
-import { getBlocks } from "./blocks/getBlocks"
+import { getBlocks} from "./blocks/getBlocks"
 import { fixDBErrors, regenLife, resetExp } from "./levels/update"
 export async function executeAll(app: Application, prisma: PrismaClient, maxLife: number){
     whichLevel(app, prisma)
