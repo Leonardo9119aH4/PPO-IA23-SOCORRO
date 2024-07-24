@@ -1,5 +1,6 @@
 import {main, fatalError} from "/globalAssets/js/main.js"
 import {DragBlock, ReceiveBlock, Execute} from "/webSites/blocks/dragAndDrop.js"
+import {loadScript} from "/webSites/blocks/terminal.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
 const headerTitle = document.querySelector("header>h1") //cabeçario
@@ -7,9 +8,12 @@ const codeBlocks = document.querySelector("section#code") //onde o scratch fica
 const lifeDOM = document.querySelector("#life>div") //número de vidas
 const title =  document.querySelector("title") //título
 const exeButton = document.querySelector("button#run") //botão de execução do pseudocódigo
-const wrongPopup = document.querySelector("#wrongPopup") //popup de erro
+const wrongPopup = document.querySelector("#wrong") //popup de erro
 const output = wrongPopup.querySelector("#output") //saída dos erros
-const closePopup = wrongPopup.querySelector("button#close") //botão para fechar o popup
+const closeWrongPopup = wrongPopup.querySelector("button.close") //botão para fechar o popup
+const gameOverPopup = document.querySelector("#gameOver") //popup de fim de jogo
+const terminalPopup = document.querySelector("#terminal") //terminal simulando o código completo
+const terminalContainer = terminalPopup.querySelector(".content") //terminal em si
 
 async function getData(){
     let params = new URLSearchParams(window.location.search)
@@ -101,11 +105,10 @@ async function content(){
             
         }
     });
-    closePopup.addEventListener("click", () =>{
+    closeWrongPopup.addEventListener("click", () =>{
         wrongPopup.classList.remove("open")
     })
     async function win(){
-        console.log("ACERTOU!")
         fetch("/api/private/exp", {
             method: "POST",
             headers: {
@@ -120,33 +123,36 @@ async function content(){
                 fatalError(500)
             }
         })
-        const userLevelRqst = await fetch("/api/private/levelsunlocked", {
+        fetch("/api/private/levelsunlocked", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({"action": "get"})
-        })
-        if(userLevelRqst.status === 500){
-            fatalError(500)
-        }
-        const userLevel = await userLevelRqst.json()
-        if(userLevel === level){
-            fetch("/api/private/levelsunlocked", {
-                method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "action": "add",
-                "level": 1
+        }).then(async resp=>{
+            if(resp.status === 500){
+                fatalError(500)
+            }
+            const userLevel = await resp.json()
+            if(userLevel === level){
+                fetch("/api/private/levelsunlocked", {
+                    method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "action": "add",
+                    "level": 1
+                    })
+                }).then(resp =>{
+                    if(resp.status===500){
+                        fatalError(500)
+                    }
                 })
-            }).then(resp =>{
-                if(resp.status===500){
-                    fatalError(500)
-                }
-            })
-        }
+            }
+        })
+        terminalPopup.classList.add("open")
+        loadScript(terminalContainer, level) //simula o script e mostra no terminal
     }
     async function wrong(errors){
         lifes--
@@ -179,7 +185,7 @@ async function content(){
         }
     }
     async function gameOver(){
-        console.log("FIM DE JOGO!")
+        gameOverPopup.classList.add("open")
     }
 }
 content()

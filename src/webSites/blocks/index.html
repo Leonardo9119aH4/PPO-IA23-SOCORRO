@@ -29,14 +29,23 @@
         <button id="run">
             RUN &#9654
         </button>
-        <div id="wrongPopup">
+        <div id="wrong" class="popup">
             <div class="content"> <!-- preciso de bora translúcida -->
                 <div id="output">ERROU COM N ERROS!</div>
-                <button id="close">FECHAR</button>
+                <button class="close">FECHAR</button>
             </div>
         </div>
-        <!-- <div id="terminal">
-
-        </div> -->
+        <div id="gameOver" class="popup">
+            <div class="content">
+                <h1>Você está sem vidas!</h1>
+                <h2>Pratique para recuperar vidas!</h2>
+                <a href="/webSites/levels/index.html"><button class="close">Sair</button></a>
+            </div>
+        </div>
+        <div id="terminal" class="popup">
+            <div class="content"> <!-- Conteudo injetado pelo JS -->
+                
+            </div>
+        </div>
     </body>
 </html>
