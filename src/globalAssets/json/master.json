@@ -32,6 +32,11 @@
     },
     {
         "type": "blocks",
-        "theory": false
+        "theory": false,
+        "level_title": "nível 7",
+        "level_header": "1 3 2"
+    },
+    {
+        "type": "intro"
     }
 ]

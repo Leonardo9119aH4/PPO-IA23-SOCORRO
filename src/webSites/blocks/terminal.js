@@ -36,18 +36,6 @@ export class Terminal{ //objeto do terminal
     }
 }
 export async function loadScript(terminalElement, level){ //carrega o script do terminal
-    let scriptRqst = await fetch("/api/getScript", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "level": level
-        })
-    })
-    if(scriptRqst.status===500){
-        fatalError(500)
-    }
-    let script = await scriptRqst.text()
-    eval(script) //parei aqui
+    const script = await import(`/webSites/blocks/scripts/lv${level}.mjs`)
+    script.Script(terminalElement)
 }

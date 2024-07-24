@@ -1,5 +1,5 @@
-const Terminal = require("../../../../webSites/blocks/terminal")
-async function termScript(terminalElement){
+import { Terminal } from "/webSites/blocks/terminal.js"
+export async function Script(terminalElement){
     let terminal = new Terminal(terminalElement)
     terminal.write("oi")
     terminal.write("tchau")
