@@ -5,21 +5,24 @@ const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const response = document.querySelector("#response") //referencia a div que mostram as alternativas
 var responseButton = response.querySelectorAll("button") //referencia todas as alternativas
 const Life = document.querySelector("#life>h1") //referencia o contador de vidas gráfico
-const mainTag = document.querySelector("main")
-const mainImg = mainTag.querySelector("#img") //constante para colocar as imagens dos níveis
-const mainTheory = mainTag.querySelector("#theory") //local de injeção do ejs da teoria
-const gameOverPopup = mainTag.querySelector("#gameOver") //popup de game over
-const winnerPopup = mainTag.querySelector("#winner") //popup de quando vence o quiz
+const mainElement = document.querySelector("main")
+const mainImg = mainElement.querySelector("#img") //constante para colocar as imagens dos níveis
+const mainTheory = mainElement.querySelector("#theory") //local de injeção do ejs da teoria
+const gameOverPopup = document.querySelector("#gameOver") //popup de game over
+const winnerPopup = document.querySelector("#winner") //popup de quando vence o quiz
 const winnerTime = winnerPopup.querySelector("#time") //exibe o tempo ao vencer o quiz
 const winnerScore = winnerPopup.querySelector("#score") //percentual de acertos
 const winnerEXP = winnerPopup.querySelector("#exp") //xp obtido
-const feedbackPopup = mainTag.querySelector("#feedback") //feedback de erro
+const feedbackPopup = document.querySelector("#feedback") //feedback de erro
 const feedbackButton = feedbackPopup.querySelector("button") //botão para fechar o popup
 const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedback
 
 async function getData(){
     const params = new URLSearchParams(window.location.search)
     const level = parseInt(params.get("level"))
+    if(level == null || level == undefined){
+        window.location.href = "/webSites/levels/index.html"
+    }
     const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
     const master = await masterRqst.json()
     const lifeRqst = await fetch("/api/private/lifes", {
@@ -137,8 +140,12 @@ async function content(){
     function Asking(){ //injeção da pergunta e das alternativas
         firstWrong = true
         Ask.innerHTML = quiz[NAsk].ask
-        mainTheory.innerHTML = null
-        mainImg.innerHTML = "<img src='/globalAssets/images/codeImg/test.png'>"
+        if(quiz[NAsk].image != null && quiz[NAsk].image != undefined){
+            mainElement.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
+        }
+        else{
+            mainElement.innerHTML = null
+        }
         response.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
         for (let i=0; i<quiz[NAsk].alt.length; i++){

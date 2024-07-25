@@ -58,8 +58,12 @@ a#account {
     transition: background-color .2s;
     width: 100%;
     justify-content: space-around;
+    align-items: center;
     text-decoration: none;
     color: white;
+    & img{
+        height: 2rem;
+    }
 }
 /*LINKS*/
 div#subNav {
@@ -97,8 +101,20 @@ div#subNav.open-nav {
 }
 /*FOOTER*/
 footer {
-    background-color: gray;
-    height: 100px;
+    background-color: #272727;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    & section{
+        display: grid;
+        place-items: center;
+        & a{
+            color: white;
+            text-decoration: none;
+        }
+        & a:hover{
+            color: orangered;
+        }
+    }
 }
 /*CSS GLOBAL GERAL*/
 button {
