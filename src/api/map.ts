@@ -5,20 +5,21 @@ import {signUp} from "./accounts/signup"
 import {signIn} from "./accounts/signin"
 import {logOut} from "./accounts/cookies"
 import { regInfo } from "./accounts/regInfo"
-import { rendererNav } from "./templates/renderer"
+import { rendererFooter, rendererNav } from "./templates/renderer"
 import { runMove } from "./rpg/content"
 import { getPractice, getQuiz } from "./quiz/getQuiz"
 import { getBlocks} from "./blocks/getBlocks"
 import { fixDBErrors, regenLife, resetExp } from "./levels/update"
 export async function executeAll(app: Application, prisma: PrismaClient, maxLife: number){
     whichLevel(app, prisma)
-    whichLife(app, prisma,  maxLife)
+    whichLife(app, prisma, maxLife)
     whichEXP(app, prisma)
     signUp(app, prisma)
     signIn(app, prisma)
     logOut(app, prisma)
     regInfo(app, prisma)
     rendererNav(app, prisma)
+    rendererFooter(app, prisma)
     runMove(app)
     getQuiz(app, prisma)
     getPractice(app, prisma)

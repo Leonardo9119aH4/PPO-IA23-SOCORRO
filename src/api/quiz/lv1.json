@@ -4,56 +4,67 @@
     {
         "ask": "1.Qual a maneira correta de declarar uma variável em C?",
         "alt": ["inteiro a = 6", "a = 6", "a := 6", "variavel a = 6"],
-        "ans": 0 
+        "ans": 0,
+        "image": null 
     },
     {
         "ask": "2.é possivel atribuir um valor enquanto declaro uma variável: inteiro a = 1?",
         "alt": [" sim", " não"],
-        "ans": 0
+        "ans": 0,
+        "image": "test.png"
     },
     {
         "ask": "3.Qual é o resultado da expressão 3 + 2 * 2?",
         "alt": [" 10", " 7", " 8", " 9"],
-        "ans": 1
+        "ans": 1,
+        "image": null 
     },
     {
         "ask": "4.Qual função é usada para imprimir algo na tela em C?",
         "alt": [" escreva()", "leia()"],
-        "ans": 0
+        "ans": 0,
+        "image": null 
     },
     {
         "ask": "5.Qual a saída de escreva('olá' + 'mundo')?",
         "alt": ["olá mundo", "olá mundo", "olá mundo", "olá+mundo"],
-        "ans": 2
+        "ans": 2,
+        "image": null 
     },
     {
         "ask": "6.O que faz a função leia() em C?",
         "alt": ["Lê dados do teclado", "imprime dados na tela", "converte um valor", "calcula uma expressão"],
-        "ans": 0
+        "ans": 0,
+        "image": null 
     },
     {
         "ask": "7.Qual a saída de escreva(((1 + 2) * 3) + 1)) ?",
         "alt": ["9", "11", "10", "12"],
-        "ans": 2
+        "ans": 2,
+        "image": null 
     },
     {
         "ask": "8.Qual a saída de escreva(2*(2+(2+1))) ?",
         "alt": ["8", "10", "12", "13"],
-        "ans": 1
+        "ans": 1,
+        "image": null 
     },
     {
         "ask": "9.Qual a saída de escreva(“u”  “a”  “u”) ?",
         "alt": ["u au", "uau", " u a u", "“u”  “a”  “u”"],
-        "ans": 1
+        "ans": 1,
+        "image": null 
     },
     {
         "ask": "10.Observe a seguinte declaração de variável: real a = 1.5, b = 2.5. Qual será a soma das variáveis “a” e ”b”?",
         "alt": ["5", "4.5", "4", "3.5"],
-        "ans": 2
+        "ans": 2,
+        "image": null 
     },
     {
         "ask": "11.Qual a saída de escreva(“a ”  “b ”  “c”) ?",
         "alt": ["ab c", "a b c", "a bc", "12"],
-        "ans": 1
+        "ans": 1,
+        "image": null 
     }
 ] 
