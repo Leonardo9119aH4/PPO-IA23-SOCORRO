@@ -53,6 +53,7 @@ async function content(){
     let LN = data[0] //obtém o nível em que o usuário está
     let life = data[1] //obtém as vidas dele
     let exp = data[2] //obtém o xp do usuário
+    exp = Math.floor(exp * 100) / 100
     const masterRqst = await fetch("/globalAssets/json/master.json");
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life

@@ -22,7 +22,7 @@ async function main(){
   app.listen(PORT, () => { // Inicia o servidor
     console.log(`Servidor iniciado na porta ${PORT}`);
   })
-  executeAll(app, prisma, 5) //quantidade máxima de vidas é 5
+  executeAll(app, prisma, 7) //quantidade máxima de vidas é 5
 }
 main().then(async () => {
   await prisma.$disconnect()
