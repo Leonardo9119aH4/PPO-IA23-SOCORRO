@@ -2,6 +2,7 @@
     {
         "ask": "?",
         "alt": ["a", "b"],
-        "ans": 1
+        "ans": 1,
+        "image": null 
     }
 ]
