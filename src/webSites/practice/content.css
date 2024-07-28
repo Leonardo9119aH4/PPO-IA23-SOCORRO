@@ -14,7 +14,8 @@ html, body{
 header{
     width: 100vw;
     height: 20vh;
-    background-color: #bdbcb9;
+    background-color: #666464;
+    color: white;
     margin-top: 0;
     & #ask{
         display: flex;
@@ -35,64 +36,85 @@ main{
     width: 100vw;
     height: 60vh;
     display: flex;
-    & #theory{
-        float: left
-    }
-    & #img{
+    background-color: #272727;
+    display: flex; 
+    justify-content: center;
+    & img{ /* quando o quiz injetar uma imagem */
         height: 100%;
-        float: right;
-        & img{
-            height: 100%;
-        }
-    }
-    & #gameOver, #winner{
-        --widthGameOver: 40vw;
-        position: fixed;
-        height: 40vh;
-        width: var(--widthGameOver);
-        background-color: rgba(0, 102, 255, 0.5);
-        align-self: center;
-        margin-left: calc((100vw - var(--widthGameOver))/2);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.3s;
-    }
-    & #gameOver.opened, #winner.opened, #feedback.opened{
-        visibility: visible;
-        opacity: 1;
-    }
-    & #feedback{
-        --widthFeedback: 50vw;
-        position: fixed;
-        height: 20vh;
-        width: var(--widthFeedback);
-        background-color: var(--feedColor);
-        align-self: center;
-        margin-left: calc((100vw - var(--widthFeedback))/2);
-        font-size: 2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.3s;
     }
 }
-
 #response{
     width: 100vw;
     height: 20vh;
-    background-color: #4c8ed4;
+    background-color: #666464;
+    color: white;
     display: grid;
     grid-template-columns: repeat(var(--RepN), 1fr);
     place-items: center;
     &>button{
-        width: 5rem;
+        width: 6rem;
         height: 5rem;
+        border-radius: 15%;
+        border: none;
+    }
+    &>button:hover, &>button:focus{
+        box-shadow: 0 0 10px 5px #008dff;
+    }
+}
+/* PopUps abaixo */
+#winner{
+    --widthEndGame: 40vw;
+    --heightEndGame: 40vh; 
+    position: fixed;
+    height: var(--heightEndGame);
+    width: var(--widthEndGame);
+    top: calc((100vh - var(--heightEndGame))/2);
+    left: calc((100vw - var(--widthEndGame))/2);
+    background-color: rgba(0, 102, 255, 0.5);
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    &>button{
+        border-radius: 15%;
+        border: none;
+    }
+    &>button:hover, &>button:focus{
+        box-shadow: 0 0 10px 5px #008dff;
+    }
+}
+#winner.opened, #feedback.opened{
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+#feedback{
+    --widthFeedback: 50vw;
+    --heightFeedback: 20vh;
+    position: fixed;
+    height: var(--heightFeedback);
+    width: var(--widthFeedback);
+    top: calc((100vh - var(--heightFeedback))/2);
+    left: calc((100vw - var(--widthFeedback))/2);
+    background-color: var(--feedColor);
+    color: white;
+    align-self: center;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    &>button{
+        border-radius: 15%;
+        border: none;
+    }
+    &>button:hover, &>button:focus{
+        box-shadow: 0 0 10px 5px #008dff;
     }
 }

@@ -11,6 +11,9 @@ export async function whichLevel(app: Application, prisma: PrismaClient){
             else if(isNaN(userId)){ //se deu erro na função logAuth
                 res.sendStatus(500)
             }
+            else if(req.body.action != "get" && (req.body.level === null || req.body.level === undefined || isNaN(req.body.level) || req.body.level < 0)){ //verifca se tem valores ilegais
+                res.status(406).json("ilegal value")
+            }
             else{ //caso o usuário esteja logado, envia o id
                 if(req.body.action == "get"){
                     const user = await prisma.user.findUnique({ //só para testes
@@ -21,14 +24,14 @@ export async function whichLevel(app: Application, prisma: PrismaClient){
                     res.status(200).json(user?.level)
                 }
                 else if(req.body.action == "set"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {level: req.body.level},
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "add"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
                             level: {increment: req.body.level}
@@ -37,16 +40,26 @@ export async function whichLevel(app: Application, prisma: PrismaClient){
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "reduce"){
-                    prisma.user.update({
-                        where: {id: userId},
-                        data: {
-                            level: {decrement: req.body.level}
-                        },
+                    const user = await prisma.user.findUnique({ 
+                        where: {
+                            id: userId,
+                        }
                     })
-                    res.sendStatus(200)
+                    if(user != null && user.level - req.body.level < 0){
+                        res.status(403).json("level cannot be negative")
+                    }
+                    else{
+                        await prisma.user.update({
+                            where: {id: userId},
+                            data: {
+                                level: {decrement: req.body.level}
+                            },
+                        })
+                        res.sendStatus(200)
+                    }    
                 }
                 else{
-                    res.sendStatus(400)
+                    res.sendStatus(400).json("unrecognized action")
                 }
             }
         }
@@ -55,7 +68,7 @@ export async function whichLevel(app: Application, prisma: PrismaClient){
         }
     })
 }
-export async function whichLife(app: Application, prisma: PrismaClient){
+export async function whichLife(app: Application, prisma: PrismaClient, maxLife: number){
     app.post("/api/private/lifes", async (req: Request, res: Response) => {
         try{ 
             let userId: number = await logAuth(prisma, req)
@@ -64,6 +77,9 @@ export async function whichLife(app: Application, prisma: PrismaClient){
             }
             else if(isNaN(userId)){ //se deu erro na função logAuth
                 res.sendStatus(500)
+            }
+            else if(req.body.action != "get" && (req.body.life === null || req.body.life === undefined || isNaN(req.body.life) || req.body.life < 0 || req.body.life > maxLife)){ //verifca se tem valores ilegais
+                res.status(406).json("ilegal value")
             }
             else{
                 if(req.body.action == "get"){
@@ -75,31 +91,49 @@ export async function whichLife(app: Application, prisma: PrismaClient){
                     res.status(200).json(user?.life)
                 }
                 else if(req.body.action == "set"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {life: req.body.life},
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "add"){
-                    prisma.user.update({
-                        where: {id: userId},
-                        data: {
-                            life: {increment: req.body.life}
-                        },
+                    const user = await prisma.user.findUnique({ 
+                        where: {
+                            id: userId,
+                        }
                     })
-                    res.sendStatus(200)
+                    if(user != null && user.life + req.body.life > maxLife){
+                        res.status(403).json("life outside of limit")
+                    }
+                    else{
+                        await prisma.user.update({
+                            where: {id: userId},
+                            data: {
+                                life: {increment: req.body.life}
+                            },
+                        })
+                        res.sendStatus(200)
+                    }
                 }
                 else if(req.body.action == "reduce"){
-                    console.log(req.body.life)
-                    let X = await prisma.user.update({
-                        where: {id: userId},
-                        data: {
-                            life: {decrement: req.body.life}
-                        },
+                    const user = await prisma.user.findUnique({ 
+                        where: {
+                            id: userId,
+                        }
                     })
-                    console.log(X)
-                    res.sendStatus(200)
+                    if(user != null && user.life - req.body.life < 0){
+                        res.status(403).json("life cannot be negative")
+                    }
+                    else{
+                        await prisma.user.update({
+                            where: {id: userId},
+                            data: {
+                                life: {decrement: req.body.life}
+                            },
+                        })
+                        res.sendStatus(200)
+                    }
                 }
                 else{
                     res.sendStatus(400)
@@ -121,6 +155,9 @@ export async function whichEXP(app: Application, prisma: PrismaClient){
             else if(isNaN(userId)){ //se deu erro na função logAuth
                 res.sendStatus(500)
             }
+            else if(req.body.action != "get" && (req.body.exp === null || req.body.exp === undefined || isNaN(req.body.exp) || req.body.exp < 0)){ //verifca se tem valores ilegais
+                res.status(406).json("ilegal value")
+            }
             else{
                 if(req.body.action == "get"){
                     const user = await prisma.user.findUnique({ //só para testes
@@ -131,29 +168,39 @@ export async function whichEXP(app: Application, prisma: PrismaClient){
                     res.status(200).json(user?.exp)
                 }
                 else if(req.body.action == "set"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {exp: req.body.exp},
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "add"){
-                    prisma.user.update({
+                    await prisma.user.update({
                         where: {id: userId},
                         data: {
-                            exp: {increment: req.body.exp}
+                            exp: {increment: parseFloat(req.body.exp)}
                         },
                     })
                     res.sendStatus(200)
                 }
                 else if(req.body.action == "reduce"){
-                    prisma.user.update({
-                        where: {id: userId},
-                        data: {
-                            exp: {decrement: req.body.exp}
-                        },
+                    const user = await prisma.user.findUnique({ 
+                        where: {
+                            id: userId,
+                        }
                     })
-                    res.sendStatus(200)
+                    if(user != null && user.exp - req.body.exp < 0){
+                        res.status(403).json("exp cannot be negative")
+                    }
+                    else{
+                        await prisma.user.update({
+                            where: {id: userId},
+                            data: {
+                                exp: {decrement: req.body.exp}
+                            },
+                        })
+                        res.sendStatus(200)
+                    }
                 }
                 else{
                     res.sendStatus(400)
