@@ -13,7 +13,7 @@ import { Commands } from './commands'
 export function runMove(app: Application){
     app.post('/api/move', async (req: Request, res: Response) => {
         let inputcommands = req.body.inputcommands
-        let GameDOM: GameDOM = req.body.GameDOM
+        let GameDOM: GameDOM = req.body.GameDOMObj as GameDOM
         console.log(GameDOM)
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
@@ -41,6 +41,7 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
                 GameDOM = movecalc(commandelement, GameDOM)
+                console.log(GameDOM)
             }
         })
     }
