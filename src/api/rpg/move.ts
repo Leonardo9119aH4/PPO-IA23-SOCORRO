@@ -33,39 +33,42 @@ function collision(div1: HtmlObject, div2: HtmlObject) { //determina se há coli
 
 export function movecalc(command: Commands, vars: GameDOM) {
     let brk: boolean = false
+    console.log(vars)
     for(let i = 0; i<vars.pxadd; i++) { //verifica a colisão para cada pixel adicionado
         vars.walls.forEach((el: HtmlObject) => { //verifica colisão com cada parede
-            if(collision(vars.hero, el)[0] == command.var || collision(vars.hero, el)[1] == command.var) {
+            if(collision(vars.heroVal, el)[0] == command.var || collision(vars.heroVal, el)[1] == command.var) {
                 brk = true
             }
         })
         vars.enemies.forEach((el: HtmlObject) => { //verifica colisão com inimigos
-            if(collision(vars.hero, el)[0] == command.var || collision(vars.hero, el)[1] == command.var) {
+            if(collision(vars.heroVal, el)[0] == command.var || collision(vars.heroVal, el)[1] == command.var) {
                 gameover()
                 brk = true
             }
         })
-        if(collision(vars.hero, vars.end)[0] == command.var || collision(vars.hero, vars.end)[1] == command.var) {
+        if(collision(vars.heroVal, vars.end)[0] == command.var || collision(vars.heroVal, vars.end)[1] == command.var) {
             win()
             brk = true
         }
         if(brk) { //se tiver colisão para a execução do loop
             break
         }
+        console.log(command)
         switch (command.var) { //verfica a variavel do comando para determinar o lado
             case 'top':
-                vars.top --
+                vars.heroVal.top --
                 break
             case 'bottom':  
-                vars.top ++
+                vars.heroVal.top ++
                 break
             case 'left':
-                vars.left --
+                vars.heroVal.left --
                 break
             case 'right':
-                vars.left ++
+                vars.heroVal.left ++
                 break
         }
     }
+    console.log(vars)
     return vars
 }
