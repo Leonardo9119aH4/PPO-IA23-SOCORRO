@@ -2,6 +2,8 @@ import {main, fatalError} from "/globalAssets/js/main.js"
 const mainTag = document.querySelector("#levels .content")
 const lifeDOM = document.querySelector("#life>h1")
 const rankUser = document.querySelector("#RankUser")
+const zeroLifePopup = document.querySelector("#zeroLife") //popup de quando não tem vida
+const closePopup = zeroLifePopup.querySelector("button#close") //botão para fechar popup de quando não tem vida
 async function getData(){
     let LNRqst = await fetch("/api/private/levelsunlocked", {
         method: "POST",
@@ -31,8 +33,7 @@ async function getData(){
         return
     }
     let life = await lifeRqst.json()
-
-    let expRqst = await fetch("/api/private/lifes", {
+    let expRqst = await fetch("/api/private/exp", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -52,6 +53,7 @@ async function content(){
     let LN = data[0] //obtém o nível em que o usuário está
     let life = data[1] //obtém as vidas dele
     let exp = data[2] //obtém o xp do usuário
+    exp = Math.floor(exp * 100) / 100
     const masterRqst = await fetch("/globalAssets/json/master.json");
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life
@@ -75,24 +77,47 @@ async function content(){
     const rpg = mainTag.querySelectorAll(".rpg")
     const blocks = mainTag.querySelectorAll(".blocks")
     intro.forEach(el=>{
-        el.addEventListener("click", async ev=>{
-            window.location.href = "/webSites/intro/index.html?level=" + el.id
+        el.addEventListener("click", ev=>{
+            if(life>0){
+                window.location.href = "/webSites/intro/index.html?level=" + el.id
+            }
+            else{
+                zeroLifePopup.classList.add("open")
+            }
         })
     })
     quiz.forEach(el=>{
         el.addEventListener("click", ev=>{
-            window.location.href = "/webSites/quiz/index.html?level=" + el.id
+            if(life>0){
+                window.location.href = "/webSites/quiz/index.html?level=" + el.id
+            }
+            else{
+                zeroLifePopup.classList.add("open")
+            }
         })
     })
     rpg.forEach(el=>{
         el.addEventListener("click", ev=>{
-            window.location.href = "/webSites/rpg/index.html?level=" + el.id
+            if(life>0){
+                window.location.href = "/webSites/rpg/index.html?level=" + el.id
+            }
+            else{
+                zeroLifePopup.classList.add("open")
+            }
         })
     })
     blocks.forEach(el=>{
         el.addEventListener("click", ev=>{
-            window.location.href = "/webSites/blocks/index.html?level=" + el.id
+            if(life>0){
+                window.location.href = "/webSites/blocks/index.html?level=" + el.id
+            }
+            else{
+                zeroLifePopup.classList.add("open")
+            }
         })
+    })
+    closePopup.addEventListener("click", ()=>{
+        zeroLifePopup.classList.remove("open")
     })
 }
 content()

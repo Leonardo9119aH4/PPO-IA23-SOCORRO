@@ -1,9 +1,10 @@
-export class DragBlock { //classe que torna os blocos arrastáveis
+export class DragBlock { //clase que torna as divs .dragBlock arrastáveis
     constructor(element) {
         this.element = element;
         this.offsetX = 0;
         this.offsetY = 0;
         this.isDragging = false;
+        this.mainElement = document.querySelector('main');
 
         this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
         document.addEventListener("mouseup", this.onMouseUp.bind(this));
@@ -15,24 +16,26 @@ export class DragBlock { //classe que torna os blocos arrastáveis
         this.offsetY = e.clientY - this.element.getBoundingClientRect().top;
         this.element.style.cursor = "grabbing";
     }
-
     onMouseUp() {
         this.isDragging = false;
         this.element.style.cursor = "grab";
     }
-
     onMouseMove(e) {
         if (this.isDragging) {
-            this.element.style.left = e.clientX - this.offsetX + "px";
-            this.element.style.top = e.clientY - this.offsetY + "px";
+            const mainRect = this.mainElement.getBoundingClientRect();
+            let newLeft = e.clientX - this.offsetX - mainRect.left;
+            let newTop = e.clientY - this.offsetY - mainRect.top;
+            // Garantir que o elemento permaneça dentro dos limites do main
+            if (newLeft < 0) newLeft = 0;
+            if (newTop < 0) newTop = 0;
+            if (newLeft + this.element.offsetWidth > mainRect.width) newLeft = mainRect.width - this.element.offsetWidth;
+            if (newTop + this.element.offsetHeight > mainRect.height) newTop = mainRect.height - this.element.offsetHeight;
+            this.element.style.left = newLeft + "px";
+            this.element.style.top = newTop + "px";
         }
     }
-
     getBoundingClientRect() {
         return this.element.getBoundingClientRect();
-    }
-    destroy() {
-        
     }
 }
 export class ReceiveBlock{ //classe que permite as lacunas (.reBl) detectar se um .dragBlock está encaixado corretamente
@@ -56,24 +59,22 @@ export class ReceiveBlock{ //classe que permite as lacunas (.reBl) detectar se u
 }
 var saveBlockId = [] //array que guarda a sequência
 var saveGapId = [] //array para debug que mostra a quem os blocos se referenciam
-var level = 1 //temporário
 function SaveBlGap(dragBlockId, gapId){//uso interno do módulo para salvar os valores na array
     saveBlockId.push(dragBlockId)
     saveGapId.push(gapId) //debug
 }
 export async function Execute(){ //verifica se os blocos estão na sequência correta
-    const correctSeqRqst = await fetch("http://localhost:3000/webSites/blocks/localAssets/levels/correctSeq.json") //sequência correta
-    const correctSeq = await correctSeqRqst.json()
+    const correctSeq = await JSON.parse(localStorage.getItem("correctSeq")) //sequência correta
     var isCorrect = null //booleano para verificar se a sequência está correta
     var wrongCount = 0 //contador de erros, valor -1 para quando há lacunas não preenchidas
-    if(saveBlockId.length === correctSeq[level-1].length && saveBlockId.every((value, index)=>value===correctSeq[level-1][index])){ //a posição na array equivale ao nível
+    if(saveBlockId.length === correctSeq.length && saveBlockId.every((value, index)=>value===correctSeq[index])){ //a posição na array equivale ao nível
         isCorrect = true
     }
     else{
         isCorrect = false
-        if(saveBlockId.length === correctSeq[level-1].length){
+        if(saveBlockId.length === correctSeq.length){
             saveBlockId.forEach((value, index)=>{
-                if(saveBlockId[index] != correctSeq[level-1][index]){
+                if(saveBlockId[index] != correctSeq[index]){
                     wrongCount++
                 }
             })

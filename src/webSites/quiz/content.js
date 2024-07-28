@@ -5,21 +5,24 @@ const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const response = document.querySelector("#response") //referencia a div que mostram as alternativas
 var responseButton = response.querySelectorAll("button") //referencia todas as alternativas
 const Life = document.querySelector("#life>h1") //referencia o contador de vidas gráfico
-const mainTag = document.querySelector("main")
-const mainImg = mainTag.querySelector("#img") //constante para colocar as imagens dos níveis
-const mainTheory = mainTag.querySelector("#theory") //local de injeção do ejs da teoria
-const gameOverPopup = mainTag.querySelector("#gameOver") //popup de game over
-const winnerPopup = mainTag.querySelector("#winner") //popup de quando vence o quiz
+const mainElement = document.querySelector("main")
+const mainImg = mainElement.querySelector("#img") //constante para colocar as imagens dos níveis
+const mainTheory = mainElement.querySelector("#theory") //local de injeção do ejs da teoria
+const gameOverPopup = document.querySelector("#gameOver") //popup de game over
+const winnerPopup = document.querySelector("#winner") //popup de quando vence o quiz
 const winnerTime = winnerPopup.querySelector("#time") //exibe o tempo ao vencer o quiz
 const winnerScore = winnerPopup.querySelector("#score") //percentual de acertos
 const winnerEXP = winnerPopup.querySelector("#exp") //xp obtido
-const feedbackPopup = mainTag.querySelector("#feedback") //feedback de erro
+const feedbackPopup = document.querySelector("#feedback") //feedback de erro
 const feedbackButton = feedbackPopup.querySelector("button") //botão para fechar o popup
 const feedContent = feedbackPopup.querySelector("#feedContent") //texto do feedback
 
 async function getData(){
     const params = new URLSearchParams(window.location.search)
     const level = parseInt(params.get("level"))
+    if(level == null || level == undefined){
+        window.location.href = "/webSites/levels/index.html"
+    }
     const masterRqst = await fetch("/globalAssets/json/master.json") //requisição do json mestre
     const master = await masterRqst.json()
     const lifeRqst = await fetch("/api/private/lifes", {
@@ -37,6 +40,9 @@ async function getData(){
         return
     }
     const life = await lifeRqst.json()
+    if(life<=0){
+        window.location.href="/webSites/levels/index.html"
+    }
     const quizRqst = await fetch("/api/private/getquiz", {
         method: "POST",
         headers: {
@@ -54,6 +60,49 @@ async function getData(){
     const quiz = await quizRqst.json()
     return [master, quiz, life, level]
 }
+async function winDBUpd(exp, level){
+    fetch("/api/private/exp", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "add",
+            "exp": exp
+        })
+    }).then(resp =>{
+        if(resp.status===500){
+            fatalError(500)
+        }
+    })
+    const userLevelRqst = await fetch("/api/private/levelsunlocked", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"action": "get"})
+    })
+    if(userLevelRqst.status === 500){
+        fatalError(500)
+    }
+    const userLevel = await userLevelRqst.json()
+    if(userLevel === level){
+        fetch("/api/private/levelsunlocked", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "add",
+            "level": 1
+            })
+        }).then(resp =>{
+            if(resp.status===500){
+                fatalError(500)
+            }
+        })
+    }
+}
 async function content(){
     let data = await getData()
     let master = data[0]
@@ -69,6 +118,7 @@ async function content(){
     var isTheory = false //booleano para saber se uma teoria é exibida
     var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
     var theoryEJS
+    Life.innerHTML = life
     if(master[level].theory === true){
         const getTheory = master[level].get_theory
         const theoryRqst = await fetch(`/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
@@ -90,8 +140,12 @@ async function content(){
     function Asking(){ //injeção da pergunta e das alternativas
         firstWrong = true
         Ask.innerHTML = quiz[NAsk].ask
-        mainTheory.innerHTML = null
-        mainImg.innerHTML = "<img src='/globalAssets/images/codeImg/test.png'>"
+        if(quiz[NAsk].image != null && quiz[NAsk].image != undefined){
+            mainElement.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
+        }
+        else{
+            mainElement.innerHTML = null
+        }
         response.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
         for (let i=0; i<quiz[NAsk].alt.length; i++){
@@ -109,28 +163,26 @@ async function content(){
         }
     }
     function Wrong(){
-        if(--life>0){
-            Feedback(false)
-            if(firstWrong==true){ //cada questão só pode tirar 1 vida
-                firstWrong = false
-                Life.innerHTML = life
-                score -= 100/quiz.length //cálculo do percentual de acerto
-                fetch("/api/private/lifes", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({"action": "reduce", "life": 1})
-                }).then(resp => {
-                    if(resp.status == 500){
-                        fatalError(500)
-                    }
-                })
-            }
-        }
-        else{
+        Feedback(false)
+        if(firstWrong==true){ //cada questão só pode tirar 1 vida
+            life--
+            firstWrong = false
             Life.innerHTML = life
-            GameOver()
+            score -= 100/quiz.length //cálculo do percentual de acerto
+            fetch("/api/private/lifes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({"action": "reduce", "life": 1})
+            }).then(resp => {
+                if(resp.status == 500){
+                    fatalError(500)
+                }
+            })
+            if(life<=0){
+                GameOver()
+            }
         }
     }
     function GameOver(){
@@ -150,14 +202,8 @@ async function content(){
         let exp = 0 //quantidade de xp obtida conforme percentual de acerto/erro, tempo e quantidade de questões
         const K = quiz.length/5 //constante multiplicador conforme a quantidade de questões
         exp = (100-K*((Math.log(0.1*dSec))/Math.log(1.7)))*(score/100) //cáculo do XP obtido
+        winDBUpd(exp, level) //atualiza o banco de dados
         winnerEXP.innerHTML = `Obteve ${exp} XP`
-        fetch("/api/private/exp", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({"action": "add", "exp": exp})
-        })
     }
     function Feedback(isCorrect){
         feedbackPopup.classList.add("opened")

@@ -7,3 +7,10 @@ pre{
         border: 1px solid gray;
     }
 }
+.reBl{
+    width: 10rem;
+    height: 1.1rem;
+    border-radius: 10%;
+    margin-left: 1rem;
+    background-color: azure;
+}

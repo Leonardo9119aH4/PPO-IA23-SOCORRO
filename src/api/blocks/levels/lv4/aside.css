@@ -4,8 +4,11 @@
     cursor: grab;
     border-radius: 10%;
     text-align: center;
-    width: fit-content;
+    width: max-content;
     user-select: none;
+    color: white;
+    height: 1.1rem;
+    width: 10rem;
 }
 #bl1{
     top: 0;
@@ -17,5 +20,6 @@
 }
 #bl3{
     top: 20vh;
+    color: orange !important;
     background-color: yellow;
 }
