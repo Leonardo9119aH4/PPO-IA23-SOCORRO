@@ -31,3 +31,9 @@ model AuthKey {
   userId Int
   user User @relation(fields: [userId], references: [id])
 }
+// model ExpHistoric{
+//   id Int @id @default(autoincrement())
+//   expDay DateTime
+//   exp Float @default(0)
+//   userId Int  @relation(fields: [userId], references: [id])
+// }
