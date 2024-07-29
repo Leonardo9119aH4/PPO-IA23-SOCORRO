@@ -45,6 +45,7 @@ async function getData(){
         return
     }
     let exp = await expRqst.json()
+    
     return [LN, life, exp]
 }
 async function content(){
