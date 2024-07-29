@@ -1,7 +1,5 @@
 import { Application, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-import ejs from "ejs"
-import path from "path";
+import { PrismaClient } from "@prisma/client";;
 import * as fs from "fs"
 import { logAuth } from "../accounts/cookies";
 export async function getBlocks(app: Application, prisma: PrismaClient){
