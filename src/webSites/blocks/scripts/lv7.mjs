@@ -1,5 +1,5 @@
 import { Terminal } from "/webSites/blocks/terminal.js"
-export async function Script(terminalElement){
+export async function Script(terminalElement, dSec, exp){
     let terminal = new Terminal(terminalElement)
     terminal.write("Digite o seu nome: ") //escreve no terminal (saída)
     let nome = await terminal.read() //lê o que o usuário digitou (entrada)
@@ -11,5 +11,5 @@ export async function Script(terminalElement){
     let idadePai = parseInt(await terminal.read())
     let difIdade = idadePai - idade
     terminal.write(`${nome} é ${difIdade} anos mais novo que seu pai.`)
-    terminal.end() //finaliza o nível
+    terminal.end(dSec, exp) //finaliza o nível
 }
