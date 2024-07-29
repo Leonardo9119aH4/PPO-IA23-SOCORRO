@@ -26,8 +26,16 @@ export class Terminal{ //objeto do terminal
     clear(){
         this.element.innerHTML = ""
     }
-    end(){
-        this.element.innerHTML += "Programa finalizado com êxito. Aperte qualquer tecla para sair..."
+    end(dSec, exp){
+        let sec = Math.round(dSec/10)
+        let min = Math.trunc(sec/60)
+        sec = sec%60
+        if(sec>0 && sec<10){
+            this.element.innerHTML += `Programa concluído em ${min}:0${sec}\nObteve ${exp} de XP\nAperte qualquer tecla para sair...`
+        }
+        else{
+            this.element.innerHTML += `Programa concluído em ${min}:${sec}\nObteve ${exp} de XP\nAperte qualquer tecla para sair...`
+        }
         setTimeout(()=>{ //evita que o usuário saia acidentalmente
             document.addEventListener("keydown", ()=>{
                 window.location.href="/webSites/levels/index.html"
@@ -35,7 +43,7 @@ export class Terminal{ //objeto do terminal
         }, 1000)
     }
 }
-export async function loadScript(terminalElement, level){ //carrega o script do terminal
+export async function loadScript(terminalElement, level, dSec, exp){ //carrega o script do terminal
     const script = await import(`/webSites/blocks/scripts/lv${level}.mjs`)
-    script.Script(terminalElement)
+    script.Script(terminalElement, dSec, exp)
 }
