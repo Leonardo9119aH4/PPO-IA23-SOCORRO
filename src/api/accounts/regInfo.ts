@@ -138,3 +138,35 @@ export function regInfoConflict(users: any[], type: String, info: String): Boole
     }
     return false
 }
+export async function changePassword(app: Application, prisma: PrismaClient){
+    app.post("/api/private/changePassword", async (req: Request, res: Response)=>{
+        try{
+            let userId = await logAuth(prisma, req)
+            if(userId===-1){
+                res.sendStatus(401)
+            }
+            else{
+                const user = await prisma.user.findUnique({
+                    where: {id: userId}
+                })
+                if(req.body.actualPassword === user?.password){
+                    await prisma.user.update({
+                        where: {id: userId},
+                        data: {
+                            password: req.body.newPassword
+                        }
+                    })
+                    res.sendStatus(201)
+                }
+                else{
+                    res.sendStatus(403)
+                }
+            }
+            
+
+        }
+        catch{
+            res.sendStatus(500)
+        }
+    })
+}
