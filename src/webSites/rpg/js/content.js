@@ -49,10 +49,19 @@ async function content(){
     } //o json não aceita sem aspas
     let game = new Phaser.Game(config)
     function preload(){
-
+        this.load.spritesheet("player", "/webSites/rpg/localAssets/sprites/pixil-frame-0.png", {
+            frameWidth: 646,
+            frameHeight: 776 //temporário, precisa refazer os assets
+        })
     }
     function create(){
-
+        this.player = this.add.sprite(300, 400, "player")
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 5 }),
+            frameRate: 10,
+            repeat: -1
+        })
     }
     function update(){
 
