@@ -80,6 +80,7 @@ async function content(){
     const master = data[2]
     const correctSeq = data[3]
     const BlocksDOM = data[4]
+    let dSec = 0; //tempo decorrido em décimos de segundos
     localStorage.setItem("correctSeq", JSON.stringify(correctSeq)) //salva no localStorage para a função Execute() conseguir acessar
     await loadDOM(BlocksDOM) //carrega o código e os blocos arrastáveis
     title.innerHTML = master[level].level_title
@@ -109,6 +110,7 @@ async function content(){
         wrongPopup.classList.remove("open")
     })
     async function win(){
+        const exp = 3030/dSec //cálculo do xp obtido pelo tempo (inversamente proporcional)
         fetch("/api/private/exp", {
             method: "POST",
             headers: {
@@ -116,7 +118,7 @@ async function content(){
             },
             body: JSON.stringify({
                 "action": "add",
-                "exp": 20 //tem que fazer cronômetro
+                "exp": exp 
             })
         }).then(resp =>{
             if(resp.status===500){
@@ -152,7 +154,7 @@ async function content(){
             }
         })
         terminalPopup.classList.add("open")
-        loadScript(terminalContainer, level) //simula o script e mostra no terminal
+        loadScript(terminalContainer, level, dSec, exp) //simula o script e mostra no terminal
     }
     async function wrong(errors){
         lifes--
@@ -187,5 +189,9 @@ async function content(){
     async function gameOver(){
         gameOverPopup.classList.add("open")
     }
+    function updCrono(){ //atualiza o tempo
+        dSec++
+    }
+    setInterval(updCrono, 100) //atualiza o cronômetro
 }
 content()
