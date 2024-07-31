@@ -1,20 +1,15 @@
-import { GameDOM } from './gameDOM'
 import { Commands } from './commands'
 
-export function movecalc(command: Commands, vars: GameDOM) {
-    switch (command.var) { //verfica a variavel do comando para determinar o lado
-        case 'top':
-            
-            break
-        case 'bottom':  
-            vars.heroVal.top ++
-            break
-        case 'left':
-            vars.heroVal.left --
-            break
-        case 'right':
-            vars.heroVal.left ++
-            break
+export function movecalc(command: Commands, time: Number) {
+    switch (command.command) { //verfica a variavel do comando para determinar o lado
+        case 'MoverCima()':
+            return ["setVelocityY(100)", `${time}`]
+        case 'MoverBaixo()':  
+            return ["setVelocityY(-100)", `${time}`]
+        case 'MoverDireita()':
+            return ["setVelocityX(100)", `${time}`]
+        case 'MoverEsquerda()':
+            return ["setVelocityX(-100)", `${time}`]
     }
-    return vars
+    return ["sad"]
 }
