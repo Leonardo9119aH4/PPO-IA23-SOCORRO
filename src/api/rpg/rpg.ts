@@ -14,7 +14,14 @@ export async function rpg(app: Application, prisma: PrismaClient){
                 res.sendStatus(500)
             }
             else{
-                res.sendStatus(200)
+                const user = await prisma.user.findUnique({
+                    select: {
+                        id: userId
+                    }
+                })
+                if(req.body.level > user.level){
+                    res.sendStatus(403)
+                }
             }
         }
         catch{
