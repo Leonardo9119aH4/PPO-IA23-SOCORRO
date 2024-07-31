@@ -2,21 +2,21 @@
     {
         "command":"MoverCima()",
         "var":"top",
-        "effect":"movecalc(commandelement)"
+        "effect":"movecalc(commandelement, time)"
     },
     {
         "command":"MoverBaixo()",
         "var":"bottom",
-        "effect":"movecalc(commandelement)"
+        "effect":"movecalc(commandelement, time)"
     },
     {
         "command":"MoverDireita()",
         "var":"right",
-        "effect":"movecalc(commandelement)"
+        "effect":"movecalc(commandelement, time)"
     },
     {
         "command":"MoverEsquerda()",
         "var":"left",
-        "effect":"movecalc(commandelement)"
+        "effect":"movecalc(commandelement, time)"
     }
 ]
