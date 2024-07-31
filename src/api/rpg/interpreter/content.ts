@@ -30,10 +30,10 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
         inputsplit = inputcommands[i].split('')
         if(detectLoop(inputcommands[i])){
-             i = loadLoop(varinputcommand, inputcommands, i, commandsjson, gameVars, GameDOM)
+             i = loadLoop(varinputcommand, inputcommands, i, commandsjson, gameVars)
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
-            i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars, GameDOM)
+            i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars)
         }
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
