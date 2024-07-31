@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Application, Request, Response } from "express";
-import Phaser from "phaser";
+import path from "path";
 import { logAuth } from "../accounts/cookies";
 
 export async function rpg(app: Application, prisma: PrismaClient){
@@ -15,12 +15,32 @@ export async function rpg(app: Application, prisma: PrismaClient){
             }
             else{
                 const user = await prisma.user.findUnique({
-                    select: {
+                    where: {
                         id: userId
                     }
                 })
-                if(req.body.level > user.level){
+                if(user != null && req.body.level > user.level){ 
                     res.sendStatus(403)
+                }
+                else{
+                    try{
+                        if(req.body.getfile === 0){
+                            res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/config.json`)) //configuração das cenas
+                        }
+                        else if(req.body.getfile === 1){
+                            res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/load.mjs`)) //carregador do nível
+                        }
+                        else if(req.body.getfile === 2){
+                            res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/level.mjs`)) //o nível em si
+                        }
+                        else{
+                            res.sendStatus(400) //não tem o que enviar
+                        }
+                            
+                    }
+                    catch{
+                        res.sendStatus(404)
+                    }
                 }
             }
         }
