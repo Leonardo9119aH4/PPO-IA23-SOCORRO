@@ -41,7 +41,6 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
                 GameDOM = movecalc(commandelement, GameDOM)
-                console.log(GameDOM)
             }
         })
     }
