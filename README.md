@@ -1,3 +1,8 @@
+!! UML
+
+https://drive.google.com/file/d/1XtqB8aaQHqk4NUQdl71w0Z2rNpWHlZXM/view?usp=sharing
+
+=============================================================================
 !! Requerimentos
 
 Precisa ter o Node.js instalado.
@@ -5,7 +10,7 @@ Precisa ter o Node.js instalado.
 =============================================================================
 !! Servidor
 
-Será usado Node.js com as frameworks express.s e prisma.js
+Será usado Node.js com as frameworks express.js e prisma.js
 
 Será usado a porta 3000 para host do servidor.
 
@@ -46,7 +51,7 @@ Comentar todas as variáveis, constantes e funções, especificando o seu uso e 
 
 Não usar early return quando não precisa.
 
-Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: http://localhost:<porta>/<diretótios>
+Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: /<diretórios>
 
 =============================================================================
 !! Banco de dados
