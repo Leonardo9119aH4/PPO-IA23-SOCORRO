@@ -49,9 +49,31 @@ export async function rpg(app: Application, prisma: PrismaClient){
         }
     })
 }
-export async function getActions(app: Application, phaserCommands: Array<Array<String>>){
-    type Commands = {
-        userId: number,
-        commands: Array<Array<String>>
+//parte de devolver o código "compilado" ao usuário
+type Commands = { //salvar comandos do phaser
+    key: String, //cookie do usuário
+    commands: Array<Array<String>> //comandos do phaser
+}
+let usersActions: Array<Commands>
+
+export async function getActions(app: Application, phaserCommands: Array<Array<String>>, req: Request){
+    let actions: Commands = { 
+        key: req.cookies["authKey"],
+        commands: phaserCommands
     }
+    usersActions.push(actions)
+    app.post("/api/private/getExeCode", async (req: Request, res: Response) =>{
+        try{
+            for(let i=0; i<usersActions.length; i++){
+                if(usersActions[i].key === req.cookies["authKey"]){
+                    res.status(200).json(usersActions[i].commands)
+                    delete usersActions[i]
+                    break
+                }
+            }
+        }
+        catch{
+            res.sendStatus(500)
+        }
+    })
 }
