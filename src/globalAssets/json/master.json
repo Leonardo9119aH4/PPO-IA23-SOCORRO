@@ -9,7 +9,7 @@
     {
         "type": "quiz",
         "theory": true,
-        "theory_title": "teste",
+        "theory_title": "Explicando Magic-C",
         "get_theory": "first"
     },
     {
