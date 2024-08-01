@@ -2,9 +2,9 @@
 [
      
     {
-        "ask": "1.Qual a maneira correta de declarar uma variável em C?",
-        "alt": ["inteiro a = 6", "a = 6", "a := 6", "variavel a = 6"],
-        "ans": 0,
+        "ask": "Qual a saída de escreva(3 + 2 - 2)?",
+        "alt": ["10", "7", "8", "9"],
+        "ans": 1,
         "image": null 
     },
     {
