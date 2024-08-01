@@ -1,4 +1,4 @@
-import Phaser from "/globalAssets/js/phaser.js" //aqui
+import {Phaser} from "/globalAssets/js/phaser.js" //aqui
 import {main, fatalError} from "/globalAssets/js/main.js"
 async function getData(){
     const params = new URLSearchParams(window.location.search)
