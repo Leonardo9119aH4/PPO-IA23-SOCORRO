@@ -117,16 +117,16 @@ async function content(){
     var min = 0 //variável para o cronômetro, minutos
     var isTheory = false //booleano para saber se uma teoria é exibida
     var endGame = false //booleano pra saber se o quiz acabou (sem vida ou fim)
-    var theoryEJS
+    var theoryHTML
     Life.innerHTML = life
     if(master[level].theory === true){
         const getTheory = master[level].get_theory
-        const theoryRqst = await fetch(`/globalAssets/ejs/theory/${getTheory}.ejs`) //obtenção da url conforme ejs da teoria a ser exibida
-        theoryEJS = await theoryRqst.text()
+        const theoryRqst = await fetch(`/globalAssets/learnings//${getTheory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
+        theoryHTML = await theoryRqst.text()
     }
     function VerifyInit(){ //verificação de nível e mostrar a teoria conforme nível do usuário
         if(master[level].theory === true){
-            mainTheory.innerHTML = theoryEJS
+            mainTheory.innerHTML = theoryHTML
             Ask.innerHTML = master[level].theory_title
             response.innerHTML = "<button>CONTINUAR</button>"
             DocCSS.style.setProperty("--RepN", 1)
