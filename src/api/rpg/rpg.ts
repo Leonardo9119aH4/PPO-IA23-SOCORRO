@@ -50,7 +50,7 @@ export async function getRpg(app: Application, prisma: PrismaClient){
     })
 }
 export async function getActions(app: Application, phaserCommands: Array<Array<String>>){
-    type Commands {
-        
+    type Commands = {
+
     }
 }
