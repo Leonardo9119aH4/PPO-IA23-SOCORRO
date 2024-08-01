@@ -8,6 +8,7 @@ export class LoadLevel5 extends Phaser.Scene {
         this.load.spritesheet("cicero", "/webSites/rpg/localAssets/sprites/cicero.png")
         this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
         this.load.spritesheet("enemy", "/webSites/rpg/localAssets/sprites/enemy.png")
+        this.load.image("wall", "/webSites/rpg/localAssets/wall.png")
     }
     create(){
         const gameWidth = this.sys.canvas.width;
