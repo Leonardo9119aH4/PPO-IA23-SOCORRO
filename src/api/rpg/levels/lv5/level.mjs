@@ -52,6 +52,7 @@ export class Level extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
+<<<<<<< HEAD
         const backgroundMap = this.make.tilemap({ key: 'background-map' }) // Adicionar o tileset ao tilemap
         const backgroundTileset = backgroundMap.addTilesetImage('backgorund-tiles') // Criar o layer de fundo a partir do tilemap
         const backgroundLayer = backgroundMap.createLayer('background', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
@@ -182,10 +183,20 @@ export class Level extends Phaser.Scene {
             frameRate: 8, 
         })
         this.player.anims.play("playerIdle", true)
+=======
+        const backgorund = this.add.image(0, 0, "scenario")
+        backgorund.setOrigin(0, 0)
+        const wall = this.physics.add.staticGroup()
+        this.player = new this.player(this)
+        this.physics.add.collider(this.player.sprite, enemy)
+        this.physics.add.collider(this.player.sprite, wall)
+        document.addEventListener('executeCode', this.executeCode.bind(this))
+>>>>>>> 9aa44c35 (sync)
     }
     update(){
         
     }
+<<<<<<< HEAD
     async executeCode(){
         const actionsRequest = await fetch("/api/private/getExeCode")
         const actions = await actionsRequest.json()
@@ -227,6 +238,10 @@ export class Level extends Phaser.Scene {
                 
             }
         }
+=======
+    executeCode(ev){
+        
+>>>>>>> 9aa44c35 (sync)
     }
     shutdown(){
         document.removeEventListener('executeCode', this.executeCode.bind(this))
