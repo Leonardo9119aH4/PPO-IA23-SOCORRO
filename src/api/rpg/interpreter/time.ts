@@ -4,8 +4,8 @@ export function detectTime(command: string) {
     if(!detectNumber(command)) {
         return 1
     } else {
-        var time: Array<number>
-        for (let i: number; i<command.length; i++){
+        var time: Array<number> = [0]
+        for (let i: number = 0; i<command.length; i++){
             if(detectNumber(command)) {
                 time.push(+command[i])
             }
