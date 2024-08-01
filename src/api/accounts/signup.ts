@@ -43,7 +43,6 @@ export async function signUp(app: Application, prisma: PrismaClient){
                             phone: req.body.phone,
                         },
                     });
-                    console.log("foi")
                     res.status(201).json(statuscode) //êxito ao criar a conta
                 }
                 catch(error){
