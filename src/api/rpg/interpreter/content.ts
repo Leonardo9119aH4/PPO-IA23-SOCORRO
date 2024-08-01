@@ -11,7 +11,7 @@ import { detectTime } from './time'
 import { getActions } from '../rpg'
 
 export function runMove(app: Application){
-    app.post('/api/private/move', async (req: Request, res: Response) => {
+    app.post('/api/private/interpreter', async (req: Request, res: Response) => {
         let inputcommands = req.body.inputcommands
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))

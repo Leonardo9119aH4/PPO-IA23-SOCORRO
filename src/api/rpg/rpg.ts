@@ -3,7 +3,7 @@ import { Application, Request, Response } from "express";
 import path from "path";
 import { logAuth } from "../accounts/cookies";
 
-export async function getRpg(app: Application, prisma: PrismaClient){
+export async function rpg(app: Application, prisma: PrismaClient){
     app.post("/api/private/getrpg", async (req: Request, res: Response)=>{
         try{
             let userId: number = await logAuth(prisma, req)
