@@ -21,7 +21,7 @@ export function runMove(app: Application){
     })
 }
 
-var phaserCommands: Array<string>
+var phaserCommands: Array<Array<string>>
 
 export function load(inputcommands: Array<string>, commandsjson: Array<Commands>, gameVars: Array<Array<string>>) {
     for(let i = 0; i < inputcommands.length; i++) {
@@ -38,7 +38,8 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         }
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                phaserCommands.push(movecalc(commandelement, detectTime(inputcommands[i])).join(''))
+                phaserCommands.push(movecalc(commandelement, detectTime(inputcommands[i])))
+                phaserCommands.push()
             }
         })
     }
