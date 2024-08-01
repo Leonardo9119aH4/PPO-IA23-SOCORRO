@@ -4,9 +4,6 @@ import path from "path";
 import { logAuth } from "../accounts/cookies";
 
 export async function rpg(app: Application, prisma: PrismaClient){
-    type Actions{
-        
-    }
     app.post("/api/private/getrpg", async (req: Request, res: Response)=>{
         try{
             let userId: number = await logAuth(prisma, req)
