@@ -11,7 +11,7 @@ import { detectTime } from './time'
 
 
 export function runMove(app: Application){
-    app.post('/api/move', async (req: Request, res: Response) => {
+    app.post('/api/private/move', async (req: Request, res: Response) => {
         let inputcommands = req.body.inputcommands
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
@@ -37,7 +37,7 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         }
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                phaserCommands = movecalc(commandelement, detectTime(inputcommands[i]))
+                phaserCommands.push(movecalc(commandelement, detectTime(inputcommands[i])).join(''))
             }
         })
     }

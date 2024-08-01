@@ -1,10 +1,10 @@
 const algorisms: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 export function detectTime(command: string) {
-    var time: Array<number>
     if(!detectNumber(command)) {
         return 1
     } else {
+        var time: Array<number>
         for (let i: number; i<command.length; i++){
             if(detectNumber(command)) {
                 time.push(+command[i])
