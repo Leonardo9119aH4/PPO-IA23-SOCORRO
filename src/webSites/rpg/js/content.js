@@ -30,8 +30,8 @@ async function getData(){
         window.location.href="/webSites/levels/index.html"
     }
     return [level, master, life]
-
 }
+
 async function content(){
     const data = await getData()
     const level = data[0]
