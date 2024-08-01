@@ -1,4 +1,4 @@
-@import url("http://localhost:3000/globalAssets/css/main.css");
+@import url("/globalAssets/css/main.css");
 
 :root{
     --menuWD: 20vw; /* largura do menu lateral do ranking */
@@ -15,22 +15,71 @@ html, body{
     margin: 0;
     overflow: hidden;
 }
+#zeroLife{
+    --popupWidth: 40vw;
+    --popupHeight: 40vh;
+    --border: 2rem; /* tamanho da borda do popup */
+    position: fixed;
+    top: 0;
+    width: var(--popupWidth);
+    height: var(--popupHeight);
+    z-index: 4;
+    margin: calc(50vh - var(--popupHeight)/2) auto auto calc(50vw - var(--popupWidth)/2);
+    display: grid;
+    place-items: center;
+    background-color: rgba(29, 144, 207, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1.5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    & .content{
+        background-color: white;
+        width: calc(var(--popupWidth) - var(--border));
+        height: calc(var(--popupHeight) - var(--border));
+        display: grid;
+        place-items: center;
+        & #output{
+            color: red;
+            font-size: 2rem;
+        }
+        & buton#close{
+            font-size: 1.75rem; /* navegador tá ignorando isso */
+        }
+    }
+}
+#zeroLife.open{
+    visibility: visible;
+    opacity: 1;
+}
 main{
     display: flex;
     margin: 0;
+    background-color: #272727;
 }
 #exp{ /* menu lateral do ranking */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     height: 100vh;
     width: var(--menuWD) !important; /* tamanho fixo */
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: #666464;
+    color: white;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    & .texto{
-        margin: 0 auto auto auto;
+    & .text, & #life{
+        margin: 0 auto 0 auto;
         box-sizing: border-box;
+    }
+    & #life{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    & #practice{
+        margin: 0 auto 0 auto;
     }
 }
 #levels{ /* níveis do CodeGamix */
@@ -51,7 +100,7 @@ main{
             display: flex;
             height: calc(var(--ImgLB)/3);
             width: var(--ImgLB);
-            background-image: url("http://localhost:3000/webSites/levels/localAssets/level.png");
+            background-image: url("/webSites/levels/localAssets/level.png");
             background-size: cover;
             background-position: center;
             align-items: center;

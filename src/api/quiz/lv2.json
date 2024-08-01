@@ -1,0 +1,62 @@
+[
+    {
+        "ask": "1.Qual operador permite comparar dois valores?",
+        "alt": ["=", "==", "!=", "<>"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "2.O que significa o operador % em C?",
+        "alt": ["módulo", "divisão", "exponenciação", "multiplicação"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "3.Qual operador compara e diz que dois valores são iguais ou não?",
+        "alt": ["=", "!=", "==", "==="],
+        "ans": 2,
+        "image": null 
+    },
+    {
+        "ask": "4.Qual operador compara e diz se dois valores são diferentes ou não?",
+        "alt": ["=", "!=", "==", "==="],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "5.Qual operador diz que uma variável é maior que um valor",
+        "alt": ["<", "<=", ">", "==="],
+        "ans": 2,
+        "image": null 
+    },
+    {
+        "ask": "6.Qual operador diz que uma variável é menor que um valor",
+        "alt": ["<", "<=", ">", "==="],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "7.A comparação “8 % 2 == 1” está correta?",
+        "alt": ["sim", "não", "não sei", "?"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "8.A comparação “27 / 3  == 9” está correta?",
+        "alt": ["sim", "não", "não sei", "?"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "9.A comparação “27 / 3  == 9” está correta?",
+        "alt": ["sim", "não", "não sei", "?"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "10.A é maior que B e C é maior que A ( A > B e C > A ), quem é o menor?",
+        "alt": ["A", "B", "C", "não sei"],
+        "ans": 1,
+        "image": null 
+    }
+] 

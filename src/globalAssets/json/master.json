@@ -4,21 +4,39 @@
     },
     {
         "type": "quiz",
-        "level_group": 1,
+        "theory": false
+    },
+    {
+        "type": "quiz",
         "theory": true,
         "theory_title": "teste",
         "get_theory": "first"
     },
     {
+        "type": "quiz",
+        "theory": false
+    },
+    {
         "type": "blocks",
-        "level_group": 1,
         "theory": false,
         "level_title": "bloquinhu",
         "level_header": "resolva o algoritimo a seguir: "
     },
     {
         "type": "rpg",
-        "level_group": 1,
         "theory": false
+    },
+    {
+        "type": "rpg",
+        "theory": false
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "nível 7",
+        "level_header": "1 3 2"
+    },
+    {
+        "type": "intro"
     }
 ]

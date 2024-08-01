@@ -1,10 +1,10 @@
 @font-face{
     font-family: sugar-classic;
-    src: url("http://localhost:3000/globalAssets/fonts/sugo-pro-classic/Sugo-Pro-Classic-Light-trial.ttf");
+    src: url("/globalAssets/fonts/sugo-pro-classic/Sugo-Pro-Classic-Light-trial.ttf");
 }
 @font-face {
     font-family: clear-sans;
-    src: url("http://localhost:3000/globalAssets/fonts/clear-sans/ClearSans-Regular.ttf");
+    src: url("/globalAssets/fonts/clear-sans/ClearSans-Regular.ttf");
 }
 body {
     height: 100vh;
@@ -44,17 +44,28 @@ main>div {
     padding: 2rem;
     gap: 2rem;
     div#ip {
-        display: grid;
+        font-family: clear-sans;
     }
-    div#ip>input {
+    div#ip>div#passdiv {
+        display: grid;
+        >a{
+            color: yellow;
+        }
+    }
+    div#ip label {
+        color:white;
+    }
+    div#ip input {
+        color: white;
+    }
+    div#ip>div#passdiv>input {
         height: calc(var(--_size)/10);
         background: transparent;
         border: 0;
     }
-    div#ip>input::placeholder {
+    div#ip>div#passdiv>input::placeholder {
         color: #ffffff82;
         font-size: xx-large;
-        font-family: clear-sans;
         text-align: center;
     }
     >div#bt {
