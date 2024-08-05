@@ -54,7 +54,7 @@ async function getLevel(level){
         })
     })
     const load = await loadRequest.text()
-    const levelScriptRequest = await fetch("/api/private/getrpg", {
+    const levelRequest = await fetch("/api/private/getrpg", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
