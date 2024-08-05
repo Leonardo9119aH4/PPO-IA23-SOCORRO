@@ -1,7 +1,7 @@
 import Phaser from "/globalAssets/js/phaser.js"
-export class Level5 extends Phaser.Scene {
+export class Level extends Phaser.Scene {
     constructor(){
-        super({ key: 'Level5' })
+        super({ key: 'Level' })
     }
     preload(){
 
