@@ -1,4 +1,3 @@
-import Phaser from "/globalAssets/js/phaser.js"
 export class Level extends Phaser.Scene {
     constructor(){
         super({ key: 'Level' })
