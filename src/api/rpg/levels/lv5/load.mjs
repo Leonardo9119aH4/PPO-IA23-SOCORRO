@@ -1,7 +1,7 @@
 import Phaser from "/globalAssets/js/phaser.js"
-export class LoadLevel5 extends Phaser.Scene {
+export class LoadLevel extends Phaser.Scene {
     constructor(){
-        super({ key: 'LoadLevel5' })
+        super({ key: 'LoadLevel' })
     }
     preload(){
         this.load.image("scenario", "/webSites/rpg/localAssets/scenario.png")
