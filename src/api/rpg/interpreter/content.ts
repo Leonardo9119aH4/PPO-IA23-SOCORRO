@@ -8,7 +8,7 @@ import path from 'path'
 
 import { Commands } from './commands'
 import { detectTime } from './time'
-import { getActions } from '../rpg'
+import { setActions } from '../rpg'
 
 export function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
@@ -16,7 +16,7 @@ export function runMove(app: Application){
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
         load(inputcommands, reqCommands, gameVars)
-        getActions(app, phaserCommands, req)
+        setActions(app, phaserCommands, req)
         res.status(200).json(phaserCommands)
     })
 }

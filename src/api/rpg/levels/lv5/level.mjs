@@ -18,7 +18,12 @@ export class Level extends Phaser.Scene {
         
     }
     executeCode(ev){
-        
+        setTimeout(async ()=>{
+            const actionsRequest = await fetch("/api/private/getExeCode")
+            const actions = await actionsRequest.json()
+            eval(actions)
+        }, 100)
+
     }
     shutdown(){
         document.removeEventListener('executeCode', this.executeCode.bind(this))
