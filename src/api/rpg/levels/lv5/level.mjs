@@ -23,7 +23,6 @@ export class Level extends Phaser.Scene {
             const actions = await actionsRequest.json()
             eval(actions)
         }, 100)
-
     }
     shutdown(){
         document.removeEventListener('executeCode', this.executeCode.bind(this))
