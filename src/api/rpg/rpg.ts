@@ -62,7 +62,6 @@ export async function setActions(app: Application, phaserCommands: Array<string>
     }
     usersActions.push(actions)
 }
-
 export async function getActions(app: Application){
     app.get("/api/private/getExeCode", async (req: Request, res: Response) =>{
         try{
