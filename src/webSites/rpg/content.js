@@ -74,7 +74,7 @@ async function content(){
     const master = data1[1]
     const life = data1[2]
     const data2 = await getLevel(level) //arquivos secundários, precisam dos arquivos primários
-    const config = data2[0]
+    // let config = data2[0]
     const loadText = data2[1]
     const levelText = data2[2]
     const loadBlob = new Blob([loadText], { type: 'application/javascript' });
@@ -85,7 +85,14 @@ async function content(){
     const levelScript = await import(levelUrl)
     class LoadLevel extends loadScript.LoadLevel{}
     class Level extends levelScript.Level{}
-    const game = new Phaser.Game(config.type)
+    const config = { //gambiarra pq o js é burro e não consegue obter isso com json
+        width: 800,
+        height: 600,
+        parent: 'game-container',
+        scene: [LoadLevel, Level], 
+        type: Phaser.AUTO 
+    };
+    const game = new Phaser.Game(config)
 }
 main()
 content()

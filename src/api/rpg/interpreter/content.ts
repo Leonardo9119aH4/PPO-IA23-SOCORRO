@@ -7,7 +7,6 @@ import fs from 'fs-promise'
 import path from 'path'
 
 import { Commands } from './commands'
-import { detectTime } from './time'
 import { setActions } from '../rpg'
 
 export function runMove(app: Application){
@@ -21,7 +20,7 @@ export function runMove(app: Application){
     })
 }
 
-var phaserCommands: Array<Array<string>>
+var phaserCommands: Array<string>
 
 export function load(inputcommands: Array<string>, commandsjson: Array<Commands>, gameVars: Array<Array<string>>) {
     for(let i = 0; i < inputcommands.length; i++) {
@@ -38,8 +37,7 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         }
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                phaserCommands.push(movecalc(commandelement, detectTime(inputcommands[i])))
-                phaserCommands.push()
+                phaserCommands.push(movecalc(commandelement))
             }
         })
     }
