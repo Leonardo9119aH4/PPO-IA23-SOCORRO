@@ -30,7 +30,7 @@ export class LoadLevel extends Phaser.Scene {
             progressbar.strokeRect((gameWidth - barWidth) / 2, this.sys.game.config.height / 2, barWidth, 20);
         });
         this.load.on('complete', () => {
-            this.scene.start('Level5');
+            this.scene.start('Level');
         });
     }
     update(){
