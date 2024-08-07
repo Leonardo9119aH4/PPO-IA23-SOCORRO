@@ -6,8 +6,9 @@ export class Level extends Phaser.Scene {
 
     }
     create(){
-        const backgorund = this.add.image(0, 0, "scenario")
+        const backgorund = this.add.image(0, 0, "scenario",)
         backgorund.setOrigin(0, 0)
+        backgorund.setDisplaySize(534, 401)
         // const wall = this.physics.add.staticGroup()
         this.player = new this.player(this)
         this.anims.create({
