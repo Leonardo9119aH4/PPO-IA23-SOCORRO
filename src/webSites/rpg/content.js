@@ -85,6 +85,11 @@ async function content(){
     const levelScript = await import(levelUrl)
     class LoadLevel extends loadScript.LoadLevel{}
     class Level extends levelScript.Level{}
+    config = { //gambiarra pra receber Phaser.AUTO e não uma string, js e json tem que ser superados
+        ...config,
+        type: Phaser.AUTO
+    };
+    console.log(config)
     const game = new Phaser.Game(config)
 }
 main()
