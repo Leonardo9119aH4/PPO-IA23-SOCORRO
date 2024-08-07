@@ -74,7 +74,7 @@ async function content(){
     const master = data1[1]
     const life = data1[2]
     const data2 = await getLevel(level) //arquivos secundários, precisam dos arquivos primários
-    const config = data2[0]
+    let config = data2[0]
     const loadText = data2[1]
     const levelText = data2[2]
     const loadBlob = new Blob([loadText], { type: 'application/javascript' });
@@ -85,6 +85,11 @@ async function content(){
     const levelScript = await import(levelUrl)
     class LoadLevel extends loadScript.LoadLevel{}
     class Level extends levelScript.Level{}
+    config = { //gambiarra pra receber Phaser.AUTO e não uma string, js e json tem que ser superados
+        ...config,
+        type: Phaser.AUTO
+    };
+    console.log(config)
     const game = new Phaser.Game(config)
 }
 main()
