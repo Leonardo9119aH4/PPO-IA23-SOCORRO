@@ -55,16 +55,14 @@ type Commands = { //salvar comandos do phaser
     commands: Array<string> //comandos do phaser
 }
 let usersActions: Array<Commands>
-export async function setActions(app: Application, phaserCommands: Array<Array<String>>, req: Request){
+export async function setActions(app: Application, phaserCommands: Array<string>, req: Request){
     let actions: Commands = { 
         key: req.cookies["authKey"],
         commands: phaserCommands
     }
     usersActions.push(actions)
 }
-export async function getActions(app: Application){
-    app.get("/api/private/getExeCode", async (req: Request, res: Response) =>{
-}
+
 export async function getActions(app: Application){
     app.get("/api/private/getExeCode", async (req: Request, res: Response) =>{
         try{
