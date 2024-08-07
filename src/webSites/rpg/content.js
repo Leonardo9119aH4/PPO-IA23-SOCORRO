@@ -85,7 +85,7 @@ async function content(){
     const levelScript = await import(levelUrl)
     class LoadLevel extends loadScript.LoadLevel{}
     class Level extends levelScript.Level{}
-    const game = new Phaser.Game(config.type)
+    const game = new Phaser.Game(config)
 }
 main()
 content()
