@@ -4,7 +4,7 @@ export class LoadLevel extends Phaser.Scene {
     }
     preload(){
         this.load.image("background-tiles", "/webSites/rpg/localAssets/background.png")
-        this.load.tilemapTiledJSON("background-map", "/webSites/rpg/localAssets/scenario.json")
+        this.load.tilemapTiledJSON("background-map", "/webSites/rpg/localAssets/background.json")
         this.load.spritesheet("ciceroIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*26,
             frameHeight: 30*26
@@ -52,19 +52,17 @@ export class LoadLevel extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
-        const gameWidth = this.sys.canvas.width;
-        const progressbar = this.add.graphics();
-        const barWidth = 0.8 * gameWidth;
-        this.load.on('progress', (value) => {
-            progressbar.clear();
-            progressbar.fillStyle(0xffffff, 1);
-            progressbar.fillRect((gameWidth - barWidth) / 2, this.sys.game.config.height / 2, barWidth * value, 20);
-            progressbar.lineStyle(4, 0xffff00, 1);
-            progressbar.strokeRect((gameWidth - barWidth) / 2, this.sys.game.config.height / 2, barWidth, 20);
-        });
-        this.load.on('complete', () => {
-            this.scene.start('Level');
-        });
+        // const gameWidth = this.sys.canvas.width;
+        // const progressbar = this.add.graphics();
+        // const barWidth = 0.8 * gameWidth;
+        // this.load.on('progress', (value) => {
+        //     progressbar.clear();
+        //     progressbar.fillStyle(0xffffff, 1);
+        //     progressbar.fillRect((gameWidth - barWidth) / 2, this.sys.game.config.height / 2, barWidth * value, 20);
+        //     progressbar.lineStyle(4, 0xffff00, 1);
+        //     progressbar.strokeRect((gameWidth - barWidth) / 2, this.sys.game.config.height / 2, barWidth, 20);
+        // });
+        this.scene.start('Level');
     }
     update(){
 
