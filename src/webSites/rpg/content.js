@@ -89,6 +89,13 @@ async function content(){
         width: 800,
         height: 600,
         parent: 'game',
+        "physics": {
+            default: "arcade",
+            arcade: {
+                gravity: 0,
+                debug: false
+            }
+        },
         scene: [LoadLevel, Level], 
         type: Phaser.AUTO 
     };
