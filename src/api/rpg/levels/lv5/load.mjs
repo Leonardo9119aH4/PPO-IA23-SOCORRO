@@ -3,22 +3,52 @@ export class LoadLevel extends Phaser.Scene {
         super({ key: 'LoadLevel' })
     }
     preload(){
-        this.load.image("scenario", "/webSites/rpg/localAssets/scenario.png")
-        //this.load.image("wall", "/webSites/rpg/localAssets/wall.png")
+        this.load.image("background-tiles", "/webSites/rpg/localAssets/background.png")
+        this.load.tilemapTiledJSON("background-map", "/webSites/rpg/localAssets/scenario.json")
         this.load.spritesheet("ciceroIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
-            frameWidth: 17*50,
-            frameHeight: 40*50
+            frameWidth: 30*26,
+            frameHeight: 30*26
         })
-        this.load.spritesheet("ciceroWalk", "/webSites/rpg/localAssets/sprites/Cicero/CiceroWalk.png")
-        this.load.spritesheet("ciceroAttackDown", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackDown.png")
-        this.load.spritesheet("ciceroAttackUp", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackUp.png")
-        this.load.spritesheet("ciceroAttackSides", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackSides.png")
-        // this.load.spritesheet("bug1Idle", "/webSites/rpg/localAssets/sprites/Bug 1/Bug1Idle.png")
-        // this.load.spritesheet("bug1AttackSides", "/webSites/rpg/localAssets/sprites/Bug 1/Bug1AttackSides.png")
-        // this.load.spritesheet("bug2Idle", "/webSites/rpg/localAssets/sprites/Bug 2/Bug2Idle.png")
-        // this.load.spritesheet("bug2AttackSides", "/webSites/rpg/localAssets/sprites/Bug 2/Bug2AttackSides.png")
-        // this.load.spritesheet("bug3Idle", "/webSites/rpg/localAssets/sprites/Bug 3/Bug3Idle.png")
-        // this.load.spritesheet("bug3AttackSides", "/webSites/rpg/localAssets/sprites/Bug 3/Bug3AttackSides.png")
+        this.load.spritesheet("ciceroWalk", "/webSites/rpg/localAssets/sprites/Cicero/CiceroWalk.png",{
+            frameWidth: 30*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("ciceroAttackDown", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackDown.png",{
+            frameWidth: 30*26,
+            frameHeight: 60*26
+        })
+        this.load.spritesheet("ciceroAttackUp", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackUp.png",{
+            frameWidth: 30*26,
+            frameHeight: 60*26
+        })
+        this.load.spritesheet("ciceroAttackSides", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackSides.png",{
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug1Idle", "/webSites/rpg/localAssets/sprites/Bug 1/Bug1Idle.png",{
+            frameWidth: 30*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug1AttackSides", "/webSites/rpg/localAssets/sprites/Bug 1/Bug1AttackSides.png", {
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug2Idle", "/webSites/rpg/localAssets/sprites/Bug 2/Bug2Idle.png", {
+            frameWidth: 30*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug2AttackSides", "/webSites/rpg/localAssets/sprites/Bug 2/Bug2AttackSides.png", {
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug3Idle", "/webSites/rpg/localAssets/sprites/Bug 3/Bug3Idle.png",{
+            frameWidth: 30*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug3AttackSides", "/webSites/rpg/localAssets/sprites/Bug 3/Bug3AttackSides.png",{
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
