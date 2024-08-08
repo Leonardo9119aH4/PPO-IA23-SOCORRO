@@ -17,6 +17,12 @@ export class Level extends Phaser.Scene {
             frameRate: 10, // Taxa de quadros por segundo
             repeat: -1 // Repetir a animação indefinidamente
         });
+        this.anims.create({
+            key: 'ciceroWalk',
+            frames: this.anims.generateFrameNumbers('ciceroWalk', { start: 0, end: 7}),
+            frameRate: 10,
+            repeat: 1
+        })
         // this.physics.add.collider(this.player.sprite, bug1Idle)
         // this.physics.add.collider(this.player.sprite, bug2Idle)
         // this.physics.add.collider(this.player.sprite, bug3Idle)
