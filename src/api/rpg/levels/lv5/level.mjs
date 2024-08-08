@@ -135,6 +135,7 @@ export class Level extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('playerIdle', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
+        this.player.anims.play("playerIdle", true)
     }
     update(){
         
@@ -145,6 +146,12 @@ export class Level extends Phaser.Scene {
         //executor de código
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
+                this.player.setVelocityY() //quantidade de pixels a ser movida para cima
+                this.player.anims.play("playerWalk", true)
+                setTimeout(()=>{
+                    this.player.setVelocityY(0)
+                    this.player.anims.stop()
+                }, 1000)
 
             }
             if(actions[i]==="down"){
