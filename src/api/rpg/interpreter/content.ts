@@ -7,8 +7,7 @@ import fs from 'fs-promise'
 import path from 'path'
 
 import { Commands } from './commands'
-import { detectTime } from './time'
-import { getActions } from '../rpg'
+import { setActions } from '../rpg'
 
 export function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
@@ -16,12 +15,12 @@ export function runMove(app: Application){
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
         load(inputcommands, reqCommands, gameVars)
-        getActions(app, phaserCommands, req)
+        setActions(app, phaserCommands, req)
         res.status(200).json(phaserCommands)
     })
 }
 
-var phaserCommands: Array<Array<string>>
+var phaserCommands: Array<string>
 
 export function load(inputcommands: Array<string>, commandsjson: Array<Commands>, gameVars: Array<Array<string>>) {
     for(let i = 0; i < inputcommands.length; i++) {
@@ -38,8 +37,7 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         }
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                phaserCommands.push(movecalc(commandelement, detectTime(inputcommands[i])))
-                phaserCommands.push()
+                phaserCommands.push(movecalc(commandelement))
             }
         })
     }
