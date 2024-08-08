@@ -87,15 +87,3 @@ async function content(){
 }
 main()
 content()
-
-async function btExec() {
-    var inputcommands = input.value.split('\n')
-    let response = await fetch('/api/private/interpreter', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-       body: JSON.stringify({inputcommands: inputcommands, GameDOM: GameDOM})
-    })
-    const data = await response.json()
-}
