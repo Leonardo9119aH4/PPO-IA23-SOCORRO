@@ -65,7 +65,6 @@ export class LoadLevel extends Phaser.Scene {
         this.load.on('complete', () => {
             this.scene.start('Level');
         });
-        jogador.
     }
     update(){
 
