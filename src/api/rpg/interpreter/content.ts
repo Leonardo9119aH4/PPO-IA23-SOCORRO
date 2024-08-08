@@ -15,8 +15,8 @@ export function runMove(app: Application){
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
         load(inputcommands, reqCommands, gameVars)
-        setActions(app, phaserCommands, req)
-        res.status(200).json(phaserCommands)
+        await setActions(app, phaserCommands, req)
+        res.status(200)
     })
 }
 
@@ -37,7 +37,7 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         }
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                phaserCommands.push(movecalc(commandelement))
+                phaserCommands.push(movecalc(commandelement, tiles, screenHeigth, sreenWidth))
             }
         })
     }
