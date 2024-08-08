@@ -28,9 +28,6 @@ export async function rpg(app: Application, prisma: PrismaClient){
                             res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/config.json`)) //configuração das cenas
                         }
                         else if(req.body.getfile === 1){
-                            res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/load.mjs`)) //carregador do nível
-                        }
-                        else if(req.body.getfile === 2){
                             res.sendFile(path.join(__dirname, `./levels/lv${req.body.level}/level.mjs`)) //o nível em si
                         }
                         else{
