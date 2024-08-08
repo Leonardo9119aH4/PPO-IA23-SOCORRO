@@ -15,3 +15,7 @@ export function movecalc(command: Commands, tiles: number) {
     }
     return ["sad"]
 }
+
+/*
+Esta função retorna
+*/

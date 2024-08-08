@@ -8,6 +8,7 @@ import path from 'path'
 
 import { Commands } from './commands'
 import { setActions } from '../rpg'
+import {getTiles} from './getTiles'
 
 export function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
@@ -19,6 +20,16 @@ export function runMove(app: Application){
         res.status(200)
     })
 }
+
+/*
+Estrutura do phaser commands:
+[
+    ["up", "(quantidade de tiles)"],
+    ["down", "(quantidade de tiles)"],
+    ["left", "(quantidade de tiles)"],
+    ["rigth", "(quantidade de tiles)"]
+]
+*/
 
 var phaserCommands: Array<Array<string>>
 
@@ -35,6 +46,7 @@ export function load(inputcommands: Array<string>, commandsjson: Array<Commands>
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
             i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars)
         }
+        let tiles: number = Number(getTiles(inputcommands[i]));
         commandsjson.forEach((commandelement: Commands) => {
             if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
                 phaserCommands.push(movecalc(commandelement, tiles))
