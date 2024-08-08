@@ -2,69 +2,75 @@
 [
      
     {
-        "ask": "Qual a saída de escreva(3 + 2 - 2)?",
+        "ask": "Qual a saída de escreva(3 * 2 - 2)?",
         "alt": ["10", "7", "8", "9"],
-        "ans": 1,
+        "ans": 2,
         "image": null 
     },
     {
-        "ask": "2.é possivel atribuir um valor enquanto declaro uma variável: inteiro a = 1?",
-        "alt": [" sim", " não"],
+        "ask": "Qual a saída de escreva((3 + 2) * 2)?",
+        "alt": ["10", "7", "8", "9"],
         "ans": 0,
         "image": "test.png"
     },
     {
-        "ask": "3.Qual é o resultado da expressão 3 + 2 * 2?",
-        "alt": [" 10", " 7", " 8", " 9"],
-        "ans": 1,
-        "image": null 
-    },
-    {
-        "ask": "4.Qual função é usada para imprimir algo na tela em C?",
-        "alt": [" escreva()", "leia()"],
+        "ask": "Qual a saída de escreva(3 + 3) / 3?",
+        "alt": [" 1", " 2", " 3", " 4"],
         "ans": 0,
         "image": null 
     },
     {
-        "ask": "5.Qual a saída de escreva('olá' + 'mundo')?",
-        "alt": ["olá mundo", "olá mundo", "olá mundo", "olá+mundo"],
+        "ask": "Qual a saída de escreva(2*(2+(2+1)))?",
+        "alt": [" 8", "10", "12", "15"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "(5falta img)Observando o seguinte código, qual será o valor de “c”",
+        "alt": ["c = 1", "c = 2", "c = 3", "c = 4"],
+        "ans": 2,
+        "image": "lvl1ex5" 
+    },
+    {
+        "ask": "Qual a saída de escreva((1 + 2) * 3 + 1)?",
+        "alt": ["12", "11", "9", "10"],
+        "ans": 3,
+        "image": null 
+    },
+    {
+        "ask": "Observe a seguinte declaração de variável: real a = 1.5, b = 2.5. Qual será a soma das variáveis “a” e ”b”??",
+        "alt": ["3.5", "4", "4.5", "5"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "(8falta img)Observando o pequeno código a abaixo, qual será o valor de c?",
+        "alt": ["3", "4", "5", "6"],
+        "ans": 2,
+        "image": "lvl1ex8.png"
+    },
+    {
+        "ask": "(10falta img)Observe o pequeno código a seguir:",
+        "alt": ["7", "15", "16", "9"],
+        "ans": 1,
+        "image": "lvl1ex10" 
+    },
+    {
+        "ask": "Qual a saída de escreva(1 +( 8 * 3))?",
+        "alt": ["27", "24", "25", "21"],
         "ans": 2,
         "image": null 
     },
     {
-        "ask": "6.O que faz a função leia() em C?",
-        "alt": ["Lê dados do teclado", "imprime dados na tela", "converte um valor", "calcula uma expressão"],
+        "ask": "O que o operador “%” representa?",
+        "alt": ["Módulo", "Divisão", "Exponenciação", "Multiplicação"],
         "ans": 0,
         "image": null 
     },
     {
-        "ask": "7.Qual a saída de escreva(((1 + 2) * 3) + 1)) ?",
-        "alt": ["9", "11", "10", "12"],
-        "ans": 2,
-        "image": null 
-    },
-    {
-        "ask": "8.Qual a saída de escreva(2*(2+(2+1))) ?",
-        "alt": ["8", "10", "12", "13"],
-        "ans": 1,
-        "image": null 
-    },
-    {
-        "ask": "9.Qual a saída de escreva(“u”  “a”  “u”) ?",
-        "alt": ["u au", "uau", " u a u", "“u”  “a”  “u”"],
-        "ans": 1,
-        "image": null 
-    },
-    {
-        "ask": "10.Observe a seguinte declaração de variável: real a = 1.5, b = 2.5. Qual será a soma das variáveis “a” e ”b”?",
-        "alt": ["5", "4.5", "4", "3.5"],
-        "ans": 2,
-        "image": null 
-    },
-    {
-        "ask": "11.Qual a saída de escreva(“a ”  “b ”  “c”) ?",
-        "alt": ["ab c", "a b c", "a bc", "12"],
-        "ans": 1,
+        "ask": "(12falta img)Observe o pequeno código a seguir:",
+        "alt": ["1", "1.5", "2.5", "3"],
+        "ans": 3,
         "image": null 
     }
 ] 
