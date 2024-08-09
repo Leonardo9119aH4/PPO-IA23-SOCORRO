@@ -43,7 +43,7 @@ async function getLevel(level){
         })
     })
     const config = await configRequest.json()
-    const loadRequest = await fetch("/api/private/getrpg", {
+    const levelRequest = await fetch("/api/private/getrpg", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -53,19 +53,8 @@ async function getLevel(level){
             "getfile": 1
         })
     })
-    const load = await loadRequest.text()
-    const levelRequest = await fetch("/api/private/getrpg", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "level": level,
-            "getfile": 2
-        })
-    })
     const levelText = await levelRequest.text()
-    return [config, load, levelText]
+    return [config, levelText]
     
 }
 async function content(){
@@ -75,22 +64,24 @@ async function content(){
     const life = data1[2]
     const data2 = await getLevel(level) //arquivos secundários, precisam dos arquivos primários
     // let config = data2[0]
-    const loadText = data2[1]
-    const levelText = data2[2]
-    const loadBlob = new Blob([loadText], { type: 'application/javascript' });
-    const loadUrl = URL.createObjectURL(loadBlob);
+    const levelText = data2[1]
     const levelBlob = new Blob([levelText], { type: 'application/javascript' });
     const levelUrl = URL.createObjectURL(levelBlob);
-    const loadScript = await import(loadUrl)
     const levelScript = await import(levelUrl)
-    class LoadLevel extends loadScript.LoadLevel{}
     class Level extends levelScript.Level{}
     const config = { //gambiarra pq o js é burro e não consegue obter isso com json
         width: 800,
         height: 600,
-        parent: 'game-container',
-        scene: [LoadLevel, Level], 
-        type: Phaser.AUTO 
+        parent: 'game',
+        "physics": {
+            default: "arcade",
+            arcade: {
+                gravity: 0,
+                debug: false
+            }
+        },
+        scene: [Level], 
+        type: Phaser.CANVAS //WebGL só aceita dimensões com potência de base 2 
     };
     const game = new Phaser.Game(config)
 }
