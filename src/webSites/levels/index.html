@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGamix</title>
+    <link rel="Stylesheet" href="/webSites/levels/content.css">
+    <script async defer type="module" src="/webSites/levels/content.js"></script>
+</head>
+<body>
+    <nav> <!-- Injetado pelo main.js -->
+
+    </nav>
+    <div id="zeroLife">
+        <div class="content">
+            <h1>Você não pode começar uma fase sem vidas!</h1>
+            <h2>Pratique ou aguarde 2 horas para recuperar vidas.</h2>
+            <button id="close">OK</button>
+        </div>
+    </div>
+    <main>
+        <div id="levels"> <!-- Níveis injetados pelo JS, com base no banco de dados -->
+           <div class="content">
+            
+           </div>
+        </div>
+        <div id="exp">
+            <div id="life">
+                <h1>
+                    5
+                </h1>
+                <img src="/globalAssets/images/life.png">
+            </div>
+            <div class="text">
+                <h1>Ranking diário</h1> <!-- Lista alterada pelo banco de dados -->
+                <p id="RankP1">1. Fulano</p>
+                <p id="RankP2">2. Ciclano</p>
+                <p id="RankP3">3. Trilano</p>
+                <p id="RankP4">4. Deutrano</p>
+                <p id="RankP5">5. Neutrônio</p>
+                <h1>Experiência</h1>
+                <p id="RankUser">Você: N XP</p>
+            </div> <!-- Lista de menu diário -->
+            <a id="practice" href="/webSites/practice/index.html"><button>PRATICAR</button></a>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

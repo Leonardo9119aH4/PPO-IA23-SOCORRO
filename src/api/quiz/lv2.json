@@ -1,0 +1,45 @@
+[
+    {
+        "ask": "Qual função é usada para imprimir algo na tela em C?",
+        "alt": ["escreva()", "leia()", "tela", "mostre()"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Qual a saída de escreva(“Olá mundo”)?",
+        "alt": ["“Olá mundo”", "olámundo", "olá mundo", "mostre()"],
+        "ans": 2,
+        "image": null 
+    },
+    {
+        "ask": "Qual a saída de escreva(“Olá” “mundo”)?",
+        "alt": ["“Olá mundo”", "olámundo", "olá mundo", "mostre()"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "O que faz a função leia() em C?",
+        "alt": ["Lê dados do teclado", "Imprime dados na tela", "Calcula uma expressão", "Converte um valor"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Qual a saída de escreva(“a ”,  “b ”,  “c”)?",
+        "alt": ["abc", "“a” “b” “c”", "", " a b c", " ab c"],
+        "ans": 2,
+        "image": null 
+    },
+    {
+        "ask": "Qual a saída de escreva(“u”,  “a”,  “u”) ?",
+        "alt": ["uau", "u a u", "“u”  “a”  “u”", "u au"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Qual a saída de escreva(“3 + 2 * 2”)?",
+        "alt": ["“3 + 2 * 2”", "3 + 2 * 2", "10", "7"],
+        "ans": 1,
+        "image": null 
+    }
+
+]

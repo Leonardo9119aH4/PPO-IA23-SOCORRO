@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  realname String
+  email String @unique
+  phone String @unique
+  level Int @default(1)
+  exp Float @default(0)
+  life Int @default(5)
+  posts Admin[]
+  keys AuthKey[]
+}
+model Admin {
+  id Int @id 
+  user User @relation(fields: [id], references: [id])
+}
+model AuthKey {
+  id Int @id @default(autoincrement())
+  key String @unique
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+// model ExpHistoric{
+//   id Int @id @default(autoincrement())
+//   expDay DateTime
+//   exp Float @default(0)
+//   userId Int  @relation(fields: [userId], references: [id])
+// }

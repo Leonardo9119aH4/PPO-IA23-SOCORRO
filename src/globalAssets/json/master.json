@@ -1,0 +1,42 @@
+[
+    {
+        "type": "intro"
+    },
+    {
+        "type": "quiz",
+        "theory": false
+    },
+    {
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Explicando Magic-C",
+        "get_theory": "first"
+    },
+    {
+        "type": "quiz",
+        "theory": false
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "bloquinhu",
+        "level_header": "resolva o algoritimo a seguir: "
+    },
+    {
+        "type": "rpg",
+        "theory": false
+    },
+    {
+        "type": "rpg",
+        "theory": false
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "nível 7",
+        "level_header": "1 3 2"
+    },
+    {
+        "type": "intro"
+    }
+]

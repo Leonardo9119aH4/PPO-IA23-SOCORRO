@@ -1,0 +1,6 @@
+node_modules
+.vscode
+prisma/prisma/dev.db
+prisma/dev.db
+
+

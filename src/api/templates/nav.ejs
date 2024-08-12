@@ -1,0 +1,24 @@
+<button id="mnhamburg">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+<div id="subNav" class="closed-menu">
+    <% if (logged) { %>
+        <a href="/webSites/account/index.html" id="account">
+            <img src="/globalAssets/images/account-img" alt="Foto do seu perfil">
+            <p id="username"><%= username %></p>
+        </a>
+        <a href="/webSites/main/index.html">Main page</a>
+        <a href="/webSites/levels/index.html">Níveis</a>
+        <a id="logout">Sair</a>
+    <% } else { %>
+        <a href="/webSites/login/index.html" id="account">
+            <img src="/globalAssets/images/white-logo.png" alt="Logo do Codegamix">
+            <p id="username">Codegamix</p>
+        </a>
+        <a href="/webSites/main/index.html">Main page</a>
+        <a href="/webSites/login/index.html">Entrar</a>
+        <a href="/webSites/signup/index.html">Cadastrar</a>
+    <% } %>
+</div>

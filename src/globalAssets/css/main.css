@@ -1,0 +1,126 @@
+:root {
+    --navwi: 25%; /*widht do nav*/
+    --sizemnbt: 3rem; /*tamanho do botão hamburguer*/
+    --marginbtham: 1rem; /*margem esquerda do botão hamburguer*/
+    --color-button: black; /*cor padrão de todos os botões*/
+    --color-button-hover: rgb(180, 180, 180); /*cor padrão do botão com propriedade hover*/
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+/*BUTTON*/
+button#mnhamburg{
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: calc(var(--sizemnbt)/6);
+    position: fixed;
+    height: var(--sizemnbt);
+    width: var(--sizemnbt);
+    top: 1rem;
+    left: var(--marginbtham);
+    transition: left .5s;
+    z-index: 1000;
+}
+button#mnhamburg.open-nav{
+    left: calc(var(--navwi) - var(--sizemnbt) / 2);
+}
+button#mnhamburg>span{
+    --_rotate:44deg;
+    --_scale:1.35;
+    display: block;
+    height: calc(var(--sizemnbt)/25);
+    width: 100%;
+    background-color: black;
+    transition: transform .75s;
+}
+button#mnhamburg>span:first-of-type,
+button#mnhamburg>span:last-of-type {
+    transform-origin: left;
+}
+button#mnhamburg.open-nav>span:first-of-type {
+    transform: rotate(var(--_rotate)) scaleX(var(--_scale));
+}
+button#mnhamburg.open-nav>span:last-of-type {
+    transform: rotate(calc(var(--_rotate)*-1)) scaleX(var(--_scale));
+}
+button#mnhamburg.open-nav>span:nth-child(2) {
+    transform: rotate(360deg) scale(0%);
+}
+/*ACCOUNT*/
+a#account {
+    display: flex;
+    background-color: var(--color-button);
+    transition: background-color .2s;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    & img{
+        height: 2rem;
+    }
+}
+/*LINKS*/
+div#subNav {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    width: var(--navwi);
+    left: calc(var(--navwi)*-1);
+    transition: left .65s;
+    background-color: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(1.5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: calc(var(--sizemnbt)/2);
+    z-index: 999;
+}
+div#subNav>a {
+    background-color: var(--color-button);
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    transition: background-color .2s;
+    text-decoration: none;
+}
+div#subNav>a:hover, div#account:hover {
+    background-color: var(--color-button-hover);
+}
+div#subNav.open-nav {
+    left: 0;
+}
+/*FOOTER*/
+footer {
+    background-color: #272727;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    & section{
+        display: grid;
+        place-items: center;
+        & a{
+            color: white;
+            text-decoration: none;
+        }
+        & a:hover{
+            color: orangered;
+        }
+    }
+}
+/*CSS GLOBAL GERAL*/
+button {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}   
