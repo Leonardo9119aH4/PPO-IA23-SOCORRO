@@ -20,7 +20,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"C:\/Program Files (x86)\/Tiled\/examples\/tmw_desert_spacing.png",
+         "image":"/webSites/rpg/localAssets/background.png",
          "imageheight":199,
          "imagewidth":265,
          "margin":1,
