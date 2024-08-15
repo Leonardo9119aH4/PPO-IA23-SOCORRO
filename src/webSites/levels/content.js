@@ -62,9 +62,11 @@ async function content(){
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life
     rankUser.innerHTML = `Você: ${exp} XP`
-    for(let i=0; i<ranking.length; i++){
-       rankPlayers[i].innerHTML = "1. " + ranking[i].username + ": " + ranking[i].exp + " XP"
-    }
+    rankP1.innerHTML = "1. " + ranking[0].username
+    rankP2.innerHTML = "2. " + ranking[1].username
+    rankP3.innerHTML = "3. " + ranking[2].username
+    rankP4.innerHTML = "4. " + ranking[3].username
+    rankP5.innerHTML = "5. " + ranking[4].username
     for(let i=0; i<=LN; i++){ //injeta os níveis
         if(master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`
