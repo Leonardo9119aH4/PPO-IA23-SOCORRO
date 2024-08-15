@@ -3,7 +3,7 @@ export class Level extends Phaser.Scene {
         super({ key: 'Level' })
     }
     preload(){
-        this.load.image("background-tiles", "/webSites/rpg/localAssets/background.png")
+        this.load.image('background-tiles', '/webSites/rpg/localAssets/background.png')
         this.load.tilemapTiledJSON("background-map", "/webSites/rpg/localAssets/background.json")
         this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*26,
