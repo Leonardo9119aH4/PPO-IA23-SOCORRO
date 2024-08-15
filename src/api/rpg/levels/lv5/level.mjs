@@ -3,7 +3,7 @@ export class Level extends Phaser.Scene {
         super({ key: 'Level' })
     }
     preload(){
-        this.load.image("background-tiles", "/webSites/rpg/localAssets/background.png")
+        this.load.image('background-tiles', '/webSites/rpg/localAssets/background.png')
         this.load.tilemapTiledJSON("background-map", "/webSites/rpg/localAssets/background.json")
         this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*53,
@@ -54,10 +54,10 @@ export class Level extends Phaser.Scene {
     create(){
         console.log("create")
         const backgroundMap = this.make.tilemap({ key: 'background-map' }) // Adicionar o tileset ao tilemap
-        const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
-        const backgroundLayer = backgroundMap.createLayer('background-map', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        backgroundLayer.setScale(2)
-        backgroundLayer.setOrigin(0, 0)
+        // const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
+        // const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        // backgroundLayer.setScale(2)
+        // backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
         this.player = this.physics.add.sprite(50, 50, 'playerIdle')
         this.player.setScale(1/7)
