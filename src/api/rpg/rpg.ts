@@ -53,6 +53,7 @@ type Commands = { //salvar comandos do phaser
 }
 let usersActions: Array<Commands>
 export async function setActions(app: Application, phaserCommands: Array<Array<string>>, req: Request){
+    console.log("setActions")
     let actions: Commands = { 
         key: req.cookies["authKey"],
         commands: phaserCommands
