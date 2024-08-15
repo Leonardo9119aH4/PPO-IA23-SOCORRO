@@ -5,23 +5,23 @@ export class Level extends Phaser.Scene {
     preload(){
         this.load.image("background-tiles", "/webSites/rpg/localAssets/background.png")
         this.load.tilemapTiledJSON("background-map", "/webSites/rpg/localAssets/background.json")
-        this.load.spritesheet("ciceroIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
+        this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("ciceroWalk", "/webSites/rpg/localAssets/sprites/Cicero/CiceroWalk.png",{
+        this.load.spritesheet("playerWalk", "/webSites/rpg/localAssets/sprites/Cicero/CiceroWalk.png",{
             frameWidth: 30*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("ciceroAttackDown", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackDown.png",{
+        this.load.spritesheet("playerAttackDown", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackDown.png",{
             frameWidth: 30*26,
             frameHeight: 60*26
         })
-        this.load.spritesheet("ciceroAttackUp", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackUp.png",{
+        this.load.spritesheet("playerAttackUp", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackUp.png",{
             frameWidth: 30*26,
             frameHeight: 60*26
         })
-        this.load.spritesheet("ciceroAttackSides", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackSides.png",{
+        this.load.spritesheet("playerAttackSides", "/webSites/rpg/localAssets/sprites/Cicero/CiceroAttackSides.png",{
             frameWidth: 60*26,
             frameHeight: 30*26
         })
@@ -52,19 +52,17 @@ export class Level extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
+        console.log("create")
         const backgroundMap = this.make.tilemap({ key: 'background-map' }) // Adicionar o tileset ao tilemap
-        const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
-        const backgroundLayer = backgroundMap.createLayer('background-map', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        backgroundLayer.setScale(2)
-        backgroundLayer.setOrigin(0, 0)
+        // const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
+        // const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        // backgroundLayer.setScale(2)
+        // backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
         this.player = this.physics.add.sprite(100, 100, 'player')
         this.player.setBounce(0.2)
         this.player.setCollideWorldBounds(true)
         this.player.body.setGravity(0, 0)
-        this.player.health = 100 //vida do jogador
-        this.player.defense = 10 //defesa do jogador
-        this.player.attack = 10 //ataque do jogador
         // this.physics.add.collider(this.player.sprite, bug1Idle)
         // this.physics.add.collider(this.player.sprite, bug2Idle)
         // this.physics.add.collider(this.player.sprite, bug3Idle)
