@@ -51,7 +51,7 @@ async function getData(){
     }
     let exp = await expRqst.json()
     const rankingRqst = await fetch("/api/getrank") //método get, delícia
-    const ranking = rankingRqst.json()
+    const ranking = await rankingRqst.json()
     return [LN, life, exp, ranking]
 }
 async function content(){
@@ -66,11 +66,11 @@ async function content(){
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life
     rankUser.innerHTML = `Você: ${exp} XP`
-    rankP1.innerHTML = ranking[0]
-    rankP2.innerHTML = ranking[1]
-    rankP3.innerHTML = ranking[2]
-    rankP4.innerHTML = ranking[3]
-    rankP5.innerHTML = ranking[4]
+    rankP1.innerHTML = "1. " + ranking[0].username
+    rankP2.innerHTML = "2. " + ranking[1].username
+    rankP3.innerHTML = "3. " + ranking[2].username
+    rankP4.innerHTML = "4. " + ranking[3].username
+    rankP5.innerHTML = "5. " + ranking[4].username
     for(let i=0; i<=LN; i++){ //injeta os níveis
         if(master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`

@@ -18,7 +18,7 @@ export async function getRank(app: Application, prisma: PrismaClient){
                         bestUsers[x] = el
                     }
                 }
-                else if(el.exp > bestUsers[0]){
+                else if(el.exp > bestUsers[0].exp){
                     for(let x=4; x>0; x--){
                         bestUsers[x] = bestUsers[x-1]
                     }
