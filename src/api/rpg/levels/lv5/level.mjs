@@ -54,10 +54,10 @@ export class Level extends Phaser.Scene {
     create(){
         console.log("create")
         const backgroundMap = this.make.tilemap({ key: 'background-map' }) // Adicionar o tileset ao tilemap
-        // const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
-        // const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        // backgroundLayer.setScale(2)
-        // backgroundLayer.setOrigin(0, 0)
+        const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
+        const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        backgroundLayer.setScale(2)
+        backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
         this.player = this.physics.add.sprite(100, 100, 'player')
         this.player.setBounce(0.2)
