@@ -2,11 +2,7 @@ import {main, fatalError} from "/globalAssets/js/main.js"
 const mainTag = document.querySelector("#levels .content")
 const lifeDOM = document.querySelector("#life>h1")
 const rankUser = document.querySelector("#RankUser")
-const rankP1 = document.querySelector("#RankP1")
-const rankP2 = document.querySelector("#RankP2")
-const rankP3 = document.querySelector("#RankP3")
-const rankP4 = document.querySelector("#RankP4")
-const rankP5 = document.querySelector("#RankP5")
+const rankPlayers = document.querySelectorAll(".RankPlayers")
 const zeroLifePopup = document.querySelector("#zeroLife") //popup de quando não tem vida
 const closePopup = zeroLifePopup.querySelector("button#close") //botão para fechar popup de quando não tem vida
 async function getData(){
@@ -66,11 +62,9 @@ async function content(){
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life
     rankUser.innerHTML = `Você: ${exp} XP`
-    rankP1.innerHTML = "1. " + ranking[0].username + ": " + ranking[0].exp + " XP"
-    rankP2.innerHTML = "2. " + ranking[1].username + ": " + ranking[1].exp + " XP"
-    rankP3.innerHTML = "3. " + ranking[2].username + ": " + ranking[2].exp + " XP"
-    rankP4.innerHTML = "4. " + ranking[3].username + ": " + ranking[3].exp + " XP"
-    rankP5.innerHTML = "5. " + ranking[4].username + ": " + ranking[4].exp + " XP"
+    for(let i=0; i<ranking.length; i++){
+       rankPlayers[i].innerHTML = "1. " + ranking[i].username + ": " + ranking[i].exp + " XP"
+    }
     for(let i=0; i<=LN; i++){ //injeta os níveis
         if(master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`
