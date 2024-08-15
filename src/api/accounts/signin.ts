@@ -43,7 +43,6 @@ export async function signIn(app: Application, prisma: PrismaClient){
                     users.forEach(async el => {
                         if(el.username==req.body.login && el.password==req.body.password){
                             userHasFound=true
-                            console.log(el)
                             await genCookie(el)
                             res.status(200).json(1)
                         }
