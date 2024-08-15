@@ -2,10 +2,15 @@ import {main, fatalError} from "/globalAssets/js/main.js"
 const mainTag = document.querySelector("#levels .content")
 const lifeDOM = document.querySelector("#life>h1")
 const rankUser = document.querySelector("#RankUser")
+const rankP1 = document.querySelector("#RankP1")
+const rankP2 = document.querySelector("#RankP2")
+const rankP3 = document.querySelector("#RankP3")
+const rankP4 = document.querySelector("#RankP4")
+const rankP5 = document.querySelector("#RankP5")
 const zeroLifePopup = document.querySelector("#zeroLife") //popup de quando não tem vida
 const closePopup = zeroLifePopup.querySelector("button#close") //botão para fechar popup de quando não tem vida
 async function getData(){
-    let LNRqst = await fetch("/api/private/levelsunlocked", {
+    const LNRqst = await fetch("/api/private/levelsunlocked", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -20,8 +25,8 @@ async function getData(){
         window.location.href = "/webSites/main/index.html"
         return
     }
-    let LN = await LNRqst.json()
-    let lifeRqst = await fetch("/api/private/lifes", {
+    const LN = await LNRqst.json()
+    const lifeRqst = await fetch("/api/private/lifes", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -32,8 +37,8 @@ async function getData(){
         fatalError(500)
         return
     }
-    let life = await lifeRqst.json()
-    let expRqst = await fetch("/api/private/exp", {
+    const life = await lifeRqst.json()
+    const expRqst = await fetch("/api/private/exp", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -45,8 +50,9 @@ async function getData(){
         return
     }
     let exp = await expRqst.json()
-    
-    return [LN, life, exp]
+    const rankingRqst = await fetch("/api/getrank") //método get, delícia
+    const ranking = rankingRqst.json()
+    return [LN, life, exp, ranking]
 }
 async function content(){
     main()
@@ -54,11 +60,17 @@ async function content(){
     let LN = data[0] //obtém o nível em que o usuário está
     let life = data[1] //obtém as vidas dele
     let exp = data[2] //obtém o xp do usuário
+    let ranking = data[3] //obtém o ranking dos jogadores com mais xp
     exp = Math.floor(exp * 100) / 100
     const masterRqst = await fetch("/globalAssets/json/master.json");
     const master = await masterRqst.json();
     lifeDOM.innerHTML = life
     rankUser.innerHTML = `Você: ${exp} XP`
+    rankP1.innerHTML = ranking[0]
+    rankP2.innerHTML = ranking[1]
+    rankP3.innerHTML = ranking[2]
+    rankP4.innerHTML = ranking[3]
+    rankP5.innerHTML = ranking[4]
     for(let i=0; i<=LN; i++){ //injeta os níveis
         if(master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`
