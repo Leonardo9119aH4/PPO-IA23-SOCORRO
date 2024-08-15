@@ -52,11 +52,12 @@ export class Level extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
-        // const backgroundMap = this.make.tilemap({ key: 'background-map' })
-        // const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
-        // const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        // backgroundLayer.setScale(2)
-        // backgroundLayer.setOrigin(0, 0)
+        console.log("create")
+        const backgroundMap = this.make.tilemap({ key: 'background-map' }) // Adicionar o tileset ao tilemap
+        const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
+        const backgroundLayer = backgroundMap.createLayer('background-map', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        backgroundLayer.setScale(2)
+        backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
         this.player = this.physics.add.sprite(50, 50, 'playerIdle')
         this.player.setScale(1/7)
