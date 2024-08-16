@@ -58,8 +58,9 @@ export class Level extends Phaser.Scene {
         // backgroundLayer.setScale(2)
         // backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
-        this.player = this.physics.add.sprite(50, 50, 'playerIdle')
-        this.player.setScale(1/7)
+        this.player = this.physics.add.sprite(150, 150, 'playerIdle')
+        this.player.setDisplaySize(150, 150)
+        this.player.setSize(150, 150)
         this.player.setBounce(0.2)
         this.player.setCollideWorldBounds(true)
         this.player.body.setGravity(0, 0)
@@ -167,8 +168,7 @@ export class Level extends Phaser.Scene {
         const wall = this.physics.add.staticGroup()
         // this.physics.add.collider(this.player.sprite, enemy)
         //this.physics.add.collider(this.player.sprite, wall)
-        document.addEventListener('executeCode', this.executeCode.bind(this))
-        //debug
+        /* debug */
         this.cursors = this.input.keyboard.createCursorKeys();
         this.SPACEKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
         this.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
@@ -195,41 +195,42 @@ export class Level extends Phaser.Scene {
         }
     }
     async executeCode(){
-        const actionsRequest = await fetch("/api/private/getExeCode")
-        const actions = await actionsRequest.json()
+        // const actionsRequest = await fetch("/api/private/getExeCode")
+        // const actions = await actionsRequest.json()
+        const actions = ["right", "down", "left", "up"]
         //executor de código
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
-                this.player.setVelocityY() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityY(-100) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityY(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                }, 1000))
             }
             if(actions[i]==="down"){
-                this.player.setVelocityY() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityY(100) //quantidade de pixels a ser movida para baixo
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityY(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                }, 1000))
             }
             if(actions[i]==="right"){
-                this.player.setVelocityX() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityX(100) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityX(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                }, 1000))
             }
             if(actions[i]==="left"){
-                this.player.setVelocityX() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityX(-100) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityX(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                }, 1000))
             }
             if(actions[i]==="attack"){
                 
