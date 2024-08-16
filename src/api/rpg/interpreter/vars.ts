@@ -37,7 +37,7 @@ export function setVars(input: string, inputsplit: Array<string>, vars: Array<Ar
         let varvalue: Array<string> = []
         while(count < inputsplit.length) {
             if((inputsplit[count] != " ") && (inputsplit[count] != "=")){
-                varvalue.push(inputsplit[count])
+                //varvalue.push(inputsplit[count])
                 console.log(varname)
                 let varnamejoin: string = varname.join('')
                 let varvaluejoin: string = varvalue.join('')

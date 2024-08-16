@@ -4,11 +4,10 @@
     cursor: grab;
     border-radius: 10%;
     text-align: center;
-    width: max-content;
+    width: 25rem;
     user-select: none;
     color: white;
     height: 1.1rem;
-    width: 10rem;
 }
 #bl1{
     top: 0;

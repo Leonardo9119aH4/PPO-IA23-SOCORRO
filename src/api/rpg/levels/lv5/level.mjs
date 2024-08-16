@@ -25,29 +25,29 @@ export class Level extends Phaser.Scene {
             frameWidth: 60*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("bug1Idle", "/webSites/rpg/localAssets/sprites/Bug 1/Bug1Idle.png",{
+        this.load.spritesheet("bug1Idle", "/webSites/rpg/localAssets/sprites/Bug1/Bug1Idle.png",{
             frameWidth: 30*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("bug1AttackSides", "/webSites/rpg/localAssets/sprites/Bug 1/Bug1AttackSides.png", {
+        this.load.spritesheet("bug1AttackSides", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackSides.png", {
             frameWidth: 60*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("bug2Idle", "/webSites/rpg/localAssets/sprites/Bug 2/Bug2Idle.png", {
+        this.load.spritesheet("bug2Idle", "/webSites/rpg/localAssets/sprites/Bug2/Bug2Idle.png", {
             frameWidth: 30*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("bug2AttackSides", "/webSites/rpg/localAssets/sprites/Bug 2/Bug2AttackSides.png", {
+        this.load.spritesheet("bug2AttackSides", "/webSites/rpg/localAssets/sprites/Bug2/Bug2AttackSides.png", {
             frameWidth: 60*26,
             frameHeight: 30*26
         })
-        this.load.spritesheet("bug3Idle", "/webSites/rpg/localAssets/sprites/Bug 3/Bug3Idle.png",{
-            frameWidth: 30*26,
-            frameHeight: 30*26
+        this.load.spritesheet("bug3Idle", "/webSites/rpg/localAssets/sprites/Bug3/Bug3Idle.png",{
+            frameWidth: 30*53,
+            frameHeight: 30*53
         })
-        this.load.spritesheet("bug3AttackSides", "/webSites/rpg/localAssets/sprites/Bug 3/Bug3AttackSides.png",{
-            frameWidth: 60*26,
-            frameHeight: 30*26
+        this.load.spritesheet("bug3AttackSides", "/webSites/rpg/localAssets/sprites/Bug3/Bug3AttackSides.png",{
+            frameWidth: 60*53,
+            frameHeight: 30*53
         })
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
@@ -162,17 +162,46 @@ export class Level extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('bug3AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
+        //mecânicas e mapa
+        // const backgroundMap = this.make.tilemap({ key: 'background-map' })
+        // const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
+        // const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        // backgroundLayer.setScale(2)
+        // backgroundLayer.setOrigin(0, 0)
+        // backgorund.setDisplaySize(534, 401)
+        this.player = this.physics.add.sprite(100, 100, 'playerIdle')
+        this.player.setDisplaySize(100, 100)
+        this.player.setSize(100, 100)
+        this.player.setBounce(0.2)
+        this.player.setCollideWorldBounds(true)
+        this.player.body.setGravity(0, 0)
         this.player.anims.play("playerIdle", true)
-        // const backgorund = this.add.image(0, 0, "backgorund-tiles")
-        // backgorund.setOrigin(0, 0)
-        const wall = this.physics.add.staticGroup()
-        // this.physics.add.collider(this.player.sprite, enemy)
-        //this.physics.add.collider(this.player.sprite, wall)
+        // this.bug1 = this.physics.add.sprite(500, 500, 'bug1Idle')
+        // this.bug2 = this.physics.add.sprite(300, 300, 'bug2Idle')
+        this.bug3 = this.physics.add.sprite(400, 400, 'bug3Idle')
+        // this.bug1.setDisplaySize(100, 100)
+        // this.bug1.setSize(100, 100)
+        // this.bug2.setDisplaySize(100, 100)
+        // this.bug2.setSize(100, 100)
+        this.bug3.setDisplaySize(100, 100)
+        this.bug3.setSize(100, 100)
+        // this.bug1.body.setGravity(0, 0)
+        // this.bug2.body.setGravity(0, 0)
+        this.bug3.body.setGravity(0, 0)
+        // this.bug1.anims.play("bug1Idle", true)
+        // this.bug2.anims.play("bug2Idle", true)
+        this.bug3.anims.play("bug3Idle", true)
+        // const wall = this.physics.add.staticGroup()
+        // this.physics.add.collider(this.player.sprite, bug1Idle)
+        // this.physics.add.collider(this.player.sprite, bug2Idle)
+        // this.physics.add.collider(this.player.sprite, bug3Idle)
+        // this.physics.add.collider(this.player.sprite, wall)
         document.addEventListener('executeCode', this.executeCode.bind(this))
-        //debug
+        /* debug */
         this.cursors = this.input.keyboard.createCursorKeys();
         this.SPACEKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
         this.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
+        /* endDebug */
     }
     update(){
         //debug
@@ -194,45 +223,58 @@ export class Level extends Phaser.Scene {
         if(this.SPACEKey.isDown){
             this.player.anims.play("playerIdle", true)
         }
+        //endDebug
     }
     async executeCode(){
-        const actionsRequest = await fetch("/api/private/getExeCode")
-        const actions = await actionsRequest.json()
+        const actions = await JSON.parse(localStorage.getItem("actions"))
         //executor de código
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
-                this.player.setVelocityY() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityY(-100) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityY(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                    resolve()
+                }, 1000))
             }
             if(actions[i]==="down"){
-                this.player.setVelocityY() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityY(100) //quantidade de pixels a ser movida para baixo
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityY(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                    resolve()
+                }, 1000))
             }
             if(actions[i]==="right"){
-                this.player.setVelocityX() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityX(100) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityX(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                    resolve()
+                }, 1000))
             }
             if(actions[i]==="left"){
-                this.player.setVelocityX() //quantidade de pixels a ser movida para cima
+                this.player.setVelocityX(-100) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
-                setTimeout(()=>{
+                await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityX(0)
-                    this.player.anims.stop()
-                }, 1000)
+                    this.player.anims.play("playerIdle", true)
+                    resolve()
+                }, 1000))
             }
-            if(actions[i]==="attack"){
+            if(actions[i]==="attack-up"){
+                let distance = Phaser.Math.Distance.Between(player.x, player.y, enemy.x, enemy.y);
+            }
+            if(actions[i]==="attack-down"){
+                
+            }
+            if(actions[i]==="attack-right"){
+                
+            }
+            if(actions[i]==="attack-left"){
                 
             }
         }

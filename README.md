@@ -2,12 +2,12 @@
 
 https://drive.google.com/file/d/1XtqB8aaQHqk4NUQdl71w0Z2rNpWHlZXM/view?usp=sharing
 
-=============================================================================
+===========================================================================
 !! Requerimentos
 
 Precisa ter o Node.js instalado.
 
-=============================================================================
+===========================================================================
 !! Servidor
 
 Será usado Node.js com as frameworks express.js e prisma.js
@@ -16,7 +16,7 @@ Será usado a porta 3000 para host do servidor.
 
 Estão mapeados os diretórios "globalAssets" e "webSites".
 
-=============================================================================
+===========================================================================
 !! Organização de pastas
 
 Os arquivos e pastas do projeto ficarão na pasta "src", as outras pastas ao lado de "src" são coisas do Node,js e das frameworks, NÃO MEXER NESSAS PASTAS!
@@ -44,7 +44,7 @@ Os níveis de quiz, rpg e blocos são fixos (ex: nível 1, rpg; nível 2, quiz; 
 
 Cada pessoa terá seu nível global, e deverá ter referência para os níveis locais do rpg e dos blocos. O quiz usará grupo de níveis (equivalente a nível local, mas se repetindo em vários níveis globais).
 
-=============================================================================
+===========================================================================
 !! Padronização de código
 
 Comentar todas as variáveis, constantes e funções, especificando o seu uso e a sua função.
@@ -53,7 +53,7 @@ Não usar early return quando não precisa.
 
 Referência de diretório (pasta dos aqruivos do servidor (/src)), é via protocolo HTTP. Modelo: /<diretórios>
 
-=============================================================================
+===========================================================================
 !! Banco de dados
 
 Será usado SQLite junto ao Prisma.js para fazer o banco de dados.

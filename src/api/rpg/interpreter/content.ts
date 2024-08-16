@@ -7,7 +7,6 @@ import fs from 'fs-promise'
 import path from 'path'
 
 import { Commands } from './commands'
-import { setActions } from '../rpg'
 import {getTiles} from './getTiles'
 
 export function runMove(app: Application){
