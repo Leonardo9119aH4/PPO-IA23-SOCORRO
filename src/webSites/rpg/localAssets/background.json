@@ -5,7 +5,7 @@
         {
          "draworder":"topdown",
          "id":9,
-         "name":"tiles",
+         "name":"background",
          "objects":[
                 {
                  "gid":46,
@@ -40,7 +40,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"./background.tsx"
+         "source":"/webSites/rpg/localAssets/background.tsx"
         }],
  "tilewidth":32,
  "type":"map",

@@ -1,7 +1,7 @@
 import { Commands } from './commands'
 
-export function movecalc(command: Commands, tiles: number) {
-    switch (command.command) { //verfica a variavel do comando para determinar o lado
+export function movecalc(command: string, tiles: number) {
+    switch (command) { //verfica a variavel do comando para determinar o lado
         case `MoverCima(${tiles})`:
             return ["up", `${tiles}`]
         case `MoverBaixo(${tiles})`:  
@@ -15,7 +15,3 @@ export function movecalc(command: Commands, tiles: number) {
     }
     return ["sad"]
 }
-
-/*
-Esta função retorna
-*/

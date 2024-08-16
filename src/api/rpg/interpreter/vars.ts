@@ -1,6 +1,6 @@
 var type: string
-var count = 0
-var varcontrol = false
+var count: number = 0
+var varcontrol: boolean = false
 
 function setVarName(input: Array<string>, vars: Array<any>) {
     let name: Array<string> = new Array(0)
@@ -34,7 +34,7 @@ export function setVars(input: string, inputsplit: Array<string>, vars: Array<Ar
             type = 's'
         }
         let varname: Array<string> = setVarName(inputsplit, vars)
-        let varvalue = []
+        let varvalue: Array<string> = []
         while(count < inputsplit.length) {
             if((inputsplit[count] != " ") && (inputsplit[count] != "=")){
                 varvalue.push(inputsplit[count])

@@ -12,12 +12,12 @@ import {getTiles} from './getTiles'
 
 export function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
-        let inputcommands = req.body.inputcommands
+        let inputcommands = req.body.inputcommands.split("\n")
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
-        load(inputcommands, reqCommands, gameVars)
-        await setActions(app, phaserCommands, req)
-        res.status(200)
+        var phaserCommands: Array<Array<string>> = []
+        load(inputcommands, reqCommands, gameVars, phaserCommands)
+        res.status(200).json(phaserCommands)
     })
 }
 
@@ -31,25 +31,27 @@ Estrutura do phaser commands:
 ]
 */
 
-var phaserCommands: Array<Array<string>>
-
-export function load(inputcommands: Array<string>, commandsjson: Array<Commands>, gameVars: Array<Array<string>>) {
+export function load(inputcommands: Array<string>, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<string>>) {
     for(let i = 0; i < inputcommands.length; i++) {
+        console.log("execute")
         let inputsplit = inputcommands[i].split('')
         setVars(inputcommands[i], inputsplit, gameVars)
         let varinputcommand = inputcommands[i]
         inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
         inputsplit = inputcommands[i].split('')
         if(detectLoop(inputcommands[i])){
-             i = loadLoop(varinputcommand, inputcommands, i, commandsjson, gameVars)
+             i = loadLoop(varinputcommand, inputcommands, i, commandsjson, gameVars, phaserCommands)
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
-            i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars)
+            i = conditional(inputsplit, inputcommands, i, commandsjson, gameVars, phaserCommands)
         }
         let tiles: number = Number(getTiles(inputcommands[i]));
+        console.log(tiles)
         commandsjson.forEach((commandelement: Commands) => {
-            if(inputcommands[i] == commandelement.command) { //se o input for igual a algum comando do json executa o código
-                phaserCommands.push(movecalc(commandelement, tiles))
+            console.log("quase move")
+            if(inputcommands[i] == (commandelement.command + `(${tiles})`)) { //se o input for igual a algum comando do json executa o código
+                phaserCommands.push(movecalc(inputcommands[i], tiles))
+                console.log("move")
             }
         })
     }

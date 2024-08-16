@@ -1,14 +1,26 @@
 [
     {
-        "command":"MoverCima()"
+        "command":"MoverCima"
     },
     {
-        "command":"MoverBaixo()"
+        "command":"MoverBaixo"
     },
     {
-        "command":"MoverDireita()"
+        "command":"MoverDireita"
     },
     {
-        "command":"MoverEsquerda()"
+        "command":"MoverEsquerda"
+    },
+    {
+        "command":"AtacarCima"
+    },
+    {
+        "command":"AtacarBaixo"
+    },
+    {
+        "command":"AtacarDireita"
+    },
+    {
+        "command":"AtacarEsquerda"
     }
 ]
