@@ -71,7 +71,7 @@ async function content(){
     class Level extends levelScript.Level{}
     const config = { //gambiarra pq o js é burro e não consegue obter isso com json
         width: 1100,
-        height: 800,
+        height: 700,
         parent: 'game',
         "physics": {
             default: "arcade",

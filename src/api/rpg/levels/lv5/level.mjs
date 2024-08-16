@@ -153,22 +153,22 @@ export class Level extends Phaser.Scene {
         // backgroundLayer.setScale(2)
         // backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
-        this.player = this.physics.add.sprite(150, 150, 'playerIdle')
-        this.player.setDisplaySize(150, 150)
-        this.player.setSize(150, 150)
+        this.player = this.physics.add.sprite(100, 100, 'playerIdle')
+        this.player.setDisplaySize(100, 100)
+        this.player.setSize(100, 100)
         this.player.setBounce(0.2)
         this.player.setCollideWorldBounds(true)
         this.player.body.setGravity(0, 0)
         this.player.anims.play("playerIdle", true)
-        // this.bug1 = this.physics.add.sprite(850, 850, 'bug1Idle')
-        // this.bug2 = this.physics.add.sprite(1050, 1050, 'bug2Idle')
-        this.bug3 = this.physics.add.sprite(650, 650, 'bug3Idle')
-        // this.bug1.setDisplaySize(150, 150)
-        // this.bug1.setSize(150, 150)
-        // this.bug2.setDisplaySize(150, 150)
-        // this.bug2.setSize(150, 150)
-        this.bug3.setDisplaySize(150, 150)
-        this.bug3.setSize(150, 150)
+        // this.bug1 = this.physics.add.sprite(500, 500, 'bug1Idle')
+        // this.bug2 = this.physics.add.sprite(300, 300, 'bug2Idle')
+        this.bug3 = this.physics.add.sprite(400, 400, 'bug3Idle')
+        // this.bug1.setDisplaySize(100, 100)
+        // this.bug1.setSize(100, 100)
+        // this.bug2.setDisplaySize(100, 100)
+        // this.bug2.setSize(100, 100)
+        this.bug3.setDisplaySize(100, 100)
+        this.bug3.setSize(100, 100)
         // this.bug1.body.setGravity(0, 0)
         // this.bug2.body.setGravity(0, 0)
         this.bug3.body.setGravity(0, 0)
@@ -210,9 +210,7 @@ export class Level extends Phaser.Scene {
         //endDebug
     }
     async executeCode(){
-        // const actionsRequest = await fetch("/api/private/getExeCode")
-        // const actions = await actionsRequest.json()
-        const actions = ["right", "down", "left", "up"] //temporário
+        const actions = await JSON.parse(localStorage.getItem("actions"))
         //executor de código
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
@@ -251,7 +249,16 @@ export class Level extends Phaser.Scene {
                     resolve()
                 }, 1000))
             }
-            if(actions[i]==="attack"){
+            if(actions[i]==="attack-up"){
+                let distance = Phaser.Math.Distance.Between(player.x, player.y, enemy.x, enemy.y);
+            }
+            if(actions[i]==="attack-down"){
+                
+            }
+            if(actions[i]==="attack-right"){
+                
+            }
+            if(actions[i]==="attack-left"){
                 
             }
         }

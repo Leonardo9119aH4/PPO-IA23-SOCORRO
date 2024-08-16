@@ -7,7 +7,6 @@ import fs from 'fs-promise'
 import path from 'path'
 
 import { Commands } from './commands'
-import { setActions } from '../rpg'
 import {getTiles} from './getTiles'
 
 export function runMove(app: Application){
@@ -16,7 +15,6 @@ export function runMove(app: Application){
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const reqCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'commands.json'))
         load(inputcommands, reqCommands, gameVars)
-        await setActions(app, phaserCommands, req)
         res.status(200)
     })
 }
