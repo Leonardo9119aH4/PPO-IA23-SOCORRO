@@ -5,7 +5,7 @@ export async function Script(terminalElement, dSec, exp){
     let nome = await terminal.read() //lê o que o usuário digitou (entrada)
     terminal.write("Digite a sua idade: ")
     let idade = parseInt(await terminal.read())
-    terminal.write(`${nome} possui ${anos}.`)
+    terminal.write(`${nome} possui ${idade} anos.`)
     terminal.clear() //limpa o terminal
     terminal.write("Digite a idade do seu pai: ")
     let idadePai = parseInt(await terminal.read())
