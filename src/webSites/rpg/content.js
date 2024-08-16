@@ -98,6 +98,13 @@ document.querySelector("button#exec").onclick = async function() {
         },
         body: JSON.stringify({inputcommands: inputcommands.value})
     })
-    localStorage.setItem("actions", await response.json())
+    response = await response.json()
+    let realCommands = []
+    response.forEach(el => {
+        for(let i = 0; i < el[1]; i++){
+            realCommands.push(el[0])
+        }
+    })
+    localStorage.setItem("actions", realCommands)
     console.log(localStorage.getItem("actions"))
 }
