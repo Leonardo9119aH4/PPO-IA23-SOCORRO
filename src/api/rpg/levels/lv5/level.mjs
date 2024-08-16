@@ -3,8 +3,8 @@ export class Level extends Phaser.Scene {
         super({ key: 'Level' })
     }
     preload(){
-        this.load.tilemapTiledJSON("background", "/webSites/rpg/localAssets/background.json")
-        this.load.image("background-tiles", "/webSites/rpg/localAssets/background-2.png")
+        // this.load.tilemapTiledJSON("background", "/webSites/rpg/localAssets/background.json")
+        // this.load.image("background-tiles", "/webSites/rpg/localAssets/background-2.png")
         this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*53,
             frameHeight: 30*53
@@ -52,22 +52,6 @@ export class Level extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
-        const backgroundMap = this.make.tilemap({ key: 'background' })
-        const backgroundTileset = backgroundMap.addTilesetImage('background', 'background-tiles') // Criar o layer de fundo a partir do tilemap
-        const backgroundLayer = backgroundMap.createLayer('background', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        console.log(backgroundMap, backgroundTileset, backgroundLayer)
-        backgroundLayer.setScale(2)
-        backgroundLayer.setOrigin(0, 0)
-        backgorund.setDisplaySize(534, 401)
-        this.player = this.physics.add.sprite(50, 50, 'playerIdle')
-        this.player.setScale(1/7)
-        this.player.setBounce(0.2)
-        this.player.setCollideWorldBounds(true)
-        this.player.body.setGravity(0, 0)
-        // this.physics.add.collider(this.player.sprite, bug1Idle)
-        // this.physics.add.collider(this.player.sprite, bug2Idle)
-        // this.physics.add.collider(this.player.sprite, bug3Idle)
-        document.addEventListener('executeCode', this.executeCode.bind(this))
         //animações abaixo - Cícero
         this.anims.create({
             key: 'playerIdle', // Nome da animação
@@ -169,7 +153,7 @@ export class Level extends Phaser.Scene {
         // backgroundLayer.setScale(2)
         // backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
-        this.player = this.physics.add.sprite(128, 128, 'playerIdle')
+        this.player = this.physics.add.sprite(64, 64, 'playerIdle')
         this.player.setDisplaySize(128, 128)
         this.player.setSize(128, 128)
         this.player.setBounce(0.2)
@@ -222,51 +206,88 @@ export class Level extends Phaser.Scene {
         }
         if(this.SPACEKey.isDown){
             this.player.anims.play("playerIdle", true)
+            console.log("X: ", this.player.x)
+            console.log("Y: ", this.player.y)
         }
         //endDebug
     }
     async executeCode(){
         const actions = await JSON.parse(localStorage.getItem("actions"))
         //executor de código
+        function bugDistance(player, bug3){
+            let distance = Phaser.Math.Distance.Between(player.x, player.y, bug3.x, bug3.y);
+            let distanceX = player.x - bug3.x;
+            let distanceY = player.y - bug3.y;
+            console.log(distance)
+            if(player.x - bug3.x > 0){
+                console.log("inimigo a esquerda")
+                if(distance < 130){
+                    console.log("ataque!")
+                }
+            }
+            if(player.x - bug3.x < 0){
+                console.log("inimigo a direita")
+                if(distance < 130){
+                    console.log("ataque!")
+                }
+            }
+            if(player.y - bug3.y > 0){
+                console.log("inimigo em cima")
+                if(distance < 130){
+                    console.log("ataque!")
+                }
+            }
+            if(player.y - bug3.y < 0){
+                console.log("inimigo em baixo")
+                if(distance < 130){
+                    console.log("ataque!")
+                }
+            }
+        }
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
-                this.player.setVelocityY(-100) //quantidade de pixels a ser movida para cima
+                this.player.setVelocityY(-64) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
                 await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityY(0)
                     this.player.anims.play("playerIdle", true)
                     resolve()
                 }, 1000))
+                bugDistance(this.player, this.bug3)
             }
             if(actions[i]==="down"){
-                this.player.setVelocityY(100) //quantidade de pixels a ser movida para baixo
+                this.player.setVelocityY(64) //quantidade de pixels a ser movida para baixo
                 this.player.anims.play("playerWalk", true)
                 await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityY(0)
                     this.player.anims.play("playerIdle", true)
                     resolve()
                 }, 1000))
+                bugDistance(this.player, this.bug3)
             }
             if(actions[i]==="right"){
-                this.player.setVelocityX(100) //quantidade de pixels a ser movida para cima
+                this.player.setVelocityX(64) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
                 await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityX(0)
                     this.player.anims.play("playerIdle", true)
                     resolve()
                 }, 1000))
+                bugDistance(this.player, this.bug3)
             }
             if(actions[i]==="left"){
-                this.player.setVelocityX(-100) //quantidade de pixels a ser movida para cima
+                this.player.setVelocityX(-64) //quantidade de pixels a ser movida para cima
                 this.player.anims.play("playerWalk", true)
                 await new Promise(resolve => setTimeout(()=>{
                     this.player.setVelocityX(0)
                     this.player.anims.play("playerIdle", true)
                     resolve()
                 }, 1000))
+                bugDistance(this.player, this.bug3)
             }
             if(actions[i]==="attack-up"){
-                let distance = Phaser.Math.Distance.Between(player.x, player.y, enemy.x, enemy.y);
+                let distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.bug3.x, this.bug3.y)
+                console.log(distance)
             }
             if(actions[i]==="attack-down"){
                 
