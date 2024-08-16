@@ -153,7 +153,7 @@ export class Level extends Phaser.Scene {
         // backgroundLayer.setScale(2)
         // backgroundLayer.setOrigin(0, 0)
         // backgorund.setDisplaySize(534, 401)
-        this.player = this.physics.add.sprite(64, 64, 'playerIdle')
+        this.player = this.physics.add.sprite(128, 128, 'playerIdle')
         this.player.setDisplaySize(128, 128)
         this.player.setSize(128, 128)
         this.player.setBounce(0.2)

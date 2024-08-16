@@ -1,0 +1,14 @@
+[
+    {
+        "command":"MoverCima"
+    },
+    {
+        "command":"MoverBaixo"
+    },
+    {
+        "command":"MoverDireita"
+    },
+    {
+        "command":"MoverEsquerda"
+    }
+]
