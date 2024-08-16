@@ -215,34 +215,16 @@ export class Level extends Phaser.Scene {
         const actions = await JSON.parse(localStorage.getItem("actions"))
         //executor de código
         function bugDistance(player, bug3){
-            let distance = Phaser.Math.Distance.Between(player.x, player.y, bug3.x, bug3.y);
-            let distanceX = player.x - bug3.x;
-            let distanceY = player.y - bug3.y;
-            console.log(distance)
-            if(player.x - bug3.x > 0){
-                console.log("inimigo a esquerda")
-                if(distance < 130){
-                    console.log("ataque!")
-                }
+            let distance = Phaser.Math.Distance.Between(player.x, player.y, bug3.x, bug3.y); //distância vetorial em módulo
+            let distanceX = player.x - bug3.x; //distância no eixo X, valor positivo -> inimigo à esquerda; valor negativo -> inimigo à direita
+            let distanceY = player.y - bug3.y; //distância no eixo Y, valor positivo -> inimigo em cima; valor negativo -> inimigo em baixo
+            if(distanceX > 0 && distanceX < 130){
+                console.log("Ataque da esquerda")
             }
-            if(player.x - bug3.x < 0){
-                console.log("inimigo a direita")
-                if(distance < 130){
-                    console.log("ataque!")
-                }
+            if(distanceX > 0 && distanceX < 130){
+                console.log("Ataque da esquerda")
             }
-            if(player.y - bug3.y > 0){
-                console.log("inimigo em cima")
-                if(distance < 130){
-                    console.log("ataque!")
-                }
-            }
-            if(player.y - bug3.y < 0){
-                console.log("inimigo em baixo")
-                if(distance < 130){
-                    console.log("ataque!")
-                }
-            }
+            
         }
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
