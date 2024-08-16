@@ -70,8 +70,8 @@ async function content(){
     const levelScript = await import(levelUrl)
     class Level extends levelScript.Level{}
     const config = { //gambiarra pq o js é burro e não consegue obter isso com json
-        width: 1100,
-        height: 700,
+        width: 960,
+        height: 640,
         parent: 'game',
         "physics": {
             default: "arcade",
@@ -87,3 +87,17 @@ async function content(){
 }
 main()
 content()
+
+const inputcommands = document.querySelector("#commands")
+
+document.querySelector("button#exec").onclick = async function() {
+    let response = await fetch("/api/private/interpreter", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({inputcommands: inputcommands.value})
+    })
+    localStorage.setItem("actions", await response.json())
+    console.log(localStorage.getItem("actions"))
+}
