@@ -218,67 +218,120 @@ export class Level extends Phaser.Scene {
             let distance = Phaser.Math.Distance.Between(player.x, player.y, bug3.x, bug3.y); //distância vetorial em módulo
             let distanceX = player.x - bug3.x; //distância no eixo X, valor positivo -> inimigo à esquerda; valor negativo -> inimigo à direita
             let distanceY = player.y - bug3.y; //distância no eixo Y, valor positivo -> inimigo em cima; valor negativo -> inimigo em baixo
-            if(distanceX > 0 && distanceX < 130){
-                console.log("Ataque da esquerda")
+            if(distanceX > 0 && distance < 130){
+                if(Math.abs(distanceX) > Math.abs(distanceY)){
+                    return "EL" //inimgo à esquerda
+                }
             }
-            if(distanceX > 0 && distanceX < 130){
-                console.log("Ataque da esquerda")
+            if(distanceX < 0 && distance > -130){
+                if(Math.abs(distanceX) > Math.abs(distanceY)){
+                    return "ER" //inimigo à direita
+                }
             }
-            
+            if(distanceY > 0 && distance < 130){
+                if(Math.abs(distanceY) > Math.abs(distanceX)){
+                    return "EU" //inimigo em cima
+                }
+            }
+            if(distanceY < 0 && distance > -130){
+                if(Math.abs(distanceY) > Math.abs(distanceX)){
+                    return "ED" //inimigo em baixo
+                }
+            }
+            return 0 //sem inimigo próximo
         }
         for(let i=0; i<actions.length; i++){
             if(actions[i]==="up"){
-                this.player.setVelocityY(-64) //quantidade de pixels a ser movida para cima
-                this.player.anims.play("playerWalk", true)
-                await new Promise(resolve => setTimeout(()=>{
-                    this.player.setVelocityY(0)
-                    this.player.anims.play("playerIdle", true)
-                    resolve()
-                }, 1000))
-                bugDistance(this.player, this.bug3)
+                if(bugDistance(this.player, this.bug3)!=0){
+                    console.log("Morreu")
+                }
+                else{
+                    this.player.setVelocityY(-64) //quantidade de pixels a ser movida para cima
+                    this.player.anims.play("playerWalk", true)
+                    await new Promise(resolve => setTimeout(()=>{
+                        this.player.setVelocityY(0)
+                        this.player.anims.play("playerIdle", true)
+                        resolve()
+                    }, 1000))
+                } 
             }
             if(actions[i]==="down"){
-                this.player.setVelocityY(64) //quantidade de pixels a ser movida para baixo
-                this.player.anims.play("playerWalk", true)
-                await new Promise(resolve => setTimeout(()=>{
-                    this.player.setVelocityY(0)
-                    this.player.anims.play("playerIdle", true)
-                    resolve()
-                }, 1000))
-                bugDistance(this.player, this.bug3)
+                if(bugDistance(this.player, this.bug3)!=0){
+                    console.log("Morreu")
+                }
+                else{
+                    this.player.setVelocityY(64) //quantidade de pixels a ser movida para baixo
+                    this.player.anims.play("playerWalk", true)
+                    await new Promise(resolve => setTimeout(()=>{
+                        this.player.setVelocityY(0)
+                        this.player.anims.play("playerIdle", true)
+                        resolve()
+                    }, 1000))
+                }
             }
             if(actions[i]==="right"){
-                this.player.setVelocityX(64) //quantidade de pixels a ser movida para cima
-                this.player.anims.play("playerWalk", true)
-                await new Promise(resolve => setTimeout(()=>{
-                    this.player.setVelocityX(0)
-                    this.player.anims.play("playerIdle", true)
-                    resolve()
-                }, 1000))
-                bugDistance(this.player, this.bug3)
+                if(bugDistance(this.player, this.bug3)!=0){
+                    console.log("Morreu")
+                }
+                else{
+                    this.player.setVelocityX(64) //quantidade de pixels a ser movida para cima
+                    this.player.anims.play("playerWalk", true)
+                    await new Promise(resolve => setTimeout(()=>{
+                        this.player.setVelocityX(0)
+                        this.player.anims.play("playerIdle", true)
+                        resolve()
+                    }, 1000))
+                }
             }
             if(actions[i]==="left"){
-                this.player.setVelocityX(-64) //quantidade de pixels a ser movida para cima
-                this.player.anims.play("playerWalk", true)
-                await new Promise(resolve => setTimeout(()=>{
-                    this.player.setVelocityX(0)
-                    this.player.anims.play("playerIdle", true)
-                    resolve()
-                }, 1000))
-                bugDistance(this.player, this.bug3)
+                if(bugDistance(this.player, this.bug3)!=0){
+                    console.log("Morreu")
+                }
+                else{
+                    this.player.setVelocityX(-64) //quantidade de pixels a ser movida para cima
+                    this.player.anims.play("playerWalk", true)
+                    await new Promise(resolve => setTimeout(()=>{
+                        this.player.setVelocityX(0)
+                        this.player.anims.play("playerIdle", true)
+                        resolve()
+                    }, 1000))
+                }
             }
             if(actions[i]==="attack-up"){
-                let distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.bug3.x, this.bug3.y)
-                console.log(distance)
+                if(bugDistance(this.player, this.bug3)==="EU"){
+                    console.log("Certo")
+                    this.bug3.destroy()
+                }
+                else{
+                    console.log("Errado")
+                }
             }
             if(actions[i]==="attack-down"){
-                
+                if(bugDistance(this.player, this.bug3)==="ED"){
+                    console.log("Certo")
+                    this.bug3.destroy()
+                }
+                else{
+                    console.log("Errado")
+                }
             }
             if(actions[i]==="attack-right"){
-                
+                if(bugDistance(this.player, this.bug3)==="ER"){
+                    console.log("Certo")
+                    this.bug3.destroy()
+                }
+                else{
+                    console.log("Errado")
+                }
             }
             if(actions[i]==="attack-left"){
-                
+                if(bugDistance(this.player, this.bug3)==="EL"){
+                    console.log("Certo")
+                    this.bug3.destroy()
+                }
+                else{
+                    console.log("Errado")
+                }
             }
         }
     }
