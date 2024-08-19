@@ -309,7 +309,11 @@ export class Level extends Phaser.Scene {
             if(actions[i]==="attack-down"){
                 if(bugDistance(this.player, this.bug3)==="ED"){
                     console.log("Certo")
-                    this.bug3.destroy()
+                    this.player.anims.play("playerAttackDown", false)
+                    this.player.on("animationcomplete", ()=>{
+                        this.bug3.destroy()
+                        this.player.anims.play("playerIdle", true)
+                    })
                 }
                 else{
                     console.log("Errado")
