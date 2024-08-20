@@ -20,7 +20,7 @@ export function detectLoop(inputcommand: string) {
     return false
 }
 
-export function loadLoop(varinputcommand: string, inputlist: Array<string>, line: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<string>>, attackCommandsJson) {
+export function loadLoop(varinputcommand: string, inputlist: Array<string>, line: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson) {
     console.log(inputlist)
     let loopcommands: Array<string> = listCommands(inputlist, line, line)[0]
     while(eval(expressionString)){

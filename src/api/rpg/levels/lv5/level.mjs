@@ -3,8 +3,8 @@ export class Level extends Phaser.Scene {
         super({ key: 'Level' })
     }
     preload(){
-        // this.load.tilemapTiledJSON("background", "/webSites/rpg/localAssets/background.json")
-        // this.load.image("background-tiles", "/webSites/rpg/localAssets/background-2.png")
+        this.load.tilemapTiledJSON("map", "/webSites/rpg/localAssets/teste.json")
+        this.load.image("tiles", "/webSites/rpg/localAssets/background-2.png")
         this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*53,
             frameHeight: 30*53
@@ -52,6 +52,14 @@ export class Level extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
+        //mecânicas e mapa
+        const backgroundMap = this.make.tilemap({key: "map"})
+        const backgroundTileset = backgroundMap.addTilesetImage("teste", "tiles") // Criar o layer de fundo a partir do tilemap
+        const backgroundLayer = backgroundMap.createLayer("teste", backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        console.log(backgroundMap, backgroundTileset, backgroundLayer)
+        backgroundLayer.setScale(2)
+        backgroundLayer.setOrigin(0, 0)
+        backgorund.setDisplaySize(534, 401)
         //animações abaixo - Cícero
         this.anims.create({
             key: 'playerIdle', // Nome da animação
@@ -146,13 +154,6 @@ export class Level extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('bug3AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
-        //mecânicas e mapa
-        // const backgroundMap = this.make.tilemap({ key: 'background-map' })
-        // const backgroundTileset = backgroundMap.addTilesetImage('background-tiles') // Criar o layer de fundo a partir do tilemap
-        // const backgroundLayer = backgroundMap.createLayer('background-tiles', backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        // backgroundLayer.setScale(2)
-        // backgroundLayer.setOrigin(0, 0)
-        // backgorund.setDisplaySize(534, 401)
         this.player = this.physics.add.sprite(128, 128, 'playerIdle')
         this.player.setDisplaySize(128, 128)
         this.player.setSize(128, 128)
@@ -186,6 +187,7 @@ export class Level extends Phaser.Scene {
         this.SPACEKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
         this.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
         /* endDebug */
+        
     }
     update(){
         //debug
