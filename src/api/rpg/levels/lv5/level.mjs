@@ -278,6 +278,7 @@ export class Level extends Phaser.Scene {
             }
         }
         for(let i=0; i<actions.length; i++){ /* 1-Up; 2-Right; 3-Down; 4-Left; 5-Attack Up; 6-Attack Right; 7-Attack Down; 8-Attack Left */
+            console.log("X: ",this.player.x, "Y: ", this.player.y)
             if(actions[i]===1){ //up
                 let bugPos = bugDistance(this.player, this.bug3)
                 if(bugPos!=0){

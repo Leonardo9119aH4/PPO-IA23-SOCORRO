@@ -81,7 +81,6 @@ async function content(){
     const correctSeq = data[3]
     const BlocksDOM = data[4]
     let dSec = 0; //tempo decorrido em décimos de segundos
-    localStorage.setItem("correctSeq", JSON.stringify(correctSeq)) //salva no localStorage para a função Execute() conseguir acessar
     await loadDOM(BlocksDOM) //carrega o código e os blocos arrastáveis
     title.innerHTML = master[level].level_title
     headerTitle.innerHTML = master[level].level_header
@@ -97,7 +96,7 @@ async function content(){
     });
     exeButton.addEventListener("click", async () => { //chama detecção ao clicar em "EXECUTAR"
         receiveBlocks.forEach(reBl => reBl.checkCollision(dragBlockRef)); //precisa ficar fora do Execute() por causa do escopo
-        correctAnswer = await Execute()
+        correctAnswer = await Execute(correctSeq)
         if(correctAnswer[0]){
            win()
         }
@@ -189,9 +188,8 @@ async function content(){
     async function gameOver(){
         gameOverPopup.classList.add("open")
     }
-    function updCrono(){ //atualiza o tempo
+    setInterval(()=>{
         dSec++
-    }
-    setInterval(updCrono, 100) //atualiza o cronômetro
+    }, 100) //atualiza o cronômetro
 }
 content()
