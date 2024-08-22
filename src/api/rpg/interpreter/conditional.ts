@@ -2,7 +2,7 @@ import { listCommands } from "./commandlist"
 import { Commands } from "./commands"
 import { load } from "./content"
 
-export function conditional(input: Array<string>, inputcommands: Array<string>, actualline: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<string>>, attackCommandsJson: Array<Commands>) {
+export function conditional(input: Array<string>, inputcommands: Array<string>, actualline: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson: Array<Commands>) {
     console.log(gameVars)
     let condition = false
     let expression: Array<string> = []

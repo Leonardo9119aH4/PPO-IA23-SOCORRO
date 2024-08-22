@@ -15,7 +15,7 @@ export function runMove(app: Application){
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const moveCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'move.json'))
         const attackCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'attack.json'))
-        var phaserCommands: Array<Array<string>> = []
+        var phaserCommands: Array<Array<number>> = []
         load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
         res.status(200).json(phaserCommands)
     })
@@ -34,32 +34,32 @@ Estrutura do phaser commands:
 function attackCalc(command: string){
     switch(command) {
         case 'AtacarCima()':
-            return ["attack-up", "1"]
+            return [5, 1]
         case 'AtacarBaixo()':
-            return ["attack-down", "1"]
+            return [7, 1]
         case 'AtacarDireita()':
-            return ["attack-right", "1"]
+            return [6, 1]
         case 'AtacarEsquerda()':
-            return ["attack-left", "1"]
+            return [8, 1]
     }
-    return ["to aqui só pro typescript não encher o saco", "1"]
+    return [NaN, NaN]
 }
 
 function moveCalc(command: string, tiles: number) {
     switch (command) { //verfica a variavel do comando para determinar o lado
         case `MoverCima(${tiles})`:
-            return ["up", `${tiles}`]
+            return [1, tiles]
         case `MoverBaixo(${tiles})`:  
-            return ["down", `${tiles}`]
+            return [3, tiles]
         case `MoverDireita(${tiles})`:
-            return ["right", `${tiles}`]
+            return [2, tiles]
         case `MoverEsquerda(${tiles})`:
-            return ["left", `${tiles}`]
+            return [4, tiles]
     }
-    return ["to aqui só pro typescript não encher o saco"]
+    return [NaN, NaN]
 }
 
-export function load(inputcommands: Array<string>, moveCommandsJson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<string>>, attackCommandsJson: Array<Commands>) {
+export function load(inputcommands: Array<string>, moveCommandsJson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson: Array<Commands>) {
     for(let i = 0; i < inputcommands.length; i++) {
         console.log("execute")
         let inputsplit = inputcommands[i].split('')

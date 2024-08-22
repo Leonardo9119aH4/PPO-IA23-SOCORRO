@@ -1,13 +1,13 @@
 export function movecalc(command: string, tiles: number) {
     switch (command) { //verfica a variavel do comando para determinar o lado
         case `MoverCima(${tiles})`:
-            return ["up", `${tiles}`]
+            return [1, tiles]
         case `MoverBaixo(${tiles})`:  
-            return ["down", `${tiles}`]
+            return [3, tiles]
         case `MoverDireita(${tiles})`:
-            return ["right", `${tiles}`]
+            return [2, tiles]
         case `MoverEsquerda(${tiles})`:
-            return ["left", `${tiles}`]
+            return [4, tiles]
     }
     return ["to aqui só pro typescript não encher o saco"]
 }

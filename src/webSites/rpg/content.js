@@ -105,6 +105,7 @@ document.querySelector("button#exec").onclick = async function() {
             realCommands.push(el[0])
         }
     })
-    localStorage.setItem("actions", realCommands)
+    localStorage.setItem("actions", JSON.stringify(realCommands))
+    document.dispatchEvent(new Event("executeCode"))
     console.log(localStorage.getItem("actions"))
 }
