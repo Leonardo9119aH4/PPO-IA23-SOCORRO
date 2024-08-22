@@ -74,8 +74,8 @@ async function content(){
     const levelScript = await import(levelUrl)
     class Level extends levelScript.Level{}
     const config = { //gambiarra pq o js é burro e não consegue obter isso com json
-        width: 960,
-        height: 640,
+        width: 210*4,
+        height: 210*4,
         parent: 'game',
         "physics": {
             default: "arcade",
