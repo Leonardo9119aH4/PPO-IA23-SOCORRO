@@ -1,5 +1,7 @@
 //a importação do phaser acontece no html
 import {main, fatalError} from "/globalAssets/js/main.js"
+const gameOverPopup = document.querySelector("#gameover")
+const winPopup = document.querySelector("#win")
 async function getData(){
     const params = new URLSearchParams(window.location.search)
     const level = parseInt(params.get("level"))
@@ -84,6 +86,32 @@ async function content(){
         type: Phaser.CANVAS //WebGL só aceita dimensões com potência de base 2 
     };
     const game = new Phaser.Game(config)
+    document.addEventListener("gameOver", ev=>{ //game over
+        fetch("/api/private/lifes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "action": "reduce",
+                "lifes": 1
+            })
+        })
+        gameOverPopup.classList.add("opened")
+    })
+    document.addEventListener("win", ev=>{ //ganhou
+        fetch("/api/private/exp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "action": "add",
+                "exp": 50
+            })
+        })
+        winPopup.classList.add("opened")
+    })
 }
 main()
 content()
