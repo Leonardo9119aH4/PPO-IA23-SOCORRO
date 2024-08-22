@@ -52,23 +52,6 @@ export class Level extends Phaser.Scene {
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
     create(){
-        //mecânicas e mapa
-        const backgroundMap = this.make.tilemap({key: "map"})
-        const backgroundTileset = backgroundMap.addTilesetImage("MapPathOgSize", "tiles") // Criar o layer de fundo a partir do tilemap
-        const backgroundLayer = backgroundMap.createLayer("Ground", backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        const wallsLayer = backgroundMap.createLayer("Walls", backgroundTileset)
-        const walls = this.physics.add.group()
-        
-        wallsLayer.walls.array.forEach(wall => {
-            const obj = walls.create(wall.x, wall.y, null)
-            obj.body.setSize(wall.width, wall.height)
-            wall.body.setImmovable(true)
-        });
-        this.physics.add.collider(player, walls)
-        console.log(backgroundMap, backgroundTileset, backgroundLayer)
-        backgroundLayer.setScale(4)
-        backgroundLayer.setOrigin(0, 0)
-
         //animações abaixo - Cícero
         this.anims.create({
             key: 'playerIdle', // Nome da animação
@@ -163,12 +146,13 @@ export class Level extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('bug3AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
+        this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
         this.player = this.physics.add.sprite(128, 128, 'playerIdle')
+        this.player.setCollideWorldBounds(true)
         this.player.setDisplaySize(128, 128)
-        this.player.setSize(128, 128)
+        this.player.body.setSize(128, 128)
         this.player.setOrigin(0.5, 0.5)
         this.player.setBounce(0)
-        this.player.setCollideWorldBounds(true)
         this.player.body.setGravity(0, 0)
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
@@ -196,6 +180,17 @@ export class Level extends Phaser.Scene {
         // this.physics.add.collider(this.player.sprite, bug3Idle)
         // this.physics.add.collider(this.player.sprite, wall)
         document.addEventListener('executeCode', this.executeCode.bind(this))
+        //mecânicas e mapa
+        const backgroundMap = this.make.tilemap({key: "map"})
+        const backgroundTileset = backgroundMap.addTilesetImage("MapPathOgSize", "tiles") // Criar o layer de fundo a partir do tilemap
+        const backgroundLayer = backgroundMap.createLayer("Ground", backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
+        const wallsLayer = backgroundMap.createLayer("Walls", backgroundTileset, 0, 0)
+        wallsLayer.setCollisionByProperty({ collides: true });
+        this.physics.add.collider(this.player, wallsLayer)
+        console.log("paredes", wallsLayer)
+        console.log(backgroundMap, backgroundTileset, backgroundLayer)
+        backgroundLayer.setScale(4)
+        backgroundLayer.setOrigin(0, 0)
     }
     update(){
 
