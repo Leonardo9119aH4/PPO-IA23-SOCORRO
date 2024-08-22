@@ -2,6 +2,7 @@
 import {main, fatalError} from "/globalAssets/js/main.js"
 const gameOverPopup = document.querySelector("#gameover")
 const winPopup = document.querySelector("#win")
+const winInfo = winPopup.querySelector("h2")
 async function getData(){
     const params = new URLSearchParams(window.location.search)
     const level = parseInt(params.get("level"))
@@ -60,6 +61,7 @@ async function getLevel(level){
     
 }
 async function content(){
+    let dSec = 0
     const data1 = await getData() //arquivos primários
     const level = data1[0]
     const master = data1[1]
@@ -86,6 +88,9 @@ async function content(){
         type: Phaser.CANVAS //WebGL só aceita dimensões com potência de base 2 
     };
     const game = new Phaser.Game(config)
+    setInterval(()=>{
+        dSec++
+    }, 100)
     document.addEventListener("gameOver", ev=>{ //game over
         fetch("/api/private/lifes", {
             method: "POST",
@@ -100,6 +105,17 @@ async function content(){
         gameOverPopup.classList.add("opened")
     })
     document.addEventListener("win", ev=>{ //ganhou
+        winPopup.classList.add("opened")
+        let sec = Math.round(dSec/10)
+        let min = Math.trunc(sec/60)
+        sec = sec%60
+        const exp = 3030/dSec
+        if(sec<10){
+            winInfo.innerHTML = `Com tempo de ${min}:0${sec}, obteve ${exp} de XP`
+        }
+        else{
+            winInfo.innerHTML = `Com tempo de ${min}:${sec}, obteve ${exp} de XP`
+        }
         fetch("/api/private/exp", {
             method: "POST",
             headers: {
@@ -107,35 +123,33 @@ async function content(){
             },
             body: JSON.stringify({
                 "action": "add",
-                "exp": 50
+                "exp": exp
             })
         })
-        winPopup.classList.add("opened")
     })
+    const inputcommands = document.querySelector("#commands")
+    document.querySelector("button#exec").onclick = async function() {
+        let response = await fetch("/api/private/interpreter", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({inputcommands: inputcommands.value})
+        })
+        response = await response.json()
+        let realCommands = []
+        response.forEach(el => {
+            for(let i = 0; i < el[1]; i++){
+                realCommands.push(el[0])
+            }
+        })
+        console.log(response)
+        localStorage.setItem("actions", JSON.stringify(realCommands))
+        document.dispatchEvent(new Event("executeCode"))
+        console.log(localStorage.getItem("actions"))
+    }
 }
 main()
 content()
 
-const inputcommands = document.querySelector("#commands")
 
-document.querySelector("button#exec").onclick = async function() {
-    let response = await fetch("/api/private/interpreter", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({inputcommands: inputcommands.value})
-    })
-    response = await response.json()
-    let realCommands = []
-    response.forEach(el => {
-        for(let i = 0; i < el[1]; i++){
-            realCommands.push(el[0])
-        }
-    })
-    console.log(response)
-    console.log(realCommands)
-    localStorage.setItem("actions", JSON.stringify(realCommands))
-    document.dispatchEvent(new Event("executeCode"))
-    console.log(localStorage.getItem("actions"))
-}
