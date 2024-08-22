@@ -1,5 +1,6 @@
 import {Application, Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
 import { regInfoConflict } from './regInfo'
 export async function signUp(app: Application, prisma: PrismaClient){
     app.post("/api/signup", async (req: Request, res: Response)=>{
@@ -34,10 +35,11 @@ export async function signUp(app: Application, prisma: PrismaClient){
             }
             if(statuscode===0){
                 try{
+                    let hashedPassword = await bcrypt.hash(req.body.password, 10) //criptografar as senhas
                     await prisma.user.create({
                         data: {
                             username: req.body.username,
-                            password: req.body.password,
+                            password: hashedPassword, //senha criptografada
                             realname: req.body.realName,
                             email: req.body.email,
                             phone: req.body.phone,
