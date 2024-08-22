@@ -4,7 +4,7 @@ export class Level extends Phaser.Scene {
     }
     preload(){
         this.load.tilemapTiledJSON("map", "/webSites/rpg/localAssets/background.json")
-        this.load.image("tiles", "/webSites/rpg/localAssets/background-2.png")
+        this.load.image("tiles", "/webSites/rpg/localAssets/MapPathOgSize.png")
         this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*53,
             frameHeight: 30*53
@@ -54,12 +54,21 @@ export class Level extends Phaser.Scene {
     create(){
         //mecânicas e mapa
         const backgroundMap = this.make.tilemap({key: "map"})
-        const backgroundTileset = backgroundMap.addTilesetImage("teste", "tiles") // Criar o layer de fundo a partir do tilemap
+        const backgroundTileset = backgroundMap.addTilesetImage("MapPathOgSize", "tiles") // Criar o layer de fundo a partir do tilemap
         const backgroundLayer = backgroundMap.createLayer("Ground", backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
         const wallsLayer = backgroundMap.createLayer("Walls", backgroundTileset)
+        const walls = this.physics.add.group()
+        
+        wallsLayer.walls.array.forEach(wall => {
+            const obj = walls.create(wall.x, wall.y, null)
+            obj.body.setSize(wall.width, wall.height)
+            wall.body.setImmovable(true)
+        });
+        this.physics.add.collider(player, walls)
         console.log(backgroundMap, backgroundTileset, backgroundLayer)
-        //backgroundLayer.setScale(2)
+        backgroundLayer.setScale(4)
         backgroundLayer.setOrigin(0, 0)
+
         //animações abaixo - Cícero
         this.anims.create({
             key: 'playerIdle', // Nome da animação
