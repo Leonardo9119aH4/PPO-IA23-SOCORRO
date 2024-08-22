@@ -33,27 +33,28 @@ Estrutura do phaser commands:
 
 function attackCalc(command: string){
     switch(command) {
-        case 'AtacarCima()':
+        case 'AtacarCima();':
             return [5, 1]
-        case 'AtacarBaixo()':
+        case 'AtacarBaixo();':
             return [7, 1]
-        case 'AtacarDireita()':
+        case 'AtacarDireita();':
             return [6, 1]
-        case 'AtacarEsquerda()':
+        case 'AtacarEsquerda();':
             return [8, 1]
     }
     return [NaN, NaN]
 }
 
-function moveCalc(command: string, tiles: number) {
-    switch (command) { //verfica a variavel do comando para determinar o lado
-        case `MoverCima(${tiles})`:
+function moveCalc(inputcommand: string, tiles: number, complemention: string, command: string) {
+    console.log(command + `(${tiles});`)
+    switch (command + `(${tiles});`) { //verfica a variavel do comando para determinar o lado
+        case `MoverCima(${tiles});`:
             return [1, tiles]
-        case `MoverBaixo(${tiles})`:  
+        case `MoverBaixo(${tiles});`:  
             return [3, tiles]
-        case `MoverDireita(${tiles})`:
+        case `MoverDireita(${tiles});`:
             return [2, tiles]
-        case `MoverEsquerda(${tiles})`:
+        case `MoverEsquerda(${tiles});`:
             return [4, tiles]
     }
     return [NaN, NaN]
@@ -74,10 +75,19 @@ export function load(inputcommands: Array<string>, moveCommandsJson: Array<Comma
             i = conditional(inputsplit, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
         }
         let tiles: number = Number(getTiles(inputcommands[i]));
+        let complemention: string = ""
+        if(tiles == 0) {
+            complemention = ""
+            tiles = 1
+        } else {
+            complemention = `${tiles}`
+        }
         console.log(inputcommands[i], tiles)
+        console.log(complemention)
         moveCommandsJson.forEach((commandelement: Commands) => {
-            if(inputcommands[i] == (commandelement.command + `(${tiles})`)) { //se o input for igual a algum comando do json executa o código
-                phaserCommands.push(moveCalc(inputcommands[i], tiles))
+            if(inputcommands[i] == (commandelement.command + `(${complemention});`)) { //se o input for igual a algum comando do json executa o código
+                console.log("caiu")
+                phaserCommands.push(moveCalc(inputcommands[i], tiles, complemention, commandelement.command))
             }
         })
         attackCommandsJson.forEach((command: Commands) => {
