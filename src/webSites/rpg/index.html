@@ -11,6 +11,15 @@
     <title>Codegamix</title>
 </head>
 <body>
+    <div id="gameover">
+        <h1>Você morreu!</h1>
+        <a href="/webSites/levels/index.html"><button>SAIR</button></a>
+    </div>
+    <div id="win">
+        <h1>Parabéns, você ganhou!</h1>
+        <h2></h2> <!-- injetado pelo js -->
+        <a href="/webSites/levels/index.html"><button>CONTINUAR</button></a>
+    </div>
     <nav></nav> <!-- Injetado pelo main.js -->
     <main>
         <section id="game"> <!-- Aqui fica o jogo -->
@@ -24,7 +33,7 @@
                 <img alt="Imagem de um coração em pixel art">
             </div>
             <div id="code_input">
-                <textarea></textarea>
+                <textarea id="commands"></textarea>
                 <button id="exec"><p>EXECUTAR</p></button>
             </div>
         </section>

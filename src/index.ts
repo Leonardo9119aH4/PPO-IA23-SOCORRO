@@ -3,6 +3,7 @@ import path from 'path'
 import ejs from "ejs"
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
+import bcrypt from 'bcrypt'
 import { PrismaClient } from '@prisma/client'
 import { executeAll } from "./api/map"
 
@@ -22,7 +23,7 @@ async function main(){
   app.listen(PORT, () => { // Inicia o servidor
     console.log(`Servidor iniciado na porta ${PORT}`);
   })
-  executeAll(app, prisma, 7) //quantidade máxima de vidas é 5
+  executeAll(app, prisma, 7) //quantidade máxima de vidas
 }
 main().then(async () => {
   await prisma.$disconnect()

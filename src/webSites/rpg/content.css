@@ -1,3 +1,28 @@
+#gameover, #win{
+    --popupWidht: 35vw;
+    --popupHeight: 35vh;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: var(--popupWidht);
+    height: var(--popupHeight);
+    top: calc((100vh - var(--popupHeight))/2);
+    left: calc((100vw - var(--popupWidht))/2);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    display: grid;
+    place-items: center;
+}
+#gameover{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+#win{
+    background-color: rgba(0, 255, 0, 0.5);
+}
+#gameover.opened, #win.opened{
+    visibility: visible;
+    opacity: 1;
+}
 main {
     display: grid;
     grid-template-columns: 2fr 1fr;

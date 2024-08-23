@@ -20,11 +20,11 @@ export function detectLoop(inputcommand: string) {
     return false
 }
 
-export function loadLoop(varinputcommand: string, inputlist: Array<string>, line: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>) {
+export function loadLoop(varinputcommand: string, inputlist: Array<string>, line: number, commandsjson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson) {
     console.log(inputlist)
     let loopcommands: Array<string> = listCommands(inputlist, line, line)[0]
     while(eval(expressionString)){
-        load(loopcommands, commandsjson, gameVars)
+        load(loopcommands, commandsjson, gameVars, phaserCommands, attackCommandsJson)
         expressionString = getVars(varinputcommand, expression, gameVars)
     }
     return line

@@ -11,7 +11,8 @@ import { getPractice, getQuiz } from "./quiz/getQuiz"
 import { getBlocks} from "./blocks/getBlocks"
 import { fixDBErrors, regenLife, resetExp } from "./levels/update"
 import { weekProgress } from "./levels/weekProgress"
-import {getActions, rpg} from "./rpg/rpg"
+import {rpg} from "./rpg/rpg"
+import {getRank} from "./ranking/getRank"
 export async function executeAll(app: Application, prisma: PrismaClient, maxLife: number){
     whichLevel(app, prisma)
     whichLife(app, prisma, maxLife)
@@ -27,7 +28,7 @@ export async function executeAll(app: Application, prisma: PrismaClient, maxLife
     getPractice(app, prisma)
     getBlocks(app, prisma)
     rpg(app, prisma)
-    getActions(app)
+    getRank(app, prisma)
     setInterval(()=>{ //regenera 1 vida a cada 2h
         regenLife(prisma, maxLife)
     }, 2*60*60*1000)

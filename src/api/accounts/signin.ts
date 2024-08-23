@@ -1,5 +1,6 @@
 import {Application, Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
 export async function signIn(app: Application, prisma: PrismaClient){
     function randomString(count: number): string{ //gera a chave de autenticação a ser salva no cookie
         const chars: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -10,84 +11,82 @@ export async function signIn(app: Application, prisma: PrismaClient){
         return result
     }
     app.post("/api/signin", async (req: Request, res: Response)=>{ //rota para receber o login
-        try{
-            async function genCookie(user: any){ //envia o cookie ao cliente e salva-o no banco de dados
-                let key: string = user.id + "#" + randomString(20)
+        try {
+            async function genCookie(user: any) {
+                let key: string = user.id + "#" + randomString(20);
                 await prisma.authKey.create({
                     data: {
                         key: key,
                         userId: user.id,
                     },
-                })
-                res.cookie('authKey', key, { 
+                });
+                res.cookie('authKey', key, {
                     path: '/',
                     secure: false,
                     httpOnly: true,
                     sameSite: true,
-                })
+                });
             }
-            //requisições abaixo
-            let userHasFound: Boolean = false
-            if(req.body.login == null || req.body.password == null || req.body.credential == null){
-                res.send(403).json(-1)
-            }
-            else{
-                if(req.body.credential===1){ //by username
-                    const users = await prisma.user.findMany({
+
+            let userHasFound = false;
+            if (!req.body.login || !req.body.password || !req.body.credential) {
+                return res.status(403).json(-1);
+            } 
+            else {
+                let users;
+                if (req.body.credential === 1) {
+                    // By username
+                    users = await prisma.user.findMany({
                         select: {
                             id: true,
                             username: true,
                             password: true,
                         },
-                    })
-                    users.forEach(async el => {
-                        if(el.username==req.body.login && el.password==req.body.password){
-                            userHasFound=true
-                            console.log(el)
-                            await genCookie(el)
-                            res.status(200).json(1)
-                        }
                     });
                 }
-                if(req.body.credential===2){ //by email
-                    const users = await prisma.user.findMany({
+                else if (req.body.credential === 2) {
+                    // By email
+                    users = await prisma.user.findMany({
                         select: {
                             id: true,
                             email: true,
                             password: true,
                         },
-                    })
-                    users.forEach(async el => {
-                        if(el.email==req.body.login && el.password==req.body.password){
-                            userHasFound=true
-                            await genCookie(el)
-                            res.status(200).json(1)
-                        }
                     });
                 }
-                if(req.body.credential===3){ //by phone
-                    const users = await prisma.user.findMany({
+                else if (req.body.credential === 3) {
+                    // By phone
+                    users = await prisma.user.findMany({
                         select: {
                             id: true,
                             phone: true,
                             password: true,
                         },
-                    })
-                    users.forEach(async el => {
-                        if(el.phone==req.body.login && el.password==req.body.password){
-                            userHasFound=true
-                            await genCookie(el)
-                            res.status(200).json(1)
-                        }
                     });
                 }
-                if(!userHasFound){
-                    res.status(403).json(-2)
+                else {
+                    return res.status(403).json(-2); // Invalid credential type
+                }
+
+                for (const el of users) {
+                    let isMatch = false;
+                    if (req.body.credential === 1) isMatch = el.username === req.body.login;
+                    if (req.body.credential === 2) isMatch = el.email === req.body.login;
+                    if (req.body.credential === 3) isMatch = el.phone === req.body.login;
+
+                    if (isMatch && await bcrypt.compare(req.body.password, el.password)) {
+                        await genCookie(el);
+                        return res.status(200).json(1);
+                    }
+                }
+
+                if (!userHasFound) {
+                    return res.status(403).json(-2);
                 }
             }
-        }
-        catch(error){
-            res.status(500)
+        } 
+        catch (error) {
+            return res.sendStatus(500)
         }
     })
 }

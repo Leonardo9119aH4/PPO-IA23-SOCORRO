@@ -1,0 +1,14 @@
+[
+    {
+        "command":"AtacarCima();"
+    },
+    {
+        "command":"AtacarBaixo();"
+    },
+    {
+        "command":"AtacarDireita();"
+    },
+    {
+        "command":"AtacarEsquerda();"
+    }
+]
