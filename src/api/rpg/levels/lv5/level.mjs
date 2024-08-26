@@ -80,50 +80,6 @@ export class Level extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('playerAttackSides', { start: 0, end: 23 }), // Frames da animação
             frameRate: 8, // Taxa de quadros por segundo
         })
-        // Bug1
-        this.anims.create({
-            key: 'bug1Idle', 
-            frames: this.anims.generateFrameNumbers('bug1Idle', { start: 0, end: 8 }), // Frames da animação
-            frameRate: 8, 
-            repeat: -1 
-        })
-        // this.anims.create({
-        //     key: 'bug1AttackUp',
-        //     frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 8 }), // Frames da animação
-        //     frameRate: 8, 
-        // })
-        // this.anims.create({
-        //     key: 'bug1AttackDown', 
-        //     frames: this.anims.generateFrameNumbers('bug2AttackDown', { start: 0, end: 8 }), // Frames da animação
-        //     frameRate: 8, 
-        // })
-        this.anims.create({
-            key: 'bug1AttackSides', 
-            frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
-            frameRate: 8, 
-        })
-        // Bug2
-        this.anims.create({
-            key: 'bug2Idle', 
-            frames: this.anims.generateFrameNumbers('bug2Idle', { start: 0, end: 8 }), // Frames da animação
-            frameRate: 8, 
-            repeat: -1 
-        })
-        // this.anims.create({
-        //     key: 'bug2AttackUp',
-        //     frames: this.anims.generateFrameNumbers('bug2AttackUp', { start: 0, end: 8 }), // Frames da animação
-        //     frameRate: 8, 
-        // })
-        // this.anims.create({
-        //     key: 'bug2AttackDown', 
-        //     frames: this.anims.generateFrameNumbers('bug2AttackDown', { start: 0, end: 8 }), // Frames da animação
-        //     frameRate: 8, 
-        // })
-        this.anims.create({
-            key: 'bug2AttackSides', 
-            frames: this.anims.generateFrameNumbers('bug2AttackSides', { start: 0, end: 8 }), // Frames da animação
-            frameRate: 8, 
-        })
         // Bug3
         this.anims.create({
             key: 'bug3Idle', 
@@ -147,38 +103,24 @@ export class Level extends Phaser.Scene {
             frameRate: 8, 
         })
         this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
-        this.player = this.physics.add.sprite(128, 128, 'playerIdle')
+        this.player = this.physics.add.sprite(120, 120, 'playerIdle')
         this.player.setCollideWorldBounds(true)
-        this.player.setDisplaySize(128, 128)
-        this.player.body.setSize(128, 128)
+        this.player.setDisplaySize(120, 120)
+        this.player.body.setSize(120, 120)
         this.player.setOrigin(0.5, 0.5)
         this.player.setBounce(0)
         this.player.body.setGravity(0, 0)
+        this.player.setOrigin(0, 0) //faz o jogador ficar certo no mapa
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
-        // this.bug1 = this.physics.add.sprite(512, 512, 'bug1Idle')
-        // this.bug2 = this.physics.add.sprite(320, 320, 'bug2Idle')
-        this.bug3 = this.physics.add.sprite(256, 256, 'bug3Idle')
-        // this.bug1.setDisplaySize(128, 128)
-        // this.bug1.setSize(128, 128)
-        // this.bug2.setDisplaySize(128, 128)
-        // this.bug2.setSize(128, 128)
-        this.bug3.setDisplaySize(128, 128)
-        this.bug3.setSize(128, 128)
-        // this.bug1.body.setGravity(0, 0)
-        // this.bug2.body.setGravity(0, 0)
+        //
+        this.bug3 = this.physics.add.sprite(240, 240, 'bug3Idle')
+        this.bug3.setDisplaySize(120, 120)
+        this.bug3.setSize(120, 120)
         this.bug3.body.setGravity(0, 0)
-        // this.bug1.anims.play("bug1Idle", true)
-        // this.bug2.anims.play("bug2Idle", true)
+        this.bug3.setOrigin(0, 0) //faz o bug3 ficar certo no mapa
         this.bug3.anims.play("bug3Idle", true)
-        //this.bug1.setDepth(2)
-        //this.bug2.setDepth(2)
         this.bug3.setDepth(1)
-        // const wall = this.physics.add.staticGroup()
-        // this.physics.add.collider(this.player.sprite, bug1Idle)
-        // this.physics.add.collider(this.player.sprite, bug2Idle)
-        // this.physics.add.collider(this.player.sprite, bug3Idle)
-        // this.physics.add.collider(this.player.sprite, wall)
         document.addEventListener('executeCode', this.executeCode.bind(this))
         //mecânicas e mapa
         const backgroundMap = this.make.tilemap({key: "map"})
@@ -196,9 +138,9 @@ export class Level extends Phaser.Scene {
         backgroundLayer.setScale(4)
         backgroundLayer.setOrigin(0, 0)
     }
-    update(){
-
-    }
+    // update(){
+        //um fucking jogo sem método update
+    // }
     async executeCode(){ //executor de código
         const actions = await JSON.parse(localStorage.getItem("actions"))
         function bugDistance(player, bug3){
@@ -206,22 +148,22 @@ export class Level extends Phaser.Scene {
             let distanceX = player.x - bug3.x; //distância no eixo X, valor positivo -> inimigo à esquerda; valor negativo -> inimigo à direita
             let distanceY = player.y - bug3.y; //distância no eixo Y, valor positivo -> inimigo em cima; valor negativo -> inimigo em baixo
             if(bug3 && bug3.active){
-                if(distanceX > 0 && distance < 130){
+                if(distanceX > 0 && distance < 121){
                     if(Math.abs(distanceX) > Math.abs(distanceY)){
                         return 4 //inimgo à esquerda
                     }
                 }
-                if(distanceX < 0 && distance > -130){
+                if(distanceX < 0 && distance < 121){
                     if(Math.abs(distanceX) > Math.abs(distanceY)){
                         return 2 //inimigo à direita
                     }
                 }
-                if(distanceY > 0 && distance < 130){
+                if(distanceY > 0 && distance < 121){
                     if(Math.abs(distanceY) > Math.abs(distanceX)){
                         return 1 //inimigo em cima
                     }
                 }
-                if(distanceY < 0 && distance > -130){
+                if(distanceY < 0 && distance < 121){
                     if(Math.abs(distanceY) > Math.abs(distanceX)){
                         return 3 //inimigo em baixo
                     }
@@ -293,13 +235,14 @@ export class Level extends Phaser.Scene {
                     await bug3Attack(bugPos, this.player, this.bug3)
                 }
                 else{
-                    this.player.setVelocityY(-64) //quantidade de pixels a ser movida para cima
+                    this.player.setVelocityY(-120) //quantidade de pixels a ser movida para cima
                     this.player.anims.play("playerWalk", true)
                     await new Promise(resolve => setTimeout(()=>{
                         this.player.setVelocityY(0)
                         this.player.anims.play("playerIdle", true)
                         resolve()
                     }, 1000))
+                    this.player.y = Math.round(this.player.y / 120) * 120 //força as coordenadas serem múltiplas de 120
                 } 
             }
             if(actions[i]===3){ //down
@@ -308,13 +251,14 @@ export class Level extends Phaser.Scene {
                     await bug3Attack(bugPos, this.player, this.bug3)
                 }
                 else{
-                    this.player.setVelocityY(64) //quantidade de pixels a ser movida para baixo
+                    this.player.setVelocityY(120) //quantidade de pixels a ser movida para baixo
                     this.player.anims.play("playerWalk", true)
                     await new Promise(resolve => setTimeout(()=>{
                         this.player.setVelocityY(0)
                         this.player.anims.play("playerIdle", true)
                         resolve()
                     }, 1000))
+                    this.player.y = Math.round(this.player.y / 120) * 120 //força as coordenadas serem múltiplas de 120
                 }
             }
             if(actions[i]===2){ //right
@@ -323,13 +267,14 @@ export class Level extends Phaser.Scene {
                     await bug3Attack(bugPos, this.player, this.bug3)
                 }
                 else{
-                    this.player.setVelocityX(64) //quantidade de pixels a ser movida para cima
+                    this.player.setVelocityX(120) //quantidade de pixels a ser movida para cima
                     this.player.anims.play("playerWalk", true)
                     await new Promise(resolve => setTimeout(()=>{
                         this.player.setVelocityX(0)
                         this.player.anims.play("playerIdle", true)
                         resolve()
                     }, 1000))
+                    this.player.x = Math.round(this.player.x / 120) * 120 //força as coordenadas serem múltiplas de 120
                 }
             }
             if(actions[i]===4){ //left
@@ -338,25 +283,26 @@ export class Level extends Phaser.Scene {
                     await bug3Attack(bugPos, this.player, this.bug3)
                 }
                 else{
-                    this.player.setVelocityX(-64) //quantidade de pixels a ser movida para cima
+                    this.player.setVelocityX(-120) //quantidade de pixels a ser movida para cima
                     this.player.anims.play("playerWalk", true)
                     await new Promise(resolve => setTimeout(()=>{
                         this.player.setVelocityX(0)
                         this.player.anims.play("playerIdle", true)
                         resolve()
                     }, 1000))
+                    this.player.x = Math.round(this.player.x / 120) * 120 //força as coordenadas serem múltiplas de 120
                 }
             }
             if(actions[i]===5){ //attack-up
                 if(bugDistance(this.player, this.bug3)===1){
                     this.player.anims.play("playerAttackUp", false)
-                    this.player.setOrigin(0.5, 0.75)
-                    this.player.setDisplaySize(128, 256)
+                    this.player.setOrigin(0, 0.5)
+                    this.player.setDisplaySize(120, 240)
                     await new Promise(resolve => this.player.on("animationcomplete", ()=>{
                         this.bug3.destroy()
-                        this.player.setDisplaySize(128, 128)
-                        this.player.setOrigin(0.5, 0.5)
+                        this.player.setOrigin(0, 0)
                         this.player.anims.play("playerIdle", true)
+                        this.player.setDisplaySize(120, 120)
                         resolve()
                     }))
                 }
@@ -367,13 +313,11 @@ export class Level extends Phaser.Scene {
             if(actions[i]===7){ //attack-down
                 if(bugDistance(this.player, this.bug3)===3){
                     this.player.anims.play("playerAttackDown", false)
-                    this.player.setOrigin(0.5, 0.25)
-                    this.player.setDisplaySize(128, 256)
+                    this.player.setDisplaySize(120, 240)
                     await new Promise(resolve => this.player.on("animationcomplete", ()=>{
                         this.bug3.destroy()
                         this.player.anims.play("playerIdle", true)
-                        this.player.setOrigin(0.5, 0.5)
-                        this.player.setDisplaySize(128, 128)
+                        this.player.setDisplaySize(120, 120)
                         resolve()
                     }))
                 }
@@ -384,13 +328,11 @@ export class Level extends Phaser.Scene {
             if(actions[i]===6){ //attack-right
                 if(bugDistance(this.player, this.bug3)===2){
                     this.player.anims.play("playerAttackSides", false)
-                    this.player.setOrigin(0.25, 0.5)
-                    this.player.setDisplaySize(256, 128)
+                    this.player.setDisplaySize(240, 120)
                     await new Promise(resolve => this.player.on("animationcomplete", ()=>{
                         this.bug3.destroy()
                         this.player.anims.play("playerIdle", true)
-                        this.player.setOrigin(0.5, 0.5)
-                        this.player.setDisplaySize(128, 128)
+                        this.player.setDisplaySize(120, 120)
                         resolve()
                     }))
                 }
@@ -400,14 +342,16 @@ export class Level extends Phaser.Scene {
             }
             if(actions[i]===8){ //attack-left
                 if(bugDistance(this.player, this.bug3)===4){
+                    this.player.flipX = true
                     this.player.anims.play("playerAttackSides", false)
-                    this.player.setOrigin(0.75, 0.5)
-                    this.player.setDisplaySize(256, 256)
+                    this.player.setDisplaySize(240, 120)
+                    this.player.setOrigin(0.5, 0)
                     await new Promise(resolve => this.player.on("animationcomplete", ()=>{
                         this.bug3.destroy()
                         this.player.anims.play("playerIdle", true)
-                        this.player.setOrigin(0.5, 0.5)
-                        this.player.setDisplaySize(128, 128)
+                        this.player.setDisplaySize(120, 120)
+                        this.player.flipX = false
+                        this.player.setOrigin(0, 0)
                         resolve()
                     }))
                 }
