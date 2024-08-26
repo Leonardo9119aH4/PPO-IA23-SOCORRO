@@ -185,10 +185,12 @@ export class Level extends Phaser.Scene {
         const backgroundTileset = backgroundMap.addTilesetImage("MapPathOgSize", "tiles") // Criar o layer de fundo a partir do tilemap
         const backgroundLayer = backgroundMap.createLayer("Ground", backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
         const wallsLayer = backgroundMap.createLayer("Walls", backgroundTileset, 0, 0)
-        wallsLayer.setCollisionByProperty({ collides: true });
-        this.physics.add.collider(this.player, wallsLayer)
         console.log("paredes", wallsLayer)
         console.log(backgroundMap, backgroundTileset, backgroundLayer)
+        wallsLayer.setScale(4)
+        wallsLayer.body.setSize(wallsLayer.width, wallsLayer.height, true)
+        wallsLayer.setCollisionByProperty({ collides: true })
+        this.physics.add.collider(this.player, wallsLayer)
         backgroundLayer.setScale(4)
         backgroundLayer.setOrigin(0, 0)
     }
