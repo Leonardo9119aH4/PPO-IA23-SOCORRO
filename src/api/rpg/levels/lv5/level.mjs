@@ -292,11 +292,13 @@ export class Level extends Phaser.Scene {
             if(actions[i]===5){ //attack-up
                 if(bugDistance(this.player, this.bug3)===1){
                     this.player.anims.play("playerAttackUp", false)
+                    this.player.setOrigin(0, 0.5)
                     this.player.setDisplaySize(120, 240)
                     await new Promise(resolve => this.player.on("animationcomplete", ()=>{
                         this.bug3.destroy()
-                        this.player.setDisplaySize(120, 120)
+                        this.player.setOrigin(0, 0)
                         this.player.anims.play("playerIdle", true)
+                        this.player.setDisplaySize(120, 120)
                         resolve()
                     }))
                 }
@@ -336,14 +338,16 @@ export class Level extends Phaser.Scene {
             }
             if(actions[i]===8){ //attack-left
                 if(bugDistance(this.player, this.bug3)===4){
+                    this.player.flipX = true
                     this.player.anims.play("playerAttackSides", false)
                     this.player.setDisplaySize(240, 120)
-                    // //inverte a animação
+                    this.player.setOrigin(0.5, 0)
                     await new Promise(resolve => this.player.on("animationcomplete", ()=>{
                         this.bug3.destroy()
                         this.player.anims.play("playerIdle", true)
-                        this.player.setScale(1, 1) //desinverte a animação
                         this.player.setDisplaySize(120, 120)
+                        this.player.flipX = false
+                        this.player.setOrigin(0, 0)
                         resolve()
                     }))
                 }
