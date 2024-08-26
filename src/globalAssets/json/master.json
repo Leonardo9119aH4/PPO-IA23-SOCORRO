@@ -3,7 +3,7 @@
         "type": "intro"
     },
     {
-        "type": "quiz",
+        "type": "quiz", 
         "theory": false
     },
     {
@@ -13,7 +13,7 @@
         "get_theory": "first"
     },
     {
-        "type": "quiz",
+        "type": "blocks",
         "theory": false
     },
     {
