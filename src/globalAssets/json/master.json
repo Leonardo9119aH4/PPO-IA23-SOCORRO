@@ -11,20 +11,20 @@
     {
         "type": "quiz",
         "theory": true,
-        "theory_title": "Operações aritméticas",
+        "theory_title": "E/S de dados",
         "get_theory": null
     },
     {
         "type": "quiz",
         "theory": true,
-        "theory_title": "E/S de dados",
+        "theory_title": "Operadores aritméticos",
         "get_theory": null
     },
     {
         "type": "blocks",
         "theory": false,
         "level_title": "E/S, variáveis e operações aritméticas",
-        "level_header": "resolva o algoritimo a seguir: "
+        "level_header": "Complete o algoritimo a seguir: "
     },
     {
         "type": "quiz",
@@ -36,6 +36,36 @@
         "type": "quiz",
         "theory": true,
         "theory_title": "Desvio condicional",
+        "get_theory": null
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "Operadores relacionais e desvio condicional",
+        "level_header": "Complete o algoritimo a seguir: "
+    },
+    {
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Laços de repetição",
+        "get_theory": null
+    },
+    {
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Funções",
+        "get_theory": null
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "Laços de repetição e funções",
+        "level_header": "Complete o algoritimo a seguir: "
+    },
+    {
+        "type": "rpg",
+        "theory": true,
+        "theory_title": "Mecânicas básicas",
         "get_theory": null
     }
 ]
