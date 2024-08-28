@@ -1,62 +1,76 @@
+
 [
+     
     {
-        "ask": "1.Qual operador permite comparar dois valores?",
-        "alt": ["=", "==", "!=", "<>"],
-        "ans": 1,
-        "image": null 
-    },
-    {
-        "ask": "2.O que significa o operador % em C?",
-        "alt": ["módulo", "divisão", "exponenciação", "multiplicação"],
-        "ans": 0,
-        "image": null 
-    },
-    {
-        "ask": "3.Qual operador compara e diz que dois valores são iguais ou não?",
-        "alt": ["=", "!=", "==", "==="],
+        "ask": "Qual a saída de escreva(3 * 2 - 2)?",
+        "alt": ["10", "7", "8", "9"],
         "ans": 2,
         "image": null 
     },
     {
-        "ask": "4.Qual operador compara e diz se dois valores são diferentes ou não?",
-        "alt": ["=", "!=", "==", "==="],
+        "ask": "Qual a saída de escreva((3 + 2) * 2)?",
+        "alt": ["10", "7", "8", "9"],
+        "ans": 0,
+        "image": "test.png"
+    },
+    {
+        "ask": "Qual a saída de escreva(3 + 3) / 3?",
+        "alt": [" 1", " 2", " 3", " 4"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Qual a saída de escreva(2*(2+(2+1)))?",
+        "alt": [" 8", "10", "12", "15"],
         "ans": 1,
         "image": null 
     },
     {
-        "ask": "5.Qual operador diz que uma variável é maior que um valor",
-        "alt": ["<", "<=", ">", "==="],
+        "ask": "(5falta img)Observando o seguinte código, qual será o valor de “c”",
+        "alt": ["c = 1", "c = 2", "c = 3", "c = 4"],
+        "ans": 2,
+        "image": "lvl1ex5" 
+    },
+    {
+        "ask": "Qual a saída de escreva((1 + 2) * 3 + 1)?",
+        "alt": ["12", "11", "9", "10"],
+        "ans": 3,
+        "image": null 
+    },
+    {
+        "ask": "Observe a seguinte declaração de variável: real a = 1.5, b = 2.5. Qual será a soma das variáveis “a” e ”b”??",
+        "alt": ["3.5", "4", "4.5", "5"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "(8falta img)Observando o pequeno código a abaixo, qual será o valor de c?",
+        "alt": ["3", "4", "5", "6"],
+        "ans": 2,
+        "image": "lvl1ex8.png"
+    },
+    {
+        "ask": "(10falta img)Observe o pequeno código a seguir:",
+        "alt": ["7", "15", "16", "9"],
+        "ans": 1,
+        "image": "lvl1ex10" 
+    },
+    {
+        "ask": "Qual a saída de escreva(1 +( 8 * 3))?",
+        "alt": ["27", "24", "25", "21"],
         "ans": 2,
         "image": null 
     },
     {
-        "ask": "6.Qual operador diz que uma variável é menor que um valor",
-        "alt": ["<", "<=", ">", "==="],
+        "ask": "O que o operador “%” representa?",
+        "alt": ["Módulo", "Divisão", "Exponenciação", "Multiplicação"],
         "ans": 0,
         "image": null 
     },
     {
-        "ask": "7.A comparação “8 % 2 == 1” está correta?",
-        "alt": ["sim", "não", "não sei", "?"],
-        "ans": 1,
-        "image": null 
-    },
-    {
-        "ask": "8.A comparação “27 / 3  == 9” está correta?",
-        "alt": ["sim", "não", "não sei", "?"],
-        "ans": 0,
-        "image": null 
-    },
-    {
-        "ask": "9.A comparação “27 / 3  == 9” está correta?",
-        "alt": ["sim", "não", "não sei", "?"],
-        "ans": 0,
-        "image": null 
-    },
-    {
-        "ask": "10.A é maior que B e C é maior que A ( A > B e C > A ), quem é o menor?",
-        "alt": ["A", "B", "C", "não sei"],
-        "ans": 1,
+        "ask": "(12falta img)Observe o pequeno código a seguir:",
+        "alt": ["1", "1.5", "2.5", "3"],
+        "ans": 3,
         "image": null 
     }
 ] 

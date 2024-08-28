@@ -95,7 +95,7 @@ async function content(){
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({"action": "add", "life": 1})
+            body: JSON.stringify({"action": "practice"}) //rota para incrementar 1 vida
         })
     }
     function Feedback(isCorrect){

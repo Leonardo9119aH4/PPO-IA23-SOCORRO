@@ -3,40 +3,69 @@
         "type": "intro"
     },
     {
-        "type": "quiz",
-        "theory": false
+        "type": "quiz", 
+        "theory": true,
+        "theory_title": "Variáveis",
+        "get_theory": null
     },
     {
         "type": "quiz",
         "theory": true,
-        "theory_title": "Explicando Magic-C",
-        "get_theory": "first"
+        "theory_title": "E/S de dados",
+        "get_theory": null
     },
     {
         "type": "quiz",
-        "theory": false
+        "theory": true,
+        "theory_title": "Operadores aritméticos",
+        "get_theory": null
     },
     {
         "type": "blocks",
         "theory": false,
-        "level_title": "bloquinhu",
-        "level_header": "resolva o algoritimo a seguir: "
+        "level_title": "E/S, variáveis e operações aritméticas",
+        "level_header": "Complete o algoritimo a seguir: "
     },
     {
-        "type": "rpg",
-        "theory": false
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Operadores relacionais",
+        "get_theory": null
     },
     {
-        "type": "rpg",
-        "theory": false
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Desvio condicional",
+        "get_theory": null
     },
     {
         "type": "blocks",
         "theory": false,
-        "level_title": "nível 7",
-        "level_header": "1 3 2"
+        "level_title": "Operadores relacionais e desvio condicional",
+        "level_header": "Complete o algoritimo a seguir: "
     },
     {
-        "type": "intro"
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Laços de repetição",
+        "get_theory": null
+    },
+    {
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Funções",
+        "get_theory": null
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "Laços de repetição e funções",
+        "level_header": "Complete o algoritimo a seguir: "
+    },
+    {
+        "type": "rpg",
+        "theory": true,
+        "theory_title": "Mecânicas básicas",
+        "get_theory": null
     }
 ]
