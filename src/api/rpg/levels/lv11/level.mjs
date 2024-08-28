@@ -89,8 +89,7 @@ export class Level extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
         this.player = this.physics.add.sprite(120, 120, 'playerIdle')
         this.player.setCollideWorldBounds(true)
-        this.player.setDisplaySize(120, 120)
-        this.player.body.setSize(120, 120)
+        this.player.setDisplaySize(120, 120).refreshBody()
         this.player.setOrigin(0.5, 0.5)
         this.player.setBounce(0)
         this.player.body.setGravity(0, 0)

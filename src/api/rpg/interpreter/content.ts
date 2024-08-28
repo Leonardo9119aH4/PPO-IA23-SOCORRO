@@ -69,7 +69,7 @@ export function load(inputcommands: Array<string>, moveCommandsJson: Array<Comma
         inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
         inputsplit = inputcommands[i].split('')
         if(detectLoop(inputcommands[i])){
-             i = loadLoop(varinputcommand, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
+            i = loadLoop(varinputcommand, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
             i = conditional(inputsplit, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)

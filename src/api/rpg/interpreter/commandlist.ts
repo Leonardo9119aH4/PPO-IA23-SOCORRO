@@ -1,4 +1,4 @@
-export function listCommands(inputcommands: any, i: any, x: number) {
+export function listCommands(inputcommands: any, i: number, x: number) {
     let counter = 0
     while(true) {
         if(inputcommands[i].indexOf('{') != -1){
@@ -12,5 +12,6 @@ export function listCommands(inputcommands: any, i: any, x: number) {
         }
         i++
     }
+    console.log(inputcommands.slice(x+1, i))
     return [inputcommands.slice(x+1, i), i]
 }
