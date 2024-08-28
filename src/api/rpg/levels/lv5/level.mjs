@@ -129,13 +129,10 @@ export class Level extends Phaser.Scene {
         const wallsLayer = backgroundMap.createLayer("Walls", backgroundTileset, 0, 0)
         console.log("paredes", wallsLayer)
         console.log(backgroundMap, backgroundTileset, backgroundLayer)
-        layer.setCollisionByProperty({ collides: true });
-        wallsLayer.forEachTile(wall => {
-            
-        })
         wallsLayer.setScale(4)
-        this.physics.add.collider(this.player, wallsLayer)
         backgroundLayer.setScale(4)
+        wallsLayer.setCollisionByExclusion([-1])
+        this.physics.add.collider(this.player, wallsLayer);
         backgroundLayer.setOrigin(0, 0)
     }
     // update(){
