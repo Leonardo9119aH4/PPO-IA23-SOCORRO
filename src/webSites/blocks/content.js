@@ -142,8 +142,7 @@ async function content(){
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "action": "add",
-                    "level": 1
+                    "action": "upLevel",
                     })
                 }).then(resp =>{
                     if(resp.status===500){
@@ -164,8 +163,7 @@ async function content(){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "action": "reduce",
-                "life": 1
+                "action": "hit",
             })
         }).then(resp =>{
             if(resp.status === 500){
