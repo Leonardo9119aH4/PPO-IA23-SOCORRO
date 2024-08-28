@@ -21,7 +21,7 @@ export function conditional(input: Array<string>, inputcommands: Array<string>, 
         let ifcommands: any = listCommands(inputcommands, actualline, actualline)[0]
         console.log(ifcommands)
         load(ifcommands, commandsjson, gameVars, phaserCommands, attackCommandsJson)
-        let elseline = listCommands(inputcommands, actualline, actualline)[1] + 1
+        let elseline = listCommands(inputcommands, actualline, actualline)[1]
         console.log(elseline)
         console.log(inputcommands[elseline])
         if(inputcommands[elseline].indexOf("se nao") != -1 || inputcommands[elseline].indexOf("}se nao") != -1 || inputcommands[elseline].indexOf("se nao{") != -1 || inputcommands[elseline].indexOf("}se nao{") != -1){
