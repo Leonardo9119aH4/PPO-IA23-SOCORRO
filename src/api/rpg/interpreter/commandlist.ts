@@ -29,6 +29,9 @@ export function getFinalline(inputcommands: any, i: number) {
     console.log(inputcommands)
     while(true) {
         console.log("counter: ", counter, "\nlinha: ", i)
+        if(inputcommands[i].indexOf("se nao") != -1 || inputcommands[i].indexOf("}se nao") != -1 || inputcommands[i].indexOf("se nao{") != -1 || inputcommands[i].indexOf("}se nao{") != -1){
+            break
+        }
         if(inputcommands[i].indexOf('{') != -1){
             counter++
         }
