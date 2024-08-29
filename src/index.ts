@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser"
 import bcrypt from 'bcrypt'
 import { PrismaClient } from '@prisma/client'
 import { executeAll } from "./api/map"
+import { fixDBErrors } from './api/levels/update'
+import readline from 'readline'
 
 const app = express()
 const PORT: number = parseInt(process.env.PORT || '3000')
@@ -24,6 +26,20 @@ async function main(){
     console.log(`Servidor iniciado na porta ${PORT}`);
   })
   executeAll(app, prisma, 7) //quantidade máxima de vidas
+  const rl = readline.createInterface({ //comando para fixdb
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false,
+  });
+  rl.on('line', (input: string) => {
+    if (input.trim() === 'fixdb') {
+      fixDBErrors(prisma, 7);
+    }
+    else {
+      console.log(`Comando desconhecido: ${input}`);
+    }
+  });
+  
 }
 main().then(async () => {
   await prisma.$disconnect()
