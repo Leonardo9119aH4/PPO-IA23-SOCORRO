@@ -55,8 +55,9 @@ button#run{
     left: 47vw;
     color: white;
     border: none;
-    border-radius: 25%;
+    border-radius: 10rem;
     font-size: 2rem;
+    padding: 1rem;
     &:hover{
         background-color: rgb(20, 127, 20);
     }
