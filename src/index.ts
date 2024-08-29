@@ -26,9 +26,8 @@ async function main(){
   app.listen(PORT, () => { // Inicia o servidor
     process.stdout.write(`Servidor iniciado na porta ${PORT}\n$ `);
   })
-  await fixDBErrors(prisma, maxLife) //corrige erros do banco de dados
-  executeAll(app, prisma, maxLife) 
-  const rl = readline.createInterface({ //comando para fixdb a qualquer momento no terminal
+  executeAll(app, prisma, 7) //quantidade máxima de vidas
+  const rl = readline.createInterface({ //comando para fixdb
     input: process.stdin,
     output: process.stdout,
     terminal: false,
@@ -36,21 +35,9 @@ async function main(){
   rl.on('line', (input: string) => {
     if (input.trim() === 'fixdb') {
       fixDBErrors(prisma, 7);
-      process.stdout.write("Erros do banco de dados corrigidos\n$ ")
-    }
-    else if(input.trim() === 'help' || input.trim() === '?'){
-      process.stdout.write("Lista de comandos disponíveis:\nfixdb: Corrige erros do banco de dados\nexit: Desliga o servidor\nhelp: exibe essa lista\n?: exibe essa lista\nclear: limpa o terminal\ncls: limpa o terminal\n$ ")
-    }
-    else if(input.trim() === 'exit'){
-      prisma.$disconnect().then(()=>{
-        process.exit(1)
-      })
-    }
-    else if(input.trim() === 'clear' || input.trim() === 'cls'){
-      process.stdout.write('\x1Bc\n$ ')
     }
     else {
-      process.stdout.write(`Comando desconhecido: ${input}\n$ `);
+      console.log(`Comando desconhecido: ${input}`);
     }
   });
   
