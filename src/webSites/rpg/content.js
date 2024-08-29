@@ -98,8 +98,7 @@ async function content(){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "action": "reduce",
-                "lifes": 1
+                "action": "hit"
             })
         })
         gameOverPopup.classList.add("opened")

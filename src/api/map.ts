@@ -35,6 +35,5 @@ export async function executeAll(app: Application, prisma: PrismaClient, maxLife
     setInterval(()=>{ //reseta o xp a cada dia (xp diário)
         resetExp(prisma)
     }, 24*60*60*1000)
-    fixDBErrors(prisma, maxLife) //corrige erros no banco de dados
     //weekProgress(prisma) //atualiza o banco de dados para fazer o progresso semanal
 }
