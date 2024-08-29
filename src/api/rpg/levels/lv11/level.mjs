@@ -30,8 +30,8 @@ export class Level extends Phaser.Scene {
             frameHeight: 30*53
         })
         this.load.spritesheet("bug1AttackSides", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackSides.png",{
-            frameWidth: 60*53,
-            frameHeight: 30*53
+            frameWidth: 60*26,
+            frameHeight: 30*26
         })
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
     }
@@ -67,7 +67,7 @@ export class Level extends Phaser.Scene {
         // Bug1
         this.anims.create({
             key: 'bug1Idle', 
-            frames: this.anims.generateFrameNumbers('bug1Idle', { start: 0, end: 8 }), // Frames da animação
+            frames: this.anims.generateFrameNumbers('bug1Idle', { start: 0, end: 31 }), // Frames da animação
             frameRate: 8, 
             repeat: -1 
         })
@@ -97,13 +97,13 @@ export class Level extends Phaser.Scene {
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
         //
-        this.bug3 = this.physics.add.sprite(240, 240, 'bug1Idle')
-        this.bug3.setDisplaySize(120, 120)
-        this.bug3.setSize(120, 120)
-        this.bug3.body.setGravity(0, 0)
-        this.bug3.setOrigin(0, 0) //faz o bug3 ficar certo no mapa
-        this.bug3.anims.play("bug1Idle", true)
-        this.bug3.setDepth(1)
+        this.bug1 = this.physics.add.sprite(240, 240, 'bug1Idle')
+        this.bug1.setDisplaySize(120, 120)
+        this.bug1.setSize(120, 120)
+        this.bug1.body.setGravity(0, 0)
+        this.bug1.setOrigin(0, 0) //faz o bug1 ficar certo no mapa
+        this.bug1.anims.play("bug1Idle", true)
+        this.bug1.setDepth(1)
         document.addEventListener('executeCode', this.executeCode.bind(this))
         //mecânicas e mapa
         const backgroundMap = this.make.tilemap({key: "map"})
@@ -123,11 +123,11 @@ export class Level extends Phaser.Scene {
     // }
     async executeCode(){ //executor de código
         const actions = await JSON.parse(localStorage.getItem("actions"))
-        function bugDistance(player, bug3){
-            let distance = Phaser.Math.Distance.Between(player.x, player.y, bug3.x, bug3.y); //distância vetorial em módulo
-            let distanceX = player.x - bug3.x; //distância no eixo X, valor positivo -> inimigo à esquerda; valor negativo -> inimigo à direita
-            let distanceY = player.y - bug3.y; //distância no eixo Y, valor positivo -> inimigo em cima; valor negativo -> inimigo em baixo
-            if(bug3 && bug3.active){
+        function bugDistance(player, bug1){
+            let distance = Phaser.Math.Distance.Between(player.x, player.y, bug1.x, bug1.y); //distância vetorial em módulo
+            let distanceX = player.x - bug1.x; //distância no eixo X, valor positivo -> inimigo à esquerda; valor negativo -> inimigo à direita
+            let distanceY = player.y - bug1.y; //distância no eixo Y, valor positivo -> inimigo em cima; valor negativo -> inimigo em baixo
+            if(bug1 && bug1.active){
                 if(distanceX > 0 && distance < 121){
                     if(Math.abs(distanceX) > Math.abs(distanceY)){
                         return 4 //inimgo à esquerda
@@ -151,56 +151,56 @@ export class Level extends Phaser.Scene {
             }
             return 0 //sem inimigo próximo
         }
-        async function bug3Attack(bugPos, player, bug3){
+        async function bug1Attack(bugPos, player, bug1){
             switch(bugPos){
                 case 1: //inimigo em cima
-                    //bug3.anims.play("bug1AttackDown", false)
-                    bug3.setOrigin(0.5, 0.25)
-                    bug3.setDisplaySize(128, 256)
-                    await new Promise(resolve => bug3.on("animationcomplete", ()=>{
+                    //bug1.anims.play("bug1AttackDown", false)
+                    bug1.setOrigin(0.5, 0.25)
+                    bug1.setDisplaySize(128, 256)
+                    await new Promise(resolve => bug1.on("animationcomplete", ()=>{
                         player.destroy()
-                        bug3.setDisplaySize(128, 128)
-                        bug3.setOrigin(0.5, 0.5)
-                        bug3.anims.play("bug1Idle", true)
+                        bug1.setDisplaySize(128, 128)
+                        bug1.setOrigin(0.5, 0.5)
+                        bug1.anims.play("bug1Idle", true)
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
                     break;
                 case 2: //inimigo à direita
-                    //bug3.anims.play("bug1AttackSides", false)
-                    bug3.setOrigin(0.75, 0.5)
-                    bug3.setDisplaySize(256, 128)
-                    await new Promise(resolve => bug3.on("animationcomplete", ()=>{
+                    bug1.anims.play("bug1AttackSides", false)
+                    bug1.setDisplaySize(256, 128)
+                    bug1.setOrigin(0.5, 0)
+                    await new Promise(resolve => bug1.on("animationcomplete", ()=>{
                         player.destroy()
-                        bug3.setDisplaySize(128, 128)
-                        bug3.setOrigin(0.5, 0.5)
-                        bug3.anims.play("bug1Idle", true)
+                        bug1.anims.play("bug1Idle", true)
+                        bug1.setDisplaySize(128, 128)
+                        bug1.setOrigin(0, 0)
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
                     break;
                 case 3: //inimigo em baixo
-                    //bug3.anims.play("bug1AttackUp", false)
-                    bug3.setOrigin(0.5, 0.75)
-                    bug3.setDisplaySize(128, 256)
-                    await new Promise(resolve => bug3.on("animationcomplete", ()=>{
+                    //bug1.anims.play("bug1AttackUp", false)
+                    bug1.setOrigin(0.5, 0.75)
+                    bug1.setDisplaySize(128, 256)
+                    await new Promise(resolve => bug1.on("animationcomplete", ()=>{
                         player.destroy()
-                        bug3.setDisplaySize(128, 128)
-                        bug3.setOrigin(0.5, 0.5)
-                        bug3.anims.play("bug1Idle", true)
+                        bug1.setDisplaySize(128, 128)
+                        bug1.setOrigin(0.5, 0.5)
+                        bug1.anims.play("bug1Idle", true)
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
                     break;
                 case 4: //inimigo à esquerda
-                    //bug3.anims.play("bug1AttackSides", false)
-                    bug3.setOrigin(0.25, 0.5)
-                    bug3.setDisplaySize(256, 128)
-                    await new Promise(resolve => bug3.on("animationcomplete", ()=>{
+                    bug1.anims.play("bug1AttackSides", false)
+                    bug1.setDisplaySize(256, 128)
+                    bug1.flipX = true
+                    await new Promise(resolve => bug1.on("animationcomplete", ()=>{
                         player.destroy()
-                        bug3.setDisplaySize(128, 128)
-                        bug3.setOrigin(0.5, 0.5)
-                        bug3.anims.play("playerIdle", true)
+                        bug1.anims.play("bug1Idle", true)
+                        bug1.setDisplaySize(128, 128)
+                        bug1.flipX = false
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
@@ -210,9 +210,9 @@ export class Level extends Phaser.Scene {
         for(let i=0; i<actions.length; i++){ /* 1-Up; 2-Right; 3-Down; 4-Left; 5-Attack Up; 6-Attack Right; 7-Attack Down; 8-Attack Left */
             console.log("X: ",this.player.x, "Y: ", this.player.y)
             if(actions[i]===1){ //up
-                let bugPos = bugDistance(this.player, this.bug3)
+                let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
-                    await bug3Attack(bugPos, this.player, this.bug3)
+                    await bug1Attack(bugPos, this.player, this.bug1)
                 }
                 else{
                     this.player.setVelocityY(-120) //quantidade de pixels a ser movida para cima
@@ -226,9 +226,9 @@ export class Level extends Phaser.Scene {
                 } 
             }
             if(actions[i]===3){ //down
-                let bugPos = bugDistance(this.player, this.bug3)
+                let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
-                    await bug3Attack(bugPos, this.player, this.bug3)
+                    await bug1Attack(bugPos, this.player, this.bug1)
                 }
                 else{
                     this.player.setVelocityY(120) //quantidade de pixels a ser movida para baixo
@@ -242,13 +242,14 @@ export class Level extends Phaser.Scene {
                 }
             }
             if(actions[i]===2){ //right
-                let bugPos = bugDistance(this.player, this.bug3)
+                let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
-                    await bug3Attack(bugPos, this.player, this.bug3)
+                    await bug1Attack(bugPos, this.player, this.bug1)
                 }
                 else{
                     this.player.setVelocityX(120) //quantidade de pixels a ser movida para cima
                     this.player.anims.play("playerWalk", true)
+                    this.player.flipX = false
                     await new Promise(resolve => setTimeout(()=>{
                         this.player.setVelocityX(0)
                         this.player.anims.play("playerIdle", true)
@@ -258,13 +259,14 @@ export class Level extends Phaser.Scene {
                 }
             }
             if(actions[i]===4){ //left
-                let bugPos = bugDistance(this.player, this.bug3)
+                let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
-                    await bug3Attack(bugPos, this.player, this.bug3)
+                    await bug1Attack(bugPos, this.player, this.bug1)
                 }
                 else{
                     this.player.setVelocityX(-120) //quantidade de pixels a ser movida para cima
                     this.player.anims.play("playerWalk", true)
+                    this.player.flipX = true
                     await new Promise(resolve => setTimeout(()=>{
                         this.player.setVelocityX(0)
                         this.player.anims.play("playerIdle", true)
@@ -278,12 +280,12 @@ export class Level extends Phaser.Scene {
                 this.player.setOrigin(0, 0.5)
                 this.player.setDisplaySize(120, 240)
                 await new Promise(resolve => this.player.on("animationcomplete", async ()=>{
-                    if(bugDistance(this.player, this.bug3)===1){
-                        this.bug3.destroy()
+                    if(bugDistance(this.player, this.bug1)===1){
+                        this.bug1.destroy()
                     }
                     else{
-                        let bugPos = bugDistance(this.player, this.bug3)
-                        await bug3Attack(bugPos, this.player, this.bug3)
+                        let bugPos = bugDistance(this.player, this.bug1)
+                        await bug1Attack(bugPos, this.player, this.bug1)
                     }
                     this.player.setOrigin(0, 0)
                     this.player.anims.play("playerIdle", true)
@@ -295,12 +297,12 @@ export class Level extends Phaser.Scene {
                 this.player.anims.play("playerAttackDown", false)
                 this.player.setDisplaySize(120, 240)
                 await new Promise(resolve => this.player.on("animationcomplete", async ()=>{
-                    if(bugDistance(this.player, this.bug3)===3){
-                        this.bug3.destroy()
+                    if(bugDistance(this.player, this.bug1)===3){
+                        this.bug1.destroy()
                     }
                     else{
-                        let bugPos = bugDistance(this.player, this.bug3)
-                        await bug3Attack(bugPos, this.player, this.bug3)
+                        let bugPos = bugDistance(this.player, this.bug1)
+                        await bug1Attack(bugPos, this.player, this.bug1)
                     }
                     this.player.anims.play("playerIdle", true)
                     this.player.setDisplaySize(120, 120)
@@ -311,12 +313,12 @@ export class Level extends Phaser.Scene {
                 this.player.anims.play("playerAttackSides", false)
                 this.player.setDisplaySize(240, 120)
                 await new Promise(resolve => this.player.on("animationcomplete", async ()=>{
-                    if(bugDistance(this.player, this.bug3)===2){
-                        this.bug3.destroy()
+                    if(bugDistance(this.player, this.bug1)===2){
+                        this.bug1.destroy()
                     }
                     else{
-                        let bugPos = bugDistance(this.player, this.bug3)
-                        await bug3Attack(bugPos, this.player, this.bug3)
+                        let bugPos = bugDistance(this.player, this.bug1)
+                        await bug1Attack(bugPos, this.player, this.bug1)
                     }
                     this.player.anims.play("playerIdle", true)
                     this.player.setDisplaySize(120, 120)
@@ -329,12 +331,12 @@ export class Level extends Phaser.Scene {
                 this.player.setDisplaySize(240, 120)
                 this.player.setOrigin(0.5, 0)
                 await new Promise(resolve => this.player.on("animationcomplete", async ()=>{
-                    if(bugDistance(this.player, this.bug3)===4){
-                        this.bug3.destroy()
+                    if(bugDistance(this.player, this.bug1)===4){
+                        this.bug1.destroy()
                     }
                     else{
-                        let bugPos = bugDistance(this.player, this.bug3)
-                        await bug3Attack(bugPos, this.player, this.bug3)
+                        let bugPos = bugDistance(this.player, this.bug1)
+                        await bug1Attack(bugPos, this.player, this.bug1)
                     }
                     this.player.anims.play("playerIdle", true)
                     this.player.setDisplaySize(120, 120)
