@@ -26,10 +26,10 @@
         "image": null 
     },
     {
-        "ask": "(5falta img)Observando o seguinte código, qual será o valor de “c”",
-        "alt": ["c = 1", "c = 2", "c = 3", "c = 4"],
-        "ans": 2,
-        "image": "lvl1ex5.png" 
+        "ask": "Observando o seguinte código, qual será o valor de “c”",
+        "alt": ["c = 3", "c = 4", "c = 5", "c = 6"],
+        "ans": 3,
+        "image": "lvl3ex5.png" 
     },
     {
         "ask": "Qual a saída de escreva((1 + 2) * 3 + 1)?",
@@ -44,16 +44,17 @@
         "image": null 
     },
     {
-        "ask": "(8falta img)Observando o pequeno código a abaixo, qual será o valor de c?",
+        "ask": "(8faObservando o pequeno código a abaixo, qual será o valor de c?",
         "alt": ["3", "4", "5", "6"],
         "ans": 2,
-        "image": "lvl1ex8.png"
+        "image": "lvl3ex8.png"
     },
     {
-        "ask": "(10falta img)Observe o pequeno código a seguir:",
+        "ask": "Observe o pequeno código a seguir:",
         "alt": ["7", "15", "16", "9"],
         "ans": 1,
-        "image": "lvl1ex10.png" 
+        "image": "lvlex10.png" 
+
     },
     {
         "ask": "Qual a saída de escreva(1 +( 8 * 3))?",
