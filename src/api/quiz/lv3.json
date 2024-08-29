@@ -54,7 +54,6 @@
         "alt": ["7", "15", "16", "9"],
         "ans": 1,
         "image": "lvlex10.png" 
-
     },
     {
         "ask": "Qual a saída de escreva(1 +( 8 * 3))?",
