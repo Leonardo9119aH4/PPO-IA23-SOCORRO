@@ -6,17 +6,18 @@ import {conditional} from './conditional'
 import fs from 'fs-promise'
 import path from 'path'
 
-import { Commands } from './commands'
+import { Commands, returnPureCommand } from './commands'
 import {getTiles} from './getTiles'
 
-export function runMove(app: Application){
+export async function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
         let inputcommands = req.body.inputcommands.split("\n")
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
         const moveCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'move.json'))
         const attackCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'attack.json'))
         var phaserCommands: Array<Array<number>> = []
-        load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
+        await load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
+        console.log("foi:", phaserCommands)
         res.status(200).json(phaserCommands)
     })
 }
@@ -32,6 +33,7 @@ Estrutura do phaser commands:
 */
 
 function attackCalc(command: string){
+    console.log("atacar: ", command)
     switch(command) {
         case 'AtacarCima();':
             return [5, 1]
@@ -45,55 +47,60 @@ function attackCalc(command: string){
     return [NaN, NaN]
 }
 
-function moveCalc(inputcommand: string, tiles: number, complemention: string, command: string) {
-    console.log(command + `(${tiles});`)
-    switch (command + `(${tiles});`) { //verfica a variavel do comando para determinar o lado
-        case `MoverCima(${tiles});`:
+function moveCalc(tiles: number, command: string) {
+    console.log("mover: ", command + `(${tiles});`)
+    switch (command) { //verfica a variavel do comando para determinar o lado
+        case `MoverCima`:
             return [1, tiles]
-        case `MoverBaixo(${tiles});`:  
+        case `MoverBaixo`:  
             return [3, tiles]
-        case `MoverDireita(${tiles});`:
+        case `MoverDireita`:
             return [2, tiles]
-        case `MoverEsquerda(${tiles});`:
+        case `MoverEsquerda`:
             return [4, tiles]
     }
     return [NaN, NaN]
 }
 
-export function load(inputcommands: Array<string>, moveCommandsJson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson: Array<Commands>) {
+export async function load(inputcommands: Array<string>, moveCommandsJson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson: Array<Commands>) {
     for(let i = 0; i < inputcommands.length; i++) {
-        console.log("execute")
         let inputsplit = inputcommands[i].split('')
         setVars(inputcommands[i], inputsplit, gameVars)
         let varinputcommand = inputcommands[i]
         inputcommands[i] = getVars(inputcommands[i], inputsplit, gameVars)
         inputsplit = inputcommands[i].split('')
         if(detectLoop(inputcommands[i])){
-            i = loadLoop(varinputcommand, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
+            i = await loadLoop(varinputcommand, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
         }
         if(inputcommands[i].indexOf('se ') != -1 || inputcommands[i].indexOf('se(') != -1) {
-            i = conditional(inputsplit, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
+            console.log("tem condicional")
+            i = await conditional(inputsplit, inputcommands, i, moveCommandsJson, gameVars, phaserCommands, attackCommandsJson)
         }
-        let tiles: number = Number(getTiles(inputcommands[i]));
-        let complemention: string = ""
-        if(tiles == 0) {
-            complemention = ""
-            tiles = 1
-        } else {
-            complemention = `${tiles}`
-        }
-        console.log(inputcommands[i], tiles)
-        console.log(complemention)
-        moveCommandsJson.forEach((commandelement: Commands) => {
-            if(inputcommands[i] == (commandelement.command + `(${complemention});`)) { //se o input for igual a algum comando do json executa o código
-                console.log("caiu")
-                phaserCommands.push(moveCalc(inputcommands[i], tiles, complemention, commandelement.command))
-            }
-        })
+        console.log(i)
+        console.log(inputcommands[i])
+        let nextIteration: boolean = false
         attackCommandsJson.forEach((command: Commands) => {
             if(inputcommands[i] == command.command){
                 console.log("caiu")
                 phaserCommands.push(attackCalc(inputcommands[i]))
+                nextIteration = true
+            }
+        })
+        if(nextIteration){
+            continue
+        }
+        console.log("attack")
+        let pureCommand = await returnPureCommand(inputcommands[i])
+        console.log("pure: ", pureCommand)
+        moveCommandsJson.forEach((commandelement: Commands) => {
+            if(pureCommand == commandelement.command) { //se o input for igual a algum comando do json executa o código
+                let tiles: number = Number(getTiles(inputcommands[i]))
+                if(tiles == 0) {
+                    tiles = 1
+                }
+                console.log("tiles: ", tiles)
+                phaserCommands.push(moveCalc(tiles, commandelement.command))
+                console.log("phaserCommands:", phaserCommands)
             }
         })
     }
