@@ -350,6 +350,7 @@ export class Level extends Phaser.Scene {
                 }))
             }
         }
+        document.dispatchEvent(new Event("isRunningCode"))
     }
     shutdown(){
         document.removeEventListener('executeCode', this.executeCode.bind(this))
