@@ -2,13 +2,13 @@
     display: block;
     position: absolute;
     cursor: grab;
-    border-radius: 10%;
+    border-radius: 10rem;
     text-align: center;
-    width: max-content;
+    font-size: 2rem;
     user-select: none;
     color: white;
-    height: 1.1rem;
-    width: 10rem;
+    height: 2.2rem;
+    width: 30rem;
 }
 #bl1{
     top: 0;

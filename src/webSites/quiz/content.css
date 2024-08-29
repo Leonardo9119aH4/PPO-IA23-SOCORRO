@@ -45,7 +45,8 @@ header{
             float: right;
         }
         & img{
-            float: left;
+            
+
         }
     }
 }
@@ -74,9 +75,10 @@ main{
     grid-template-columns: repeat(var(--RepN), 1fr);
     place-items: center;
     &>button{
-        width: 6rem;
+        font-size: 1.5rem;
+        width: 11rem;
         height: 5rem;
-        border-radius: 15%;
+        border-radius: 5rem;
         border: none;
     }
     &>button:hover, &>button:focus{
@@ -85,8 +87,8 @@ main{
 }
 /* popups abaixo */
 #gameOver, #winner{
-    --widthEndGame: 40vw;
-    --heightEndGame: 40vh; 
+    --widthEndGame: 50vw;
+    --heightEndGame: 50vh; 
     position: fixed;
     height: var(--heightEndGame);
     width: var(--widthEndGame);
@@ -98,11 +100,16 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-size: 2rem;
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
-    &>button{
-        border-radius: 15%;
+    & button{
+        font-size: 1.5rem;
+        width: 11rem;
+        height: 5rem;
+        border-radius: 5rem;
         border: none;
     }
     &>button:hover, &>button:focus{
@@ -115,7 +122,7 @@ main{
 }
 #feedback{
     --widthFeedback: 50vw;
-    --heightFeedback: 20vh;
+    --heightFeedback: 50vh;
     position: fixed;
     height: var(--heightFeedback);
     width: var(--widthFeedback);
@@ -132,8 +139,14 @@ main{
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
+    & #feedContent{
+        font-size: 3rem;
+    }
     &>button{
-        border-radius: 15%;
+        font-size: 1.5rem;
+        width: 11rem;
+        height: 5rem;
+        border-radius: 5rem;
         border: none;
     }
     &>button:hover, &>button:focus{

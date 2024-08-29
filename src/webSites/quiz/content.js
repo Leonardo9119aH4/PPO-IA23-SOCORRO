@@ -162,7 +162,6 @@ async function content(){
         }
     }
     function Wrong(){
-        Feedback(false)
         if(firstWrong==true){ //cada questão só pode tirar 1 vida
             life--
             firstWrong = false
@@ -181,6 +180,9 @@ async function content(){
             })
             if(life<=0){
                 GameOver()
+            }
+            else{
+                Feedback(false)
             }
         }
     }
