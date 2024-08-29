@@ -30,7 +30,7 @@ html, body{
     background-color: rgba(29, 144, 207, 0.5);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 1.5%;
+    border-radius: 2rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     visibility: hidden;
     opacity: 0;
@@ -41,12 +41,21 @@ html, body{
         height: calc(var(--popupHeight) - var(--border));
         display: grid;
         place-items: center;
+        border-radius: 2rem;
         & #output{
             color: red;
             font-size: 2rem;
+            
         }
-        & buton#close{
-            font-size: 1.75rem; /* navegador tá ignorando isso */
+        & button#close{
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: none;
+            background-color: #718075;
+        }
+        & button#close:hover{
+            box-shadow: 0 0 10px 5px #008dff;
         }
     }
 }
@@ -58,6 +67,9 @@ main{
     display: flex;
     margin: 0;
     background-color: #272727;
+    & .intro, & .quiz, & .blocks, & .rpg{
+        font-size: 1.5rem;
+    }
 }
 #exp{ /* menu lateral do ranking */
     display: flex;
@@ -72,6 +84,9 @@ main{
     & .text, & #life{
         margin: 0 auto 0 auto;
         box-sizing: border-box;
+        & .RankPlayers, & #RankUser{
+            font-size: 1.5rem;
+        }
     }
     & #life{
         width: 100%;
@@ -80,6 +95,16 @@ main{
     }
     & #practice{
         margin: 0 auto 0 auto;
+        & button{
+            font-size: 2rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: none;
+
+        }
+        & button:hover{
+            box-shadow: 0 0 10px 5px #008dff;
+        }
     }
 }
 #levels{ /* níveis do CodeGamix */
