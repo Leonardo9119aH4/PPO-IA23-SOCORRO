@@ -118,9 +118,13 @@ export class Level extends Phaser.Scene {
         this.physics.add.collider(this.player, wallsLayer);
         backgroundLayer.setOrigin(0, 0)
     }
-    // update(){
-        //um fucking jogo sem método update
-    // }
+    update(){
+        if(this.player.x === 600 && this.player.y === 120){ //verifica se o jogador chegou no final
+            if(!this.bug1.active){ //verifica se o jogador matou o bug
+                document.dispatchEvent(new Event("win"))
+            }
+        }
+    }
     async executeCode(){ //executor de código
         const actions = await JSON.parse(localStorage.getItem("actions"))
         function bugDistance(player, bug1){

@@ -67,5 +67,8 @@
         "theory": true,
         "theory_title": "Mecânicas básicas",
         "get_theory": null
+    },
+    {
+        "type": "coming_soon"
     }
 ]
