@@ -38,10 +38,42 @@ btConfirm.onclick = async function() {
             alert("usuário não encontrado")
             break
         case 1:
-            window.location.href = "/webSites/main/index.html"
+            window.location.href = "/webSites/levels/index.html"
             break
         case 500:
             alert("Erro interno do servidor!")
             break
     }
 }
+
+function changePlaceholder() {
+    console.log("foi")
+    if(userCheck.checked){
+        email.setAttribute("placeholder", "Insira seu nome de usuário")
+    } else if(telefone.checked){
+        email.setAttribute("placeholder", "Insira seu número de telefone")
+    } else {
+        email.setAttribute("placeholder", "Insira seu e-mail")
+    }
+}
+
+document.querySelectorAll(".radioInput").forEach(input => {
+    console.log("detectou")
+})
+
+document.querySelectorAll("#metododiv div").forEach(radio => {
+    radio.onclick = function () {
+        radio.querySelector("input").checked = true    
+        changePlaceholder()
+    }
+})
+
+const inputs = document.querySelectorAll(".txtInput")
+inputs.forEach(input => {
+    input.addEventListener("focusin", () => {
+        input.setAttribute("class", "isWriting")
+    })
+    input.addEventListener("focusout", ev => {
+        input.setAttribute("class", '')
+    }) 
+})
