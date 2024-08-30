@@ -17,27 +17,33 @@
     <div></div>
     <span id="logmn">
         <main>
-            <h1>Bem vindo ao CodeGamix!!!</h1>
+            <h1>Bem vindo novamente !!!</h1>
             <div>
                 <div id="ip">
                     <div id="passdiv">
-                        <input type="email" placeholder="Insira seu e-mail" id="email">
-                        <input type="password" placeholder="Insira sua senha" id="password">
-                        <a href="/webSites/signup">Ainda não possui uma conta? Crie uma clicando aqui!</a>
+                        <input class="txtInput" type="email" placeholder="Insira seu e-mail" id="email">
+                        <input class="txtInput" type="password" placeholder="Insira sua senha" id="password">
                     </div>
                     <div id="metododiv">
-                        <input type="radio" name="metodo" id="metodouser">
-                        <label>Logar com o nome de usuário</label> 
-                        <input type="radio" name="metodo" id="metodotelefone">
-                        <label>Logar com o número de telefone</label>
-                        <input type="radio" name="metodo" id="metodoemail">
-                        <label>Logar com o email</label>
+                        <div>
+                            <input class="radioInput" type="radio" name="metodo" id="metodouser">
+                            <label>Logar com o nome de usuário</label>
+                        </div>
+                        <div>
+                            <input class="radioInput" type="radio" name="metodo" id="metodotelefone">
+                            <label>Logar com o número de telefone</label>
+                        </div>
+                        <div>
+                            <input class="radioInput" type="radio" name="metodo" id="metodoemail">
+                            <label>Logar com o email</label>
+                        </div>
                     </div>
                 </div>
                 <div id="bt">
                     <button id="btConfirm">
                         <p>Entrar</p>
                     </button>
+                    <a href="/webSites/signup">Sign-in?</a>
                 </div>
             </div>
         </main>
