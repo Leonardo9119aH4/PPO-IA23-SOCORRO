@@ -39,7 +39,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                     res.sendStatus(502) //erro na função logAuth
                 }
                 else{
-                    if(req.body.newInfo == null || req.body.newInfoType){
+                    if(req.body.newInfo == null || req.body.newInfoType == null){
                         res.status(400).json("valor não pode ser nulo")
                     }
                     else if(req.body.newInfoType === "password" || req.body.newInfoType === "id"){ //proibir alterações ilegais de senha
@@ -161,9 +161,7 @@ export async function changePassword(app: Application, prisma: PrismaClient){
                 else{
                     res.sendStatus(403)
                 }
-            }
-            
-
+            }   
         }
         catch{
             res.sendStatus(500)
