@@ -150,22 +150,17 @@ export async function changePassword(app: Application, prisma: PrismaClient){
                 const user = await prisma.user.findUnique({
                     where: {id: userId}
                 })
-                if(user?.password != undefined) {
-                    console.log("senhadigitada: ", req.body.password)
-                    console.log("senhadobanco: ", user?.password)
-                    console.log("engual?: ", await bcrypt.compare(req.body.password, user?.password))
-                    if(await bcrypt.compare(req.body.password, user?.password)){
-                        await prisma.user.update({
-                            where: {id: userId},
-                            data: {
-                                password: await bcrypt.hash(req.body.newPassword, 10)
-                            }
-                        })
-                        res.sendStatus(201)
-                    }
-                    else{
-                        res.sendStatus(403)
-                    }
+                if(req.body.actualPassword === user?.password){
+                    await prisma.user.update({
+                        where: {id: userId},
+                        data: {
+                            password: req.body.newPassword
+                        }
+                    })
+                    res.sendStatus(201)
+                }
+                else{
+                    res.sendStatus(403)
                 }
             }   
         }
