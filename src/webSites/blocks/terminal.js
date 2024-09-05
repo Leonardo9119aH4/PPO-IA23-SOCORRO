@@ -31,10 +31,10 @@ export class Terminal{ //objeto do terminal
         let min = Math.trunc(sec/60)
         sec = sec%60
         if(sec>0 && sec<10){
-            this.element.innerHTML += `Programa concluído em ${min}:0${sec}\nObteve ${exp} de XP\nAperte qualquer tecla para sair...`
+            this.element.innerHTML += `Programa concluído em ${min}:0${sec}\nObteve ${exp} de XP<br>Aperte qualquer tecla para sair...`
         }
         else{
-            this.element.innerHTML += `Programa concluído em ${min}:${sec}\nObteve ${exp} de XP\nAperte qualquer tecla para sair...`
+            this.element.innerHTML += `Programa concluído em ${min}:${sec}\nObteve ${exp} de XP<br>Aperte qualquer tecla para sair...`
         }
         setTimeout(()=>{ //evita que o usuário saia acidentalmente
             document.addEventListener("keydown", ()=>{
