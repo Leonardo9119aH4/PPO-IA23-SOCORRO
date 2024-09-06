@@ -2,7 +2,7 @@ export async function loadSecurity() {
     const apply = document.querySelector("#applyBt")
     console.log("apply: ", apply)
     apply.onclick = async function() {
-        let actualPassword = document.querySelector("#actualPassword").value
+        let password = document.querySelector("#actualPassword").value
         let newPassword = document.querySelector("#newPassword").value
         let newPasswdConfirm = document.querySelector("#newPasswordConfirmation").value
         if(newPassword == newPasswdConfirm){
@@ -11,7 +11,7 @@ export async function loadSecurity() {
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify({actualPassword: actualPassword, newPassword: newPassword})
+                body: JSON.stringify({password: password, newPassword: newPassword})
             })
             if(response.status == 201){
                 alert("senha alterada com sucesso!")
