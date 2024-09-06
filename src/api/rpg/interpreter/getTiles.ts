@@ -6,8 +6,7 @@ export function getTiles(inputcommand: string){
     while(pos < inputcommandsplit.length){
         console.log("pos, tiles, inputcommandsplit[pos] ", pos, tiles, inputcommandsplit[pos])
         if(inputcommandsplit[pos] === ")" || inputcommandsplit[pos] == " "){
-            tiles.join("")
-            return tiles
+            return tiles.join("")
         }
         tiles.push(inputcommandsplit[pos])
         pos++

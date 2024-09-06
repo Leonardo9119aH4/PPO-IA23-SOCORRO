@@ -1,27 +1,29 @@
-export function movecalc(command: string, tiles: number) {
-    switch (command) { //verfica a variavel do comando para determinar o lado
-        case `MoverCima(${tiles})`:
-            return [1, tiles]
-        case `MoverBaixo(${tiles})`:  
-            return [3, tiles]
-        case `MoverDireita(${tiles})`:
-            return [2, tiles]
-        case `MoverEsquerda(${tiles})`:
-            return [4, tiles]
+export function attackCalc(command: string){
+    console.log("atacar: ", command)
+    switch(command) {
+        case 'AtacarCima();':
+            return [5, 1]
+        case 'AtacarBaixo();':
+            return [7, 1]
+        case 'AtacarDireita();':
+            return [6, 1]
+        case 'AtacarEsquerda();':
+            return [8, 1]
     }
-    return ["to aqui só pro typescript não encher o saco"]
+    return [NaN, NaN]
 }
 
-export function attackCalc(command: string){
-    switch(command) {
-        case 'AtacarCima()':
-            return ["attack-up"]
-        case 'AtacarBaixo()':
-            return ["attack-down"]
-        case 'AtacarDireita()':
-            return ["attack-right"]
-        case 'AtacarEsquerda()':
-            return ["attack-left"]
+export function moveCalc(tiles: number, command: string) {
+    console.log("mover: ", command + `(${tiles});`)
+    switch (command) { //verfica a variavel do comando para determinar o lado
+        case `MoverCima`:
+            return [1, tiles]
+        case `MoverBaixo`:  
+            return [3, tiles]
+        case `MoverDireita`:
+            return [2, tiles]
+        case `MoverEsquerda`:
+            return [4, tiles]
     }
-    return ["to aqui só pro typescript não encher o saco"]
+    return [NaN, NaN]
 }
