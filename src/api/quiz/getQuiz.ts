@@ -27,7 +27,7 @@ export async function getQuiz(app: Application, prisma: PrismaClient){
                     }
                     const quizRqst = fs.readFileSync(`./src/api/quiz/lv${req.body.level}.json`, 'utf-8') //referência da caminho absoluta² (inclui ./src/)
                     let quiz = await JSON.parse(quizRqst)
-                    const askNum = 7 + Math.floor(Math.random()*5)
+                    const askNum = 7 + Math.floor(Math.random()*5) //quantidade de questões, 7 a 12
                     for (let i = quiz.length - 1; i > 0; i--) {
                         const j = Math.floor(Math.random() * (i + 1));
                         [quiz[i], quiz[j]] = [quiz[j], quiz[i]];

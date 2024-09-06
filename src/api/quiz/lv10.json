@@ -1,0 +1,74 @@
+[
+    {
+        "ask": "Uma sub-rotina é um bloco de código que pode ser chamado a qualquer momento, podendo receber parâmetros e retornar valor.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Uma função é um bloco de código que pode ser chamado a qualquer momento, podendo receber parâmetros e retornar valor.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Um procedimento é um bloco de código que pode ser chamado a qualquer momento, podendo receber parâmetros e retornar valor.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "Uma sub-rotina: ",
+        "alt": ["Deve retornar um valor", "Deve receber parâmetros", "Não pode retornar um valor", "Pode ser chamada a qualquer hora"],
+        "ans": 3,
+        "image": null
+    },
+    {
+        "ask": "Qual será o valor de C ao final do programa?",
+        "alt": ["Soma de A+B", "Igual a A", "Igual a B", "Concatenação de A+B"],
+        "ans": 0,
+        "image": "lv10soma.png"
+    },
+    {
+        "ask": "O que a função da linha 1 faz?",
+        "alt": ["Retorna 'C'", "Soma 2 valores", "Soma e retorna 2 valores", "Retorna 'A+B'"],
+        "ans": 2,
+        "image": "lv10soma.png"
+    },
+    {
+        "ask": "O que a sub-rotina na linha 5 faz?",
+        "alt": ["Retorna o valor absoluto de A", "Retorna o módulo de A com B", "Retorna a divisão de A com B", "Retorna B% de A"],
+        "ans": 0,
+        "image": "lv10abs.png"
+    },
+    {
+        "ask": "No trecho de código abaixo, o que aconteceria se o usuário digitasse apenas números na senha? Dica: pense apenas naquilo que você sabe.",
+        "alt": ["Nada", "O usuário é cadastrado", "Volta ao inícido do cadastro", "Dá erro e sai do cadastro"],
+        "ans": 2,
+        "image": "lv10recursion.png"
+    },
+    {
+        "ask": "O que é função recursiva?",
+        "alt": ["Repetição de funções", "Quando uma função chama a si mesma", "Função que retorna ela mesma", "O parâmetro dela é outra função"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "O que o programa abaixo imprime na tela?",
+        "alt": ["escreva", "printf", "console.log", "Hello World!", "Olá Mundo!", "OlaMundo"],
+        "ans": 4,
+        "image": "lv10helloWorld.png"
+    },
+    {
+        "ask": "O que é a função inicio?",
+        "alt": ["função que se repete", "função qualquer", "função que inicia o programa", "função que chama a si mesma"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "Sem a função inico, um programa do pseudocódigo pode ser executado.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    }
+]
