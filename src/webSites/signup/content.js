@@ -53,3 +53,13 @@ confirmBt.onclick = async function() {
         window.location.href = "/webSites/main/index.html"
     }
 }
+
+const inputs = document.querySelectorAll(".txtInput")
+inputs.forEach(input => {
+    input.addEventListener("focusin", () => {
+        input.setAttribute("class", "isWriting")
+    })
+    input.addEventListener("focusout", ev => {
+        input.setAttribute("class", '')
+    }) 
+})
