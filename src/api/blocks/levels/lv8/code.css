@@ -1,0 +1,17 @@
+pre{
+    margin: 0;
+    font-size: 1.5rem;
+    & .reBl{
+        margin-left: 2em;
+        display: block;
+        color: red;
+        border: 1px solid gray;
+    }
+}
+.reBl{
+    width: 30rem;
+    height: 1.75rem;
+    border-radius: 10rem;
+    margin-left: 1rem;
+    background-color: azure;
+}
