@@ -5,6 +5,7 @@ import {signUp} from "./accounts/signup"
 import {signIn} from "./accounts/signin"
 import {logOut} from "./accounts/cookies"
 import { regInfo } from "./accounts/regInfo"
+import { changePassword } from "./accounts/regInfo"
 import { rendererFooter, rendererNav } from "./templates/renderer"
 import { runMove } from "./rpg/interpreter/content"
 import { getPractice, getQuiz } from "./quiz/getQuiz"
@@ -21,6 +22,7 @@ export async function executeAll(app: Application, prisma: PrismaClient, maxLife
     signIn(app, prisma)
     logOut(app, prisma)
     regInfo(app, prisma)
+    changePassword(app, prisma)
     rendererNav(app, prisma)
     rendererFooter(app, prisma)
     runMove(app)

@@ -36,6 +36,7 @@ export async function signUp(app: Application, prisma: PrismaClient){
             if(statuscode===0){
                 try{
                     let hashedPassword = await bcrypt.hash(req.body.password, 10) //criptografar as senhas
+                    console.log("Cadastrou")
                     await prisma.user.create({
                         data: {
                             username: req.body.username,

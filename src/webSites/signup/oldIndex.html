@@ -6,8 +6,8 @@
     <title>Codegamix</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='/globalAssets/css/main.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/webSites/signup/content.css'>
-    <script type="module" defer async src='/webSites/login/content.js'></script>
+    <link href="/webSites/signup/content.css" rel="Stylesheet">
+    <script type="module" defer async src='/webSites/signup/content.js'></script>
 </head>
 <body>
     <nav> <!-- Injetado pelo main.js -->
@@ -16,37 +16,47 @@
     <img src="/globalAssets/images/laptop-coding.jpg">
     <div></div>
     <span id="logmn">
-        <div id="inputLogo">
-            <a>
-                <img src="/globalAssets/images/white-logo.png" alt="Logotipo do Codegamix">
-            </a>
-            <h1>Bem vindo ao Codegamix !!!</h1>
-        </div>
         <main>
-            <div id="input">
+            <a href="/webSites/main/index.html"><img src="/globalassets/images/white-logo.png" alt="Logotipo codegamix"></a>
+            <div>
                 <div id="ip">
-                    <div id="passdiv">
+                    <span>
+                        <label>Email:</label>
                         <input class="txtInput" type="email" placeholder="Digite seu email aqui" id="email">
                         <label id="emailAlert"></label>
+                        <label>Confirme o seu email:</label>
                         <input class="txtInput" type="email" placeholder="Confirme o seu email aqui" id="confirmEmail">
                         <label id="confirmEmailAlert"></label>
+                        <label>Senha:</label>
                         <input class="txtInput" type="password" placeholder="Digite a sua senha aqui" id="senha">
                         <label id="passwordAlert"></label>
+                        <label>Confirme a sua senha:</label>
                         <input class="txtInput" type="password" placeholder="Confirme a sua senha aqui" id="confirmSenha">
                         <label id="comfirmPasswordAlert"></label>
+                    </span>
+                    <span>
+                        <label>Nome real:</label>
                         <input class="txtInput" type="text" placeholder="Digite o seu nome aqui" id="realName">
                         <label id="realNameAlert"></label>
+                        <label>Nome de perfil:</label>
                         <input class="txtInput" type="text" placeholder="Digite o seu nick aqui" id="nome">
                         <label id="nickAlert"></label>
+                        <label>Telefone:</label>
                         <input class="txtInput" type="tel" placeholder="Digite o seu telefone aqui" id="telefone">
                         <label id="phoneAlert"></label>
-                    </div>
+                        <label>Upload de foto de perfil:</label>
+                        <input class="txtInput" type="file">
+                    </span>
+                </div>
+                <div>
                 </div>
                 <div id="bt">
-                    <button id="btConfirm">
-                        <p>Entrar</p>
+                    <button id="exitbt">
+                        <p>Sair</p>
                     </button>
-                    <a href="/webSites/login">Login?</a>
+                    <button id="entrar">
+                        <p>Cadastrar</p>
+                    </button>
                 </div>
             </div>
         </main>

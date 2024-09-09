@@ -1,0 +1,29 @@
+.dragBlock{
+    display: block;
+    position: absolute;
+    cursor: grab;
+    border-radius: 10rem;
+    text-align: center;
+    font-size: 1.5rem;
+    user-select: none;
+    color: white;
+    height: 1.75rem;
+    width: 30rem;
+}
+#bl1{
+    top: 0;
+    background-color: red;
+}
+#bl2{
+    top: 10vh;
+    background-color: green;
+}
+#bl3{
+    top: 20vh;
+    color: orange !important;
+    background-color: yellow;
+}
+#bl4{
+    top: 30vh;
+    background-color: blue;
+}

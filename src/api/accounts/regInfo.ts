@@ -1,6 +1,7 @@
 import {Application, Request, Response} from 'express'
 import { PrismaClient, User } from '@prisma/client'
 import { logAuth } from './cookies'
+import bcrypt from 'bcrypt'
 export async function regInfo(app: Application, prisma:PrismaClient){
     app.post("/api/private/reginfo", async (req: Request, res: Response) =>{
         try{
@@ -39,7 +40,7 @@ export async function regInfo(app: Application, prisma:PrismaClient){
                     res.sendStatus(502) //erro na função logAuth
                 }
                 else{
-                    if(req.body.newInfo == null || req.body.newInfoType){
+                    if(req.body.newInfo == null || req.body.newInfoType == null){
                         res.status(400).json("valor não pode ser nulo")
                     }
                     else if(req.body.newInfoType === "password" || req.body.newInfoType === "id"){ //proibir alterações ilegais de senha
@@ -149,21 +150,24 @@ export async function changePassword(app: Application, prisma: PrismaClient){
                 const user = await prisma.user.findUnique({
                     where: {id: userId}
                 })
-                if(req.body.actualPassword === user?.password){
-                    await prisma.user.update({
-                        where: {id: userId},
-                        data: {
-                            password: req.body.newPassword
-                        }
-                    })
-                    res.sendStatus(201)
+                if(user?.password != undefined) {
+                    console.log("senhadigitada: ", req.body.password)
+                    console.log("senhadobanco: ", user?.password)
+                    console.log("engual?: ", await bcrypt.compare(req.body.password, user?.password))
+                    if(await bcrypt.compare(req.body.password, user?.password)){
+                        await prisma.user.update({
+                            where: {id: userId},
+                            data: {
+                                password: await bcrypt.hash(req.body.newPassword, 10)
+                            }
+                        })
+                        res.sendStatus(201)
+                    }
+                    else{
+                        res.sendStatus(403)
+                    }
                 }
-                else{
-                    res.sendStatus(403)
-                }
-            }
-            
-
+            }   
         }
         catch{
             res.sendStatus(500)

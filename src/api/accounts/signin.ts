@@ -73,14 +73,18 @@ export async function signIn(app: Application, prisma: PrismaClient){
                     if (req.body.credential === 1) isMatch = el.username === req.body.login;
                     if (req.body.credential === 2) isMatch = el.email === req.body.login;
                     if (req.body.credential === 3) isMatch = el.phone === req.body.login;
-
+                    console.log(isMatch)
+                    console.log(await bcrypt.compare(req.body.password, el.password))
+                    console.log("email: ", el.email)
+                    console.log("databasePasswd: ", el.password)
+                    console.log("digitedPasswd: ", req.body.password)
                     if (isMatch && await bcrypt.compare(req.body.password, el.password)) {
                         await genCookie(el);
                         return res.status(200).json(1);
                     }
                 }
-
                 if (!userHasFound) {
+                    console.log("usuário não encontrado")
                     return res.status(403).json(-2);
                 }
             }

@@ -35,6 +35,12 @@
     {
         "type": "quiz",
         "theory": true,
+        "theory_title": "Operadores lógicos",
+        "get_theory": null
+    },
+    {
+        "type": "quiz",
+        "theory": true,
         "theory_title": "Desvio condicional",
         "get_theory": null
     },
@@ -67,5 +73,8 @@
         "theory": true,
         "theory_title": "Mecânicas básicas",
         "get_theory": null
+    },
+    {
+        "type": "coming_soon"
     }
 ]

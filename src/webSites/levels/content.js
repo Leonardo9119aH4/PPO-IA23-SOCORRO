@@ -66,35 +66,37 @@ async function content(){
        rankPlayers[i].innerHTML = "1. " + ranking[i].username + ": " + Math.floor(ranking[i].exp * 100) / 100 + " XP"
     }
     for(let i=0; i<=LN; i++){ //injeta os níveis
-        if(master[i].type == "intro"){
+        if(master[i] && master[i].type == "intro"){
             mainTag.innerHTML += `<div class='intro' id=${i}'>${i}</div>`
         }
-        if(master[i].type == "quiz"){
+        if(master[i] && master[i].type == "quiz"){
             mainTag.innerHTML += `<div class='quiz' id=${i}'>${i}</div>`
         }
-        if(master[i].type == "rpg"){
+        if(master[i] && master[i].type == "rpg"){
             mainTag.innerHTML += `<div class='rpg' id=${i}'>${i}</div>`
         }
-        if(master[i].type == "blocks"){
+        if(master[i] && master[i].type == "blocks"){
             mainTag.innerHTML += `<div class='blocks' id=${i}'>${i}</div>`
-        } 
+        }
+        if(master[i] && master[i].type == "coming_soon"){
+            mainTag.innerHTML += `<div class='coming_soon' id=${i}'>${i}</div>`
+        }
     }
-    const intro = mainTag.querySelectorAll(".intro")
+    const intro = mainTag.querySelector(".intro") //somente 1 introdução
     const quiz = mainTag.querySelectorAll(".quiz")
     const rpg = mainTag.querySelectorAll(".rpg")
     const blocks = mainTag.querySelectorAll(".blocks")
-    intro.forEach(el=>{
-        el.addEventListener("click", ev=>{
-            if(life>0){
-                window.location.href = "/webSites/intro/index.html?level=" + el.id
-            }
-            else{
-                zeroLifePopup.classList.add("open")
-            }
-        })
+    const comingSoon = mainTag.querySelector(".coming_soon") //somente 1 "em breve"
+    intro.addEventListener("click", ()=>{
+        if(life>0){
+            window.location.href = "/webSites/intro/index.html?level=" + intro.id
+        }
+        else{
+            zeroLifePopup.classList.add("open")
+        }
     })
     quiz.forEach(el=>{
-        el.addEventListener("click", ev=>{
+        el.addEventListener("click", ()=>{
             if(life>0){
                 window.location.href = "/webSites/quiz/index.html?level=" + el.id
             }
@@ -104,7 +106,7 @@ async function content(){
         })
     })
     rpg.forEach(el=>{
-        el.addEventListener("click", ev=>{
+        el.addEventListener("click", ()=>{
             if(life>0){
                 window.location.href = "/webSites/rpg/index.html?level=" + el.id
             }
@@ -114,7 +116,7 @@ async function content(){
         })
     })
     blocks.forEach(el=>{
-        el.addEventListener("click", ev=>{
+        el.addEventListener("click", ()=>{
             if(life>0){
                 window.location.href = "/webSites/blocks/index.html?level=" + el.id
             }
@@ -122,6 +124,14 @@ async function content(){
                 zeroLifePopup.classList.add("open")
             }
         })
+    })
+    comingSoon.addEventListener("click", ()=>{
+        if(life>0){
+            window.location.href = "/webSites/comingSoon/index.html?level=" + comingSoon.id
+        }
+        else{
+            zeroLifePopup.classList.add("open")
+        }
     })
     closePopup.addEventListener("click", ()=>{
         zeroLifePopup.classList.remove("open")

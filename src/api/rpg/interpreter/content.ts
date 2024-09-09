@@ -2,18 +2,17 @@ import express, { Application, Request, Response } from 'express'
 import { setVars, getVars } from './vars'
 import {detectLoop, loadLoop} from './loop'
 import {conditional} from './conditional'
-//import { attackCalc, moveCalc } from './move'
+import { attackCalc, moveCalc } from './move'
 import fs from 'fs-promise'
 import path from 'path'
-
 import { Commands, returnPureCommand } from './commands'
-import {getTiles} from './getTiles'
+import { getTiles } from './getTiles'
 
 export async function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
         let inputcommands = req.body.inputcommands.split("\n")
         var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
-        const moveCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'move.json'))
+        const moveCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'moveCommands.json'))
         const attackCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'attack.json'))
         var phaserCommands: Array<Array<number>> = []
         await load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
@@ -31,36 +30,6 @@ Estrutura do phaser commands:
     ["rigth", "(quantidade de tiles)"]
 ]
 */
-
-function attackCalc(command: string){
-    console.log("atacar: ", command)
-    switch(command) {
-        case 'AtacarCima();':
-            return [5, 1]
-        case 'AtacarBaixo();':
-            return [7, 1]
-        case 'AtacarDireita();':
-            return [6, 1]
-        case 'AtacarEsquerda();':
-            return [8, 1]
-    }
-    return [NaN, NaN]
-}
-
-function moveCalc(tiles: number, command: string) {
-    console.log("mover: ", command + `(${tiles});`)
-    switch (command) { //verfica a variavel do comando para determinar o lado
-        case `MoverCima`:
-            return [1, tiles]
-        case `MoverBaixo`:  
-            return [3, tiles]
-        case `MoverDireita`:
-            return [2, tiles]
-        case `MoverEsquerda`:
-            return [4, tiles]
-    }
-    return [NaN, NaN]
-}
 
 export async function load(inputcommands: Array<string>, moveCommandsJson: Array<Commands>, gameVars: Array<Array<string>>, phaserCommands: Array<Array<number>>, attackCommandsJson: Array<Commands>) {
     for(let i = 0; i < inputcommands.length; i++) {
