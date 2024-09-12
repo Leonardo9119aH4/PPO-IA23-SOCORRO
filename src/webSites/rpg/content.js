@@ -66,6 +66,7 @@ async function content(){
     const level = data1[0]
     const master = data1[1]
     const life = data1[2]
+    document.querySelector("#lifes").innerHTML = life
     const data2 = await getLevel(level) //arquivos secundários, precisam dos arquivos primários
     // let config = data2[0]
     const levelText = data2[1]
@@ -127,25 +128,33 @@ async function content(){
         })
     })
     const inputcommands = document.querySelector("#commands")
+    let isRunning = false
+    function runCode() {
+        isRunning = false
+    }
+    document.addEventListener('isRunningCode', runCode)
     document.querySelector("button#exec").onclick = async function() {
-        let response = await fetch("/api/private/interpreter", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({inputcommands: inputcommands.value})
-        })
-        response = await response.json()
-        let realCommands = []
-        response.forEach(el => {
-            for(let i = 0; i < el[1]; i++){
-                realCommands.push(el[0])
-            }
-        })
-        console.log(response)
-        localStorage.setItem("actions", JSON.stringify(realCommands))
-        document.dispatchEvent(new Event("executeCode"))
-        console.log(localStorage.getItem("actions"))
+        if(!isRunning){
+            isRunning = true
+            let response = await fetch("/api/private/interpreter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({inputcommands: inputcommands.value})
+            })
+            response = await response.json()
+            let realCommands = []
+            response.forEach(el => {
+                for(let i = 0; i < el[1]; i++){
+                    realCommands.push(el[0])
+                }
+            })
+            console.log(response)
+            localStorage.setItem("actions", JSON.stringify(realCommands))
+            document.dispatchEvent(new Event("executeCode"))
+            console.log(localStorage.getItem("actions"))
+        }
     }
 }
 main()

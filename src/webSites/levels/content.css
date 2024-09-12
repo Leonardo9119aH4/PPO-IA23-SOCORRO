@@ -67,7 +67,7 @@ main{
     display: flex;
     margin: 0;
     background-color: #272727;
-    & .content div{
+    & .intro, & .quiz, & .blocks, & .rpg{
         font-size: 1.5rem;
     }
 }

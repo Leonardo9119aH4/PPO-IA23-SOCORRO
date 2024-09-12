@@ -23,6 +23,7 @@ body {
     }
     >span#logmn {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
@@ -38,25 +39,48 @@ main {
         font-size: 6rem;
     }
 }
+
+#inputLogo {
+    --_logoSize: 15rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 3rem;
+    font-family: sugar-classic;
+    & h1 {
+        margin: 0;
+    }
+    & a{
+        display: grid;
+        place-content: center;
+        & img{
+
+            max-height: var(--_logoSize);
+        }
+    }
+}
+
 main>div {
     display: grid;
     align-content: space-around;
     padding: 2rem;
     gap: 2rem;
-    div#ip {
+    div#ip input::placeholder {
         font-family: clear-sans;
     }
     div#ip>div#passdiv {
         display: grid;
-        >a{
-            color: yellow;
-        }
     }
     div#ip label {
         color:white;
     }
     div#ip input {
         color: white;
+        transition: .15s;
+    }
+    .isWriting {
+        border-bottom: 5px solid white !important;
     }
     div#ip>div#passdiv>input {
         height: calc(var(--_size)/10);
@@ -68,10 +92,15 @@ main>div {
         font-size: xx-large;
         text-align: center;
     }
+    div#ip>div#metododiv{
+        display: flex;
+        cursor: pointer;
+    }
     >div#bt {
         --_sizebt:calc(var(--_size)/3);
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
         height: fit-content;
         & button {
             width: var(--_sizebt);
@@ -79,6 +108,11 @@ main>div {
             border: 8px solid white;
             border-radius: 1rem;
             color: white;
+        }
+        >a{
+            text-decoration: none;
+            color: #919191;
+            margin: .5rem;
         }
         p {
             font-size: larger;
