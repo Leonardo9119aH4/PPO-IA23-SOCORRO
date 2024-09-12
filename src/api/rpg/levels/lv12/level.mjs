@@ -65,6 +65,7 @@ export class Level extends Phaser.Scene {
             frameRate: 8, // Taxa de quadros por segundo
         })
         // Bug1
+        // Bug1
         this.anims.create({
             key: 'bug1Idle', 
             frames: this.anims.generateFrameNumbers('bug1Idle', { start: 0, end: 31 }), // Frames da animação
@@ -74,14 +75,20 @@ export class Level extends Phaser.Scene {
         // this.anims.create({
         //     key: 'bug1AttackUp',
         //     frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 8 }), // Frames da animação
+        //     key: 'bug1AttackUp',
+        //     frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 8 }), // Frames da animação
         //     frameRate: 8, 
         // })
         // this.anims.create({
         //     key: 'bug1AttackDown', 
         //     frames: this.anims.generateFrameNumbers('bug1AttackDown', { start: 0, end: 8 }), // Frames da animação
+        //     key: 'bug1AttackDown', 
+        //     frames: this.anims.generateFrameNumbers('bug1AttackDown', { start: 0, end: 8 }), // Frames da animação
         //     frameRate: 8, 
         // })
         this.anims.create({
+            key: 'bug1AttackSides', 
+            frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
             key: 'bug1AttackSides', 
             frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
