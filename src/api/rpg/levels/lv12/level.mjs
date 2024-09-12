@@ -26,8 +26,8 @@ export class Level extends Phaser.Scene {
             frameHeight: 30*26
         })
         this.load.spritesheet("playerDeath", "/webSites/rpg/localAssets/sprites/Cicero/CiceroDeath.png",{
-            frameWidth: 30*53,
-            frameHeight: 30*53
+            frameWidth: 60*26,
+            frameHeight: 30*26
         })
         this.load.spritesheet("bug1Idle", "/webSites/rpg/localAssets/sprites/Bug1/Bug1Idle.png",{
             frameWidth: 30*53,
@@ -38,15 +38,15 @@ export class Level extends Phaser.Scene {
             frameHeight: 30*26
         })
         this.load.spritesheet("bug1AttackUp", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackUp.png",{
-            frameWidth: 30*26,
-            frameHeight: 60*26
+            frameWidth: 60*26,
+            frameHeight: 30*26
         })
         this.load.spritesheet("bug1AttackDown", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackDown.png",{
-            frameWidth: 30*26,
-            frameHeight: 60*26
+            frameWidth: 60*26,
+            frameHeight: 30*26
         })
         this.load.spritesheet("bug1Death", "/webSites/rpg/localAssets/sprites/Bug1/Bug1Death.png",{
-            frameWidth: 30*26,
+            frameWidth: 60*26,
             frameHeight: 30*26
         })
         // this.load.music("main-music", "/webSites/rpg/localAssets/music.mp3")
@@ -80,11 +80,6 @@ export class Level extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('playerAttackSides', { start: 0, end: 23 }), // Frames da animação
             frameRate: 8, // Taxa de quadros por segundo
         })
-        this.anims.create({
-            key: 'playerDeath', // Nome da animação
-            frames: this.anims.generateFrameNumbers('playerDeath', { start: 0, end: 12 }), // Frames da animação
-            frameRate: 8, // Taxa de quadros por segundo
-        })
         // Bug1
         this.anims.create({
             key: 'bug1Idle', 
@@ -92,25 +87,20 @@ export class Level extends Phaser.Scene {
             frameRate: 8, 
             repeat: -1 
         })
-        this.anims.create({
-            key: 'bug1AttackUp',
-            frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 27 }), // Frames da animação
-            frameRate: 8, 
-        })
-        this.anims.create({
-            key: 'bug1AttackDown', 
-            frames: this.anims.generateFrameNumbers('bug1AttackDown', { start: 0, end: 32 }), // Frames da animação
-            frameRate: 8, 
-        })
+        // this.anims.create({
+        //     key: 'bug1AttackUp',
+        //     frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 8 }), // Frames da animação
+        //     frameRate: 8, 
+        // })
+        // this.anims.create({
+        //     key: 'bug1AttackDown', 
+        //     frames: this.anims.generateFrameNumbers('bug1AttackDown', { start: 0, end: 8 }), // Frames da animação
+        //     frameRate: 8, 
+        // })
         this.anims.create({
             key: 'bug1AttackSides', 
             frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
-        })
-        this.anims.create({
-            key: 'bugDeath', // Nome da animação
-            frames: this.anims.generateFrameNumbers('bugDeath', { start: 0, end: 13 }), // Frames da animação
-            frameRate: 8, // Taxa de quadros por segundo
         })
         this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
         this.player = this.physics.add.sprite(120, 120, 'playerIdle')
@@ -184,11 +174,11 @@ export class Level extends Phaser.Scene {
         async function bug1Attack(bugPos, player, bug1){
             switch(bugPos){
                 case 1: //inimigo em cima
-                    bug1.anims.play("bug1AttackDown", false)
+                    //bug1.anims.play("bug1AttackDown", false)
                     bug1.setOrigin(0.5, 0.25)
                     bug1.setDisplaySize(128, 256)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.anims.play("playerDeath", false)
+                        player.destroy()
                         bug1.setDisplaySize(128, 128)
                         bug1.setOrigin(0.5, 0.5)
                         bug1.anims.play("bug1Idle", true)
@@ -201,7 +191,7 @@ export class Level extends Phaser.Scene {
                     bug1.setDisplaySize(256, 128)
                     bug1.setOrigin(0.5, 0)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.anims.play("playerDeath", false)
+                        player.destroy()
                         bug1.anims.play("bug1Idle", true)
                         bug1.setDisplaySize(128, 128)
                         bug1.setOrigin(0, 0)
@@ -210,11 +200,11 @@ export class Level extends Phaser.Scene {
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
                     break;
                 case 3: //inimigo em baixo
-                    bug1.anims.play("bug1AttackUp", false)
+                    //bug1.anims.play("bug1AttackUp", false)
                     bug1.setOrigin(0.5, 0.75)
                     bug1.setDisplaySize(128, 256)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.anims.play("playerDeath", false)
+                        player.destroy()
                         bug1.setDisplaySize(128, 128)
                         bug1.setOrigin(0.5, 0.5)
                         bug1.anims.play("bug1Idle", true)
@@ -227,7 +217,7 @@ export class Level extends Phaser.Scene {
                     bug1.setDisplaySize(256, 128)
                     bug1.flipX = true
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.anims.play("playerDeath", false)
+                        player.destroy()
                         bug1.anims.play("bug1Idle", true)
                         bug1.setDisplaySize(128, 128)
                         bug1.flipX = false
@@ -243,7 +233,6 @@ export class Level extends Phaser.Scene {
                 let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
                     await bug1Attack(bugPos, this.player, this.bug1)
-                    return //para as ações do jogador
                 }
                 else{
                     this.player.setVelocityY(-120) //quantidade de pixels a ser movida para cima
@@ -260,7 +249,6 @@ export class Level extends Phaser.Scene {
                 let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
                     await bug1Attack(bugPos, this.player, this.bug1)
-                    return //para as ações do jogador
                 }
                 else{
                     this.player.setVelocityY(120) //quantidade de pixels a ser movida para baixo
@@ -277,7 +265,6 @@ export class Level extends Phaser.Scene {
                 let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
                     await bug1Attack(bugPos, this.player, this.bug1)
-                    return //para as ações do jogador
                 }
                 else{
                     this.player.setVelocityX(120) //quantidade de pixels a ser movida para cima
@@ -295,7 +282,6 @@ export class Level extends Phaser.Scene {
                 let bugPos = bugDistance(this.player, this.bug1)
                 if(bugPos!=0){
                     await bug1Attack(bugPos, this.player, this.bug1)
-                    return //para as ações do jogador
                 }
                 else{
                     this.player.setVelocityX(-120) //quantidade de pixels a ser movida para cima
@@ -380,6 +366,7 @@ export class Level extends Phaser.Scene {
                 }))
             }
         }
+        document.dispatchEvent(new Event("isRunningCode"))
     }
     shutdown(){
         document.removeEventListener('executeCode', this.executeCode.bind(this))

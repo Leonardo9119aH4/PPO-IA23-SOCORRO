@@ -46,7 +46,17 @@ html, body{
             color: red;
             font-size: 2rem;
             
+            
         }
+        & button#close{
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: none;
+            background-color: #718075;
+        }
+        & button#close:hover{
+            box-shadow: 0 0 10px 5px #008dff;
         & button#close{
             font-size: 1.5rem;
             padding: 1rem;
@@ -87,6 +97,9 @@ main{
         & .RankPlayers, & #RankUser{
             font-size: 1.5rem;
         }
+        & .RankPlayers, & #RankUser{
+            font-size: 1.5rem;
+        }
     }
     & #life{
         width: 100%;
@@ -95,6 +108,16 @@ main{
     }
     & #practice{
         margin: 0 auto 0 auto;
+        & button{
+            font-size: 2rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: none;
+
+        }
+        & button:hover{
+            box-shadow: 0 0 10px 5px #008dff;
+        }
         & button{
             font-size: 2rem;
             padding: 1rem;
