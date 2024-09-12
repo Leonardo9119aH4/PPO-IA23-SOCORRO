@@ -25,11 +25,27 @@ export class Level extends Phaser.Scene {
             frameWidth: 60*26,
             frameHeight: 30*26
         })
+        this.load.spritesheet("playerDeath", "/webSites/rpg/localAssets/sprites/Cicero/CiceroDeath.png",{
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
         this.load.spritesheet("bug1Idle", "/webSites/rpg/localAssets/sprites/Bug1/Bug1Idle.png",{
             frameWidth: 30*53,
             frameHeight: 30*53
         })
         this.load.spritesheet("bug1AttackSides", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackSides.png",{
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug1AttackUp", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackUp.png",{
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug1AttackDown", "/webSites/rpg/localAssets/sprites/Bug1/Bug1AttackDown.png",{
+            frameWidth: 60*26,
+            frameHeight: 30*26
+        })
+        this.load.spritesheet("bug1Death", "/webSites/rpg/localAssets/sprites/Bug1/Bug1Death.png",{
             frameWidth: 60*26,
             frameHeight: 30*26
         })
