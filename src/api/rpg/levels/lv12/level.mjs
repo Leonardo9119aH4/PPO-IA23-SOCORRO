@@ -1,10 +1,11 @@
-export class Level extends Phaser.Scene {
+    export class Level extends Phaser.Scene {
     constructor(){
         super({ key: 'Level' })
     }
     preload(){
         this.load.tilemapTiledJSON("map", "/webSites/rpg/localAssets/background.json")
         this.load.image("tiles", "/webSites/rpg/localAssets/MapPathOgSize.png")
+        this.load.image("background", "/webSites/rpg/localAssets/background.png")
         this.load.spritesheet("playerIdle", "/webSites/rpg/localAssets/sprites/Cicero/CiceroIdle.png",{
             frameWidth: 30*53,
             frameHeight: 30*53
@@ -106,10 +107,9 @@ export class Level extends Phaser.Scene {
         this.player = this.physics.add.sprite(120, 120, 'playerIdle')
         this.player.setCollideWorldBounds(true)
         this.player.setDisplaySize(120, 120).refreshBody()
-        this.player.setOrigin(0.5, 0.5)
         this.player.setBounce(0)
         this.player.body.setGravity(0, 0)
-        this.player.setOrigin(0, 0) //faz o jogador ficar certo no mapa
+        this.player.setOrigin(1, -4) //faz o jogador ficar certo no mapa
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
         //
@@ -122,17 +122,16 @@ export class Level extends Phaser.Scene {
         this.bug1.setDepth(1)
         document.addEventListener('executeCode', this.executeCode.bind(this))
         //mecânicas e mapa
+        this.add.image(210*2, 210*2, "background").setScale(0.085106383)
         const backgroundMap = this.make.tilemap({key: "map"})
         const backgroundTileset = backgroundMap.addTilesetImage("MapPathOgSize", "tiles") // Criar o layer de fundo a partir do tilemap
-        const backgroundLayer = backgroundMap.createLayer("Ground", backgroundTileset, 0, 0) // Ajustar o layer de fundo para preencher a tela
-        const wallsLayer = backgroundMap.createLayer("Walls", backgroundTileset, 0, 0)
+        const wallsLayer = backgroundMap.createLayer("Tile Layer 1", backgroundTileset, 0, 0)
         console.log("paredes", wallsLayer)
-        console.log(backgroundMap, backgroundTileset, backgroundLayer)
+        console.log(backgroundMap, backgroundTileset)
+        wallsLayer.setAlpha(0)
         wallsLayer.setScale(4)
-        backgroundLayer.setScale(4)
         wallsLayer.setCollisionByExclusion([-1])
         this.physics.add.collider(this.player, wallsLayer);
-        backgroundLayer.setOrigin(0, 0)
     }
     update(){
         if(this.player.x === 600 && this.player.y === 120){ //verifica se o jogador chegou no final
