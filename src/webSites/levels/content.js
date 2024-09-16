@@ -125,6 +125,7 @@ async function content(){
             }
         })
     })
+    /*
     comingSoon.addEventListener("click", ()=>{
         if(life>0){
             window.location.href = "/webSites/comingSoon/index.html?level=" + comingSoon.id
@@ -133,6 +134,7 @@ async function content(){
             zeroLifePopup.classList.add("open")
         }
     })
+    */
     closePopup.addEventListener("click", ()=>{
         zeroLifePopup.classList.remove("open")
     })
