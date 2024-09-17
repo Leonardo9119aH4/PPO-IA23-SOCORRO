@@ -103,19 +103,22 @@
             frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
-        this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
+        const mapScale = 4
+        const tileSize = 30
+        this.physics.world.setBounds(0, 0, tileSize * mapScale * 7, tileSize * mapScale * 7); // 7 = quantidade de tiles
         this.player = this.physics.add.sprite(120, 120, 'playerIdle')
         this.player.setCollideWorldBounds(true)
-        this.player.setDisplaySize(120, 120).refreshBody()
+        this.player.setDisplaySize(tileSize * mapScale, tileSize * mapScale).refreshBody()
         this.player.setBounce(0)
         this.player.body.setGravity(0, 0)
-        this.player.setOrigin(1, -4) //faz o jogador ficar certo no mapa
+        this.player.setOrigin(0, 0) //faz o jogador ficar certo no mapa
+        this.player.setPosition(0, tileSize * mapScale * 5) // 5 = quantidade de tiles
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
         //
         this.bug1 = this.physics.add.sprite(240, 240, 'bug1Idle')
-        this.bug1.setDisplaySize(120, 120)
-        this.bug1.setSize(120, 120)
+        this.bug1.setDisplaySize(tileSize * mapScale, tileSize * mapScale)
+        this.bug1.setSize(tileSize * mapScale, tileSize * mapScale)
         this.bug1.body.setGravity(0, 0)
         this.bug1.setOrigin(0, 0) //faz o bug1 ficar certo no mapa
         this.bug1.anims.play("bug1Idle", true)
