@@ -103,13 +103,13 @@
             frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
+        //
         this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
-        this.player = this.physics.add.sprite(120, 120, 'playerIdle')
+        this.player = this.physics.add.sprite(120, 660, 'playerIdle')
         this.player.setCollideWorldBounds(true)
         this.player.setDisplaySize(120, 120).refreshBody()
         this.player.setBounce(0)
         this.player.body.setGravity(0, 0)
-        this.player.setOrigin(1, -4) //faz o jogador ficar certo no mapa
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
         //
@@ -117,7 +117,6 @@
         this.bug1.setDisplaySize(120, 120)
         this.bug1.setSize(120, 120)
         this.bug1.body.setGravity(0, 0)
-        this.bug1.setOrigin(0, 0) //faz o bug1 ficar certo no mapa
         this.bug1.anims.play("bug1Idle", true)
         this.bug1.setDepth(1)
         document.addEventListener('executeCode', this.executeCode.bind(this))
@@ -173,7 +172,7 @@
         async function bug1Attack(bugPos, player, bug1){
             switch(bugPos){
                 case 1: //inimigo em cima
-                    //bug1.anims.play("bug1AttackDown", false)
+                    bug1.anims.play("bug1AttackDown", false)
                     bug1.setOrigin(0.5, 0.25)
                     bug1.setDisplaySize(128, 256)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
@@ -199,7 +198,7 @@
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
                     break;
                 case 3: //inimigo em baixo
-                    //bug1.anims.play("bug1AttackUp", false)
+                    bug1.anims.play("bug1AttackUp", false)
                     bug1.setOrigin(0.5, 0.75)
                     bug1.setDisplaySize(128, 256)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
