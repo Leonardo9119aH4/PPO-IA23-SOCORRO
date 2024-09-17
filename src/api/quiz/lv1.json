@@ -1,0 +1,52 @@
+[
+    {
+        "ask": "Qual dessas variáveis é do tipo inteiro?",
+        "alt": ["m = 3,01", "t = ‘a’", "u = 1,2", "x = 9"],
+        "ans": 3,
+        "image": null 
+    },
+    {
+        "ask": "A variável a = 4,9 é do tipo:",
+        "alt": ["lógico", "caracter", "real", "inteiro"],
+        "ans": 2,
+        "image": null 
+    },
+    {
+        "ask": "A variável x = 8 é do tipo:",
+        "alt": ["lógico", "caracter", "real", "inteiro"],
+        "ans": 3,
+        "image": null 
+    },
+    {
+        "ask": "Qual dessas variáveis é do tipo caracter?",
+        "alt": ["m = b", "t = ‘9’", " l = 1,2", "x = 1"],
+        "ans": 1,
+        "image": null 
+    },
+    {
+        "ask": "Qual dessas variáveis é do tipo cadeia?",
+        "alt": ["x = 0", "nome = “Thomas”", "letra = p", "letra = p", "c = 0,5"],
+        "ans": 2,
+        "image": null 
+    },
+    {
+        "ask": "Qual dessas variáveis é do tipo real?",
+        "alt": ["A e D ", "A e B", "A e C", "C e D"],
+        "ans": 2,
+        "image":  "lvl1ex6.png"
+    },
+    {
+        "ask": "A Variável y = verdadeiro é do tipo:",
+        "alt": ["lógico", "caracter", "real", "inteiro"],
+        "ans": 0,
+        "image":  null
+    },
+    {
+        "ask": "Qual a maneira correta de declarar uma variável?",
+        "alt": ["inteiro a", "a = 6", "a inteiro", "a 6"],
+        "ans": 0,
+        "image":  null
+    }
+
+
+]
