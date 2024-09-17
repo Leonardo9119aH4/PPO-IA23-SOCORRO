@@ -2,21 +2,21 @@
 [
      
     {
-        "ask": "Qual a saída de escreva(3 * 2 - 2)?",
+        "ask": "Qual a saída de escreva(3 * 2 + 2)?",
         "alt": ["10", "7", "8", "9"],
         "ans": 2,
         "image": null 
     },
     {
         "ask": "Qual a saída de escreva((3 + 2) * 2)?",
-        "alt": ["10", "7", "8", "9"],
-        "ans": 0,
-        "image": "test.png"
+        "alt": ["14", "13", "12", "11"],
+        "ans": 2,
+        "image": null
     },
     {
         "ask": "Qual a saída de escreva(3 + 3) / 3?",
         "alt": [" 1", " 2", " 3", " 4"],
-        "ans": 0,
+        "ans": 2,
         "image": null 
     },
     {
@@ -26,10 +26,10 @@
         "image": null 
     },
     {
-        "ask": "(5falta img)Observando o seguinte código, qual será o valor de “c”",
-        "alt": ["c = 1", "c = 2", "c = 3", "c = 4"],
-        "ans": 2,
-        "image": "lvl1ex5.png" 
+        "ask": "Observando o seguinte código, qual será o valor de “c”",
+        "alt": ["c = 3", "c = 4", "c = 5", "c = 6"],
+        "ans": 3,
+        "image": "lvl3ex5.png" 
     },
     {
         "ask": "Qual a saída de escreva((1 + 2) * 3 + 1)?",
@@ -44,22 +44,22 @@
         "image": null 
     },
     {
-        "ask": "(8faObservando o pequeno código a abaixo, qual será o valor de c?",
+        "ask": "Observe o pequeno código a abaixo, se o usuario der o valor 3 para a varivel b, qual será o valor de c?",
         "alt": ["3", "4", "5", "6"],
         "ans": 2,
         "image": "lvl3ex8.png"
     },
     {
-        "ask": "Observe o pequeno código a seguir:",
+        "ask": "Observe o pequeno código a abaixo, se o usuario der o valor 7 para a varivel b, qual será o valor de c?",
         "alt": ["7", "15", "16", "9"],
         "ans": 1,
-        "image": "lvl1ex10" 
+        "image": "lvl3ex10.png" 
     },
     {
-        "ask": "Qual a saída de escreva(1 +( 8 * 3))?",
-        "alt": ["27", "24", "25", "21"],
-        "ans": 2,
-        "image": null 
+        "ask": "Observe o código e determine qaul será o valor de c:",
+        "alt": ["1", "1.5", "2.5", "3"],
+        "ans": 3,
+        "image": "lvl3ex11.png" 
     },
     {
         "ask": "O que o operador “%” representa?",
@@ -68,9 +68,15 @@
         "image": null 
     },
     {
-        "ask": "(12falta img)Observe o pequeno código a seguir:",
-        "alt": ["1", "1.5", "2.5", "3"],
-        "ans": 3,
-        "image": null 
+        "ask": "Qual a saída de escreva(1 +( 8 * 3))",
+        "alt": ["27", "24", "25", "21"],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "ask": "Veja a declaração:  x = (1 +( 11 % 4)). Qual é o valor de x?",
+        "alt": ["4", "5", "6", "7"],
+        "ans": 0,
+        "image": null
     }
 ] 
