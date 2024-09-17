@@ -1,16 +1,12 @@
 import {main} from '/globalAssets/js/main.js'
 main()
 
-const confirmBt = document.querySelector("#entrar")
-const exitbt = document.querySelector("#exitbt")
+const confirmBt = document.querySelector("#btConfirm")
 const emailAlert = document.querySelector("#emailAlert")
 const comfirmEmailAlert = document.querySelector("#confirmEmailAlert")
 const comfirmPasswordAlert = document.querySelector("#comfirmPassowrdAlert")
 const phoneAlert = document.querySelector("#phoneAlert")
 
-exitbt.addEventListener('click', ev => {
-    window.location.href = "/webSites/main/index.html"
-})
 confirmBt.onclick = async function() {
     let email = document.querySelector("#email").value
     let confirmEmail = document.querySelector("#confirmEmail").value
@@ -30,7 +26,6 @@ confirmBt.onclick = async function() {
     if(data == -1) {
         alert("Algum campo está vazio")
     }
-    let cad = false
     for(let i = 0, aux = data; i<data; i+=2){
         if(aux>=16){
             phoneAlert.innerHTML = "Este telefone já consta no sistema!"
@@ -50,7 +45,7 @@ confirmBt.onclick = async function() {
         }
     }
     if(data === 0){
-        window.location.href = "/webSites/main/index.html"
+        window.location.href = "/webSites/levels/index.html"
     }
 }
 
