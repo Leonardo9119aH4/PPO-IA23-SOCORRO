@@ -81,42 +81,56 @@
             frames: this.anims.generateFrameNumbers('playerAttackSides', { start: 0, end: 23 }), // Frames da animação
             frameRate: 8, // Taxa de quadros por segundo
         })
+        this.anims.create({
+            key: 'playerDeath',
+            frames: this.anims.generateFrameNumbers('playerDeath', { start: 0, end: 23 }),
+            frameRate: 8
+        })
         // Bug1
         this.anims.create({
             key: 'bug1Idle', 
-            frames: this.anims.generateFrameNumbers('bug1Idle', { start: 0, end: 31 }), // Frames da animação
+            frames: this.anims.generateFrameNumbers('bug1Idle', { start: 0, end: 19 }), // Frames da animação
             frameRate: 8, 
             repeat: -1 
         })
-        // this.anims.create({
-        //     key: 'bug1AttackUp',
-        //     frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 8 }), // Frames da animação
-        //     frameRate: 8, 
-        // })
-        // this.anims.create({
-        //     key: 'bug1AttackDown', 
-        //     frames: this.anims.generateFrameNumbers('bug1AttackDown', { start: 0, end: 8 }), // Frames da animação
-        //     frameRate: 8, 
-        // })
+        this.anims.create({
+            key: 'bug1AttackUp',
+            frames: this.anims.generateFrameNumbers('bug1AttackUp', { start: 0, end: 8 }), // Frames da animação
+            frameRate: 8, 
+        })
+        this.anims.create({
+            key: 'bug1AttackDown', 
+            frames: this.anims.generateFrameNumbers('bug1AttackDown', { start: 0, end: 8 }), // Frames da animação
+            frameRate: 8, 
+        })
         this.anims.create({
             key: 'bug1AttackSides', 
             frames: this.anims.generateFrameNumbers('bug1AttackSides', { start: 0, end: 8 }), // Frames da animação
             frameRate: 8, 
         })
-        //
-        this.physics.world.setBounds(0, 0, 30 * 7 * 4, 30 * 7 * 4);
-        this.player = this.physics.add.sprite(120, 660, 'playerIdle')
+        this.anims.create({
+            key: 'bug1Death',
+            frames: this.anims.generateFrameNumbers('bug1Death', { start: 0, end: 23 }),
+            frameRate: 8
+        })
+        const mapScale = 4
+        const tileSize = 30
+        this.physics.world.setBounds(0, 0, tileSize * mapScale * 7, tileSize * mapScale * 7); // 7 = quantidade de tiles
+        this.player = this.physics.add.sprite(120, 120, 'playerIdle')
         this.player.setCollideWorldBounds(true)
-        this.player.setDisplaySize(120, 120).refreshBody()
+        this.player.setDisplaySize(tileSize * mapScale, tileSize * mapScale).refreshBody()
         this.player.setBounce(0)
         this.player.body.setGravity(0, 0)
+        this.player.setOrigin(0, 0) //faz o jogador ficar certo no mapa
+        this.player.setPosition(0, tileSize * mapScale * 5) // 5 = quantidade de tiles
         this.player.anims.play("playerIdle", true)
         this.player.setDepth(2)
         //
         this.bug1 = this.physics.add.sprite(240, 240, 'bug1Idle')
-        this.bug1.setDisplaySize(120, 120)
-        this.bug1.setSize(120, 120)
+        this.bug1.setDisplaySize(tileSize * mapScale, tileSize * mapScale)
+        this.bug1.setSize(tileSize * mapScale, tileSize * mapScale)
         this.bug1.body.setGravity(0, 0)
+        this.bug1.setOrigin(0, 0) //faz o bug1 ficar certo no mapa
         this.bug1.anims.play("bug1Idle", true)
         this.bug1.setDepth(1)
         document.addEventListener('executeCode', this.executeCode.bind(this))
@@ -176,7 +190,7 @@
                     bug1.setOrigin(0.5, 0.25)
                     bug1.setDisplaySize(128, 256)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.destroy()
+                        player.anims.play("playerDeath", false)
                         bug1.setDisplaySize(128, 128)
                         bug1.setOrigin(0.5, 0.5)
                         bug1.anims.play("bug1Idle", true)
@@ -189,7 +203,7 @@
                     bug1.setDisplaySize(256, 128)
                     bug1.setOrigin(0.5, 0)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.destroy()
+                        player.anims.play("playerDeath", false)
                         bug1.anims.play("bug1Idle", true)
                         bug1.setDisplaySize(128, 128)
                         bug1.setOrigin(0, 0)
@@ -202,7 +216,7 @@
                     bug1.setOrigin(0.5, 0.75)
                     bug1.setDisplaySize(128, 256)
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.destroy()
+                        player.anims.play("playerDeath", false)
                         bug1.setDisplaySize(128, 128)
                         bug1.setOrigin(0.5, 0.5)
                         bug1.anims.play("bug1Idle", true)
@@ -215,7 +229,7 @@
                     bug1.setDisplaySize(256, 128)
                     bug1.flipX = true
                     await new Promise(resolve => bug1.on("animationcomplete", ()=>{
-                        player.destroy()
+                        player.anims.play("playerDeath", false)
                         bug1.anims.play("bug1Idle", true)
                         bug1.setDisplaySize(128, 128)
                         bug1.flipX = false

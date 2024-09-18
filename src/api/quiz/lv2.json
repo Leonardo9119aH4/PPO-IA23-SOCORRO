@@ -40,6 +40,56 @@
         "alt": ["“3 + 2 * 2”", "3 + 2 * 2", "10", "7"],
         "ans": 1,
         "image": null 
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": ["g é igual a 1", "g é igual a g", "g é igual a x", "“g é igual a ”,g"],
+        "ans": 0,
+        "image": "lvl2ex8.png" 
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": ["“x é igual a ”,x", "x é igual a x", "x é igual a 1 + 1", "x é igual a 2"],
+        "ans": 3,
+        "image": "lvl2ex9.png"
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela se o usuário escrever “dados”.",
+        "alt": ["“dados”", "dados", "*nada*", "d"],
+        "ans": 3,
+        "image": "lvl2ex10.png"
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": ["b é igual a ,b", "b é igual a b", "b é igual a 9", "“b é igual a ”,b"],
+        "ans": 2,
+        "image": "lvl2ex11.png"
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": [" j é igual a 1", " j é igual a j", " j é igual a j + 1", "j é igual a 1.5"],
+        "ans": 3,
+        "image": "lvl2ex12.png"
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": ["x é igual a 2", " x é igual a y", "x é igual a 9", "“x é igual a “,x"],
+        "ans": 2,
+        "image": "lvl2ex13.png"
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": ["consoante", " j", "k", "j = k"],
+        "ans": 0,
+        "image": "lvl2ex14.png"
+    },
+    {
+        "ask": "Observe o pequeno código a seguir e determine o que será escrito na tela.",
+        "alt": ["a + b = a + b", "1 + 2 = 1 + 2", "1 + 2 = 3", "a + b = ab"],
+        "ans": 2,
+        "image": "lvl2ex15.png"
     }
+
+
 
 ]
