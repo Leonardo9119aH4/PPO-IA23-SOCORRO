@@ -6,7 +6,7 @@
         "type": "quiz", 
         "theory": true,
         "theory_title": "Variáveis",
-        "get_theory": null
+        "get_theory": "var"
     },
     {
         "type": "quiz",
