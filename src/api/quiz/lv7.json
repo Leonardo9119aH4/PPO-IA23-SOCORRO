@@ -1,0 +1,8 @@
+[
+    {
+        "ask": "É uma característica do laço de repetição: ",
+        "alt": ["É executado várias vezes", "Pode ser chamado a qualquer hora", "Exclusico do C++", "Só existe 1 tipo"],
+        "ans": 0,
+        "image": null 
+    }
+]
