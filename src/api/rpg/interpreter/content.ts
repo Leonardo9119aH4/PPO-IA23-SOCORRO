@@ -10,14 +10,20 @@ import { getTiles } from './getTiles'
 
 export async function runMove(app: Application){
     app.post('/api/private/interpreter', async (req: Request, res: Response) => {
-        let inputcommands = req.body.inputcommands.split("\n")
-        var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
-        const moveCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'moveCommands.json'))
-        const attackCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'attack.json'))
-        var phaserCommands: Array<Array<number>> = []
-        await load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
-        console.log("foi:", phaserCommands)
-        res.status(200).json(phaserCommands)
+        try{
+            let inputcommands = req.body.inputcommands.split("\n")
+            var gameVars: Array<Array<any>> = [new Array(0), new Array(0), new Array(0)]
+            const moveCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'moveCommands.json'))
+            const attackCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'attack.json'))
+            var phaserCommands: Array<Array<number>> = []
+            await load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
+            console.log("foi:", phaserCommands)
+            res.status(200).json(phaserCommands)
+        }
+        catch{
+            res.sendStatus(500)
+        }
+        
     })
 }
 

@@ -1,0 +1,75 @@
+[
+     
+    {
+        "ask": "É uma característica do laço de repetição: ",
+        "alt": ["É executado várias vezes", "Pode ser chamado a qualquer hora", "Exclusico do C++", "Só existe 1 tipo"],
+        "ans": 0,
+        "image": null 
+    },
+    {
+        "ask": "Qual termo é usado para declarar um laço de repetição (pseudocódigo do codegamix)?",
+        "alt": ["se", "se não", "caso", "enquanto", "funcao", "sempre que"],
+        "ans": 3,
+        "image": null 
+    },
+    {
+        "ask": "Analise o código a seguir e responda qual é o valor de y.",
+        "alt": [8, 17, 9, 15, 16, 17],
+        "ans": 4,
+        "image": "lv9yValue.png" 
+    },
+    {
+        "ask": "Qual dos 3 laços de repetição abaixo é o mais adequado?",
+        "alt": ["enquanto", "faça enquanto", "para"],
+        "ans": 2,
+        "image": "lv9loops.png"
+    },
+    {
+        "ask": "O laço 'enquanto' é executado se a condição é atendida, já o laço 'faça enquanto' é executado pelo menos 1 vez.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "O laço 'enquanto' é executado se a condição é atendida, já o laço 'para' é executado pelo menos 1 vez.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "Qual termo é usado para definir um laço de repetição que possui 3 parâmetros?",
+        "alt": ["enquanto", "se", "sempre que", "se não", "para", "faca enquanto"],
+        "ans": 4,
+        "image": null
+    },
+    {
+        "ask": "Considerando que o usuário digitou 17, quantos números foram impressos na tela?",
+        "alt": ["7", "8", "9", "10", "11", "12"],
+        "ans": 2,
+        "image": "lv9pair.png"
+    },
+    {
+        "ask": "A diferença do 'se' do 'enquanto' é que o 'se' só é executado 1 vez e o 'enquanto' é executado enquanto a condição é atendida",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "'enquanto(x != 1)' é executado quando:",
+        "alt": ["x é igual a 1", "x é diferente de 1", "x é maior que é 1", "fatorial de x é igual a 1"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "O trecho de códgio abaixo é adequado (perfomático)?",
+        "alt": ["Erro de compilação", "Inadequado", "Adequado"],
+        "ans": 1,
+        "image": "lv9for.png"
+    },
+    {
+        "ask": "Quais são os 3 tipos básicos de laço de repetição?",
+        "alt": ["se, se nao, outro", "talvez, caso, para", "para, para cada, enquanto", "enquanto, faça enquanto, para"],
+        "ans": 3,
+        "image": null
+    }
+]
