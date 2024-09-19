@@ -145,6 +145,9 @@ async function content(){
                 },
                 body: JSON.stringify({inputcommands: inputcommands.value})
             })
+            if(response.status === 500){
+                fatalError(500)
+            }
             response = await response.json()
             let realCommands = []
             response.forEach(el => {
