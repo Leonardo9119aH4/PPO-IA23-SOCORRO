@@ -128,6 +128,15 @@ async function content(){
                 "exp": exp
             })
         })
+        fetch("/api/private/levelsunlocked", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "upLevel",
+            })
+        })
     })
     const inputcommands = document.querySelector("#commands")
     let isRunning = false
