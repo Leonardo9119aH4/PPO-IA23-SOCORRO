@@ -178,12 +178,12 @@ async function content(){
                     fatalError(500)
                 }
             })
-            if(life<=0){
-                GameOver()
-            }
-            else{
-                Feedback(false)
-            }
+        }
+        if(life<=0){
+            GameOver()
+        }
+        else{
+            Feedback(false)
         }
     }
     function GameOver(){

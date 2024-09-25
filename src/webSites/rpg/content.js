@@ -73,6 +73,7 @@ async function content(){
     const levelBlob = new Blob([levelText], { type: 'application/javascript' });
     const levelUrl = URL.createObjectURL(levelBlob);
     const levelScript = await import(levelUrl)
+    let gameOver=false
     class Level extends levelScript.Level{}
     const config = { //gambiarra pq o js é burro e não consegue obter isso com json
         width: 210*4,
@@ -93,6 +94,7 @@ async function content(){
         dSec++
     }, 100)
     document.addEventListener("gameOver", ev=>{ //game over
+        gameOver = true
         fetch("/api/private/lifes", {
             method: "POST",
             headers: {
@@ -126,6 +128,15 @@ async function content(){
                 "exp": exp
             })
         })
+        fetch("/api/private/levelsunlocked", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "upLevel",
+            })
+        })
     })
     const inputcommands = document.querySelector("#commands")
     let isRunning = false
@@ -134,7 +145,7 @@ async function content(){
     }
     document.addEventListener('isRunningCode', runCode)
     document.querySelector("button#exec").onclick = async function() {
-        if(!isRunning){
+        if(!(isRunning || gameOver)){
             isRunning = true
             let response = await fetch("/api/private/interpreter", {
                 method: "POST",
@@ -143,6 +154,9 @@ async function content(){
                 },
                 body: JSON.stringify({inputcommands: inputcommands.value})
             })
+            if(response.status === 500){
+                fatalError(500)
+            }
             response = await response.json()
             let realCommands = []
             response.forEach(el => {

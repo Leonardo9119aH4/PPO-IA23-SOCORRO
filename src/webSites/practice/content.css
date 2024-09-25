@@ -78,7 +78,7 @@ main{
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
