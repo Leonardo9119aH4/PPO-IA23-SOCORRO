@@ -3,6 +3,9 @@ import {main, fatalError} from "/globalAssets/js/main.js"
 const gameOverPopup = document.querySelector("#gameover")
 const winPopup = document.querySelector("#win")
 const winInfo = winPopup.querySelector("h2")
+const learnPopup = document.querySelector("#learning")
+const learnContent = learnPopup.querySelector(".content")
+const closeLearn = learnPopup.querySelector("button")
 async function getData(){
     const params = new URLSearchParams(window.location.search)
     const level = parseInt(params.get("level"))
@@ -74,6 +77,15 @@ async function content(){
     const levelUrl = URL.createObjectURL(levelBlob);
     const levelScript = await import(levelUrl)
     let gameOver=false
+    if(master[level].theory){
+        learnPopup.classList.add("opened")
+        const learnRqst = await fetch(`/globalAssets/learnings//${master[level].get_theory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
+        learnContent.innerHTML = await learnRqst.text()
+        closeLearn.addEventListener("click", ()=>{
+            learnPopup.classList.remove("opened")
+            closeLearn.removeEventListener("click")
+        })
+    }
     class Level extends levelScript.Level{}
     const config = { //gambiarra pq o js é burro e não consegue obter isso com json
         width: 210*4,
@@ -126,6 +138,15 @@ async function content(){
             body: JSON.stringify({
                 "action": "add",
                 "exp": exp
+            })
+        })
+        fetch("/api/private/levelsunlocked", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "action": "upLevel",
             })
         })
     })

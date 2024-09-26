@@ -1,13 +1,8 @@
 @import url("/globalAssets/css/main.css");
-
 html, body{
-    height: 100%;
+    /* overflow-y: hidden; */
 }
-main{
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* temporário */
-    & #error{
-        color: red;
-    }
+video {
+    height: 100vh;
+    box-sizing: border-box;
 }
