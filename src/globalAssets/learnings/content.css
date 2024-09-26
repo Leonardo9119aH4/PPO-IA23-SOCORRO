@@ -1,9 +1,13 @@
-h1, p, h3{
+h1, p, h3, li{
     color:aliceblue
 }
 
 .bold {
     font-weight: bolder;
+}
+
+.red {
+    color: red;
 }
 
 .text{ /* div raíz */
