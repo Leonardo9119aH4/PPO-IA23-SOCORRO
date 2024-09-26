@@ -1,7 +1,33 @@
-h1, p, h3{
+h1, p, h3, li{
     color:aliceblue
 }
 
 .bold {
     font-weight: bolder;
+}
+
+.red {
+    color: red;
+}
+
+.text{ /* div raíz */
+    display: block;
+    float: left;
+}
+.example{
+    display: grid;
+    justify-items: center;
+    margin: 30px;
+}
+
+.big{
+    height: 30vh;
+}
+
+.medium {
+    height: 15vh;
+}
+
+.tiny {
+    height: 5vh;
 }
