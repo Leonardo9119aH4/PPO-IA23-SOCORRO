@@ -1,3 +1,37 @@
+#learning{
+    --learnWidth: 75vw;
+    --learnHeight: 75vh;
+    position: fixed;
+    width: var(--learnWidth);
+    height: var(--learnHeight);
+    top: calc((100vh - var(--learnHeight))/2);
+    left: calc((100vw - var(--learnWidth))/2);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    background-color: rgba(29, 144, 207, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 100;
+    & .content{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+    }
+    & button{
+        font-size: 1.5rem;
+    }
+}
+#learning.opened{
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 #gameover, #win{
     --popupWidht: 35vw;
     --popupHeight: 35vh;
