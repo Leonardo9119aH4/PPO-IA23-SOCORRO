@@ -1,0 +1,21 @@
+@import url("/globalAssets/css/main.css");
+body{
+    background-image: url("/globalAssets/images/laptop-coding.jpg");
+}
+main{
+    background-color: gray;
+    color: white;
+    height: 100vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    & .content{
+        padding: 2rem;
+        text-align: justify;
+        & h1, & h2{
+            text-align: center;
+        }
+        & span{
+            color: yellow;
+        }
+    }
+}
