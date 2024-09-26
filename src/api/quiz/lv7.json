@@ -1,8 +1,94 @@
 [
     {
-        "ask": "É uma característica do laço de repetição: ",
-        "alt": ["É executado várias vezes", "Pode ser chamado a qualquer hora", "Exclusico do C++", "Só existe 1 tipo"],
+        "ask": "Para que o comando 'se' seja executado:",
+        "alt": ["a condição deve ser verdadeira", "a condição deve ser falsa"],
         "ans": 0,
-        "image": null 
+        "image": null
+    },
+    {
+        "ask": "Para que o comando 'senao se' seja executado:",
+        "alt": [
+            "toda condição anterior deve ser verdadeira", 
+            "somente a condição anterior deve ser falsa", 
+            "toda condição anterior deve ser falsa", 
+            "somente a condição anterior deve ser verdadeira"
+        ],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "Para que o comando 'senao' seja executado:",
+        "alt": [
+            "toda condição anterior deve ser verdadeira", 
+            "somente a condição anterior deve ser falsa", 
+            "toda condição anterior deve ser falsa", 
+            "somente a condição anterior deve ser verdadeira"
+        ],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "Observando o código a seguir, responda o que é necessário para que a condição seja verdadeira:",
+        "alt": ["a deve ser par", "a deve ser ímpar"],
+        "ans": 1,
+        "image": "lvl7ex5.png"
+    },
+    {
+        "ask": "Para que a condição do código abaixo seja verdadeira:",
+        "alt": [
+            "se deve ser verdadeiro, ou seja, a pode receber o valor 3", 
+            "se deve ser verdadeiro, ou seja, a pode receber o valor 12", 
+            "se deve ser falso, ou seja, a pode receber o valor 10", 
+            "se deve ser falso, ou seja, a pode receber o valor 1"
+        ],
+        "ans": 1,
+        "image": "lvl7ex6.png"
+    },
+    {
+        "ask": "Para que a condição do código seja falsa, o código precisa ler qual valor do usuário?",
+        "alt": ["6 / 2", "3", "8 / 2", "1 + 1"],
+        "ans": 3,
+        "image": "lvl7ex7.png"
+    },
+    {
+        "ask": "Para que a condição deste código seja verdadeira, o código precisa ler qual valor do usuário?",
+        "alt": ["8 % 3", "3 / 2", "8 / 2", "1 + 1"],
+        "ans": 2,
+        "image": "lvl7ex8.png"
+    },
+    {
+        "ask": "Para que a condição 'senao' do cógigo abaixo seja executada:",
+        "alt": ["g e d devem ser exatamente iguais", "g e d devem ser diferentes"],
+        "ans": 0,
+        "image": "lvl7ex9.png"
+    },
+    {
+        "ask": "De acordo com o código abaixo, o que será escrito se dermos um valor 5 para a variável b?",
+        "alt": ["são iguais", "não são iguais"],
+        "ans": 1,
+        "image": "lvl7ex10.png"
+    },
+    {
+        "ask": "Observando o código abaixo, x e y devem receber quais valores para que as duas condições sejam verdadeiras?",
+        "alt": [
+            "x = 2 e y = 1+1", 
+            "x = 2 e y = 3", 
+            "x = 3 e y = 3", 
+            "x = 3 e y = 1+3"
+        ],
+        "ans": 2,
+        "image": "lvl7ex11.png"
+    },
+    {
+        "ask": "Veja o código a seguir e responda o que deve ocorrer para que se não seja executado:",
+        "alt": ["se retorna verdadeiro", "med = 5", "se retorna falso", "x1 = 3 e x2 = 7"],
+        "ans": 2,
+        "image": "lvl7ex12.png"
+    },
+    {
+        "ask": "Observe o código a seguir. Para que a condição 'senao' seja executada:",
+        "alt": ["p1 != p2", "p1 <> p2", "p1 > p2", "p1 < p2"],
+        "ans": 0,
+        "image": "lvl7ex13.png"
     }
 ]
