@@ -17,8 +17,17 @@ h1, p, h3, li{
 .example{
     display: grid;
     justify-items: center;
-    margin-top: 0;
-    & img{
-        width: 15vw;
-    }
+    margin: 30px;
+}
+
+.big{
+    height: 30vh;
+}
+
+.medium {
+    height: 15vh;
+}
+
+.tiny {
+    height: 5vh;
 }
