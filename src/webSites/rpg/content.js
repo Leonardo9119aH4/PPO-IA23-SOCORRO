@@ -168,6 +168,9 @@ async function content(){
             })
             if(response.status === 500){
                 fatalError(500)
+            } else if (response.status === 409) {
+                alert("Código com erro!")
+                return
             }
             response = await response.json()
             let realCommands = []
@@ -185,5 +188,3 @@ async function content(){
 }
 main()
 content()
-
-
