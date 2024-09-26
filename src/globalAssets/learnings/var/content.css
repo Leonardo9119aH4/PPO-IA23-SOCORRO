@@ -1,13 +1,1 @@
 @import url('/globalAssets/learnings/content.css');
-.text{ /* div raíz */
-    display: block;
-    float: left;
-}
-.example{
-    display: block;
-    float: right;
-    margin-top: 0;
-    & img{
-        width: 30vw;
-    }
-}

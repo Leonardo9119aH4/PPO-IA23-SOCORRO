@@ -5,3 +5,16 @@ h1, p, h3{
 .bold {
     font-weight: bolder;
 }
+
+.text{ /* div raíz */
+    display: block;
+    float: left;
+}
+.example{
+    display: grid;
+    justify-items: center;
+    margin-top: 0;
+    & img{
+        width: 15vw;
+    }
+}
