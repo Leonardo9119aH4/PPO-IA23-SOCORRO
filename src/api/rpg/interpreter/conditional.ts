@@ -20,8 +20,7 @@ export async function conditional(input: Array<string>, inputcommands: Array<str
     let finalLine: number = getFinalline(inputcommands, actualline)
     let elseLine: number = listCommands(inputcommands, actualline, actualline)[1]
     console.log("finalline: ", finalLine)
-    console.log("elseLine: ", elseLine)
-    console.log(inputcommands[finalLine])
+    console.log("elseLine: ", inputcommands[elseLine])
     if(eval(expressionString)) {
         console.log("A expressão é verdadeira")
         let ifcommands: any = listCommands(inputcommands, actualline, actualline)[0]
