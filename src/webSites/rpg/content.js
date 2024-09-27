@@ -6,6 +6,7 @@ const winInfo = winPopup.querySelector("h2")
 const learnPopup = document.querySelector("#learning")
 const learnContent = learnPopup.querySelector(".content")
 const closeLearn = learnPopup.querySelector("button")
+const backgroundMusic = new Audio("/webSites/rpg/localAssets/music.mp3")
 async function getData(){
     const params = new URLSearchParams(window.location.search)
     const level = parseInt(params.get("level"))
@@ -81,9 +82,11 @@ async function content(){
         learnPopup.classList.add("opened")
         const learnRqst = await fetch(`/globalAssets/learnings//${master[level].get_theory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
         learnContent.innerHTML = await learnRqst.text()
-        closeLearn.addEventListener("click", ()=>{
+        closeLearn.addEventListener("click", ev=>{
             learnPopup.classList.remove("opened")
-            closeLearn.removeEventListener("click")
+            backgroundMusic.loop = true
+            backgroundMusic.play()
+            closeLearn.removeEventListener("click", ev)
         })
     }
     class Level extends levelScript.Level{}
