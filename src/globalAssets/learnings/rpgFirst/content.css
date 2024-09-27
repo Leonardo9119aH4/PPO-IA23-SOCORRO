@@ -1,8 +1,12 @@
-.bold {
-    font-weight: bolder;
-}
-
 #learning {
-    height: fit-content;
-    text-align: center;
+    & .content{
+        padding: 2rem;
+        padding-top: 0;
+        text-align: justify;
+        font-size: 0.95rem;
+        box-sizing: border-box;
+        & h1 {
+            text-align: center;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 #learning{
-    --learnWidth: 75vw;
-    --learnHeight: 75vh;
+    --learnWidth: 80vw;
+    --learnHeight: 80vh;
     position: fixed;
     width: var(--learnWidth);
     height: var(--learnHeight);
@@ -15,6 +15,7 @@
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 1rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s;
@@ -26,6 +27,14 @@
     }
     & button{
         font-size: 1.5rem;
+        width: 11rem;
+        height: 5rem;
+        border-radius: 5rem;
+        border: none;
+        margin-top: 0.4rem;
+    }
+    & button:hover, & button:focus{
+        box-shadow: 0 0 10px 5px #008dff;
     }
 }
 #learning.opened{
