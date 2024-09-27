@@ -10,24 +10,14 @@
     <body>
         <nav></nav><!--injetado pelo JS-->
         <main>
-
-            <div id="title">
-                <img src="">
-                Learning:
-            </div>
-            <div id="learningContent">
-                <p>Um algoritmo é uma série de passos feitos para executar certa ação.</p>
-                <p>Em uma analogia simples, imagine o preparo de uma xícara de café. Para preparar você precisa de água, pó de café, leite e açúcar. Todos os procedimentos que você realizar como colocar o pó de café na cafeteira ou misturar o café da xícara com leite, é o que chamamos de algoritmo, já os ingredientes é o que chamamos de entrada e a xícara de café o que chamamos de saída.</p>
-            </div>
-            <button>
-                CONTINUAR
-            </button>
-
-            <video controls autoplay>
+            <video muted autoplay>
                 <source src="/webSites/intro/Lore.mp4" type="video/mp4">
                 Seu navegador não suporta a tag de vídeo.
-              </video>
-
+            </video>
+            <div class="controls">
+                <button id="reset">Reiniciar</button>
+                <button id="skip">Pular</button>
+            </div>
         </main>
         <footer></footer><!--injetado pelo JS-->
     </body>
