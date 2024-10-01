@@ -21,7 +21,7 @@ export function listCommands(inputcommands: any, i: number, x: number) {
     } while(counter>0)
     console.log("i: ", i, "x: ", x)
     console.log(inputcommands.slice(x+1, i))
-    return [inputcommands.slice(x+1, i), i]
+    return [inputcommands.slice(x+1, i), i-1]
 }
 
 export function getFinalline(inputcommands: any, i: number) {

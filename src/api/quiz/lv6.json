@@ -1,0 +1,112 @@
+[
+    {
+        "ask": "A operação 2 < 5 && 15/3 == 5 é verdadeira ou falsa?",
+        "alt": ["Verdadeira", "Falsa"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "Qual dessas disjunções retorna valor falso?",
+        "alt": ["V || V", "V || F", "F || V", "F || F"],
+        "ans": 3,
+        "image": null
+    },
+    {
+        "ask": "A disjunção: V ou F, retorna valor verdadeiro ou falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "A conjunção: 1 == 3/3 || 3%2 == 1, retorna valor verdadeiro ou falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "A disjunção: !F || 3%2 != 7%4, retorna valor verdadeiro ou falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "Para que a disjunção entre dois valores retorne valor verdadeiro é necessário que:",
+        "alt": [
+            "Ambos os valores sejam diferentes",
+            "Ambos os valores sejam falsos",
+            "Ambos os valores sejam verdadeiro",
+            "Um dos valores seja verdadeiro"
+        ],
+        "ans": 3,
+        "image": null
+    },
+    {
+        "ask": "Para que a conjunção entre dois valores retorne valor verdadeiro é necessário que:",
+        "alt": [
+            "Ambos os valores sejam diferentes",
+            "Ambos os valores sejam falsos",
+            "Ambos os valores sejam verdadeiro",
+            "Um dos valores seja verdadeiro"
+        ],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "ask": "A expressão: V && F && F || V, retorna valor verdadeiro ou falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "ask": "A operação: 2 == 1+1 && 1 != 2/2, retornará valor verdadeiro ou falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "Qual valor será retornado da operação: !V || F && V && V?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "3 é igual a 1+1 e 6 é diferente de 12/2 (3 == 1+1 && 6 != 12/2), retornará valor verdadeiro ou falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "ask": "C é menor ou igual a D e D é maior ou igual a C (C <= D && D >= C), para que essa comparação retorne valor verdadeiro, C e D precisarão ter quais valores?",
+        "alt": [
+            "C = 3; D = 2",
+            "C = 5; D = 4",
+            "C = 8; D = 10",
+            "C = 0; D = -8"
+        ],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "ask": "A é maior ou igual a B e B é maior ou igual a A (A >= B && B >= A), para que essa comparação retorne valor verdadeiro, A e B precisarão ter quais valores?",
+        "alt": ["a)", "b)", "c)", "d)"],
+        "ans": 1,
+        "image": "lvl6ex13.png"
+    },
+    {
+        "ask": "Para que a expressão: X != Y && X >= Y, retorne um valor verdadeiro, as variáveis X e Y precisam ter quais valores?",
+        "alt": [
+            "X = 0; Y = 10",
+            "X = 10; Y = 10",
+            "X = 8; Y = 0",
+            "X = 20; Y = 30"
+        ],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "ask": "A expressão: 3 != 3 + 0 && 5 >= 2+3 || 4 > 3, retorna um valor verdadeiro ou um valor falso?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    }
+]

@@ -1,3 +1,46 @@
+#learning{
+    --learnWidth: 80vw;
+    --learnHeight: 80vh;
+    position: fixed;
+    width: var(--learnWidth);
+    height: var(--learnHeight);
+    top: calc((100vh - var(--learnHeight))/2);
+    left: calc((100vw - var(--learnWidth))/2);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    background-color: rgba(29, 144, 207, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 100;
+    & .content{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+    }
+    & button{
+        font-size: 1.5rem;
+        width: 11rem;
+        height: 5rem;
+        border-radius: 5rem;
+        border: none;
+        margin-top: 0.4rem;
+    }
+    & button:hover, & button:focus{
+        box-shadow: 0 0 10px 5px #008dff;
+    }
+}
+#learning.opened{
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 #gameover, #win{
     --popupWidht: 35vw;
     --popupHeight: 35vh;
@@ -12,6 +55,17 @@
     z-index: 100;
     display: grid;
     place-items: center;
+    & button{
+        font-size: 1.5rem;
+        width: 11rem;
+        height: 5rem;
+        border-radius: 5rem;
+        border: none;
+    }
+    & button:hover, & button:focus{
+        box-shadow: 0 0 10px 5px #008dff;
+    }
+
 }
 #gameover{
     background-color: rgba(255, 0, 0, 0.5);

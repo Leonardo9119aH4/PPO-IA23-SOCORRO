@@ -62,8 +62,12 @@ main{
         height: 100%;
     }
     & #theory{
+        display: grid;
         width: 100%;
         height: 100%;
+        padding: 1.5rem;
+        overflow-y: auto;
+        box-sizing: border-box;
     }
 }
 #response{
@@ -101,7 +105,7 @@ main{
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;

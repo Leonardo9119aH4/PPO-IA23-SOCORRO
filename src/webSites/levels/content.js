@@ -63,7 +63,7 @@ async function content(){
     lifeDOM.innerHTML = life
     rankUser.innerHTML = `Você: ${exp} XP`
     for(let i=0; i<ranking.length; i++){
-       rankPlayers[i].innerHTML = "1. " + ranking[i].username + ": " + Math.floor(ranking[i].exp * 100) / 100 + " XP"
+       rankPlayers[i].innerHTML = `${i+1}°. ` + ranking[i].username + ": " + Math.floor(ranking[i].exp * 100) / 100 + " XP"
     }
     for(let i=0; i<=LN; i++){ //injeta os níveis
         if(master[i] && master[i].type == "intro"){
@@ -125,6 +125,7 @@ async function content(){
             }
         })
     })
+    
     comingSoon.addEventListener("click", ()=>{
         if(life>0){
             window.location.href = "/webSites/comingSoon/index.html?level=" + comingSoon.id
@@ -133,6 +134,7 @@ async function content(){
             zeroLifePopup.classList.add("open")
         }
     })
+    
     closePopup.addEventListener("click", ()=>{
         zeroLifePopup.classList.remove("open")
     })

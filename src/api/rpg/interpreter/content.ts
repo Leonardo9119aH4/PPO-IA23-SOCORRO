@@ -16,7 +16,6 @@ export async function runMove(app: Application){
         const attackCommands: Array<Commands> = await fs.readJson(path.join(__dirname, 'attack.json'))
         var phaserCommands: Array<Array<number>> = []
         await load(inputcommands, moveCommands, gameVars, phaserCommands, attackCommands)
-        console.log("foi:", phaserCommands)
         res.status(200).json(phaserCommands)
     })
 }

@@ -6,19 +6,19 @@
         "type": "quiz", 
         "theory": true,
         "theory_title": "Variáveis",
-        "get_theory": null
+        "get_theory": "var"
     },
     {
         "type": "quiz",
         "theory": true,
         "theory_title": "E/S de dados",
-        "get_theory": null
+        "get_theory": "dataIO"
     },
     {
         "type": "quiz",
         "theory": true,
         "theory_title": "Operadores aritméticos",
-        "get_theory": null
+        "get_theory": "aritOper"
     },
     {
         "type": "blocks",
@@ -30,19 +30,19 @@
         "type": "quiz",
         "theory": true,
         "theory_title": "Operadores relacionais",
-        "get_theory": null
+        "get_theory": "relOper"
     },
     {
         "type": "quiz",
         "theory": true,
         "theory_title": "Operadores lógicos",
-        "get_theory": null
+        "get_theory": "logOper"
     },
     {
         "type": "quiz",
         "theory": true,
         "theory_title": "Desvio condicional",
-        "get_theory": null
+        "get_theory": "ifElse"
     },
     {
         "type": "blocks",
@@ -54,13 +54,13 @@
         "type": "quiz",
         "theory": true,
         "theory_title": "Laços de repetição",
-        "get_theory": null
+        "get_theory": "loops"
     },
     {
         "type": "quiz",
         "theory": true,
-        "theory_title": "Funções",
-        "get_theory": null
+        "theory_title": "Sub-rotinas, funções e procedimentos",
+        "get_theory": "functions"
     },
     {
         "type": "blocks",
@@ -72,7 +72,7 @@
         "type": "rpg",
         "theory": true,
         "theory_title": "Mecânicas básicas",
-        "get_theory": null
+        "get_theory": "rpgFirst"
     },
     {
         "type": "coming_soon"

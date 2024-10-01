@@ -21,6 +21,7 @@ btConfirm.onclick = async function() {
         status = 3
     } else {
         alert("Selecione um método!")
+        return
     }
     let response = await fetch('/api/signin', {
         method: "POST",
