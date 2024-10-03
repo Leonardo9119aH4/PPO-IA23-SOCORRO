@@ -14,6 +14,6 @@ help: exibe essa lista.
 clear: limpa o terminal.
 cls: limpa o terminal.
 
-!! Metas pro PPO 2
-Refatorar o backend, fazendo-o ser orientado a objetos, usar EJS direito, usar webpack, fazer um compilador do Magic-C em C/C++ e fazer um app Android.
-Expandir o projeto.
+!! OBS
+Repositório morto, para versões atuais (PPO2 e MICTI) acessar: https://github.com/Leonardo9119aH4/PPO-IA23-FINAL
+

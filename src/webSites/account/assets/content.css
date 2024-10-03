@@ -79,9 +79,8 @@ input {
 #options {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     padding: 4rem;
-    gap: 2rem;
     border-right: 2px solid black;
     & button p{
         margin: 0;

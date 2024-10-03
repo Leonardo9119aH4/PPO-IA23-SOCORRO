@@ -199,6 +199,7 @@ export class Level extends Phaser.Scene {
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
+                    actions = []
                     break;
                 case 2: //inimigo à direita
                     bug1.anims.play("bug1AttackSides", false)
@@ -212,6 +213,7 @@ export class Level extends Phaser.Scene {
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
+                    actions = []
                     break;
                 case 3: //inimigo em baixo
                     bug1.anims.play("bug1AttackUp", false)
@@ -225,6 +227,7 @@ export class Level extends Phaser.Scene {
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
+                    actions = []
                     break;
                 case 4: //inimigo à esquerda
                     bug1.anims.play("bug1AttackSides", false)
@@ -238,6 +241,7 @@ export class Level extends Phaser.Scene {
                         resolve()
                     }))
                     document.dispatchEvent(new Event("gameOver")) //jogador morreu
+                    actions = []
                     break;
             }
         }
