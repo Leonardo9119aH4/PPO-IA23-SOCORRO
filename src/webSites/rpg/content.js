@@ -39,17 +39,6 @@ async function getData(){
     return [level, master, life]
 }
 async function getLevel(level){
-    const configRequest = await fetch("/api/private/getrpg", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "level": level,
-            "getfile": 0
-        })
-    })
-    const config = await configRequest.json()
     const levelRequest = await fetch("/api/private/getrpg", {
         method: "POST",
         headers: {
@@ -61,7 +50,7 @@ async function getLevel(level){
         })
     })
     const levelText = await levelRequest.text()
-    return [config, levelText]
+    return levelText
     
 }
 async function content(){
@@ -71,9 +60,7 @@ async function content(){
     const master = data1[1]
     const life = data1[2]
     document.querySelector("#lifes").innerHTML = life
-    const data2 = await getLevel(level) //arquivos secundários, precisam dos arquivos primários
-    // let config = data2[0]
-    const levelText = data2[1]
+    const levelText = await getLevel(level) //o nível em si
     const levelBlob = new Blob([levelText], { type: 'application/javascript' });
     const levelUrl = URL.createObjectURL(levelBlob);
     const levelScript = await import(levelUrl)
