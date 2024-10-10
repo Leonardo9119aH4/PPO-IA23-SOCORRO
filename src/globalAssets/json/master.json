@@ -75,6 +75,32 @@
         "get_theory": "rpgFirst"
     },
     {
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Vetores",
+        "get_theory": "vectors"
+    },
+    {
+        "type": "quiz",
+        "theory": true,
+        "theory_title": "Matrizes",
+        "get_theory": "arrays"
+    },
+    {
+        "type": "blocks",
+        "theory": false,
+        "level_title": "Vetores e matrizes",
+        "level_header": "Complete o algoritimo a seguir: "
+    },
+    {
+        "type": "rpg",
+        "theory": false
+    },
+    {
+        "type": "rpg",
+        "theory": false
+    },
+    {
         "type": "coming_soon"
     }
 ]

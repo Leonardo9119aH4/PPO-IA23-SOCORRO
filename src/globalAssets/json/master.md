@@ -11,5 +11,11 @@ Nível 9: quiz e lição sobre laços de repetição.
 Nível 10: quiz e lição sobre funções.
 Nível 11: blocks sobre laços de repetição e funções.
 Nível 12: rpg, avanço da lore.
-
-To be continued...
+Nível 13: quiz e lição sobre vetores.
+Nível 14: quiz e lição sobre matrizes.
+Nível 15: blocks sobre vetores e matrizes.
+Nível 16: rpg, avanço da lore.
+Nível 17: rpg, revisão de tudo, avanço da lore.
+Nível 18: em breve...
+Todos os conteúdos de Algoritimos 1 completos.
+Ano que vem, expandir, ensinar C++ e entrar em POO.
