@@ -8,7 +8,7 @@
         "image": null 
     },
     {
-        "ask": "Qual a saída de escreva((3 + 2) * 2)?",
+        "ask": "Qual a saída de escreva((4 + 2) * 2)?",
         "alt": ["14", "13", "12", "11"],
         "ans": 2,
         "image": null
@@ -16,7 +16,7 @@
     {
         "ask": "Qual a saída de escreva(3 + 3) / 3?",
         "alt": [" 1", " 2", " 3", " 4"],
-        "ans": 2,
+        "ans": 1,
         "image": null 
     },
     {
