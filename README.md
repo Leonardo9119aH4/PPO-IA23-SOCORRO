@@ -26,5 +26,9 @@ O servidor possui um terminal com alguns comandos:<br>
 </ul>
 <h1>Completo?</h1>
 O projeto contemplará todos os conteúdos de Algoritimos 1 dos cursos de TI. Tomamos como base o PPC de Ciência da Computação (Algoritimos 1° semestre) do IFC Videira para organizar os conteúdos a serem ensinados: https://drive.google.com/file/d/1BQJUvYt-baOfjjg3k2skFFkMnu_uGQqY/view <br>
+<h1>Documentação</h1>
+O projeto está semi-documentado (documentação incompleta): https://docs.google.com/document/d/1AZBHsRIACf85wdCEtze2carcHTbE1JwGqhscBnPRfvY/edit?usp=sharing <br>
+Perguntas do quiz: https://docs.google.com/document/d/1pf51LTyUO9FrScj5hhTt-7Uuu_s5z_Z6nMljsroiOJA/edit?tab=t.0 <br>
+Como o projeto será refeito, não faz sentido terminar essa documentação. <br>
 <h1>OBS</h1>
 Repositório quase morto, o repositório no PPO2 será refeito em: https://github.com/Leonardo9119aH4/PPO-IA23-FINAL<br>
