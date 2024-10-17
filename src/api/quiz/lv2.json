@@ -25,7 +25,7 @@
     },
     {
         "ask": "Qual a saída de escreva(“a ”,  “b ”,  “c”)?",
-        "alt": ["abc", "“a” “b” “c”", "", " a b c", " ab c"],
+        "alt": ["abc", "“a” “b” “c”", " a b c", " ab c"],
         "ans": 2,
         "image": null 
     },

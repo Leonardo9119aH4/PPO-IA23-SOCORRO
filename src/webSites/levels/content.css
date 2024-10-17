@@ -79,9 +79,6 @@ main{
     display: flex;
     margin: 0;
     background-color: #272727;
-    & .intro, & .quiz, & .blocks, & .rpg{
-        font-size: 1.5rem;
-    }
 }
 #exp{ /* menu lateral do ranking */
     display: flex;
@@ -157,6 +154,7 @@ main{
             justify-content: center;
             color: white;
             cursor: pointer;
+            font-size: 1.5rem;
         }
         & div:nth-child(12n-11){
             grid-column: 1 / 8;
