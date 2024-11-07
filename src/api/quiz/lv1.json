@@ -31,7 +31,7 @@
         "title":"Variáveis",
         "ask": "Qual dessas variáveis é do tipo cadeia?",
         "alt": ["x = 0", "nome = “Thomas”", "letra = p", "letra = p", "c = 0,5"],
-        "ans": 2,
+        "ans": 1,
         "image": null 
     },
     {
