@@ -59,7 +59,7 @@
         "title":"Operadores relacionais",
         "ask": "A é maior que B (A > B), para que essa comparação retorne valor verdadeira, A e B precisarão ter quais valores?",
         "alt": ["A = 4/2 e B = 1", "A = 3 e B = 4", "A = 2 * 2 e B = 6", "A = 9 e B = 10"],
-        "ans": 3,
+        "ans": 0,
         "image": null 
     },
     {
