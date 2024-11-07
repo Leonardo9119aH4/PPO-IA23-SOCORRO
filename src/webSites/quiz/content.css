@@ -4,7 +4,7 @@
     --RepN: 4; /* Quantidade de alternativas, alterado pelo JS */
     --feedColor: rgba(127, 127, 127, 0.7); /* Cor do feedback, alterado pelo JS */
     --AnsRows: 1; /* Quantidade de colunas na section de respostas, alterado pelo JS*/
-    --AnsColuns: 4;
+    --AnsColuns: 1;
 }
 html, body{
     height: 100%;
