@@ -3,6 +3,8 @@
 :root{
     --RepN: 4; /* Quantidade de alternativas, alterado pelo JS */
     --feedColor: rgba(127, 127, 127, 0.7); /* Cor do feedback, alterado pelo JS */
+    --AnsRows: 1; /* Quantidade de colunas na section de respostas, alterado pelo JS*/
+    --AnsColuns: 4;
 }
 html, body{
     height: 100%;
@@ -12,9 +14,11 @@ html, body{
 }
 
 header{
+    display: flex;
     width: 100vw;
     height: 20vh;
     background-color: #666464;
+    justify-content: right;
     color: white;
     margin-top: 0;
     & #ask, #life{
@@ -24,7 +28,6 @@ header{
         height: 100%;
     }
     & #ask{
-        width: 75%;
         margin-top: 0;
         float: left;
         display: grid;
@@ -36,7 +39,9 @@ header{
         }
     }
     & #life{
-        width: 25%;
+        display: flex;
+        justify-content: right;
+        padding-right: 5rem;
         float: right;
         & h1, img{
             display: block;
@@ -44,11 +49,18 @@ header{
         & h1{
             float: right;
         }
-        & img{
-            
-
-        }
     }
+}
+
+#justify{
+    --_life-size: 25%;
+    width: calc(100vw - calc(var(--sizemnbt) + var(--marginbtham)));
+}
+
+#justify>div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
 }
 
 main{
@@ -68,6 +80,12 @@ main{
         padding: 1.5rem;
         overflow-y: auto;
         box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        & p#question{
+            color: white;
+            font-size: xx-large;
+        }
     }
 }
 #response{
@@ -77,6 +95,7 @@ main{
     color: white;
     display: grid;
     grid-template-columns: repeat(var(--RepN), 1fr);
+    grid-template-rows: repeat(var(--AnsRows), 1fr);
     place-items: center;
     &>button{
         font-size: 1.5rem;
