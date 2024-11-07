@@ -12,7 +12,7 @@ h1 {
     margin: 0;
 }
 
-p, label {
+p:not(nav p), label:not(nav label){
     font-weight: bold;
     font-size: 2rem;
 }

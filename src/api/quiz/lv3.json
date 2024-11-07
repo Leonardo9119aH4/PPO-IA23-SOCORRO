@@ -1,79 +1,90 @@
-
 [
-     
     {
+        "title":"Operadores aritméticos",
         "ask": "Qual a saída de escreva(3 * 2 + 2)?",
         "alt": ["10", "7", "8", "9"],
         "ans": 2,
         "image": null 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Qual a saída de escreva((3 + 2) * 2)?",
         "alt": ["14", "13", "12", "11"],
         "ans": 2,
         "image": null
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Qual a saída de escreva(3 + 3) / 3?",
         "alt": [" 1", " 2", " 3", " 4"],
         "ans": 2,
         "image": null 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Qual a saída de escreva(2*(2+(2+1)))?",
         "alt": [" 8", "10", "12", "15"],
         "ans": 1,
         "image": null 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Observando o seguinte código, qual será o valor de “c”",
         "alt": ["c = 3", "c = 4", "c = 5", "c = 6"],
         "ans": 3,
         "image": "lvl3ex5.png" 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Qual a saída de escreva((1 + 2) * 3 + 1)?",
         "alt": ["12", "11", "9", "10"],
         "ans": 3,
         "image": null 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Observe a seguinte declaração de variável: real a = 1.5, b = 2.5. Qual será a soma das variáveis “a” e ”b”??",
         "alt": ["3.5", "4", "4.5", "5"],
         "ans": 1,
         "image": null 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Observe o pequeno código a abaixo, se o usuario der o valor 3 para a varivel b, qual será o valor de c?",
         "alt": ["3", "4", "5", "6"],
         "ans": 2,
         "image": "lvl3ex8.png"
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Observe o pequeno código a abaixo, se o usuario der o valor 7 para a varivel b, qual será o valor de c?",
         "alt": ["7", "15", "16", "9"],
         "ans": 1,
         "image": "lvl3ex10.png" 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Observe o código e determine qaul será o valor de c:",
         "alt": ["1", "1.5", "2.5", "3"],
         "ans": 3,
         "image": "lvl3ex11.png" 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "O que o operador “%” representa?",
         "alt": ["Módulo", "Divisão", "Exponenciação", "Multiplicação"],
         "ans": 0,
         "image": null 
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Qual a saída de escreva(1 +( 8 * 3))",
         "alt": ["27", "24", "25", "21"],
         "ans": 2,
         "image": null
     },
     {
+        "title":"Operadores aritméticos",
         "ask": "Veja a declaração:  x = (1 +( 11 % 4)). Qual é o valor de x?",
         "alt": ["4", "5", "6", "7"],
         "ans": 0,

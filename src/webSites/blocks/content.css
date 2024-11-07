@@ -41,6 +41,7 @@ main{
         height: 100%;
         position: relative;
         background-color: rgb(211, 211, 211);
+        
     }
     & section#code{
         float: right;

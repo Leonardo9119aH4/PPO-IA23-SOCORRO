@@ -1,74 +1,86 @@
 [
     {
+        "title":"Operadores relacionais",
         "ask": "Qual operador permite mostrar se duas variáveis são iguais ou não?",
         "alt": ["=", "==", "!=", "<>"],
         "ans": 1,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "Qual operador compara e diz se  dois valores são diferentes ou não?",
         "alt": ["==", "=", "<>", "!="],
         "ans": 0,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "Qual operador diz que uma variável é maior que outra variável?",
         "alt": ["<", "<=", ">", "==="],
         "ans": 2,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "Qual operador diz que uma variável é menor que outra variável?",
         "alt": ["<", ">", "==", "<="],
         "ans": 0,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "A expressão “8 % 2 == 1” é falsa, por quê?",
         "alt": ["porque a “8 módulo 2” é 1", " porque o “8 dividido por 2” é 4", "porque o “8 módulo 2” é 0 ", "a comparação não está incorreta"],
         "ans": 2,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "A expressão “30 / 2  >= 9” é verdadeira?",
         "alt": ["sim, a expressão é verdadeira", "não, a expressão não é verdadeira"],
         "ans": 0,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "A expressão “27 / 3  == 9” é verdadeira?",
         "alt": ["sim", "não"],
         "ans": 0,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "A é maior que B e C é maior que A e B é maior que D ( A > B e C > A e B > D ) , quem é o menor?",
         "alt": ["A", "B", "C", "D"],
         "ans": 3,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "A é maior que B (A > B), para que essa comparação retorne valor verdadeira, A e B precisarão ter quais valores?",
         "alt": ["A = 4/2 e B = 1", "A = 3 e B = 4", "A = 2 * 2 e B = 6", "A = 9 e B = 10"],
         "ans": 3,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "A expressão 12 * 3 > 36 é verdadeira?",
         "alt": ["sim", "não"],
         "ans": 1,
         "image": null 
     },
     {
+        "title":"Operadores relacionais",
         "ask": "Com as seguintes variáveis A = 2 e B = 1 + 1, qual operador relacional faz a relação retornar valor verdadeiro?",
         "alt": ["A > B", "A != B", "A >= B", "A < B"],
         "ans": 2,
         "image": null 
     },
     {
-    "ask": "C = 4 E D = 7, para que a relação entre C e D retornem valor verdadeiro, qual operador deve ser usado?",
-    "alt": ["=", "!="],
-    "ans": 1,
-    "image": null 
+        "title":"Operadores relacionais",
+        "ask": "C = 4 E D = 7, para que a relação entre C e D retornem valor verdadeiro, qual operador deve ser usado?",
+        "alt": ["=", "!="],
+        "ans": 1,
+        "image": null 
     }
 ] 

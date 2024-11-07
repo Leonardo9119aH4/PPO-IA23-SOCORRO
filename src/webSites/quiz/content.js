@@ -140,10 +140,12 @@ async function content(){
         firstWrong = true
         Ask.innerHTML = quiz[NAsk].ask
         if(quiz[NAsk].image != null && quiz[NAsk].image != undefined){
-            mainElement.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
+            mainTheory.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
+            loadImg(quiz[NAsk].ask)
         }
         else{
-            mainElement.innerHTML = null
+            mainTheory.innerHTML = null
+            unloadImg(quiz[NAsk].ask, quiz[NAsk].title)
         }
         response.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
@@ -151,6 +153,20 @@ async function content(){
             response.innerHTML += `<button>${quiz[NAsk].alt[i]}</button>`
         }
     }
+    
+    function unloadImg(quest, title) {
+        DocCSS.style.setProperty("--AnsRows", 2)
+        DocCSS.style.setProperty("--AnsColuns", 2)
+        document.querySelector("div#theory").innerHTML = `<p id='question'>${quest}</p>`
+        document.querySelector("div#ask").innerHTML = `<h1>${title}</h1>`
+    }
+
+    function loadImg(quest) {
+        document.querySelector("div#ask").innerHTML = `<h1>${quest}</h1>`// parei aqui
+        DocCSS.style.setProperty("--AnsRows", 1)
+        DocCSS.style.setProperty("--AnsColuns", 4)
+    }
+
     function Correct(){
         NAsk++
         if(NAsk < quiz.length){
