@@ -94,7 +94,7 @@ main{
     background-color: #666464;
     color: white;
     display: grid;
-    grid-template-columns: repeat(var(--RepN), 1fr);
+    grid-template-columns: repeat(var(--AnsColuns), 1fr);
     grid-template-rows: repeat(var(--AnsRows), 1fr);
     place-items: center;
     &>button{

@@ -93,14 +93,6 @@
         "level_header": "Complete o algoritimo a seguir: "
     },
     {
-        "type": "rpg",
-        "theory": false
-    },
-    {
-        "type": "rpg",
-        "theory": false
-    },
-    {
         "type": "coming_soon"
     }
 ]
