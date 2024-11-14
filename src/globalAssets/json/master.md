@@ -14,8 +14,6 @@ Nível 12: rpg, avanço da lore.
 Nível 13: quiz e lição sobre vetores.
 Nível 14: quiz e lição sobre matrizes.
 Nível 15: blocks sobre vetores e matrizes.
-Nível 16: rpg, avanço da lore.
-Nível 17: rpg, revisão de tudo, avanço da lore.
-Nível 18: em breve...
+Nível 16: em breve...
 Todos os conteúdos de Algoritimos 1 completos.
 Ano que vem, expandir, ensinar C++ e entrar em POO.

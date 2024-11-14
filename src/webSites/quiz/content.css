@@ -4,7 +4,6 @@
     --RepN: 4; /* Quantidade de alternativas, alterado pelo JS */
     --feedColor: rgba(127, 127, 127, 0.7); /* Cor do feedback, alterado pelo JS */
     --AnsRows: 1; /* Quantidade de colunas na section de respostas, alterado pelo JS*/
-    --AnsColuns: 4;
 }
 html, body{
     height: 100%;
@@ -95,7 +94,7 @@ main{
     color: white;
     display: grid;
     grid-template-columns: repeat(var(--RepN), 1fr);
-    grid-template-rows: repeat(var(--AnsRows), 1fr);
+    grid-template-rows: repeat(1, 1fr);
     place-items: center;
     &>button{
         font-size: 1.5rem;
