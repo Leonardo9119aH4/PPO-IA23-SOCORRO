@@ -19,7 +19,7 @@ header{
     align-items: center;
     & h1{
         margin-left: 5vw;
-        float: left;
+        color: white;
     }
     & #life{
         margin-right: 5vw;
@@ -41,6 +41,7 @@ main{
         height: 100%;
         position: relative;
         background-color: rgb(211, 211, 211);
+        
     }
     & section#code{
         float: right;
