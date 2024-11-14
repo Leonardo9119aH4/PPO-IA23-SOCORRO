@@ -1,13 +1,13 @@
 .dragBlock{
     display: block;
-    position: absolute;
+    position: inherit;
     cursor: grab;
     border-radius: 10rem;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     user-select: none;
     color: white;
-    height: 2.2rem;
+    height: 1.75rem;
     width: 30rem;
 }
 #bl1{
@@ -22,4 +22,7 @@
     top: 20vh;
     color: orange !important;
     background-color: yellow;
+}
+.isDragging {
+    position: absolute !important;
 }

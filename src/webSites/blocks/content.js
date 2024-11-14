@@ -3,7 +3,8 @@ import {DragBlock, ReceiveBlock, Execute} from "/webSites/blocks/dragAndDrop.js"
 import {loadScript} from "/webSites/blocks/terminal.js"
 
 const aside = document.querySelector("aside") //local dos blocos arrastáeis
-const headerTitle = document.querySelector("header>h1") //cabeçario
+const header = document.querySelector("header")
+const headerTitle = header.querySelector("div#title>h1") //cabeçalho
 const codeBlocks = document.querySelector("section#code") //onde o scratch fica
 const lifeDOM = document.querySelector("#life>div") //número de vidas
 const title =  document.querySelector("title") //título
