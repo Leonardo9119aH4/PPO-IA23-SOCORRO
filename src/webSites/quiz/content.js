@@ -155,16 +155,12 @@ async function content(){
     }
     
     function unloadImg(quest, title) {
-        DocCSS.style.setProperty("--AnsRows", 2)
-        DocCSS.style.setProperty("--AnsColuns", 2)
         document.querySelector("div#theory").innerHTML = `<p id='question'>${quest}</p>`
         document.querySelector("div#ask").innerHTML = `<h1>${title}</h1>`
     }
 
     function loadImg(quest) {
         document.querySelector("div#ask").innerHTML = `<h1>${quest}</h1>`// parei aqui
-        DocCSS.style.setProperty("--AnsRows", 1)
-        DocCSS.style.setProperty("--AnsColuns", 4)
     }
 
     function Correct(){
