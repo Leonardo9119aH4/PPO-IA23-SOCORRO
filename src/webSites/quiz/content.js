@@ -141,11 +141,11 @@ async function content(){
         Ask.innerHTML = quiz[NAsk].ask
         if(quiz[NAsk].image != null && quiz[NAsk].image != undefined){
             mainTheory.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
-            loadImg(quiz[NAsk].ask)
+            loadImg(master[level].theory_title)
         }
         else{
             mainTheory.innerHTML = null
-            unloadImg(quiz[NAsk].ask, quiz[NAsk].title)
+            unloadImg(quiz[NAsk].ask, master[level].theory_title)
         }
         response.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
