@@ -1,0 +1,79 @@
+[
+    {
+        "title": "Matrizes",
+        "ask": "É correto afirmar que os [índice_1][índice_2] de uma matriz representam respectivamente:",
+        "alt": ["cima e baixo", "direita e esquerda", "tamanho da coluna", "linha e coluna"],
+        "ans": 3,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Dada a matriz: caracter letra[4][3], quantos dados podem ser armazenados?",
+        "alt": ["7", "10", "12", "13"],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Observando a matriz abaixo, qual será o valor de [5][3]?",
+        "alt": ["15", "7", "8", "3"],
+        "ans": 2,
+        "image": "lvl14ex3.png"
+    },
+    {
+        "title": "Matrizes",
+        "ask": "É correto afirmar que o menor índice de uma matriz sempre será [0][0]?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Dada a matriz: inteiro e[2][2] = {{1,2},{3,4}}, se quisermos exibir o valor 3, qual comando deve ser executado?",
+        "alt": ["escreva(e[0][0])", "escreva(e[0][1])", "escreva(e[1][0])", "escreva(e[1][1])"],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Um vetor poderia ser representado por uma matriz: inteiro n[1][10]?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "É correto afirmar que os valores armazenados em matrizes podem ser acessados por dois índices?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Observando a estrutura da seguinte matriz: inteiro graus[3][2], qual dos valores abaixo seria possível usar como declaração desta matriz?",
+        "alt": ["{{1,2},{,1,2},{1,2}}", "{{1,3,4},{1,2,8}}", "{{1},{1,2},{1,2,3}}", "{1,2,3,4,5,6}"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Dada a matriz: caracter letra[3][2] = {{‘a’,’b’},{‘cd’,’e’},{‘f’,’g’}}, em que posição se encontra um valor que não está de acordo com o tipo da matriz?",
+        "alt": ["escreva(e[0][2])", "escreva(e[0][1])", "escreva(e[1][0])", "escreva(e[2][1])"],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Observando o código, qual afirmação é correta?",
+        "alt": ["a diagonal principal é igual a 1", "a diagonal principal é igual a zero"],
+        "ans": 0,
+        "image": "lvl14ex11.png"
+    },
+    {
+        "title": "Matrizes",
+        "ask": "Observando o código abaixo, qual será o valor da posição x[2][2]?",
+        "alt": ["1", "2", "3", "4"],
+        "ans": 3,
+        "image": "lvl14ex12.png"
+    }
+]
