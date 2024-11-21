@@ -4,7 +4,7 @@ const DocCSS = document.documentElement //constante para alterar CSS pelo JS
 const Ask = document.querySelector("#ask>h1") //referencia a div de pergunta
 const response = document.querySelector("#response") //referencia a div que mostram as alternativas
 var responseButton = response.querySelectorAll("button") //referencia todas as alternativas
-const mainElement = document.querySelector("main")
+const mainElement = document.querySelector("main>div#theory")
 const mainImg = mainElement.querySelector("#img") //constante para colocar as imagens dos níveis
 const winnerPopup = document.querySelector("#winner") //popup de quando vence o quiz
 const winnerTime = winnerPopup.querySelector("#time") //exibe o tempo ao vencer o quiz
@@ -42,15 +42,25 @@ async function content(){
         Ask.innerHTML = quiz[NAsk].ask
         if(quiz[NAsk].image != null && quiz[NAsk].image != undefined){
             mainElement.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
+            loadImg(quiz[NAsk].ask)
         }
         else{
             mainElement.innerHTML = null
+            unloadImg(quiz[NAsk].ask, "Pratice")
         }
         response.innerHTML = " "
         DocCSS.style.setProperty("--RepN", `${quiz[NAsk].alt.length}`)
         for (let i=0; i<quiz[NAsk].alt.length; i++){
             response.innerHTML += `<button>${quiz[NAsk].alt[i]}</button>`
         }
+    }
+    function unloadImg(quest, title) {
+        document.querySelector("div#theory").innerHTML = `<p id='question'>${quest}</p>`
+        document.querySelector("div#ask").innerHTML = `<h1>${title}</h1>`
+    }
+
+    function loadImg(quest) {
+        document.querySelector("div#ask").innerHTML = `<h1>${quest}</h1>`// parei aqui
     }
     function Correct(){
         NAsk++
