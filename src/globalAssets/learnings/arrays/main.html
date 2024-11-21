@@ -1,0 +1,39 @@
+<link rel='stylesheet' type='text/css' media='screen' href='/globalAssets/learnings/var/content.css'>
+<div class="text">
+    <h1>Matriz (Array Multidimensional)</h1>
+    <p>As matrizes também podem ser chamadas de Arrays Multidimensionais. Ela tem como característica a capacidade de armazenar valores que podem ser acessados com dois índices. Para declararmos uma matriz, seguimos a seguinte sintaxe: </p>
+    <div>
+        <h3>&lt;Tipo&gt; &lt;nome_da_variável&gt; [índice_1][índice_2]  </h3>
+        <p><span class="bold">[índice_1]</span>: indica a quantidade de elementos que podem ser armazenados nas <span class="bold">linhas</span>da matriz.</p>
+        <p><span class="bold">[índice_2]</span>: indica a quantidade de elementos que podem ser armazenados nas <span class="bold">colunas</span>da matriz.</p>
+    </div>
+    <p>O tamanho da matriz é dado por <span class="bold">[índice_1]</span> multiplicado pelo <span class="bold">[índice_2]</span></p>
+    <br>
+    <p>Assim como explicado no Level anterior, na maioria das linguagens de programação os índices iniciam em 0 (zero), ou seja, quando é declarado um vetor de 10 elementos, o índice iniciará em 0 e terminará em 9. A única diferença que pode-se apontar é a existência de mais de índice.</p>
+    <br>
+    <h3>Ler e Escrever a Matriz</h3>
+    <div>
+        <p>Para escrevermos um valor de uma matriz, usaremos a seguinte sintaxe:</p>
+        <br>
+        <h3>escreva( &lt;nome_da_variável&gt;  [índice_1][índice_2])</h3>
+        <br>
+        <p>Já para ler um valor de uma matriz, deve-se a seguinte sintaxe:</p>
+        <h3>leia( &lt;nome_da_variável&gt;  [índice_1][índice_2])</h3>
+    </div>
+    <p class="red">lembresse os índices sempre iniciam-se em 0</p>
+    <div class="example">
+        <img src="/globalAssets/learnings/arrays/localAssets/images/readWriteEl.png">
+    </div>
+    <div>
+        <li>Se eu quiser exibir o número 1 na tela deve-se realizar o comando escreva( m[0][0] );</li>
+        <li>O comando leia(m[1][1]) exige que o usuário digite um valor de m[1][1];</li>
+        <li>E se quisermos que o número digitado pelo usuário seja escrito, o comando a ser usado será escreva(m[1][1] );</li>
+    </div>
+    <h3>Ler e Escrever toda a Matriz</h3>
+    <div class="example">
+        <img src="/globalAssets/learnings/arrays/localAssets/images/readWrite.png">
+    </div>
+    <li><span class="bold">Escreva ao final de cada linha</span>: ele faz a quebra da linha, sendo responsável por deixar a exibição da matriz organizada e impede com que a matriz se pareça com um vetor.</li>
+    <li><span class="bold">Leitura</span>: leia(x[a][b]) permite atribuir um valor a cada posição do matriz “x”, de acordo com o valor atual de “a”.</li>
+    <li><span class="bold">Escrita</span>: escreva(x[a][b]) exibe o valor de cada índice da matriz, garantindo que todos os valores armazenados sejam mostrados.</li>
+</div>
