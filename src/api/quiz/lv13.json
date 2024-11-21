@@ -1,0 +1,79 @@
+[
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor “inteiro a[10] = {1,2,3,4,5,6,7,8,9,10}”, qual o comando correto para exibirmos o valor 8?",
+        "alt": ["escreva(a[7])", "escreva(a[8])", "escreva(a[9])"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor inteiro par[3] = {2,4,5}, é correto afirmar que par[1]+par[2] = 6?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor inteiro n[5] = {10,15,20,25,30}, qual o comando correto para exibirmos o número 5?",
+        "alt": ["escreva(n[1] - n[2])", "escreva(n[4] + n[3])", "escreva(n[5])", "escreva(n[3] + n[2])"],
+        "ans": 3,
+        "image": "lvl13ex3.png"
+    },
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor cadeia v[4] = {Markus, Leo, Thomas, Niko}, se usarmos o comando escreva (v[2-1]) exibirá:",
+        "alt": ["Markus", "Leo", "Thomas", "Erro*"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor caracter v[3] = {“O”, “M”, “G”}, se usarmos o comando escreva (v[2] + v[2]) exibirá:",
+        "alt": ["OO", "MM", "GG", "Erro*"],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor caracter v[3] = {“1”,” 2”, “3”}, se usarmos o comando escreva (v[0] - v[1]) exibirá:",
+        "alt": ["1", "0", "-1", "Erro*"],
+        "ans": 3,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Vetor pode ter uma quantidade indeterminada de colunas, mas possui somente 1 linha.",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Qual dos vetores abaixo tem uma incongruência no tipo da variável?",
+        "alt": ["cadeia nome[3] = {”Joe”,  ”Patrick”,  ”Naomi”}", "caracter letra[3] = {‘A’,  ‘B’,  ‘C’}", "inteiro idade[5] = {1/2,  2,  3,  4,  5}", "real a[5] = {2/2,  2.01  ,3.1,  0.1,  9}"],
+        "ans": 2,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "É correto afirmar que o vetor: “inteiro n[5] = {1,2,3,4,5}”, vai do índice 1 ao 5?",
+        "alt": ["Verdadeiro", "Falso"],
+        "ans": 1,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Considerando o vetor: caracter vogal[5] = {‘a’, ’e’ , ’i’, ‘o’, ’u’}”, qual o dos valores está armazenado no índice 2?",
+        "alt": ["‘a’", "‘e’", "’i’", "’o’", "‘u’"],
+        "ans": 0,
+        "image": null
+    },
+    {
+        "title": "Vetores",
+        "ask": "Observando o código abaixo, qual será o indice do valor mostrado após a execução?",
+        "alt": ["v[2]", "v[3]", "v[4]", "v[5]"],
+        "ans": 0,
+        "image": "lvl13ex12.png"
+    }
+]
