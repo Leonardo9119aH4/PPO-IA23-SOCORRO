@@ -1,6 +1,6 @@
 .dragBlock{
     display: block;
-    position: inherit;
+    position: absolute;
     cursor: grab;
     border-radius: 10rem;
     text-align: center;
@@ -23,6 +23,7 @@
     color: orange !important;
     background-color: yellow;
 }
-.isDragging {
-    position: absolute !important;
+#bl4{
+    top: 30vh;
+    background-color: blue;
 }
