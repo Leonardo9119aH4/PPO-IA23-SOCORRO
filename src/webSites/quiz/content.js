@@ -120,7 +120,7 @@ async function content(){
     Life.innerHTML = life
     if(master[level].theory === true){
         const getTheory = master[level].get_theory
-        const theoryRqst = await fetch(`/globalAssets/learnings//${getTheory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
+        const theoryRqst = await fetch(`/globalAssets/learnings/${getTheory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
         theoryHTML = await theoryRqst.text()
     }
     function VerifyInit(){ //verificação de nível e mostrar a teoria conforme nível do usuário
