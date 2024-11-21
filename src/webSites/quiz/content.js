@@ -120,7 +120,7 @@ async function content(){
     Life.innerHTML = life
     if(master[level].theory === true){
         const getTheory = master[level].get_theory
-        const theoryRqst = await fetch(`/globalAssets/learnings//${getTheory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
+        const theoryRqst = await fetch(`/globalAssets/learnings/${getTheory}/main.html`) //obtenção da url conforme ejs da teoria a ser exibida
         theoryHTML = await theoryRqst.text()
     }
     function VerifyInit(){ //verificação de nível e mostrar a teoria conforme nível do usuário
@@ -141,7 +141,7 @@ async function content(){
         Ask.innerHTML = quiz[NAsk].ask
         if(quiz[NAsk].image != null && quiz[NAsk].image != undefined){
             mainTheory.innerHTML = `<img src='/globalAssets/images/codeImg/${quiz[NAsk].image}'>` //todas as imagens do quiz estão na pasta codeImg
-            loadImg(master[level].theory_title)
+            loadImg(quiz[NAsk].ask)
         }
         else{
             mainTheory.innerHTML = null

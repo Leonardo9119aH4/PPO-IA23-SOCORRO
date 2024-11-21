@@ -4,14 +4,14 @@ export async function Script(terminalElement, dSec, exp){
     let numLista = []
     for(let i=0; i<9; i++){
         terminal.write("Digite um valor:")
-        numLista.append(await terminal.read())
+        numLista.push(await terminal.read())
     }
     terminal.write(numLista)
     let numTabela = []
     for(let x=0; x<3; x++){
-        numTabela.append([])
+        numTabela.push([])
         for(let y=0; y<3; y++){
-            numTabela[x].append(numLista[3*x+y])
+            numTabela[x].push(numLista[3*x+y])
         }
     }
     terminal.write(numTabela)

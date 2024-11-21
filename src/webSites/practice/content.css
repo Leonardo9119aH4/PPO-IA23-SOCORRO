@@ -42,7 +42,22 @@ main{
     & img{ /* quando o quiz injetar uma imagem */
         height: 100%;
     }
+    & #theory{
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 1.5rem;
+        overflow-y: auto;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        & p#question{
+            color: white;
+            font-size: xx-large;
+        }
+    }
 }
+
 #response{
     width: 100vw;
     height: 20vh;
